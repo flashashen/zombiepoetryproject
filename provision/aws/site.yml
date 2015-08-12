@@ -1,0 +1,19 @@
+--- # Site confgiration for all hosts
+
+#- include: app-master.yml
+#- include: app-minion.yml
+
+- hosts: all
+  sudo: yes
+  roles:
+          - common
+
+- hosts: "*kube*master"
+  sudo: yes
+  roles:
+          - kube_master
+
+- hosts: "*kube*minion"
+  sudo: yes
+  roles:
+          - kube_minion

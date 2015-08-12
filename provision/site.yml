@@ -1,0 +1,13 @@
+--- # Site confgiration for all hosts
+
+#- include: app-master.yml
+#- include: app-minion.yml
+
+
+[tag_Name_staging_foo]
+
+[tag_Name_staging_bar]
+
+[staging:children]
+tag_Name_staging_foo
+tag_Name_staging_bar

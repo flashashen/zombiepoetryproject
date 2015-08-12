@@ -1,0 +1,20 @@
+
+# ssh settings
+ansible_connection: ssh
+ansible_ssh_user: ec2-user
+ansible_ssh_private_key_file: ~/.ssh/default_ec2.pem
+
+ec2_keypair: "default_ec2"
+
+ec2_instance_type: "t2.micro"
+
+# Amazon Linux AMI 2015.03 (HVM), SSD Volume Type
+ec2_image: "ami-e7527ed7"
+
+# default security group. SSH opened
+ec2_security_group: "default"
+#     group: "default"
+
+ec2_region: "us-west-2"
+ec2_assign_public_ip: yes
+ec2_minion_count: 2

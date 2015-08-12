@@ -1,0 +1,77 @@
+--- # Create ec2 instance playbook
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  #vars_prompt:
+  #  inst_name: "What's the name of the instance?"
+  vars:
+      keypair: "default_ec2"
+      instance_type: "t2.micro"
+
+      # Amazon Linux AMI 2015.03 (HVM), SSD Volume Type
+      #image: "ami-e7527ed7"
+
+      # Red Hat Enterprise Linux 7.1 (HVM), SSD Volume Type
+      image: "ami-4dbf9e7d"
+
+      # default security group. SSH opened
+      security_group: "default"
+       #     group: "default"
+
+      region: "us-west-2"
+      assign_public_ip: yes
+      minion_count: 2
+
+  tasks:
+    - name: create app minions
+      ec2:
+           image: "{{ image }}"
+           instance_type: "{{ instance_type }}"
+           keypair: "{{ keypair }}"
+           region: "{{ region }}"
+           group: "{{ security_group }}"
+           exact_count: "{{ minion_count }}"
+           # count_tag is criteria for exact_count matching
+           count_tag:
+              type: appserver
+              kube_type: minion
+           # instance_tags are tags to associate with created instances
+           instance_tags:
+              type: appserver
+              kube_type: minion
+           wait: true
+      register: minion_info
+
+    - name: create app master
+      ec2:
+           image: "{{ image }}"
+           instance_type: "{{ instance_type }}"
+           keypair: "{{ keypair }}"
+           region: "{{ region }}"
+           group: "{{ security_group }}"
+           exact_count: 1
+           # count_tag is criteria for exact_count matching
+           count_tag:
+              type: appserver
+              kube_type: master
+           wait: true
+           # instance_tags are tags to associate with created instances
+           instance_tags:
+              type: appserver
+              kube_type: master
+
+      register: master_info
+
+
+    - name: Add minions to host group
+      add_host: hostname={{ item.public_ip }} groupname=ec2hosts
+      with_items: minion_info.instances
+
+    - name: Add master to host group
+      add_host: hostname={{ item.public_ip }} groupname=ec2hosts
+      with_items: master_info.instances
+
+    - name: Wait for SSH to come up
+      wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
+      with_items: master_info.instances
