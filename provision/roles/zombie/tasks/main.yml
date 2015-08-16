@@ -1,0 +1,13 @@
+---
+
+#
+#   Run docker container with Zombie app
+#
+
+- name: install Docker base apps image
+  sudo: yes
+  docker:
+    image: eugeneware/docker-wordpress-nginx
+    state: started
+    ports:
+        - "80:80"

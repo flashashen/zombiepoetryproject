@@ -1,6 +1,0 @@
----
-- hosts: "*minion"
-  gather_facts: False
-  tasks:
-    - name: test connection
-      ping:

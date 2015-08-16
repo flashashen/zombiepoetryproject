@@ -1,8 +1,0 @@
----
-- name: Enable Centos virt7-testing yum repo
-  copy: src=cbs.centos.org_repos_virt7-testing_x86_64_os_.repo
-      dest=/etc/yum.repos.d/cbs.centos.org_repos_virt7-testing_x86_64_os_.repo
-
-- name: install Docker
-  yum: name=docker state=present
-

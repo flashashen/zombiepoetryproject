@@ -1,0 +1,37 @@
+---
+
+
+
+#
+#   Mount docker's data directory onto persistent EBS storage. This could be narrowed to just data volumes
+#
+- name: Format zombie WP data volume
+  filesystem: fstype=ext4 dev={{data_vol_dev_name}}
+
+- name: create data dir for mount point
+  file: path=/var/lib/docker state=directory
+
+- name: Mount EBS device as docker data
+  mount: name=/var/lib/docker src={{data_vol_dev_name}} fstype=ext4 state=mounted
+
+
+#
+#   Install Docker
+#
+- name: Enable additional yum repos
+  copy: src=additional_centos_repos.repo
+      dest=/etc/yum.repos.d/additional_centos_repos.repo
+
+- name: Install Docker
+  yum: "name='{{ item }}' state=present disable_gpg_check=true"
+  with_items:
+    - docker
+    - python-pip
+    - git
+
+- name: Docker-PY
+  pip: name=docker-py version=1.1.0
+
+- name: start Docker
+  service: name=docker state=started
+

@@ -1,13 +1,21 @@
 --- # Site confgiration for all hosts
 
-#- include: app-master.yml
-#- include: app-minion.yml
+# map instance tags to roles
+
+- hosts: all
+  gather_facts: false
+  sudo: yes
 
 
-[tag_Name_staging_foo]
+  roles:
+          - rhel_docker
+#          - zombie
 
-[tag_Name_staging_bar]
+  vars:
 
-[staging:children]
-tag_Name_staging_foo
-tag_Name_staging_bar
+      # aws is setting the device name when assoicated w the instance. The ec_vol attachemnt isnt
+      # allowing device name to be specified so we'll have to rely on default. aws names start at sdf
+      # and run though sdp. On the centos image the OS changes this to xvdf - xvdp.
+      #vol_dev_name: "/dev/sdf"
+      data_vol_dev_name: "/dev/xvdf"
+

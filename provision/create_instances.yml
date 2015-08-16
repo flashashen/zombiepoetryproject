@@ -1,0 +1,102 @@
+--- # Create ec2 instance playbook
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  #vars_prompt:
+  #  inst_name: "What's the name of the instance?"
+  vars:
+      keypair: "default_ec2"
+      instance_type: "t2.micro"
+
+      # Amazon Linux AMI 2015.03 (HVM), SSD Volume Type
+      #image: "ami-e7527ed7"
+
+      # Red Hat Enterprise Linux 7.1 (HVM), SSD Volume Type
+      image: "ami-4dbf9e7d"
+
+      # Predefined elastic IP
+      elastic_ip: "54.186.193.94"
+
+      # default security group. SSH opened
+      security_group: "default"
+       #     group: "default"
+
+      region: "us-west-2"
+
+      # aws is setting the device name when assoicated w the instance. The ec_vol attachemnt isnt
+      # allowing device name to be specified so we'll have to rely on default. aws names start at sdf
+      # and run though sdp. On the centos image the OS changes this to xvdf - xvdp.
+      #vol_dev_name: "/dev/sdf"
+      vol_dev_name_mapped_centos: "/dev/xvdf"
+
+
+
+  tasks:
+
+
+    - name: create single, master instance
+      ec2:
+           image: "{{ image }}"
+           instance_type: "{{ instance_type }}"
+           keypair: "{{ keypair }}"
+           region: "{{ region }}"
+           group: "{{ security_group }}"
+           # ebs_optimized: true  **** not valid for ec2.micro
+           wait: true
+
+           # This section sets an instance tag and then specifies that only one
+           # should exisit with the tag. This makes the task idempodent
+           instance_tags:
+              type: zombie_main
+           exact_count: 1
+           count_tag:
+              type: zombie_main
+
+      register: ec2_info
+
+
+    # Attach volume for WP data
+    - name: attach persistent WP data volume
+      ec2_vol:
+          region: "{{ region }}"
+          instance: "{{ item.id }}"
+          volume_type: gp2
+#          volume_size: 2  **** not valid if already exists
+          name: zombie_wp_data_volume
+#          device_name: "{{vol_dev_name}}"
+      with_items: ec2_info.instances
+      register: ec2_vol
+
+
+    - name: Assign elastip ip
+      ec2_eip: instance_id={{ item.id }} ip={{elastic_ip}} region="{{ region }}"
+      with_items: ec2_info.instances
+
+#    - name: Add instances to host group
+#      add_host: hostname={{ item.public_ip }} groupname=ec2hosts
+#      with_items: ec2_info.instances
+#
+#
+#    - name: Wait for SSH to come up
+#      wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
+#      with_items: ec2_info.instances
+
+#
+#    - name: Format zombie WP data volume
+#      filesystem: fstype=ext4 dev={{vol_dev_name_mapped_centos}}
+##      shell: sudo mkfs -t ext4 {{vol_dev_name}}; sudo cat '{{vol_dev_name}}   /var/lib/mysql   ext4    defaults,nofail    1 1' > /etc/fstab
+#      become: yes
+#      become_method: sudo
+##      when: ec2_vol.changed
+#
+#    - name: create data dir for mount point
+#      file: path=/data state=directory
+#      become: yes
+#      become_method: sudo
+#
+#    - name: Mount zombie WP data volume
+#      mount: name=/data src={{vol_dev_name_mapped_centos}} fstype=ext4 state=present
+#      become: yes
+#      become_method: sudo

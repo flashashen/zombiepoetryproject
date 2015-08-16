@@ -1,24 +1,5 @@
 --- # Create ec2 instance playbook
 
-    - name: create app minions
-      ec2:
-           image: "{{ ec2_image }}"
-           instance_type: "{{ ec2_instance_type }}"
-           keypair: "{{ ec2_keypair }}"
-           region: "{{ ec2_region }}"
-           group: "{{ ec2_security_group }}"
-           exact_count: "{{ ec2_minion_count }}"
-           # count_tag is criteria for exact_count matching
-           count_tag:
-              type: appserver
-              kube_type: minion
-           # instance_tags are tags to associate with created instances
-           instance_tags:
-              type: appserver
-              kube_type: minion
-           wait: true
-      register: minion_info
-
     - name: create app master
       ec2:
            image: "{{ ec2_image }}"
@@ -39,10 +20,6 @@
 
       register: master_info
 
-
-    - name: Add minions to host group
-      add_host: hostname={{ item.public_ip }} groupname=ec2hosts
-      with_items: minion_info.instances
 
     - name: Add master to host group
       add_host: hostname={{ item.public_ip }} groupname=ec2hosts

@@ -1,0 +1,11 @@
+- hosts: all 
+  gather_facts: True
+  connection: local
+  vars: 
+    - region: 'us-west-2'
+  tasks:
+
+  - name: create persistent volume
+    ec2_vol:
+      region: "{{ region }}"
+      name: zombie_main_volume

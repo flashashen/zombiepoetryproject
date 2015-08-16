@@ -1,3 +1,0 @@
----
-- name: install Kubernetes master packagees
-  yum: pkg=kubernetes-node state=present disable_gpg_check=yes
