@@ -1,0 +1,18 @@
+- hosts: ec2
+  gather_facts: True
+  connection: local
+  vars: 
+    - region: 'us-west-2'
+  tasks:
+    - name: Gather EC2 facts
+      local_action: ec2_facts
+ 
+    - debug: var=hostvars[inventory_hostname]
+    - debug: msg="{{ hostvars[inventory_hostname]['ec2_id'] }}"
+ 
+    - name: Stop instances
+      local_action: ec2
+        state='stopped'
+        instance_ids='{{ ec2_id }}'
+        region='{{ region }}'
+        wait=false

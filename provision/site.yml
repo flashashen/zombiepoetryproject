@@ -9,7 +9,7 @@
 
   roles:
           - rhel_docker
-#          - zombie
+          - zombie
 
   vars:
 

@@ -1,13 +1,44 @@
 ---
 
 #
-#   Run docker container with Zombie app
+#   Run docker container with Zombie app. The setup is tricky since the app container
+#   does some configruation when it's run so the normal volumne mounting can't be done after
+#   config is complete. The solution is to create a dummy container solely to copy some
+#   config data into the directories to be mounted in the real appliation container.
 #
+
+
+- name: Failsafe stat check to make sure existing config is not overwritten
+  stat: path=/usr/share/nginx/www
+  register: nginx_config
+
+- name: start temp image to cp files
+  sudo: yes
+  docker:
+    image: flashashen/zombie-web
+    state: present
+    name: temp_for_volume_copy
+  when: nginx_config.stat.exists == true
+  register: zombie_image_info
+
+
+- name: copy nginx data where it will be mounted back as host vol
+  shell: docker cp {{zombie_image_info.containers[0].Id}}:/var/lib/mysql /data/zombie/
+  when: zombie_image_info.changed
+- name: copy mysql data where it will be mounted back as host vol
+  shell: docker cp {{zombie_image_info.containers[0].Id}}:/usr/share/nginx /data/zombie/
+  when: zombie_image_info.changed
+
 
 - name: install Docker base apps image
   sudo: yes
   docker:
-    image: eugeneware/docker-wordpress-nginx
+    image: flashashen/zombie-web
+    name: zombie-web
     state: started
+    restart_policy: always
     ports:
         - "80:80"
+    volumes:
+        - /data/zombie/mysql:/var/lib/mysql
+        - /data/zombie/nginx:/usr/share/nginx
