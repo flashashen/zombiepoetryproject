@@ -8,7 +8,9 @@
 
 
   roles:
+#          - ec2
           - rhel_docker
+#          - dynamic_ip
           - zombie
 
   vars:

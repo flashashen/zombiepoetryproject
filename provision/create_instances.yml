@@ -70,33 +70,7 @@
       register: ec2_vol
 
 
-    - name: Assign elastip ip
-      ec2_eip: instance_id={{ item.id }} ip={{elastic_ip}} region="{{ region }}"
-      with_items: ec2_info.instances
-
-#    - name: Add instances to host group
-#      add_host: hostname={{ item.public_ip }} groupname=ec2hosts
-#      with_items: ec2_info.instances
-#
-#
-#    - name: Wait for SSH to come up
-#      wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
+#    - name: Assign elastip ip    ** Using ddclient to update now instead to avoid AWS charges
+#      ec2_eip: instance_id={{ item.id }} ip={{elastic_ip}} region="{{ region }}"
 #      with_items: ec2_info.instances
 
-#
-#    - name: Format zombie WP data volume
-#      filesystem: fstype=ext4 dev={{vol_dev_name_mapped_centos}}
-##      shell: sudo mkfs -t ext4 {{vol_dev_name}}; sudo cat '{{vol_dev_name}}   /var/lib/mysql   ext4    defaults,nofail    1 1' > /etc/fstab
-#      become: yes
-#      become_method: sudo
-##      when: ec2_vol.changed
-#
-#    - name: create data dir for mount point
-#      file: path=/data state=directory
-#      become: yes
-#      become_method: sudo
-#
-#    - name: Mount zombie WP data volume
-#      mount: name=/data src={{vol_dev_name_mapped_centos}} fstype=ext4 state=present
-#      become: yes
-#      become_method: sudo

@@ -1,5 +1,8 @@
 ---
 
+- name: Enable additional yum repos
+  copy: src=additional_centos_repos.repo
+      dest=/etc/yum.repos.d/additional_centos_repos.repo
 
 
 #
@@ -19,9 +22,6 @@
 #
 #   Install Docker
 #
-- name: Enable additional yum repos
-  copy: src=additional_centos_repos.repo
-      dest=/etc/yum.repos.d/additional_centos_repos.repo
 
 - name: Install Docker
   yum: "name='{{ item }}' state=present disable_gpg_check=true"

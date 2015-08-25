@@ -4,17 +4,28 @@ ansible_connection: ssh
 ansible_ssh_user: ec2-user
 ansible_ssh_private_key_file: ~/.ssh/default_ec2.pem
 
-ec2_keypair: "default_ec2"
 
-ec2_instance_type: "t2.micro"
+keypair: "default_ec2"
+instance_type: "t2.micro"
 
 # Amazon Linux AMI 2015.03 (HVM), SSD Volume Type
-ec2_image: "ami-e7527ed7"
+#image: "ami-e7527ed7"
+
+# Red Hat Enterprise Linux 7.1 (HVM), SSD Volume Type
+image: "ami-4dbf9e7d"
+
+# Predefined elastic IP
+elastic_ip: "54.186.193.94"
 
 # default security group. SSH opened
-ec2_security_group: "default"
+security_group: "default"
 #     group: "default"
 
-ec2_region: "us-west-2"
-ec2_assign_public_ip: yes
-ec2_minion_count: 2
+region: "us-west-2"
+
+# aws is setting the device name when assoicated w the instance. The ec_vol attachemnt isnt
+# allowing device name to be specified so we'll have to rely on default. aws names start at sdf
+# and run though sdp. On the centos image the OS changes this to xvdf - xvdp.
+#vol_dev_name: "/dev/sdf"
+vol_dev_name_mapped_centos: "/dev/xvdf"
+

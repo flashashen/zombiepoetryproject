@@ -1,0 +1,32 @@
+---
+#
+- name: ddclient | Install dependencies
+  yum: "name='{{ item }}' state=present disable_gpg_check=true"
+  with_items:
+    - perl
+    - perl-Net-IP
+    - perl-Net-DNS
+    - perl-IO-Socket-INET6
+    - perl-IO-Socket-SSL
+    - perl-File-Temp
+    - patch
+
+- name: ddclient | Create base dir
+  file: path=/etc/ddclient state=directory
+
+- name: Create cache dir
+  file: path=/var/cache/ddclient state=directory
+
+- name: ddclient | Copy ddclient config file
+  template: src=ddclient.conf.j2 dest=/etc/ddclient/ddclient.conf
+
+- name: ddclient | copy executable to bin dir
+  copy: src={{ddclient_versioned_name}}/ddclient dest=/usr/sbin/ mode="u+x"
+
+- name: ddclient | copy init script into place. This might not work
+  copy: src={{ddclient_versioned_name}}/sample-etc_rc.d_init.d_ddclient.redhat dest=/etc/init.d/ddclient
+
+- name: ddclient | run as daemon. Start on boot
+  service: name=docker state=started enabled=yes
+
+

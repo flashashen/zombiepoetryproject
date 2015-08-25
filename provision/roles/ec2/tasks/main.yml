@@ -1,30 +1,51 @@
---- # Create ec2 instance playbook
+---
 
-    - name: create app master
-      ec2:
-           image: "{{ ec2_image }}"
-           instance_type: "{{ ec2_instance_type }}"
-           keypair: "{{ ec2_keypair }}"
-           region: "{{ ec2_region }}"
-           group: "{{ ec2_security_group }}"
-           exact_count: 1
-           # count_tag is criteria for exact_count matching
-           count_tag:
-              type: appserver
-              kube_type: master
-           wait: true
-           # instance_tags are tags to associate with created instances
-           instance_tags:
-              type: appserver
-              kube_type: master
+- name: create single, master instance
+  local_action: ec2
+       image: "{{ image }}"
+       instance_type: "{{ instance_type }}"
+       keypair: "{{ keypair }}"
+       region: "{{ region }}"
+       group: "{{ security_group }}"
+       assign_public_ip: yes
+       # ebs_optimized: true  **** not valid for ec2.micro
+       wait: true
 
-      register: master_info
+       # This section sets an instance tag and then specifies that only one
+       # should exisit with the tag. This makes the task idempodent
+       instance_tags:
+          type: zombie_main
+       exact_count: 1
+       count_tag:
+          type: zombie_main
+
+  register: ec2_info
 
 
-    - name: Add master to host group
-      add_host: hostname={{ item.public_ip }} groupname=ec2hosts
-      with_items: master_info.instances
+# Attach volume for WP data
+- name: attach persistent WP data volume
+  local_action: ec2_vol
+      region="{{ region }}"
+      instance="{{ item.id }}"
+      volume_type=gp2
+#          volume_size: 2  **** not valid if already exists
+      name=zombie_w p_data_volume
+#          device_name: "{{vol_dev_name}}"
+  with_items: ec2_info.instances
+  register: ec2_vol
 
-    - name: Wait for SSH to come up
-      wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
-      with_items: master_info.instances
+
+- name: Enable additional yum repos
+  copy: src=additional_centos_repos.repo
+      dest=/etc/yum.repos.d/additional_centos_repos.repo
+
+- name: ddclient | Set ddclient config
+  template: src=ddclient.conf.j2 dest=/etc/ddclient.conf
+
+- name: Install the ddclient packages
+  yum: name=ddclient state=present
+
+
+- name: Wait for SSH to come up
+  wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
+  with_items: master_info.instances
