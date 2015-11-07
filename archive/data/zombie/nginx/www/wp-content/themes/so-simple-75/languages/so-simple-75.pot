@@ -1,0 +1,272 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: So Simple\n"
+"POT-Creation-Date: 2015-04-29 09:49-0600\n"
+"PO-Revision-Date: 2015-04-29 09:50-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: comments.php:15
+#, php-format
+msgctxt "comments number"
+msgid "1 Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:24 comments.php:38
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:27 comments.php:41
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:28 comments.php:42
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:52
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:59
+msgid "Leave Your Reply"
+msgstr ""
+
+#: comments.php:67
+msgid "Name"
+msgstr ""
+
+#: comments.php:73
+msgid "Email"
+msgstr ""
+
+#: content-index.php:41 content-page-full.php:19 content-page.php:19
+#: content-single.php:25 content.php:23
+msgid "Pages:"
+msgstr ""
+
+#: content-index.php:50 content-index.php:53 content-single.php:37
+#: content-single.php:40
+msgid ", "
+msgstr ""
+
+#: content-index.php:57 content-single.php:44
+#, php-format
+msgid ""
+"This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" "
+"rel=\"bookmark\">permalink</a>."
+msgstr ""
+
+#: content-index.php:59 content-single.php:46
+#, php-format
+msgid ""
+"This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" rel=\"bookmark"
+"\">permalink</a>."
+msgstr ""
+
+#: content-index.php:70 content-single.php:57 inc/template-tags.php:73
+#: inc/template-tags.php:93
+msgid "Edit"
+msgstr ""
+
+#: content-none.php:12
+msgid "Nothing Found"
+msgstr ""
+
+#: content-none.php:18
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: content-none.php:22
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: content-none.php:27
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: footer.php:40
+#, php-format
+msgid "Copyright %s by"
+msgstr ""
+
+#: footer.php:41
+msgid "A Semantic Personal Publishing Platform"
+msgstr ""
+
+#: footer.php:42
+msgid "Press 75"
+msgstr ""
+
+#: footer.php:44
+#, php-format
+msgid "&middot; So Simple - A %s Theme by %s"
+msgstr ""
+
+#: functions.php:51
+msgid "Main Menu"
+msgstr ""
+
+#: functions.php:52
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:68
+msgctxt "Merriweather font: on or off"
+msgid "on"
+msgstr ""
+
+#: header.php:12
+#, php-format
+msgid "So Simple (%s) - Designed and built by Press75"
+msgstr ""
+
+#: inc/customizer.php:78
+msgid "Logos"
+msgstr ""
+
+#: inc/customizer.php:94
+msgid "Custom Logo"
+msgstr ""
+
+#: inc/customizer.php:111
+msgid "Custom Favicon"
+msgstr ""
+
+#: inc/customizer.php:124
+msgid "Social Media"
+msgstr ""
+
+#: inc/customizer.php:126
+msgid "Profile image should be around 300 x 300 pixels."
+msgstr ""
+
+#: inc/customizer.php:141
+msgid "Facebook"
+msgstr ""
+
+#: inc/customizer.php:159
+msgid "Twitter"
+msgstr ""
+
+#: inc/customizer.php:177
+msgid "Linkedin"
+msgstr ""
+
+#: inc/customizer.php:195
+msgid "Pinterest"
+msgstr ""
+
+#: inc/customizer.php:213
+msgid "Instagram"
+msgstr ""
+
+#: inc/customizer.php:233
+msgid "Twitter Link Type"
+msgstr ""
+
+#: inc/customizer.php:239
+msgid " Select "
+msgstr ""
+
+#: inc/customizer.php:240
+msgid "Share post"
+msgstr ""
+
+#: inc/customizer.php:241
+msgid "Reply to author"
+msgstr ""
+
+#: inc/customizer.php:242
+msgid "Twitter reply feed"
+msgstr ""
+
+#: inc/customizer.php:254 inc/customizer.php:271
+msgid "Copyright"
+msgstr ""
+
+#: inc/customizer.php:256
+msgid "Display copyright"
+msgstr ""
+
+#: inc/extras.php:70
+msgid "... Read more"
+msgstr ""
+
+#: inc/template-tags.php:44
+#, php-format
+msgid ""
+"<span class=\"posted-on\">%1$s</span><span class=\"byline\"> by %2$s</span>"
+msgstr ""
+
+#: inc/template-tags.php:52
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: inc/template-tags.php:73
+msgid "Pingback:"
+msgstr ""
+
+#: inc/template-tags.php:84
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: inc/template-tags.php:90
+#, php-format
+msgctxt "1: date, 2: time"
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: inc/template-tags.php:107
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/template-tags.php:174
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: inc/twitter-replies.php:59
+#, php-format
+msgid "I'm reading %s"
+msgstr ""
+
+#: inc/twitter-replies.php:70 inc/twitter-replies.php:71
+msgid "Share on Twitter"
+msgstr ""
+
+#: inc/twitter-replies.php:89 inc/twitter-replies.php:126
+msgid "A <strong>Twitter ID</strong> is not set for this author."
+msgstr ""
+
+#: inc/twitter-replies.php:95
+#, php-format
+msgid "Re: %s"
+msgstr ""
+
+#: inc/twitter-replies.php:106 inc/twitter-replies.php:147
+msgid "Reply on Twitter"
+msgstr ""

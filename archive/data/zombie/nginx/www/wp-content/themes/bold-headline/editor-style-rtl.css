@@ -1,0 +1,14 @@
+/*
+Theme Name: Bold Headline
+Description: Used to style the TinyMCE editor for RTL languages.
+See also rtl.css file.
+*/
+html .mceContentBody {
+	direction: rtl;
+	unicode-bidi: embed;
+	float: right;
+	width: 580px;
+}
+* {
+	font-family: Arial, Tahoma, sans-serif;
+}

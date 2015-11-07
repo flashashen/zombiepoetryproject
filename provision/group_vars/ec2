@@ -27,5 +27,4 @@ region: "us-west-2"
 # allowing device name to be specified so we'll have to rely on default. aws names start at sdf
 # and run though sdp. On the centos image the OS changes this to xvdf - xvdp.
 #vol_dev_name: "/dev/sdf"
-vol_dev_name_mapped_centos: "/dev/xvdf"
-
+data_vol_dev_name: "/dev/xvdf"

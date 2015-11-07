@@ -33,12 +33,13 @@
 - name: install Docker base apps image
   sudo: yes
   docker:
-    image: flashashen/zombie-web
+    #image: flashashen/zombie-web - go back to native volumes with original image
+    image: eugeneware/docker-wordpress-nginx
     name: zombie-web
     state: started
     restart_policy: always
     ports:
         - "80:80"
-    volumes:
-        - /data/zombie/mysql:/var/lib/mysql
-        - /data/zombie/nginx:/usr/share/nginx
+#    volumes:   no host mount volume
+#        - /data/zombie/mysql:/var/lib/mysql
+#        - /data/zombie/nginx:/usr/share/nginx

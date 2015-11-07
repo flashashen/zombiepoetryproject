@@ -1,0 +1,1 @@
+<?php locate_template( array( 'archive-portfolio_item.php' ), true ); // Loads the misc/loop-nav.php template. ?>

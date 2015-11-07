@@ -1,0 +1,20 @@
+- hosts: ec2
+#  sudo: yes
+
+  vars:
+    - region: 'us-west-2'
+  tasks:
+ 
+#    - debug: var=hostvars[inventory_hostname]
+#    - debug: msg="{{ hostvars[inventory_hostname]['ec2_id'] }}"
+
+    - name: make sure default user owns data dir
+      file: path=/data owner={{ansible_ssh_user}} recurse=true
+      sudo: true
+
+    - name: install rsync on remote
+      yum: name=rsync state=present disable_gpg_check=true
+      sudo: true
+
+    - name: copy data to local
+      synchronize: mode=pull archive=yes src=/data dest=../archive

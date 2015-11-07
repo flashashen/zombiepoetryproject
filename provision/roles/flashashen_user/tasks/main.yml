@@ -1,0 +1,11 @@
+---
+
+#
+#   Mount /data directory onto persistent EBS storage for any instance data that
+#   needs to outlive the instance
+#
+- name: Create flashashen user
+  user: name=flashashen
+
+- name: setup authorized key
+  authorized_key: name=flashashen key=id_rsa.pub

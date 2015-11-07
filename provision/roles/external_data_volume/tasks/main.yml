@@ -1,0 +1,15 @@
+---
+
+#
+#   Mount /data directory onto persistent EBS storage for any instance data that
+#   needs to outlive the instance
+#
+- name: Format zombie WP data volume
+  filesystem: fstype=ext4 dev={{data_vol_dev_name}}
+
+- name: create data dir for mount point
+  file: path=/data state=directory
+
+- name: Mount EBS device as docker data
+  mount: name=/data src={{data_vol_dev_name}} fstype=ext4 state=mounted
+

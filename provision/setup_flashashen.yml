@@ -1,0 +1,26 @@
+--- # Create ec2 instance playbook
+
+- hosts: all
+  gather_facts: false
+  remote_user: root
+
+  #vars_prompt:
+  #  inst_name: "What's the name of the instance?"
+  vars:
+      username: "flashashen"
+
+
+
+  tasks:
+
+
+    - name: create flashashen user
+      user: name={{username}}
+
+
+    - name: setup authorized key
+      authorized_key: user={{username}} key=https://github.com/flashashen.keys
+#      authorized_key: user={{username}} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+    - name: add sudo privilege
+      lineinfile: dest=/etc/sudoers state=present regexp='^%{{username}} ALL\=' line='%{{username}} ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'

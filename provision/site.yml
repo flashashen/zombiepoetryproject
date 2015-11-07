@@ -9,15 +9,10 @@
 
   roles:
 #          - ec2
+#          - external_data_volume
           - rhel_docker
 #          - dynamic_ip
           - zombie
 
-  vars:
 
-      # aws is setting the device name when assoicated w the instance. The ec_vol attachemnt isnt
-      # allowing device name to be specified so we'll have to rely on default. aws names start at sdf
-      # and run though sdp. On the centos image the OS changes this to xvdf - xvdp.
-      #vol_dev_name: "/dev/sdf"
-      data_vol_dev_name: "/dev/xvdf"
 

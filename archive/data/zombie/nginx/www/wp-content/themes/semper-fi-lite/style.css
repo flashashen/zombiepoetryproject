@@ -1,0 +1,1030 @@
+/*  
+
+Theme Name: Semper Fi Lite
+
+Theme URI: http://schwarttzy.com/shop/semper-fi/
+
+Author: Eric Schwarz
+
+Author URI: http://schwarttzy.com/about-2/
+
+Description: Dedicate to my Grandfather's Bravery in WWII, Semper Fi has a high quality newspaper feeling to it. From hidden luxurious floral patterns, to images that create the nostalgia of finely crafted paper, incredibly detailed shadowing, but most importantly, Semper Fi has the ability to respond to any width screen. From 300 pixels wide, all the way to 1920 and beyond, images, galleries, quotes, text, and titles all move like fluid to respond to any thing you throw at it.
+
+Version: 3.3
+
+License: GNU General Public License, version 3 (AGPLv3)
+
+License URI: http://opensource.org/licenses/AGPL-3.0
+
+Tags:  black, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, fluid-layout, full-width-template, green, one-column, photoblogging, responsive-layout, tan, theme-options, sticky-post, theme-options, threaded-comments, white
+
+*/
+
+/* REMEMBER, Friends don't let Friends use pixels! Unless it's a border, nothing you can do about that. */
+
+/* Standard HTML Elements
+------------------------------------------------------------------*/
+a, abbr, acronym, blockquote, body, cite, dd, del, dfn, dt, h1, h2, h3, h4, h5 ,h6, html, iframe, img, ins, object, ol, p, pre, sub, sup, table, tbody, td, th, tr, ul {
+    background:none;
+    border:0;
+    font-size:100%;
+    margin:0;
+    max-width:100% !important;
+    outline:0;
+    padding:0;
+    vertical-align:baseline;}
+    
+a {
+	transition:color 0.12s ease-in-out;
+	color:#dc1111;
+	text-decoration:none;}
+
+a:hover {color:#555555;}
+
+a img {border:none;}
+
+abbr {border-bottom:1px dotted #111; cursor:help;}
+
+acronym {border-bottom:1px dotted #111; cursor:help;}
+
+address {font-weight:bold;}
+
+aside {display:block;}
+
+blockquote {
+    background:rgba(0, 0, 0, 0.1);
+    border-left:.5em solid #555;
+    border-left:.5em solid rgba(0, 0, 0, 0.6);
+    border-radius:.2em;
+    margin:1em 2%;
+    padding:1em;
+    quotes:"\201C""\201D""\2018""\2019";}
+
+blockquote blockquote {background:none;}
+
+blockquote:before {
+    color:#000;
+    content:open-quote;
+    font-size:4em;
+    line-height:.1em;
+    margin-right:.25em;
+    vertical-align:-.4em;}
+
+blockquote p {display:inline;}
+
+blockquote p cite {
+	font-weight:300;
+    float:right;
+	letter-spacing:0.05em;
+	margin:1em 0 0;
+	text-transform:uppercase;}
+
+blockquote cite:before {content:"- ";}
+
+body {
+	background-image:url(images/might.jpg);
+	background-repeat:no-repeat;
+	background-position:top center;
+	background-attachment:fixed;
+	background-size:cover;
+	color:#111111;
+	font:normal 100% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;
+	height:100%;
+    line-height:1.3em;
+	text-align:center;
+	width:100%;
+    word-wrap:break-word;}
+
+dd {margin:0 5% 1em; width:90%;}
+
+del {text-decoration:line-through;}
+
+dfn {border-bottom:1px dotted #111; cursor:help;}
+
+dt {margin:0 5%; font-weight:bold; width:90%;}
+
+footer {display:block;}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:Impact, Charcoal, sans-serif;
+    font-variant:small-caps;
+    font-weight:400;
+    line-height:normal;
+    text-transform:uppercase;}
+
+h1 {font-size:2.4em;}
+h2 {font-size:2.0em;}
+h3 {font-size:1.8em;}
+h4 {font-size:1.6em;}
+h5 {font-size:1.4em;}
+h6 {font-size:1.2em;}
+
+html {
+    min-height:100%;
+    min-width:100%;
+    height:100%;
+    width:100%;}
+
+img {
+    height:auto;
+    max-width:100% !important;}
+
+ins {color:#dc1111;}
+
+main {display:block;}
+
+ol {
+    display:inline-block;
+    list-style-type:decimal-leading-zero;
+    margin:.1em 0 .6em 5%;
+    width:95%;}
+
+ol li {
+    display:list-item;
+    margin:.1em 0 0;
+    text-align:left;
+    width:100%;}
+
+p {
+    margin:.9em 0;}
+
+pre {
+    background:rgba(255, 255, 255, 0.6);
+    overflow:scroll;
+    margin:0;
+    padding:.5em 5%;}
+
+sub {
+	font-size:.8em;
+	height:0;
+	line-height:1em;
+	position:relative;
+    top:.3em;}
+
+sup {
+    bottom:.3em;
+	font-size:.8em;
+	height:0;
+	line-height:1em;
+	position:relative;}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    font-size:.85em;
+    text-align:left;
+    margin:1em 0;
+    padding:1em 0;
+    width:100%;}
+
+tbody tr:nth-child(odd) {
+   background:#EEE;
+   background:rgba(0, 0, 0, 0.08);
+   border:none;}
+
+td {
+    border-top:1px solid #111;
+    border-right:1px solid #111;
+    padding:.5em .5em;}
+
+th {border-right:1px solid #111; padding:.5em .5em;}
+
+tr td:last-child {border-right:none;}
+
+tr th:last-child {border-right:none;}
+
+ul {
+    display:inline-block;
+    list-style-type:circle;
+    margin:.1em 0 .6em 5%;
+    width:95%;}
+
+ul li {
+    display:list-item;
+    margin:.1em 0 0;
+    text-align:left;
+    width:100%;}
+
+select {max-width:100%;}
+
+:focus {outline:0;}
+
+/* WordPress Special ID
+------------------------------------------------------------------*/
+
+#cancel-comment-reply-link{float:right;}
+
+#wp-calendar caption {
+    font-size:1.5em;
+    margin:0 0 .5em;}
+
+/* WordPress Special Classes
+------------------------------------------------------------------*/
+
+.aligncenter {
+	clear:both;
+	display:block;
+	margin:.5em auto;}
+
+.a-stats {
+    margin:1em 0;
+    text-shadow:none;}
+
+.bypostauthor {}
+
+.custom-background {background:none;}
+
+.customisable-border {border:none !important;}
+
+.gallery {
+    margin:1em 0 0;
+    padding:0;
+    width:100%;}
+
+.gallery dt {
+    margin:0;
+    width:100%;}
+
+.gallery br {
+    clear:none!important;
+    display:none!important;
+    visibility:hidden!important;}
+
+.gallery-item {float:left;}
+
+.gallery-caption {color:#333; font-size:.7em; text-align:center;}
+
+.gallery .gallery-item {margin:0 1% .5em 1%;}
+
+.gallery-columns-1 .gallery-item {width:98.00%;}
+.gallery-columns-2 .gallery-item {width:46.00%;}
+.gallery-columns-3 .gallery-item {width:31.33%;}
+.gallery-columns-4 .gallery-item {width:23.00%;}
+.gallery-columns-5 .gallery-item {width:18.00%;}
+.gallery-columns-6 .gallery-item {width:14.66%;}
+.gallery-columns-7 .gallery-item {width:12.28%;}
+.gallery-columns-8 .gallery-item {width:10.50%;}
+.gallery-columns-9 .gallery-item {width:09.11%;}
+.gallery-columns-10 .gallery-item {width:8.00%;}
+
+.gallery-item img {width:100%; height:auto;}
+
+.grofile-thumbnail {
+	border-radius:50%;
+	-webkit-border-radius:0%;/* chrome sucks */
+	border:4px solid #FFF;
+	box-shadow:2px 2px 2px rgba(0, 0, 0, 0.2);
+	margin:0 15% .5em;
+    width:70%;}
+
+.left{float:left;}
+
+.right {float:right;}
+
+.sd-content ul li {width:auto;}
+
+.sticky {}
+
+.wp-caption{
+	border-radius:.2em;
+	background:rgba(0, 0, 0, 0.2);
+	box-shadow:1px 1px 1px rgba(0, 0, 0, 0.1);
+	margin:1em 2%;
+	max-width:93%;
+	padding:1.5%;
+	text-align:center;}
+
+.wp-caption.alignright {float:right;}
+
+.wp-caption.alignleft {float:left;}
+
+.wp-caption img {margin:0 auto;}
+
+.wp-caption-text {
+    color:#111;
+    font-family:Georgia, "Bitstream Charter", serif;
+    text-align:center;}
+
+.video-container, .embed-youtube {
+	margin:0 0 2.5%;
+	padding:0 0 56.25%;
+	position:relative;
+	width:100%;}
+
+.video-container iframe, .embed-youtube iframe, .video-container object, .video-container embed {
+	height:100%!important;
+	left:0!important;
+	position:absolute!important;
+	top:0!important;
+	width:100%!important;}
+
+video-player {text-align:center;}
+
+.videopress-placeholder {margin:0 auto;}
+
+/* HTML Elements requiring WordPress Special Classes
+------------------------------------------------------------------*/
+
+iframe.twitter-timeline {
+	height:auto!important;
+    min-height:17em!important;
+	width:100%!important;}
+
+img.aligncenter {
+	margin:2% auto 2%;
+	text-align:center;
+	display:block;
+	max-width:100% !important; height:auto}
+
+img.alignleft {
+	float:left;
+	margin:.5em 2% .5em 0;}
+
+img.alignright {
+	float:right;
+	margin:.5em 0 .5em 2%;}
+
+img.alignnone {
+	display:block;
+	margin:.5em 0;}
+
+img.endleft{ margin:0 0 1% 0;}
+
+img.endright{ margin:0 0 1% 0;}
+
+body.attachment p.attachment {text-align:center;}
+
+/* HTML Elements requiring WordPress Special ID
+------------------------------------------------------------------*/
+#wpadminbar {text-align:left;}
+
+img#wpstats {display:none;}
+
+/* The Menu
+------------------------------------------------------------------*/
+
+.header {
+	background-image: url(images/marble.png);
+	border-top:solid 1px #1c1c1c;
+	border-bottom:solid 1px #1c1c1c;
+	box-shadow:0 0 1.2em #111;
+	left:0;
+	margin:1.2em 0 0;
+	padding:.6em auto 0;
+	position:absolute;
+	text-align:center;
+	top:0;
+	width:100%;
+	z-index:100;}
+
+.header>div {display:inline;}
+
+.header h1 {
+    display:block;
+	font-family:Impact, Charcoal, sans-serif;
+	font-size:4em;
+	line-height:1.1em;
+    margin:.3em 0 -.25em;
+	padding:0;
+	overflow:hidden;
+	text-shadow:3px 3px 0 rgba(0, 0, 0, 0.5);
+	text-transform:uppercase;}
+	
+.header h1 i{
+	bottom:.4em;
+    color:#3e5a21;
+    display:block;
+	font-family:adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;
+	font-style:normal;
+	font-size:.28em;
+	line-height:1.3em;
+	padding:.43em 0 .23em;
+	position:relative;
+	text-shadow:-1px -1px 0 #111;
+    text-transform:capitalize;}
+
+.header h1 a {color:#e0dbce;}
+
+.header > div {display:inline;}
+
+.header > div ul {margin:0;}
+	
+.header > div > .menu {display:inline;}
+	
+.header li {
+	display:inline-block;
+    font-variant:small-caps;
+	padding:.8em 1% .8em;
+	position:relative;
+    vertical-align:middle;
+	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+	width:auto;}
+
+.header li.website_logo {
+    margin:0 40%;
+    padding:1em 0 0;
+    width:20%;}
+
+.header li ul {
+	background:#111;
+	background:rgba(15, 15, 15, 0.90);
+	box-shadow:0 0 10px #111;
+	display:none;
+	left:-2.5em;
+	margin-right:1em;
+	min-width:17em;
+	position:absolute;
+	padding:.5em 1em 1em;
+	text-align:justify;
+	top:2.77em;
+	z-index:1;}
+	
+.header li ul li ul{
+	position:absolute;
+	right:12em;}
+	
+.header li:hover ul {
+	display:block;}
+
+.header li ul li {
+	padding-bottom:.25em;
+	width:98%;}
+
+.header li a {
+	color:#b19f70;
+    font-size:1.25em;
+    font-weight:400;}
+
+.header li ul li a {
+	color:#e0dbce;}
+
+.header li a:hover {
+	color:#CCCCCC;}
+
+.header li ul li a:hover {
+	color:#3e5a21;}
+
+.header.small {
+	position:fixed;
+	margin-top:0px;}
+
+.header.small h1:first-child, .header.small h1:first-child i {
+	display:none;}
+
+.header.small li.website_logo {
+    height:2em;
+    display:inline-block;
+    margin:0;
+    padding:0 1%;
+    width:auto;}
+
+.header.small li.website_logo img {
+    height:100%;
+    margin:0;
+    padding:0;
+    width:auto;}
+
+.admin-bar .header.small {
+	margin-top:31px;}
+
+
+/* Center up the page content
+------------------------------------------------------------------*/
+
+main {
+	margin:0 auto;
+    padding:0;
+	position:relative;
+	width:62em;
+	text-align:justify;}
+
+.spacing {
+	height:20em;
+	width:100%;}
+
+.finishing {
+	clear:both;
+	height:4em;
+	width:100%;}
+
+
+/* The Content
+------------------------------------------------------------------*/
+
+.content {
+    background-image:url(images/clean.png);
+    box-shadow:0 0 15px #111;
+    float:left;
+    margin:0;
+	padding:2em 3%;
+	text-shadow:0 0 2px rgba(238, 238, 238, 0.85);
+    width:94%;}
+
+.single .content .post, .page .content .page, .attachment .content div.attachment, .archive .content .post {
+    font-size:1.33em;
+    line-height:1.33em;
+    margin:0 0 1.15em;}
+
+.blog .content div.post, .search .content div.post, .search .content div.page {
+    float:left;
+    height:32em;
+    width:31.33%;}
+
+.blog .content div.post:nth-child(3n+2), .search .content div.post:nth-child(3n+2), .search .content div.page:nth-child(3n+2) {
+    margin:0 3%;}
+
+.blog .content > div p, .search .content > div p {
+    line-height:1.3em;
+    margin:0;
+    max-height:27.3em;
+    overflow:hidden;
+    text-overflow: ellipsis;}
+
+body.blog .content > div.has_featured_image p, .search .content > div.has_featured_image p {
+    max-height:15.6em;}
+
+.blog .content > div a p, .search .content > div a p, .archive .content > div a:nth-of-type(2) p {color:#111111;}
+
+.post_title {
+    border-bottom:1px solid #24380e;
+	border-top:2px solid #111111;
+	color:#222222;
+    font-family:adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;
+    font-weight:600;
+	letter-spacing:.03em;
+	line-height:1.5em;
+	margin:0 0 .35em;
+	max-height:1.5em;
+	overflow:hidden;
+	text-align:left;
+    text-transform:none;
+    word-break:break-all;}
+
+.post_title a {color:#111111;}
+
+.post_title time {
+	font-size:.6em;
+	line-height:1em;
+	float:right;
+	padding:.25em 0;
+    margin:0 0 0 .25em;
+	text-align:right;}
+
+.page .post_title time {display:none;}
+
+.featured_image {
+    border-bottom:1px solid #111;
+    height:auto;
+    padding:.15em 0 .75em;
+    width:100%;}
+
+.blog .featured_image, .search .featured_image {max-height:11.25em;}
+
+.tags {margin:1em 0 0;}
+
+
+/* Next & Prev post link styling
+------------------------------------------------------------------*/
+
+.stars_and_bars {
+	background:rgba(0, 0, 0, 0.90) url(images/5stars.jpg);
+	background-position:center center;
+	background-repeat:no-repeat;
+	float:left;
+    font-size:1.5em;
+	font-variant:small-caps;
+    line-height:1.6em;
+    min-height:1.5em;
+    padding:0 1.5% .15em;
+	text-shadow:1px 1px 0 #000;
+	width:97%;}
+	
+.stars_and_bars + .stars_and_bars {display:none;}
+
+.stars_and_bars a {color:#e0dbce;}
+
+.stars_and_bars a:hover {color:#777777;}
+
+.stars_and_bars span {
+    overflow:hidden;
+    max-height:1.4em;
+    max-width:40%;}
+
+
+/* Next & Prev post link styling
+------------------------------------------------------------------*/
+
+aside {
+    float:left;
+    padding:2.25em 0 0;
+    width:31.33%;}
+
+aside:nth-of-type(2) {margin:0 3% 2em;}
+
+aside h2.post_title {
+    margin:1.25em 0 .25em;
+    text-align:center;}
+
+aside h2.post_title:nth-of-type(1) {margin:0 0 .25em;}
+
+aside a {color:#000000;}
+
+aside a:hover {color:#dc1111 !important;}
+
+aside table {text-align:center;}
+
+
+/* Commenting
+------------------------------------------------------------------*/
+
+.the_comments, .comment-respond {
+    font-size:1.33em;
+    line-height:1.33em;
+    margin:1.25em 0 1.15em;
+    float:left;}
+
+.shopp-product .the_comments {
+    float:left;
+    margin:1.5em 0 1.25em;}
+
+.commentlist .comment-respond {
+    font-size:1em;
+    line-height:1em;}
+
+.comment-reply-title {
+    border-bottom:1px solid #24380e;
+	border-top:2px solid #111;
+	color:#222;
+	letter-spacing:.03em;
+	line-height:1.5em;
+	margin:0 0 .35em;
+	max-height:1.5em;
+	overflow:hidden;
+	text-align:left;
+    word-break:break-all;}
+
+ul.commentlist {
+    margin:0;
+    padding:0;
+    text-align:justify;
+    width:100%;}
+
+li.comment, li.pingback, li.trackback {
+	list-style-type:none;}
+
+.comment-body {
+	border-radius:.2em;
+	float:right;
+	padding:1.5em 2%;
+	position:relative;
+	width:96%;}
+
+.odd .comment-body .children {
+	margin:.5em 0 0;
+	width:100%;}
+
+.comment img.avatar {
+	border-radius:50%;
+	-webkit-border-radius:0%;/* chrome sucks */
+	border:4px solid #FFF;
+	box-shadow:2px 2px 2px rgba(0, 0, 0, 0.2);
+	float:left;
+	margin:-.6em 1em .5em 0;}
+
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) {.comment img.avatar {border-:none;}/* Opera too */}
+
+.comment-author {
+	max-width:50%;}
+
+.comment-meta {
+	font-size:.8em;
+	margin:1.8em 1% 0 0;
+	position:absolute;
+	right:0;
+	top:0;}
+
+.comment-meta a{
+	color:#111;}
+
+.comment-meta a:hover{
+	color:#555;}
+
+.comment.parent ul {
+	border-left:.25em solid rgba(0, 0, 0, 0.3);
+	margin:0;
+	padding:0 0 0 4.5%;}
+
+.commentbox .children {
+	width:94.5%;}
+
+.reply {
+	background:url(images/reply.png) top left no-repeat;
+	margin-left:80%;
+	padding-left:1.5em;
+	float:right;}
+
+/* Step ladder of alternating comments so every other one is shaded (got a smaller solution?)*/
+.comment-body {background:none;}
+.comment.alt .comment-body, .pingback.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment .comment-body {background:none;}
+.comment.alt .comment.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment.alt .comment .comment-body {background:none;}
+.comment.alt .comment.alt .comment.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment.alt .comment.alt .comment .comment-body {background:none;}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment .comment-body {background:none;}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment .comment-body {background:none;}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment .comment-body {background:none;}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment-body {background:rgba(0, 0, 0, 0.05);}
+.comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment.alt .comment .comment-body {background:none;}
+
+
+/* Replying to Comments
+------------------------------------------------------------------*/
+
+#respond label {display:inline;}
+
+.form-allowed-tags {display:none;}
+
+#respond, .commentbox {
+    float:left;
+    line-height:1.25em;
+    margin:1em 0;
+    padding:0em;
+    width:100%;}
+
+#respond .comment-form-comment label {
+    clear:both;
+    float:left;}
+
+#respond .comment-form-comment textarea {clear:left;}
+
+.screen-reader-text {display:none;}
+
+#subscribe-blog input, #searchsubmit, #_wpnonce {
+    float:right;
+    width:35%;}
+
+#searchform {margin:1em 0 0;}
+
+.form-submit, .comment-notes {float:right;}
+
+.form-submit {margin:1em 0 0;}
+
+#commentform input {
+    float:right;
+    margin:0;
+    width:70%;}
+
+#commentform .form-submit input {width:100%;}
+
+#commentform .comment-subscription-form input {
+    float:left;
+    margin:.3em 1.25em 0 0;}
+
+#commentform .required {color:#dc1111;}
+
+.comment-notes {
+    color:#222;
+    font-size:.75em;
+    margin:0 6% 0 0;
+    text-align:center;
+    width:34%;}
+
+.comment-form-author, .comment-form-email, .comment-form-url {
+    margin:0 0 1.5em;
+    width:48.999%;}
+
+textarea {
+    border:1px solid #111;
+    box-shadow:0 0 4px rgba(17,17,17,0.2);
+    max-width:99.5%;
+    min-width:99.5%;
+    width:99.5%;}
+
+.comment-form-comment textarea {
+    max-width:100%;
+    min-width:100%;
+    width:100%;}
+
+.comment-form-comment label {margin:0 0 .6em;}
+
+.comment-subscription-form {
+    color:#222;
+    font-size:.8em;
+    margin:.25em 0;}
+
+
+/* This bit of code fixes floating issues with non floated elements
+------------------------------------------------------------------*/
+
+blockquote:after, .contents:after, .gallery:after {clear:both; content:"."; display:block; height:0; visibility:hidden;}
+
+
+/* Footer
+------------------------------------------------------------------*/
+
+footer {
+    background:#111;
+    box-shadow:0 -.25em .5em rgba(19,19,19,.8);
+    color:#DDD;
+    font-size:.8em;
+    overflow:hidden;
+    padding:0 2%;
+    text-align:center;
+    width:96%;
+    visibility:visible;}
+
+footer p {
+    margin:.5em 0;
+    padding:0;
+    text-shadow:none;}
+
+
+/* Resizing
+------------------------------------------------------------------*/
+
+@media all and (max-width:50em) {
+    
+    .header li a {font-size:.85em;}
+    
+    main {width:36em;} 
+
+    body {
+        background-size:auto!important;
+        font:normal 107.5% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}
+    
+    .header h1 {font-size:60px;}
+    
+    .content {
+        padding:2em 6%;
+        width:88%;}
+
+    .blog .content div.post, .search .content div.post, .search .content div.page {
+        height:auto;
+        width:100%;}
+    
+    .blog .content div.post:nth-child(3n+2), .search .content div.post:nth-child(3n+2), .search .content div.page:nth-child(3n+2) {
+        margin:0;}
+
+    .blog .content div.post:nth-child(1n), .search .content div.post:nth-child(1n), .search .content div.page:nth-child(1n) {
+        margin:0 0 1em;}
+
+    .blog .featured_image, .search .featured_image {max-height:none;}
+
+    .single .content .post, .page .content .page, .attachment .content div.attachment {
+        font-size:1.00em;
+        line-height:1.33em;
+        margin:0 0 1.15em;}
+
+    .the_comments, .comment-respond {
+        font-size:1.00em;
+        line-height:1.33em;
+        margin:1.25em 0 1.15em;
+        float:left;}
+    
+    aside {
+        float:left;
+        padding:2.25em 0 0;
+        width:100%;}
+
+    aside:nth-of-type(1n) {margin:0 0 2em;}
+    
+    .stars_and_bars {font-size:.9em;}
+
+    footer p {
+        font-size:.85em;
+        line-height:1.33em;
+        margin:.65em 0;} }
+
+
+@media all and (max-width:44em) { main {width:100%;} }
+
+
+@media all and (min-width:50.00000000001em) and (max-width:66em) {
+    
+    .header h1 {font-size:60px;}
+
+    main {width:40.26em;}
+    
+    .content {
+        padding:2em 4.5%;
+        width:91%;}
+
+    .blog .content div.post, .search .content div.post, .search .content div.page {
+        float:left;
+        height:32em;
+        width:48.5%;}
+    
+    .blog .content div.post:nth-child(3n+2), .search .content div.post:nth-child(3n+2), .search .content div.page:nth-child(3n+2) {
+        margin:0;}
+
+    .blog .content div.post:nth-child(2n+1), .search .content div.post:nth-child(2n+1), .search .content div.page:nth-child(2n+1) {
+        margin:0 3% 0 0;}
+    
+    aside {
+        float:left;
+        padding:2.25em 0 0;
+        width:48.5%;}
+
+    aside:nth-of-type(2n) {margin:0 0 2em 3%;} }
+
+
+@media all and (min-width:58em) and (max-width:66em) {
+    
+    main {width:48.26em;} }
+
+@media all and (min-width:025em) {.header {font:normal 038.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:030em) {.header {font:normal 045.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:035em) {.header {font:normal 051.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:040em) {.header {font:normal 057.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:045em) {.header {font:normal 063.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:050em) {.header {font:normal 070.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:055em) {.header {font:normal 076.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:060em) {.header {font:normal 082.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:065em) {.header {font:normal 088.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:070em) {.header {font:normal 095.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:075em) {.header {font:normal 101.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:080em) {.header {font:normal 107.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:085em) {body {font:normal 113.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:090em) {body {font:normal 120.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:095em) {body {font:normal 126.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:100em) {body {font:normal 132.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:105em) {body {font:normal 138.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:110em) {body {font:normal 145.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:115em) {body {font:normal 151.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:120em) {body {font:normal 157.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:125em) {body {font:normal 163.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:130em) {body {font:normal 170.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:135em) {body {font:normal 176.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:140em) {body {font:normal 182.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:145em) {body {font:normal 188.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:150em) {body {font:normal 195.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:155em) {body {font:normal 201.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:160em) {body {font:normal 207.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:165em) {body {font:normal 213.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:170em) {body {font:normal 220.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:175em) {body {font:normal 226.25% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:180em) {body {font:normal 232.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:195em) {body {font:normal 238.75% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:200em) {body {font:normal 245.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:210em) {body {font:normal 257.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:220em) {body {font:normal 270.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:230em) {body {font:normal 282.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:240em) {body {font:normal 295.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:250em) {body {font:normal 307.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:260em) {body {font:normal 320.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:270em) {body {font:normal 332.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:280em) {body {font:normal 345.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:290em) {body {font:normal 357.50% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+@media all and (min-width:300em) {body {font:normal 370.00% adobe-text-pro, Cambria, Georgia, "Times New Roman", Times, serif;}}
+
+/* Social Icons
+-------------------------------------------------------------- */	
+@font-face {
+  font-family:'fontello';
+  src: url('fonts/fontello.eot?32659345');
+  src: url('fonts/fontello.eot?32659345#iefix') format('embedded-opentype'),
+       url('fonts/fontello.woff?32659345') format('woff'),
+       url('fonts/fontello.ttf?32659345') format('truetype'),
+       url('fonts/fontello.svg?32659345#fontello') format('svg');
+  font-weight:normal;
+  font-style:normal;}
+
+.fontello {
+    font-family:'fontello';}
+ 
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family:"fontello" !important;
+  font-size:1.1em;
+  font-style:normal;
+  font-weight:normal;
+  speak:none;
+  display:inline-block;
+  text-decoration:inherit;
+  width:1em;
+  margin-right:.2em;
+  text-align:center;
+  font-variant:normal;
+  text-transform:none;
+  line-height:1em;
+  margin-left:.2em;}
+ 
+.icon-gplus-squared:before {content:'\67';}         /* 'g' */
+.icon-youtube:before {content:'\59';}               /* 'Y' */
+.icon-twitter:before {content:'\54';}               /* 'T' */
+.icon-facebook-squared:before {content:'\46';}      /* 'F' */
+.icon-pinterest:before {content:'\50';}             /* 'P' */
+.icon-vimeo:before {content:'\56';}                 /* 'V' */
+.icon-linkedin-circled:before {content:'\69';}      /* 'i' */
+.icon-soundcloud:before {content:'\53';}            /* 'S' */
+.icon-flickr:before {content:'\66';}                /* 'f' */
+.icon-instagram:before {content:'\49';}             /* 'I' */
+.icon-tumblr:before {content:'\74';}                /* 't' */
+
+rect:before {content:"Email address: ";}
+
+/* Fortitudo Et Honos
+------------------------------------------------------------------*/
