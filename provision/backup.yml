@@ -1,20 +1,32 @@
-- hosts: ec2
-#  sudo: yes
+- hosts: all
+  sudo: yes
 
-  vars:
-    - region: 'us-west-2'
   tasks:
- 
-#    - debug: var=hostvars[inventory_hostname]
-#    - debug: msg="{{ hostvars[inventory_hostname]['ec2_id'] }}"
 
-    - name: make sure default user owns data dir
-      file: path=/data owner={{ansible_ssh_user}} recurse=true
+    - name: get mysql conatiner ip
+      sudo: yes
+      shell: docker ps | grep zombie-web | awk '{ print $1 }'
+      register: zombie_container
+
+    - debug: var=zombie_container
+
+    - name: get mysql root password
+      shell: docker exec {{zombie_container.stdout}} tail -n 1 /mysql-root-pw.txt
+      register: root_pass
+
+#
+#    - name: install python mysql on remote  ** this is needed if ansible mysql module is used
+#      yum: name=MySQL-python state=present disable_gpg_check=true
+#      sudo: true
+
+
+    - name: mysqldump
+      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --password={{root_pass.stdout}}  > zombie_mysqldump_all.sql
       sudo: true
 
-    - name: install rsync on remote
-      yum: name=rsync state=present disable_gpg_check=true
-      sudo: true
+    - name: copy snapshot from sever
+      fetch: src=zombie_mysqldump_all.sql dest=../snapshots/ flat=yes fail_on_missing=yes
 
-    - name: copy data to local
-      synchronize: mode=pull archive=yes src=/data dest=../archive
+    - name: Delete snapshot on server
+      file: path=zombie_mysqldump_all.sql state=absent
+

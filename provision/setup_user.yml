@@ -6,16 +6,19 @@
 
   #vars_prompt:
   #  inst_name: "What's the name of the instance?"
-  vars:
-      username: "flashashen"
+  #vars:
+  #    username: "panelson"   .. now expected in --extra-vars
 
 
 
   tasks:
 
 
-    - name: create flashashen user
+    - name: create user
       user: name={{username}}
+
+    - name: install python selinux module
+      yum: name=libselinux-python
 
 
     - name: setup authorized key

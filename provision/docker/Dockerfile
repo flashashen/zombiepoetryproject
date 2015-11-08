@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:trusty
 MAINTAINER Eugene Ware <eugene@noblesamurai.com>
 
 # Keep upstart from complaining
@@ -57,7 +57,7 @@ RUN chmod 755 /start.sh
 EXPOSE 3306
 EXPOSE 80
 
-# volume for mysql database and wordpress install. ** disabled - this will be a host dir instead of docker managed volume.**
-#VOLUME ["/var/lib/mysql", "/usr/share/nginx/www"]
+# volume for mysql database
+VOLUME ["/var/lib/mysql", "/usr/share/nginx/www"]
 
-#CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/bash", "/start.sh"]

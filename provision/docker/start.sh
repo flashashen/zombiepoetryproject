@@ -10,7 +10,7 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   #This is so the passwords show up in logs.
   echo mysql root password: $MYSQL_PASSWORD
   echo wordpress password: $WORDPRESS_PASSWORD
-  echo $MYSQL_PASSWORD > /mysql-root-pw.txt
+    echo $MYSQL_PASSWORD > /mysql-root-pw.txt
   echo $WORDPRESS_PASSWORD > /wordpress-db-pw.txt
 
   sed -e "s/database_name_here/$WORDPRESS_DB/
