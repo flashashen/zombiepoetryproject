@@ -1,0 +1,350 @@
+/**
+ * Navigation
+ * ----------------------------------------------------------------------------
+ */
+
+.nav span,
+.nav a {
+    background-color: #eee;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+    width: 140px;
+    height: 140px;
+    position: fixed;
+    bottom: 0;
+}
+
+.nav a {
+    background-color: #eee;
+    border: 20px solid #eee;
+    border: 20px solid rgba(0, 0, 0, 0.05);
+    width: 60px;
+    height: 60px;
+    -webkit-transition-duration: .5s;
+    -moz-transition-duration: .5s;
+    z-index: 110;
+}
+
+.nav a:hover {
+    background-color: #eee;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 40px solid rgba(0, 0, 0, 0.01);
+}
+
+.single-nav {
+    bottom: -70px;
+    left: 50%;
+    margin-left: -70px;
+    z-index: 100;
+}
+
+.single-nav a {
+    bottom: -50px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+.single-nav a:hover {
+    bottom: -70px;
+    margin-left: -70px;
+}
+
+.paged-nav .previous,
+.paged-nav .next {
+    top: 50%;
+    margin-top: -70px;
+}
+
+.paged-nav .previous a,
+.paged-nav .next a {
+    top: 50%;
+    margin-top: -50px;
+}
+
+.paged-nav .previous a:hover,
+.paged-nav .next a:hover {
+    margin-top: -70px;
+}
+
+.paged-nav .previous {
+    left: -70px;
+}
+
+.paged-nav .previous a {
+    left: -50px;
+}
+
+.paged-nav .previous a:hover {
+    left: -70px;
+}
+
+.paged-nav .next {
+    right: -70px;
+}
+
+.paged-nav .next a {
+    right: -50px;
+}
+
+.paged-nav .next a:hover {
+    right: -70px;
+}
+
+.site-header {
+  border-bottom: 1px solid #eee;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 8%;
+  position: relative;
+  width: 100%;
+  z-index: 500;
+}
+
+.logo > img {
+  margin-bottom: 5px;
+  width: 160px;
+}
+
+.site-title {
+  margin-bottom: 0;
+}
+
+.site-description {
+  font-size: 11px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.site-logo {
+  position: absolute;
+  top: 50%; left: 80px;
+  transform: translateY(-50%);
+}
+
+.menu-icon {
+  cursor: pointer;
+  display: none;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 30px;
+  transform: translateY(-50%);
+  transition: all 0.15s linear;
+}
+
+.menu-rotate {
+  top: 12px;
+}
+
+.menu-global {
+  border-top: 4px solid #555;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  transition: all 0.15s linear;
+}
+
+.menu-top {
+  top: 0px;
+}
+
+.menu-middle {
+  top: 10px;
+}
+
+.menu-bottom {
+  top: 20px;
+}
+
+.menu-top-click {
+  top: 12px;
+  transform: rotate(48deg);
+}
+.menu-middle-click {
+  opacity: 0;
+}
+.menu-bottom-click {
+  top: 12px;
+  transform: rotate(-48deg);
+}
+
+.menu-container {
+  background: #eee;
+  box-sizing: border-box;
+  padding: 20px;
+  position: absolute;
+  top: 50px;
+  right: -500px;
+  transition: all 0.15s linear;
+  z-index: 500;
+  width: 300px;
+}
+
+.menu-container-show {
+  top: 50px;
+  right: 0;
+  transition: all 0.15s linear;
+}
+
+.main-navigation {
+    display: block;
+    padding: 10px 0;
+    position: absolute;
+    top: 50%; right: 80px;
+    transform: translateY(-50%);
+    
+    ul {
+        margin: 0 20px 0 0;
+        padding: 0;
+        text-align: right;
+        
+        li {
+            display: inline-block;
+            margin: 0 20px;
+            padding: 10px 0;
+            position: relative;
+
+            &:last-child {
+                margin-right: 0;
+            }
+            
+            a {
+                color: #777;
+                font-size: 12px;
+                letter-spacing: 0.15em;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: all 0.15s ease-in-out;
+                &:hover {
+                    color: black;
+                }
+
+                &.active {
+                    color: black;
+                }
+            }
+            
+            .children,
+            .sub-menu {
+                background: #f2f2f2;
+                display: none;
+                min-width: 120px;
+                height: auto;
+                margin: 0;
+                overflow: hidden;
+                padding: 0 20px;
+                position: absolute; 
+                top: 50px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                z-index: 10;
+                
+                li {
+                  color: #777;
+                  display: block;
+                  float: none;
+                  font-weight: normal;
+                  line-height: 2;
+                  margin: 0;
+                  padding: 0;
+                  width: 100%;
+
+                  &:first-child {
+                    padding-top: 10px;
+                  }
+
+                  &:last-child {
+                    padding-bottom: 10px;
+                  }
+
+                    a {
+                      color: #777;
+                      display: block;
+                      margin: 0;
+                      padding: 5px 0;
+                      width: 100%;
+                      text-align: center;
+
+                      &:hover {
+                        color: #333;
+                      }
+                    }
+                }
+            }
+            
+            &:hover {
+                
+                ul {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.icon {
+  height: 35px;
+  padding: 3px;
+  width: 35px;
+}
+.icon-facebook,
+.icon-twitter,
+.icon-linkedin,
+.icon-instagram,
+.icon-pinterest {
+  fill: #ddd;
+  -webkit-transition: all 0.15s ease-in-out;
+          transition: all 0.15s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+    -webkit-transition: all 0.15s ease-in-out;
+          transition: all 0.15s ease-in-out;
+  }
+}
+
+.icon-facebook {
+  &:hover {
+    fill: #3C5A98;
+  }
+}
+
+.icon-twitter {
+  &:hover {
+    fill: #2FB9FC;
+  }
+}
+
+.icon-linkedin {
+  &:hover {
+    fill: #4F92D6;
+  }
+}
+
+.icon-instagram {
+  &:hover {
+    fill: #91795E;
+  }
+}
+
+.icon-pinterest {
+  &:hover {
+    fill: #CC242B;
+  }
+}
+
+.social-icons {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.copyright {
+  margin: 20px 0;
+  text-align: center;
+  p {
+    font-size: 12px;
+  }
+}

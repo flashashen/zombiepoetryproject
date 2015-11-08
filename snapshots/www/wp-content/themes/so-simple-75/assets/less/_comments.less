@@ -1,0 +1,100 @@
+/* Comments
+----------------------------------------------- */
+
+form {
+	box-sizing: border-box;
+}
+.comment-title {
+	text-transform: uppercase;
+	font-size: 0.85em;
+	margin: 30px 0 20px;
+}
+
+.comments-area {
+	padding: 0;
+	margin: 0 0 30px;
+
+	.comment-list {
+
+		.comment {
+			list-style-type: none;
+			padding-bottom: 30px;
+			margin-bottom: 30px;
+			border-bottom: 1px solid #ccc;
+
+			.avatar {
+				float: left;
+			}
+
+			.comment-body {
+				padding-left: 80px;
+
+				.comment-meta {
+					text-transform: uppercase;
+					margin: 0 0 20px;
+
+
+					.edit-link,
+					.reply {
+						display: inline-block;
+						margin: 0 0 0 5px;
+						text-decoration: underline;
+					}
+
+					.comment-metadata {
+						font-size: 0.85em;
+					}
+
+					.comment-author {
+
+						a {
+							color: #ccc;
+						}
+					}
+				}
+			}
+
+			ul.children {
+				margin-top: 30px;
+				padding-top: 30px;
+				border-top: 1px solid #ccc;
+
+				li {
+					border-bottom: none;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.comment-form {
+
+		.form-submit {
+			margin-bottom: 0;
+		}
+
+		.full {
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			outline: none;
+			padding: 10px;
+			width: 100%;
+		}
+	}
+}
+
+.comment-respond {
+
+	.comment-reply-title {
+		font-size: 1.1em;
+		text-transform: uppercase;
+		margin: 0 0 15px;
+	}
+
+	.logged-in-as {
+	}
+}
+
+.comments-area .comment-list .comment .avatar {
+	border-radius: 50%;
+}

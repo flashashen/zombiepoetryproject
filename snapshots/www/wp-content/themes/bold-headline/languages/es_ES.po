@@ -1,0 +1,387 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Bold Headline v1.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-05-14 14:37+0100\n"
+"Last-Translator: Josean Blanco <josean.blanco@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"Language: es_ES\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ bold_headline
+#: 404.php:14
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "¡Vaya! No hemos encontrado la página que buscas."
+
+# @ bold_headline
+#: 404.php:18
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+"Parece que no hay nada en esta ubicación. Prueba con los enlaces o haz una "
+"búsqueda."
+
+# @ bold_headline
+#: archive.php:21 archive.php:24 archive.php:31 archive.php:39 archive.php:42
+#: archive.php:45
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+# @ bold_headline
+#: archive.php:48
+msgid "Asides"
+msgstr "Sin adjuntar"
+
+# @ bold_headline
+#: archive.php:51
+msgid "Images"
+msgstr "Imágenes"
+
+# @ bold_headline
+#: archive.php:54
+msgid "Videos"
+msgstr "Vídeos"
+
+# @ bold_headline
+#: archive.php:57
+msgid "Quotes"
+msgstr "Citas"
+
+# @ bold_headline
+#: archive.php:60
+msgid "Links"
+msgstr "Enlaces"
+
+# @ bold_headline
+#: archive.php:63
+msgid "Archives"
+msgstr "Archivos"
+
+# @ bold_headline
+#: comments.php:31
+#, php-format
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Un comentario en &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s comentarios en &ldquo;%2$s&rdquo;"
+
+# @ bold_headline
+#: comments.php:38 comments.php:58
+msgid "Comment navigation"
+msgstr "Navegación por los comentarios"
+
+# @ bold_headline
+#: comments.php:39 comments.php:59
+msgid "&larr; Older Comments"
+msgstr "&larr; Comentarios anteriores"
+
+# @ bold_headline
+#: comments.php:40 comments.php:60
+msgid "Newer Comments &rarr;"
+msgstr "Comentarios recientes &rarr;"
+
+# @ bold_headline
+#: comments.php:70
+msgid "Comments are closed."
+msgstr "Los comentarios están cerrados."
+
+# @ bold_headline
+#: content-page.php:18 content-single.php:21 image.php:95
+msgid "Pages:"
+msgstr "Páginas:"
+
+# @ bold_headline
+#: content-page.php:23 content-single.php:58 content.php:24 image.php:34
+#: image.php:112 inc/template-tags.php:71 inc/template-tags.php:92
+msgid "Edit"
+msgstr "Editar"
+
+# @ bold_headline
+#: content-search.php:11 content-single.php:11 content.php:11
+#, php-format
+msgid "Permalink to %s"
+msgstr "Enlace permanente con %s"
+
+# @ bold_headline
+#: content-single.php:18
+msgid "Read More <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Leer más <span class=\"meta-nav\">&rarr;</span>"
+
+# @ bold_headline
+#. translators: used between list items, there is a space after the comma
+#: content-single.php:34 content-single.php:44
+msgid ", "
+msgstr ", "
+
+# @ bold_headline
+#: content-single.php:38 content-single.php:48
+#, php-format
+msgid " %1$s"
+msgstr " %1$s"
+
+# @ bold_headline
+#: content-single.php:55
+msgid "Leave a comment"
+msgstr "Deja un comentario"
+
+# @ bold_headline
+#: content-single.php:55
+msgid "1 Comment"
+msgstr "1 comentario"
+
+# @ bold_headline
+#: content-single.php:55
+msgid "% Comments"
+msgstr "% comentarios"
+
+# @ bold_headline
+#: footer.php:16
+msgid "A Semantic Personal Publishing Platform"
+msgstr "Una plataforma de publicación personal semántica"
+
+# @ bold_headline
+#: footer.php:16
+#, php-format
+msgid "Proudly powered by %s"
+msgstr "Vitaminado y mineralizado por %s"
+
+# @ bold_headline
+#: footer.php:18
+#, php-format
+msgid "Theme: %1$s by %2$s."
+msgstr "Tema: %1$s por %2$s."
+
+# @ bold_headline
+#: functions.php:69
+msgid "Primary Menu"
+msgstr "Menú principal"
+
+# @ bold_headline
+#: functions.php:90
+msgid "Inactive Sidebar"
+msgstr "Barra de menú lateral inactiva"
+
+# @ bold_headline
+#: functions.php:98
+msgid "First Footer Area"
+msgstr "Primera zona del pie de página"
+
+# @ bold_headline
+#: functions.php:106
+msgid "Middle Footer Area"
+msgstr "Zona intermedia del pie de página"
+
+# @ bold_headline
+#: functions.php:114
+msgid "Last Footer Area"
+msgstr "Última zona del pie de página"
+
+# @ bold_headline
+#: functions.php:131
+msgid "Read more <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Leer más <span class=\"meta-nav\">&rarr;</span>"
+
+# @ bold_headline
+#: header.php:29
+msgid "Menu"
+msgstr "Menú"
+
+# @ bold_headline
+#: header.php:30
+msgid "Skip to content"
+msgstr "Ir al contenido"
+
+# @ bold_headline
+#: image.php:23
+#, php-format
+msgid ""
+"Published <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size "
+"image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" "
+"rel=\"gallery\">%8$s</a>"
+msgstr ""
+"Publicado el <span class=\"entry-date\"><time class=\"entry-date\" datetime="
+"\"%1$s\">%2$s</time></span> en <a href=\"%3$s\" title=\"Enlace a la imagen "
+"completa\">%4$s &times; %5$s</a> en <a href=\"%6$s\" title=\"Volver a %7$s\" "
+"rel=\"gallery\">%8$s</a>"
+
+# @ bold_headline
+#: image.php:38 inc/template-tags.php:44
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Anterior"
+
+# @ bold_headline
+#: image.php:39 inc/template-tags.php:48
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Siguiente <span class=\"meta-nav\">&rarr;</span>"
+
+# @ bold_headline
+#: image.php:104
+#, php-format
+msgid ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Post a comment\">Post a "
+"comment</a> or leave a trackback: <a class=\"trackback-link\" href=\"%s\" "
+"title=\"Trackback URL for your post\" rel=\"trackback\">Trackback URL</a>."
+msgstr ""
+"<a class=\"comment-link\" href=\"#respond\" title=\"Publicar un comentario"
+"\">Publicar un comentario</a> o dejar un retroenlace <a class=\"trackback-"
+"link\" href=\"%s\" title=\"URL del retroenlace a tu entrada\" rel=\"trackback"
+"\">URL del retroenlace</a>."
+
+# @ bold_headline
+#: image.php:106
+#, php-format
+msgid ""
+"Comments are closed, but you can leave a trackback: <a class=\"trackback-link"
+"\" href=\"%s\" title=\"Trackback URL for your post\" rel=\"trackback"
+"\">Trackback URL</a>."
+msgstr ""
+"Los comentarios están cerrados, pero puedes dejar un retroenlace : <a class="
+"\"trackback-link\" href=\"%s\" title=\"URL del retroenlace a tu entrada\" "
+"rel=\"trackback\">URL del retroenlace</a>."
+
+# @ bold_headline
+#: image.php:108
+msgid ""
+"Trackbacks are closed, but you can <a class=\"comment-link\" href=\"#respond"
+"\" title=\"Post a comment\">post a comment</a>."
+msgstr ""
+"Los retroenlaces están cerrados, pero puedes <a class=\"comment-link\" href="
+"\"#respond\" title=\"Publicar un comentario\">publicar un comentario</a>."
+
+# @ bold_headline
+#: image.php:110
+msgid "Both comments and trackbacks are currently closed."
+msgstr "Los comentarios y los retroenlaces están cerrados."
+
+# @ bold_headline
+#: inc/extras.php:66
+#, php-format
+msgid "Page %s"
+msgstr "Página %s"
+
+# @ bold_headline
+#: inc/template-tags.php:34
+msgid "Post navigation"
+msgstr "Navegación por las entradas"
+
+# @ bold_headline
+#: inc/template-tags.php:38
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+# @ bold_headline
+#: inc/template-tags.php:39
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+# @ bold_headline
+#: inc/template-tags.php:71
+msgid "Pingback:"
+msgstr "Ping :"
+
+# @ bold_headline
+#: inc/template-tags.php:81
+#, php-format
+msgid "<p>%s"
+msgstr "<p>%s"
+
+# @ bold_headline
+#: inc/template-tags.php:84
+msgid "Your comment is awaiting moderation."
+msgstr "Tu comentario está pendiente de moderación."
+
+# @ bold_headline
+#: inc/template-tags.php:90
+#, php-format
+msgctxt "1: date, 2: time"
+msgid "%1$s<br># %2$s"
+msgstr "%1$s<br># %2$s"
+
+# @ bold_headline
+#: inc/template-tags.php:121
+#, php-format
+msgid ""
+"<p>Written <a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class="
+"\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"byline\"> by "
+"<span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s"
+"\" rel=\"author\">%6$s</a></span></span></p>"
+msgstr ""
+"<p>Escrito el <a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class="
+"\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"byline\"> por "
+"<span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s"
+"\" rel=\"author\">%6$s</a></span></span></p>"
+
+# @ bold_headline
+#: inc/template-tags.php:126
+#, php-format
+msgid "View all posts by %s"
+msgstr "Ver todas las entradas de %s"
+
+# @ bold_headline
+#: inc/template-tags.php:137
+#, php-format
+msgid ""
+"<p><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date"
+"\" datetime=\"%2$s\">%3$s</time></a></p>"
+msgstr ""
+"<p><a href=\"%1$s\" title=\"%2$s\" rel=\"marcador\"><time class=\"fecha de "
+"la entrada\" datetime=\"%2$s\">%3$s</time></a></p>"
+
+# @ bold_headline
+#: search.php:16
+#, php-format
+msgid "Search Results for: %s"
+msgstr "Resultados de la búsqueda de: %s"
+
+# @ bold_headline
+#: search.php:31
+msgid "Nothing Found"
+msgstr "No hay resultados "
+
+# @ bold_headline
+#: search.php:34
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Lo siento, pero no se han hallado términos coincidentes. Prueba con otros."
+
+# @ bold_headline
+#: searchform.php:9
+msgctxt "assistive text"
+msgid "Search"
+msgstr "Buscar"
+
+# @ bold_headline
+#: searchform.php:10
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Buscar &hellip;"
+
+# @ bold_headline
+#: searchform.php:11
+msgctxt "submit button"
+msgid "Search"
+msgstr "Buscar"
+
+# @ default
+#: inc/template-tags.php:103
+msgid "Reply"
+msgstr "Responder"

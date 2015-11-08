@@ -1,0 +1,63 @@
+== Changelog ==
+
+= 1.0.9 - 24.04.2015
+- Remove Theme Options
+
+= 1.0.8 - 17.02.2015
+- Fixed bug 'title-tag' support
+- Minor CSS tweaks and fixes
+
+= 1.0.7 - 11.01.2015
+- Add 'title-tag' support WordPress 4.1
+- Changed editor-style and RTL
+- Changed function Register Google fonts for Theme
+- Fixed, changed and updated other functional and style
+- Fixed set the content width based
+- Added Jetpack Compatibility File
+
+= 1.0.6 - 22.11.2014
+- Minor CSS tweaks and fixes
+- Fixed bug Richsnippets Google
+- Updated Font Awesome
+- Added Soundcloud icons Social Menu
+
+= 1.0.5 - 31.10.2014
+- Changed and updated style.css, readme.txt, functions.php, screenshot image
+- Added features:
+	disable toggle button and top-bar
+	disable comments hide/show toggled
+- Change the output functions shortcode gallery
+- Added Child Grid custom Page Template
+- Added Theme Options page
+- Added Contextual Help
+- Minor CSS tweaks and fixes
+
+= 1.0.4 - 07.09.2014
+- Changed and updated style.css, readme.txt, functions.php, screenshot image
+- Added editor style (editor-style.css)
+- Successfully tested on version 4.0 of WordPress
+
+= 1.0.3 - 08.08.2014
+- Changed and updated:
+	style.css
+	readme.txt
+	functions.php
+	screenshot.png
+	header.php
+	index.php
+- Added:
+	support post formats
+	support custom header image
+	support custom background feature
+	Custom Social Menu
+	Function and template for Attached image
+- Removed now not used the image files
+- Minor CSS tweaks and fixes
+
+= 1.0.2 - 23.06.2014
+- Changed and updated style.css and readme.txt: added Copyright&License and Resources Used
+- Changed and updated functions.php - move $content_width inside setup function
+
+= 1.0.1 - 08.06.2014 - Changed and updated style.css
+
+= 1.0.0 - 28.05.2014 - Initial release

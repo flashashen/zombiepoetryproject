@@ -1,0 +1,778 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Adventure Plus\n"
+"POT-Creation-Date: 2013-12-26 16:51-0600\n"
+"PO-Revision-Date: 2013-12-26 17:23-0600\n"
+"Last-Translator: Eric Schwarz <Schwarttzy@gmail.com>\n"
+"Language-Team: Eric Schwarz <Schwarttzy@gmail.com>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: attachment.php:9 attachment.php:16 index.php:11 page.php:9 search.php:11
+#: single.php:9
+msgid "(No Title)"
+msgstr "(Sin título)"
+
+#: attachment.php:24
+msgid "The image is attached to"
+msgstr "La imagen se adjunta a"
+
+#: attachment.php:30 index.php:29 page.php:27 search.php:29 single.php:27
+msgid "with "
+msgstr "con"
+
+#: attachment.php:30 index.php:29 page.php:27 search.php:29 single.php:27
+msgid "no comments yet"
+msgstr "no hay comentarios todavía"
+
+#: attachment.php:30 index.php:29 page.php:27 search.php:29 single.php:27
+msgid "1 comment"
+msgstr "1 comentario"
+
+#: attachment.php:30 index.php:29 page.php:27 search.php:29 single.php:27
+#, php-format
+msgid "% comments"
+msgstr "% de comentarios"
+
+#: attachment.php:30 index.php:29 page.php:27 search.php:29 single.php:27
+msgid "comments disabled"
+msgstr "comments disabled"
+
+#: attachment.php:44
+msgid " Previous Image"
+msgstr " Foto anterior"
+
+#: attachment.php:45
+msgid "Next Image"
+msgstr "Siguiente foto"
+
+#: comments.php:16
+msgid "Comments"
+msgstr "Comentarios"
+
+#: comments.php:25
+msgid "Pingbacks &amp; Trackbacks"
+msgstr ""
+
+#: footer.php:6
+msgid "Good Old Fashioned Hand Written Code by"
+msgstr "Buena mano Old Fashioned código escrito por"
+
+#: functions.php:30
+msgid "The Menu Bar"
+msgstr "La Barra De Menús"
+
+#: functions.php:123
+msgid "sidebar"
+msgstr ""
+
+#: functions.php:125
+msgid "Widgets in this area will appear to the right of the content, normally."
+msgstr ""
+"Reproductores de esta área se mostrarán a la derecha del contenido, "
+"normalmente."
+
+#: functions.php:161 functions.php:168
+msgid "Theme Customizer"
+msgstr "Personalizador De Temas"
+
+#: functions.php:162 functions.php:169
+msgid "Theme Information"
+msgstr "Información categoría"
+
+#: functions.php:177 functions.php:181 functions.php:192
+msgid "Featured Background Image"
+msgstr ""
+
+#: functions.php:191
+msgid ""
+"Try to keep this image size smaller than 400kb and a resolution around 1920 "
+"by 1080."
+msgstr ""
+"Trate de mantener a este tamaño de imagen menor que 400kb y una resolución "
+"de alrededor de 1920 por 1080."
+
+#: functions.php:231
+msgid "Choose or Upload a File"
+msgstr "Elija o cargar un archivo"
+
+#: functions.php:232
+msgid "Use this file"
+msgstr "Utilice este archivo"
+
+#: functions.php:260 functions.php:1013
+msgid "Meta"
+msgstr ""
+
+#: functions.php:264
+msgid "Header"
+msgstr "Encabezamiento"
+
+#: functions.php:268
+msgid "Menu"
+msgstr "Menú"
+
+#: functions.php:272
+msgid "Background"
+msgstr "Fondo"
+
+#: functions.php:276
+msgid "Content"
+msgstr "Contenido"
+
+#: functions.php:280
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:284
+msgid "Links"
+msgstr ""
+
+#: functions.php:292
+msgid "For example mine is \"UA-9335180-X\""
+msgstr "Por ejemplo la mía es \"UA-9335180-X\""
+
+#: functions.php:295
+msgid "Enter Your Google Analytics Code"
+msgstr "Ingrese su código de Google Analytics"
+
+#: functions.php:301
+msgid "For example mine is \"gN9drVvyyDUFQzMSBL8Y8-EttW1pUDtnUypP-331Kqh\""
+msgstr "Por ejemplo la mía es \"gN9drVvyyDUFQzMSBL8Y8-EttW1pUDtnUypP-331Kqh\""
+
+#: functions.php:304
+msgid "Enter Your Google Webmaster Verification Code"
+msgstr "Ingrese su Google Webmaster del código de verificación"
+
+#: functions.php:310
+msgid "Background Color"
+msgstr "Color De Fondo"
+
+#: functions.php:318
+msgid "Site Title Color - #eee2d6"
+msgstr ""
+
+#: functions.php:327
+msgid "Site Title Color - #066ba0"
+msgstr ""
+
+#: functions.php:338
+msgid "Banner Background"
+msgstr "Banner De Fondo"
+
+#: functions.php:344
+msgid "Purple (Default)"
+msgstr "Púrpura (Predeterminado)"
+
+#: functions.php:345
+msgid "Blue"
+msgstr "Azul"
+
+#: functions.php:346
+msgid "Marble"
+msgstr "Canica"
+
+#: functions.php:347
+msgid "Green"
+msgstr "Verde"
+
+#: functions.php:356
+msgid "Menu Display Options"
+msgstr "Menú De Opciones De Visualización"
+
+#: functions.php:362
+msgid "Standard (Default)"
+msgstr "Estándar (Predeterminado)"
+
+#: functions.php:363
+msgid "No Title"
+msgstr "Sin título"
+
+#: functions.php:364
+msgid "Moves Menu To Bottom"
+msgstr "Mueve menú Para Bottom"
+
+#: functions.php:372
+msgid "Search bar in navigaton"
+msgstr "Barra de búsqueda en Navigaton"
+
+#: functions.php:377
+msgid "Do not display search"
+msgstr "No mostrar su búsqueda"
+
+#: functions.php:378
+msgid "Display the search"
+msgstr "Visualizar la búsqueda"
+
+#: functions.php:387
+msgid "Display the Page Title"
+msgstr "Muestra el título de la página"
+
+#: functions.php:391
+msgid "Display the title"
+msgstr "Mostrar el título"
+
+#: functions.php:392
+msgid "Do not display title"
+msgstr "No mostrar su título"
+
+#: functions.php:401
+msgid "Display the date"
+msgstr "Muestra la fecha"
+
+#: functions.php:405
+msgid "Display the dates"
+msgstr "Muestre las fechas"
+
+#: functions.php:406
+msgid "Do not display dates"
+msgstr "No mostrar fechas"
+
+#: functions.php:415
+msgid "Display excerpt on paged content"
+msgstr "Display extracto del contenido paginado"
+
+#: functions.php:419
+msgid "Display the content"
+msgstr "Visualice el contenido"
+
+#: functions.php:420
+msgid "Display the excerpt"
+msgstr "Visualice el extracto"
+
+#: functions.php:424 functions.php:434 functions.php:444 functions.php:454
+#: functions.php:464 functions.php:474
+msgid "The url link goes in here."
+msgstr "El enlace URL va en aquí."
+
+#: functions.php:427
+msgid "Facebook icon in the Menu"
+msgstr "Facebook icono en el menú"
+
+#: functions.php:437
+msgid "Twitter icon in the Menu"
+msgstr "Twitter icono en el menú"
+
+#: functions.php:447
+msgid "Google Plus icon in the Menu"
+msgstr "Google Plus icono en el menú"
+
+#: functions.php:467
+msgid "Vimeo icon in the Menu"
+msgstr "Vimeo icono en el menú"
+
+#: functions.php:477
+msgid "Soundcloud icon in the Menu"
+msgstr "Soundcloud icono en el menú"
+
+#: functions.php:783
+msgid "Google Webfonts Site Title"
+msgstr "Título Google Web Fonts sitio"
+
+#: functions.php:796
+msgid "Google Webfonts Tagline"
+msgstr "Google Web Fonts Lema"
+
+#: functions.php:809
+msgid "Spacing Between Top and Content"
+msgstr "Espacios entre los Top y Contenido"
+
+#: functions.php:841
+msgid "Background Size"
+msgstr "Antecedentes Tamaño"
+
+#: functions.php:847
+msgid "Auto (Default)"
+msgstr "Automático (Predeterminado)"
+
+#: functions.php:848
+msgid "Contain"
+msgstr ""
+
+#: functions.php:849
+msgid "Cover"
+msgstr ""
+
+#: functions.php:857
+msgid "Color of the Content Background"
+msgstr "Color del fondo Contenido"
+
+#: functions.php:867
+msgid "Transparency of Content Background"
+msgstr "La transparencia de los antecedentes de contenido"
+
+#: functions.php:900
+msgid "Previous & Next Links After Content"
+msgstr "Anterior y Siguiente Links Después de contenido"
+
+#: functions.php:905
+msgid "Both Pages & Posts"
+msgstr ""
+
+#: functions.php:906
+msgid "Only Posts"
+msgstr ""
+
+#: functions.php:907
+msgid "Only Pages"
+msgstr ""
+
+#: functions.php:908
+msgid "Neither"
+msgstr ""
+
+#: functions.php:916
+msgid "Author Information"
+msgstr ""
+
+#: functions.php:921 functions.php:935
+msgid "On"
+msgstr ""
+
+#: functions.php:922 functions.php:936
+msgid "Off"
+msgstr ""
+
+#: functions.php:930
+msgid "Comment Information"
+msgstr ""
+
+#: functions.php:944
+msgid "Sidebar Position"
+msgstr ""
+
+#: functions.php:949
+msgid "Right"
+msgstr ""
+
+#: functions.php:950
+msgid "Left"
+msgstr ""
+
+#: functions.php:951
+msgid "No Sidebar"
+msgstr ""
+
+#: functions.php:964
+msgid "Comments on both Pages & Posts"
+msgstr ""
+
+#: functions.php:965
+msgid "Comments only on Posts"
+msgstr ""
+
+#: functions.php:966
+msgid "Comments only on Pages"
+msgstr ""
+
+#: functions.php:967
+msgid "Comments completely Off"
+msgstr ""
+
+#: functions.php:975
+msgid "Color of the Sidebar Background"
+msgstr ""
+
+#: functions.php:985
+msgid "Transparency of Sidebar Background"
+msgstr ""
+
+#: functions.php:1017
+msgid "Font"
+msgstr ""
+
+#: functions.php:1021
+msgid "Footer"
+msgstr ""
+
+#: functions.php:1025
+msgid "Verify Your Purchase"
+msgstr ""
+
+#: functions.php:1035
+msgid "Favicon Image Upload"
+msgstr ""
+
+#: functions.php:1046
+msgid "Upload Your Own Image for the Banner"
+msgstr ""
+
+#: functions.php:1059
+msgid "Replaces Title and Slogan with an Image"
+msgstr ""
+
+#: functions.php:1068
+msgid "First Level Link Colors"
+msgstr ""
+
+#: functions.php:1077
+msgid "First Level Menu Link Hover Color"
+msgstr ""
+
+#: functions.php:1086
+msgid "Second Level Menu Link Color"
+msgstr ""
+
+#: functions.php:1095
+msgid "Second Level Menu Link Hover Color"
+msgstr ""
+
+#: functions.php:1105
+msgid "Font Color"
+msgstr ""
+
+#: functions.php:1111
+msgid "Default"
+msgstr ""
+
+#: functions.php:1115
+msgid "Body Google Webfonts"
+msgstr ""
+
+#: functions.php:1128
+msgid "h1-6 tags Google Webfonts"
+msgstr ""
+
+#: functions.php:1141
+msgid "Font size Adjust in Contents and Aside"
+msgstr ""
+
+#: functions.php:1165
+msgid "Link Color"
+msgstr ""
+
+#: functions.php:1174
+msgid "Link Hover Color"
+msgstr ""
+
+#: functions.php:1185
+msgid "Remove the Footer from the theme"
+msgstr ""
+
+#: functions.php:1190
+msgid "Display"
+msgstr ""
+
+#: functions.php:1191
+msgid "Do Not Displayed"
+msgstr ""
+
+#: functions.php:1195
+msgid "Similar to this \"29P202310S6424357\""
+msgstr ""
+
+#: functions.php:1201
+msgid "Copy & Paste Transaction Code Here"
+msgstr ""
+
+#: functions.php:1359
+msgid "Upgrade to Adventure+"
+msgstr ""
+
+#: functions.php:1365 functions.php:1454
+msgid "Description"
+msgstr ""
+
+#: functions.php:1366 functions.php:1377
+msgid "Customizing"
+msgstr ""
+
+#: functions.php:1367 functions.php:1382
+msgid "Features"
+msgstr ""
+
+#: functions.php:1368 functions.php:1416
+msgid "FAQ"
+msgstr ""
+
+#: functions.php:1369
+msgid "Screen Shots"
+msgstr ""
+
+#: functions.php:1370
+msgid "Changelog"
+msgstr ""
+
+#: functions.php:1371
+msgid "Support"
+msgstr ""
+
+#: functions.php:1378
+msgid ""
+"Basically all I have right now is <a href=\"https://www.youtube.com/watch?"
+"v=IU__-ipUxxc\" target=\"_blank\">this video</a> on YouTube. I know the "
+"video is for a different theme, but this will change soon. Also, I would "
+"embed the video, but regrettably people wiser than me have said that it will "
+"introduce security issues. In the future I plan to add stuff here, but for "
+"now I just need to get the theme approved."
+msgstr ""
+
+#: functions.php:1384
+msgid "100% Responsive WordPress Theme"
+msgstr ""
+
+#: functions.php:1385
+msgid "Clean and Beautiful Stylized HTML, CSS, JavaScript"
+msgstr ""
+
+#: functions.php:1386
+msgid "Change the site Title and Slogan Colors"
+msgstr ""
+
+#: functions.php:1387
+msgid "Upload Your Own Background Image"
+msgstr ""
+
+#: functions.php:1388
+msgid "Adjust the opacity of the Content from 0 to 100% in 5% intervails"
+msgstr ""
+
+#: functions.php:1389
+msgid "Adjust the opacity of the Sidebar from 0 to 100% in 5% intervails"
+msgstr ""
+
+#: functions.php:1390
+msgid "Adjust Color of the Background for Content"
+msgstr ""
+
+#: functions.php:1391
+msgid "Adjust Color of the Background for Sidebar"
+msgstr ""
+
+#: functions.php:1392
+msgid "Multiple Menu Banner Images to Choose From"
+msgstr ""
+
+#: functions.php:1393
+msgid "Control wether or not the \"Previous\" & \"Next\" shows"
+msgstr ""
+
+#: functions.php:1394
+msgid "Adjust the spacing between the top of the page and content"
+msgstr ""
+
+#: functions.php:1395
+msgid "Comments on Pages only, Posts only, Both, or Nones"
+msgstr ""
+
+#: functions.php:1396
+msgid "Featured Background Image unique to a post or page"
+msgstr ""
+
+#: functions.php:1397
+msgid "Choose from 100's of Google fonts for the Title and Slogan"
+msgstr ""
+
+#: functions.php:1399
+msgid ""
+"Do not see a feature the theme needs? <a href=\"http://schwarttzy.com/"
+"contact-me/\" target=\"_blank\">Contact me</a> about it."
+msgstr ""
+
+#: functions.php:1400
+msgid "Adventure+ Features"
+msgstr ""
+
+#: functions.php:1402
+msgid "Easily remove the footer with the link to my website"
+msgstr ""
+
+#: functions.php:1403
+msgid "Favicon on Your Website"
+msgstr ""
+
+#: functions.php:1404
+msgid "Change the Hyper Link Color"
+msgstr ""
+
+#: functions.php:1405
+msgid "Change the Link Colors in the Menu"
+msgstr ""
+
+#: functions.php:1406
+msgid "Change the Font Color in the Content"
+msgstr ""
+
+#: functions.php:1407
+msgid "Upload Your Own Logo in either the Header or above Content"
+msgstr ""
+
+#: functions.php:1408
+msgid "Upload Your Own Custom Banner Image"
+msgstr ""
+
+#: functions.php:1409
+msgid "Upload your own image for the Background"
+msgstr ""
+
+#: functions.php:1410
+msgid "Basic Google Meta for Analytics & Webmaster Verification"
+msgstr ""
+
+#: functions.php:1411
+msgid "More to come!"
+msgstr ""
+
+#: functions.php:1417
+msgid ""
+"How do I remove the \"Good Old Fashioned Hand Written code by Eric J. Schwarz"
+"\""
+msgstr ""
+
+#: functions.php:1418
+msgid ""
+"According to the WordPress.org I am allowed to include one credit link, "
+"which you can read about <a href=\"http://make.wordpress.org/themes/"
+"guidelines/guidelines-license-theme-name-credit-links-up-sell-themes/\" "
+"target=\"_blank\">here</a>. I use this link to spread the word about my "
+"coding skills in the hopes I will get some jobs. Anyway, you can dig through "
+"the code and remove it by hand but if you upgrade to the lastest version it "
+"will come right back. It is not really a big deal to do it by hand each time "
+"I release an update. However if you want to support my theme and get the "
+"Adventure+ upgrade, its just a simple \"On or Off\" option in the \"Theme "
+"Customizer.\""
+msgstr ""
+
+#: functions.php:1419
+msgid "More FAQs coming soon!"
+msgstr ""
+
+#: functions.php:1423
+msgid "I will take some screen shots"
+msgstr ""
+
+#: functions.php:1427
+msgid "The Changelog"
+msgstr ""
+
+#: functions.php:1431
+msgid "Version"
+msgstr ""
+
+#: functions.php:1436
+msgid "Minor update to fix some issues I have found."
+msgstr ""
+
+#: functions.php:1440
+msgid ""
+"The theme was completely rewritten from the ground up so that the code would "
+"be easier to manage, better written, and enable faster updates."
+msgstr ""
+
+#: functions.php:1447
+msgid "Support Information"
+msgstr ""
+
+#: functions.php:1448
+msgid ""
+"If you happen to have issues with plugins, writing posts, customizing the "
+"theme, and basically anything just shoot me an email on <a href=\"http://"
+"schwarttzy.com/contact-me/\" target=\"_blank\">this page</a> I setup for "
+"contacting me."
+msgstr ""
+
+#: functions.php:1449
+msgid ""
+"I have a <a href=\"https://twitter.com/Schwarttzy\" target=\"_blank"
+"\">Twitter</a> account, but all I really use it for is posting information "
+"on updates to my themes. So if you looking for a new feature, you may be in "
+"luck. I am not really sure what to do with Twitter, but I know a lot of "
+"people use it."
+msgstr ""
+
+#: functions.php:1450
+msgid ""
+"Your always welcome to use the \"<a href=\"http://wordpress.org/support/"
+"theme/adventure\" target=\"_blank\">Support</a>\" forums on WordPress.org "
+"for any questions or problems, I just do not check it as often because I do "
+"not recieve email notifications on new posts or replies."
+msgstr ""
+
+#: functions.php:1455
+msgid "If you are having trouble with using the WordPress Theme"
+msgstr ""
+
+#: functions.php:1455
+msgid ""
+"and need some help, <a href=\"http://schwarttzy.com/contact-me/\" target="
+"\"_blank\">contact me</a> about it. But I recommend taking a look at <a href="
+"\"https://www.youtube.com/watch?v=IU__-ipUxxc\" target=\"_blank\">this "
+"video</a> before sending me an email. The video is for a different theme, "
+"but it will show everything there is to customizing the theme "
+msgstr ""
+
+#: functions.php:1456
+msgid ""
+"Now that I have covered contacting me and a how to video, I would like to "
+"thank you for downloading and installing this theme. I hope that you enjoy "
+"it. I also hope that I can continue to create more beautiful themes like "
+"this for years to come, but that requires your help. I have created this "
+"Theme, and others, free of charge. And while I am not looking to get rich, I "
+"really like creating these themes for you guys."
+msgstr ""
+
+#: functions.php:1457
+msgid ""
+"So if you are interested in supporting my work, I can offer you an <a href="
+"\"http://schwarttzy.com/shop/adventureplus/\" target=\"_blank\" >upgrade to "
+"Adventure</a>. I have already included a few more features, some of which I "
+"am not allowed include in the free version, and I also offer to write "
+"additional code to customize the theme for you. Even if the code will be "
+"unique to your website."
+msgstr ""
+
+#: functions.php:1458
+msgid ""
+"Eric Schwarz<br><a href=\"http://schwarttzy.com/\" targe=\"_blank\">http://"
+"schwarttzy.com/</a>"
+msgstr ""
+
+#: index.php:21
+msgid "Posted in"
+msgstr ""
+
+#: index.php:21
+msgid " and tagged "
+msgstr ""
+
+#: index.php:23 page.php:19 search.php:21
+msgid " by "
+msgstr ""
+
+#: index.php:33 page.php:29 search.php:31 single.php:31
+msgid "."
+msgstr ""
+
+#: index.php:53
+msgid "Older Posts"
+msgstr "Entradas antiguas"
+
+#: index.php:54
+msgid "Newer Posts"
+msgstr "Entradas más recientes"
+
+#: search.php:49
+msgid "&#8249; Older Posts"
+msgstr ""
+
+#: search.php:50
+msgid "Newer Posts &#8250;"
+msgstr ""
+
+#: single.php:51
+msgid " Older Post"
+msgstr "Entrada más"
+
+#: single.php:52
+msgid "Newer Post"
+msgstr "Entrada más reciente Entrada"
