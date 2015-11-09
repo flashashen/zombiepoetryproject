@@ -40,7 +40,7 @@
     state: present
     volumes:
         - /var/lib/mysql
-#        - /data/zombie/nginx:/usr/share/nginx
+        - /usr/share/nginx
 
 
 - name: install Docker base apps image

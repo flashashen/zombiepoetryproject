@@ -51,3 +51,6 @@
 - name: start Docker
   service: name=docker state=started enabled=yes
 
+- name: Remove sudo tty requirement which breaks rsync module
+  lineinfile: "dest=/etc/sudoers state=absent regexp='^requiretty'"
+
