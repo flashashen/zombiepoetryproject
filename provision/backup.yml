@@ -1,4 +1,5 @@
 - hosts: all
+  gather_facts: false
   sudo: yes
 
   tasks:
@@ -20,13 +21,42 @@
 #      sudo: true
 
 
-    - name: mysqldump
-      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --password={{root_pass.stdout}}  > zombie_mysqldump_all.sql
-      sudo: true
 
-    - name: copy snapshot from sever
-      fetch: src=zombie_mysqldump_all.sql dest=../snapshots/ flat=yes fail_on_missing=yes
+#
+#   Import data from dump
+#
+#    - name: mysqldump
+#      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --password={{root_pass.stdout}}  > zombie_mysqldump_all.sql
+#      sudo: true
+#
+#    - name: copy snapshot from sever
+#      fetch: src=zombie_mysqldump_all.sql dest=../snapshots/ flat=yes fail_on_missing=yes
+#
+#    - name: Delete snapshot on server
+#      file: path=zombie_mysqldump_all.sql state=absent
 
-    - name: Delete snapshot on server
-      file: path=zombie_mysqldump_all.sql state=absent
+
+
+#
+#   Copy Wordpress files (plugins, config, etc)
+#
+    - file:  path=/var/sync_wp state=absent
+    - file:  path=/var/sync_wp state=directory mode=0755
+
+    - name: Run volume sync container
+      shell: docker run --rm -v /var/sync_wp:/var/sync_wp --volumes-from zombie-web-volumes flashashen/zombie-web cp -r /usr/share/nginx/www /var/sync_wp/
+#        image: flashashen/zombie-web
+#        name: wp_sync
+#        command: cp /usr/share/nginx/www/* /var/sync_wp/
+#        name: zombie-web
+#        state: started
+#        volumes_from: zombie-web-volumes
+#        volumes:
+#            - /var/sync_wp:/var/sync_wp
+
+    - name: copy WP config to server
+      synchronize: mode=pull src=/var/sync_wp/www dest=../snapshots rsync_path="sudo rsync"
+
+#    - name: sync WP files to server
+#      fetch: src=/var/sync_wp/www dest=../snapshots/www
 
