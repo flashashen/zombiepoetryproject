@@ -1,0 +1,1 @@
+(ROOT (S (NP (NN Blood)) (VP (VBZ rushes) (PP (IN from) (NP (PRP$ our) (NNS limbs))) (, ,) (S (VP (VP (VBG grooving) (NP (DT the) (JJ old) (NNS channels))) (, ,) (VP (VBG pooling) (NP (NNS hearts) (CC and) (NNS minds)))))) (. .))) </parse>
