@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="CoreNLP-to-HTML.xsl" type="text/xsl"?>
+<root>
+  <document>
+    <sentences>
+      <sentence id="1">
+        <tokens>
+          <token id="1">
+            <word>Perhaps</word>
+            <CharacterOffsetBegin>0</CharacterOffsetBegin>
+            <CharacterOffsetEnd>7</CharacterOffsetEnd>
+            <POS>RB</POS>
+          </token>
+          <token id="2">
+            <word>the</word>
+            <CharacterOffsetBegin>8</CharacterOffsetBegin>
+            <CharacterOffsetEnd>11</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="3">
+            <word>zombie</word>
+            <CharacterOffsetBegin>12</CharacterOffsetBegin>
+            <CharacterOffsetEnd>18</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="4">
+            <word>,</word>
+            <CharacterOffsetBegin>18</CharacterOffsetBegin>
+            <CharacterOffsetEnd>19</CharacterOffsetEnd>
+            <POS>,</POS>
+          </token>
+          <token id="5">
+            <word>in</word>
+            <CharacterOffsetBegin>20</CharacterOffsetBegin>
+            <CharacterOffsetEnd>22</CharacterOffsetEnd>
+            <POS>IN</POS>
+          </token>
+          <token id="6">
+            <word>all</word>
+            <CharacterOffsetBegin>23</CharacterOffsetBegin>
+            <CharacterOffsetEnd>26</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="7">
+            <word>his</word>
+            <CharacterOffsetBegin>27</CharacterOffsetBegin>
+            <CharacterOffsetEnd>30</CharacterOffsetEnd>
+            <POS>PRP$</POS>
+          </token>
+          <token id="8">
+            <word>uncanniness</word>
+            <CharacterOffsetBegin>31</CharacterOffsetBegin>
+            <CharacterOffsetEnd>42</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="9">
+            <word>,</word>
+            <CharacterOffsetBegin>42</CharacterOffsetBegin>
+            <CharacterOffsetEnd>43</CharacterOffsetEnd>
+            <POS>,</POS>
+          </token>
+          <token id="10">
+            <word>is</word>
+            <CharacterOffsetBegin>44</CharacterOffsetBegin>
+            <CharacterOffsetEnd>46</CharacterOffsetEnd>
+            <POS>VBZ</POS>
+          </token>
+          <token id="11">
+            <word>truly</word>
+            <CharacterOffsetBegin>47</CharacterOffsetBegin>
+            <CharacterOffsetEnd>52</CharacterOffsetEnd>
+            <POS>RB</POS>
+          </token>
+          <token id="12">
+            <word>the</word>
+            <CharacterOffsetBegin>53</CharacterOffsetBegin>
+            <CharacterOffsetEnd>56</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="13">
+            <word>definition</word>
+            <CharacterOffsetBegin>57</CharacterOffsetBegin>
+            <CharacterOffsetEnd>67</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="14">
+            <word>of</word>
+            <CharacterOffsetBegin>68</CharacterOffsetBegin>
+            <CharacterOffsetEnd>70</CharacterOffsetEnd>
+            <POS>IN</POS>
+          </token>
+          <token id="15">
+            <word>asymmetrical</word>
+            <CharacterOffsetBegin>71</CharacterOffsetBegin>
+            <CharacterOffsetEnd>83</CharacterOffsetEnd>
+            <POS>JJ</POS>
+          </token>
+          <token id="16">
+            <word>anthropomorphism</word>
+            <CharacterOffsetBegin>84</CharacterOffsetBegin>
+            <CharacterOffsetEnd>100</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="17">
+            <word>.</word>
+            <CharacterOffsetBegin>100</CharacterOffsetBegin>
+            <CharacterOffsetEnd>101</CharacterOffsetEnd>
+            <POS>.</POS>
+          </token>
+        </tokens>
+        <parse>(ROOT (S (ADVP (RB Perhaps)) (NP (NP (DT the) (NN zombie)) (, ,) (PP (IN in) (NP (DT all) (PRP$ his) (NN uncanniness))) (, ,)) (VP (VBZ is) (ADVP (RB truly)) (NP (NP (DT the) (NN definition)) (PP (IN of) (NP (JJ asymmetrical) (NN anthropomorphism))))) (. .))) </parse>
+        <dependencies type="basic-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="13">definition</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="1">Perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="3">zombie</governor>
+            <dependent idx="2">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="13">definition</governor>
+            <dependent idx="3">zombie</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="5">in</dependent>
+          </dep>
+          <dep type="det:predet">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="6">all</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="7">his</dependent>
+          </dep>
+          <dep type="nmod">
+            <governor idx="3">zombie</governor>
+            <dependent idx="8">uncanniness</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="13">definition</governor>
+            <dependent idx="10">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="11">truly</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="13">definition</governor>
+            <dependent idx="12">the</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="16">anthropomorphism</governor>
+            <dependent idx="14">of</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="16">anthropomorphism</governor>
+            <dependent idx="15">asymmetrical</dependent>
+          </dep>
+          <dep type="nmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="16">anthropomorphism</dependent>
+          </dep>
+        </dependencies>
+        <dependencies type="collapsed-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="13">definition</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="1">Perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="3">zombie</governor>
+            <dependent idx="2">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="13">definition</governor>
+            <dependent idx="3">zombie</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="5">in</dependent>
+          </dep>
+          <dep type="det:predet">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="6">all</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="7">his</dependent>
+          </dep>
+          <dep type="nmod:in">
+            <governor idx="3">zombie</governor>
+            <dependent idx="8">uncanniness</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="13">definition</governor>
+            <dependent idx="10">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="11">truly</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="13">definition</governor>
+            <dependent idx="12">the</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="16">anthropomorphism</governor>
+            <dependent idx="14">of</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="16">anthropomorphism</governor>
+            <dependent idx="15">asymmetrical</dependent>
+          </dep>
+          <dep type="nmod:of">
+            <governor idx="13">definition</governor>
+            <dependent idx="16">anthropomorphism</dependent>
+          </dep>
+        </dependencies>
+        <dependencies type="collapsed-ccprocessed-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="13">definition</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="1">Perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="3">zombie</governor>
+            <dependent idx="2">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="13">definition</governor>
+            <dependent idx="3">zombie</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="5">in</dependent>
+          </dep>
+          <dep type="det:predet">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="6">all</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="8">uncanniness</governor>
+            <dependent idx="7">his</dependent>
+          </dep>
+          <dep type="nmod:in">
+            <governor idx="3">zombie</governor>
+            <dependent idx="8">uncanniness</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="13">definition</governor>
+            <dependent idx="10">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="13">definition</governor>
+            <dependent idx="11">truly</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="13">definition</governor>
+            <dependent idx="12">the</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="16">anthropomorphism</governor>
+            <dependent idx="14">of</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="16">anthropomorphism</governor>
+            <dependent idx="15">asymmetrical</dependent>
+          </dep>
+          <dep type="nmod:of">
+            <governor idx="13">definition</governor>
+            <dependent idx="16">anthropomorphism</dependent>
+          </dep>
+        </dependencies>
+      </sentence>
+      <sentence id="2">
+        <tokens>
+          <token id="1">
+            <word>Perhaps</word>
+            <CharacterOffsetBegin>103</CharacterOffsetBegin>
+            <CharacterOffsetEnd>110</CharacterOffsetEnd>
+            <POS>RB</POS>
+          </token>
+          <token id="2">
+            <word>the</word>
+            <CharacterOffsetBegin>111</CharacterOffsetBegin>
+            <CharacterOffsetEnd>114</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="3">
+            <word>zombie</word>
+            <CharacterOffsetBegin>115</CharacterOffsetBegin>
+            <CharacterOffsetEnd>121</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="4">
+            <word>,</word>
+            <CharacterOffsetBegin>121</CharacterOffsetBegin>
+            <CharacterOffsetEnd>122</CharacterOffsetEnd>
+            <POS>,</POS>
+          </token>
+          <token id="5">
+            <word>with</word>
+            <CharacterOffsetBegin>123</CharacterOffsetBegin>
+            <CharacterOffsetEnd>127</CharacterOffsetEnd>
+            <POS>IN</POS>
+          </token>
+          <token id="6">
+            <word>his</word>
+            <CharacterOffsetBegin>128</CharacterOffsetBegin>
+            <CharacterOffsetEnd>131</CharacterOffsetEnd>
+            <POS>PRP$</POS>
+          </token>
+          <token id="7">
+            <word>slow</word>
+            <CharacterOffsetBegin>132</CharacterOffsetBegin>
+            <CharacterOffsetEnd>136</CharacterOffsetEnd>
+            <POS>JJ</POS>
+          </token>
+          <token id="8">
+            <word>shuffling</word>
+            <CharacterOffsetBegin>137</CharacterOffsetBegin>
+            <CharacterOffsetEnd>146</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="9">
+            <word>gait</word>
+            <CharacterOffsetBegin>147</CharacterOffsetBegin>
+            <CharacterOffsetEnd>151</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="10">
+            <word>,</word>
+            <CharacterOffsetBegin>151</CharacterOffsetBegin>
+            <CharacterOffsetEnd>152</CharacterOffsetEnd>
+            <POS>,</POS>
+          </token>
+          <token id="11">
+            <word>is</word>
+            <CharacterOffsetBegin>153</CharacterOffsetBegin>
+            <CharacterOffsetEnd>155</CharacterOffsetEnd>
+            <POS>VBZ</POS>
+          </token>
+          <token id="12">
+            <word>really</word>
+            <CharacterOffsetBegin>156</CharacterOffsetBegin>
+            <CharacterOffsetEnd>162</CharacterOffsetEnd>
+            <POS>RB</POS>
+          </token>
+          <token id="13">
+            <word>the</word>
+            <CharacterOffsetBegin>163</CharacterOffsetBegin>
+            <CharacterOffsetEnd>166</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="14">
+            <word>word</word>
+            <CharacterOffsetBegin>167</CharacterOffsetBegin>
+            <CharacterOffsetEnd>171</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="15">
+            <word>when</word>
+            <CharacterOffsetBegin>172</CharacterOffsetBegin>
+            <CharacterOffsetEnd>176</CharacterOffsetEnd>
+            <POS>WRB</POS>
+          </token>
+          <token id="16">
+            <word>it</word>
+            <CharacterOffsetBegin>177</CharacterOffsetBegin>
+            <CharacterOffsetEnd>179</CharacterOffsetEnd>
+            <POS>PRP</POS>
+          </token>
+          <token id="17">
+            <word>comes</word>
+            <CharacterOffsetBegin>180</CharacterOffsetBegin>
+            <CharacterOffsetEnd>185</CharacterOffsetEnd>
+            <POS>VBZ</POS>
+          </token>
+          <token id="18">
+            <word>to</word>
+            <CharacterOffsetBegin>186</CharacterOffsetBegin>
+            <CharacterOffsetEnd>188</CharacterOffsetEnd>
+            <POS>TO</POS>
+          </token>
+          <token id="19">
+            <word>unbridled</word>
+            <CharacterOffsetBegin>189</CharacterOffsetBegin>
+            <CharacterOffsetEnd>198</CharacterOffsetEnd>
+            <POS>JJ</POS>
+          </token>
+          <token id="20">
+            <word>determination</word>
+            <CharacterOffsetBegin>199</CharacterOffsetBegin>
+            <CharacterOffsetEnd>212</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="21">
+            <word>.</word>
+            <CharacterOffsetBegin>212</CharacterOffsetBegin>
+            <CharacterOffsetEnd>213</CharacterOffsetEnd>
+            <POS>.</POS>
+          </token>
+        </tokens>
+        <parse>(ROOT (S (ADVP (RB Perhaps)) (NP (NP (DT the) (NN zombie)) (, ,) (PP (IN with) (NP (PRP$ his) (JJ slow) (NN shuffling) (NN gait))) (, ,)) (VP (VBZ is) (ADVP (RB really)) (NP (NP (DT the) (NN word)) (SBAR (WHADVP (WRB when)) (S (NP (PRP it)) (VP (VBZ comes) (PP (TO to) (NP (JJ unbridled) (NN determination)))))))) (. .))) </parse>
+        <dependencies type="basic-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="14">word</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">word</governor>
+            <dependent idx="1">Perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="3">zombie</governor>
+            <dependent idx="2">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="14">word</governor>
+            <dependent idx="3">zombie</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="9">gait</governor>
+            <dependent idx="5">with</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="9">gait</governor>
+            <dependent idx="6">his</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="9">gait</governor>
+            <dependent idx="7">slow</dependent>
+          </dep>
+          <dep type="compound">
+            <governor idx="9">gait</governor>
+            <dependent idx="8">shuffling</dependent>
+          </dep>
+          <dep type="nmod">
+            <governor idx="3">zombie</governor>
+            <dependent idx="9">gait</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="14">word</governor>
+            <dependent idx="11">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">word</governor>
+            <dependent idx="12">really</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="14">word</governor>
+            <dependent idx="13">the</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="17">comes</governor>
+            <dependent idx="15">when</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="17">comes</governor>
+            <dependent idx="16">it</dependent>
+          </dep>
+          <dep type="acl:relcl">
+            <governor idx="14">word</governor>
+            <dependent idx="17">comes</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="20">determination</governor>
+            <dependent idx="18">to</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="20">determination</governor>
+            <dependent idx="19">unbridled</dependent>
+          </dep>
+          <dep type="nmod">
+            <governor idx="17">comes</governor>
+            <dependent idx="20">determination</dependent>
+          </dep>
+        </dependencies>
+        <dependencies type="collapsed-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="14">word</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">word</governor>
+            <dependent idx="1">Perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="3">zombie</governor>
+            <dependent idx="2">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="14">word</governor>
+            <dependent idx="3">zombie</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="9">gait</governor>
+            <dependent idx="5">with</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="9">gait</governor>
+            <dependent idx="6">his</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="9">gait</governor>
+            <dependent idx="7">slow</dependent>
+          </dep>
+          <dep type="compound">
+            <governor idx="9">gait</governor>
+            <dependent idx="8">shuffling</dependent>
+          </dep>
+          <dep type="nmod:with">
+            <governor idx="3">zombie</governor>
+            <dependent idx="9">gait</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="14">word</governor>
+            <dependent idx="11">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">word</governor>
+            <dependent idx="12">really</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="14">word</governor>
+            <dependent idx="13">the</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="17">comes</governor>
+            <dependent idx="15">when</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="17">comes</governor>
+            <dependent idx="16">it</dependent>
+          </dep>
+          <dep type="acl:relcl">
+            <governor idx="14">word</governor>
+            <dependent idx="17">comes</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="20">determination</governor>
+            <dependent idx="18">to</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="20">determination</governor>
+            <dependent idx="19">unbridled</dependent>
+          </dep>
+          <dep type="nmod:to">
+            <governor idx="17">comes</governor>
+            <dependent idx="20">determination</dependent>
+          </dep>
+        </dependencies>
+        <dependencies type="collapsed-ccprocessed-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="14">word</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">word</governor>
+            <dependent idx="1">Perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="3">zombie</governor>
+            <dependent idx="2">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="14">word</governor>
+            <dependent idx="3">zombie</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="9">gait</governor>
+            <dependent idx="5">with</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="9">gait</governor>
+            <dependent idx="6">his</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="9">gait</governor>
+            <dependent idx="7">slow</dependent>
+          </dep>
+          <dep type="compound">
+            <governor idx="9">gait</governor>
+            <dependent idx="8">shuffling</dependent>
+          </dep>
+          <dep type="nmod:with">
+            <governor idx="3">zombie</governor>
+            <dependent idx="9">gait</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="14">word</governor>
+            <dependent idx="11">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">word</governor>
+            <dependent idx="12">really</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="14">word</governor>
+            <dependent idx="13">the</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="17">comes</governor>
+            <dependent idx="15">when</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="17">comes</governor>
+            <dependent idx="16">it</dependent>
+          </dep>
+          <dep type="acl:relcl">
+            <governor idx="14">word</governor>
+            <dependent idx="17">comes</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="20">determination</governor>
+            <dependent idx="18">to</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="20">determination</governor>
+            <dependent idx="19">unbridled</dependent>
+          </dep>
+          <dep type="nmod:to">
+            <governor idx="17">comes</governor>
+            <dependent idx="20">determination</dependent>
+          </dep>
+        </dependencies>
+      </sentence>
+      <sentence id="3">
+        <tokens>
+          <token id="1">
+            <word>And</word>
+            <CharacterOffsetBegin>215</CharacterOffsetBegin>
+            <CharacterOffsetEnd>218</CharacterOffsetEnd>
+            <POS>CC</POS>
+          </token>
+          <token id="2">
+            <word>perhaps</word>
+            <CharacterOffsetBegin>219</CharacterOffsetBegin>
+            <CharacterOffsetEnd>226</CharacterOffsetEnd>
+            <POS>RB</POS>
+          </token>
+          <token id="3">
+            <word>the</word>
+            <CharacterOffsetBegin>227</CharacterOffsetBegin>
+            <CharacterOffsetEnd>230</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="4">
+            <word>zombie</word>
+            <CharacterOffsetBegin>231</CharacterOffsetBegin>
+            <CharacterOffsetEnd>237</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="5">
+            <word>,</word>
+            <CharacterOffsetBegin>237</CharacterOffsetBegin>
+            <CharacterOffsetEnd>238</CharacterOffsetEnd>
+            <POS>,</POS>
+          </token>
+          <token id="6">
+            <word>his</word>
+            <CharacterOffsetBegin>239</CharacterOffsetBegin>
+            <CharacterOffsetEnd>242</CharacterOffsetEnd>
+            <POS>PRP$</POS>
+          </token>
+          <token id="7">
+            <word>hunger</word>
+            <CharacterOffsetBegin>243</CharacterOffsetBegin>
+            <CharacterOffsetEnd>249</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="8">
+            <word>bottomless</word>
+            <CharacterOffsetBegin>250</CharacterOffsetBegin>
+            <CharacterOffsetEnd>260</CharacterOffsetEnd>
+            <POS>JJ</POS>
+          </token>
+          <token id="9">
+            <word>,</word>
+            <CharacterOffsetBegin>260</CharacterOffsetBegin>
+            <CharacterOffsetEnd>261</CharacterOffsetEnd>
+            <POS>,</POS>
+          </token>
+          <token id="10">
+            <word>is</word>
+            <CharacterOffsetBegin>262</CharacterOffsetBegin>
+            <CharacterOffsetEnd>264</CharacterOffsetEnd>
+            <POS>VBZ</POS>
+          </token>
+          <token id="11">
+            <word>indeed</word>
+            <CharacterOffsetBegin>265</CharacterOffsetBegin>
+            <CharacterOffsetEnd>271</CharacterOffsetEnd>
+            <POS>RB</POS>
+          </token>
+          <token id="12">
+            <word>the</word>
+            <CharacterOffsetBegin>272</CharacterOffsetBegin>
+            <CharacterOffsetEnd>275</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="13">
+            <word>very</word>
+            <CharacterOffsetBegin>276</CharacterOffsetBegin>
+            <CharacterOffsetEnd>280</CharacterOffsetEnd>
+            <POS>JJ</POS>
+          </token>
+          <token id="14">
+            <word>picture</word>
+            <CharacterOffsetBegin>281</CharacterOffsetBegin>
+            <CharacterOffsetEnd>288</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="15">
+            <word>of</word>
+            <CharacterOffsetBegin>289</CharacterOffsetBegin>
+            <CharacterOffsetEnd>291</CharacterOffsetEnd>
+            <POS>IN</POS>
+          </token>
+          <token id="16">
+            <word>a</word>
+            <CharacterOffsetBegin>292</CharacterOffsetBegin>
+            <CharacterOffsetEnd>293</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="17">
+            <word>man</word>
+            <CharacterOffsetBegin>294</CharacterOffsetBegin>
+            <CharacterOffsetEnd>297</CharacterOffsetEnd>
+            <POS>NN</POS>
+          </token>
+          <token id="18">
+            <word>who</word>
+            <CharacterOffsetBegin>298</CharacterOffsetBegin>
+            <CharacterOffsetEnd>301</CharacterOffsetEnd>
+            <POS>WP</POS>
+          </token>
+          <token id="19">
+            <word>can</word>
+            <CharacterOffsetBegin>302</CharacterOffsetBegin>
+            <CharacterOffsetEnd>305</CharacterOffsetEnd>
+            <POS>MD</POS>
+          </token>
+          <token id="20">
+            <word>have</word>
+            <CharacterOffsetBegin>306</CharacterOffsetBegin>
+            <CharacterOffsetEnd>310</CharacterOffsetEnd>
+            <POS>VB</POS>
+          </token>
+          <token id="21">
+            <word>it</word>
+            <CharacterOffsetBegin>311</CharacterOffsetBegin>
+            <CharacterOffsetEnd>313</CharacterOffsetEnd>
+            <POS>PRP</POS>
+          </token>
+          <token id="22">
+            <word>all</word>
+            <CharacterOffsetBegin>314</CharacterOffsetBegin>
+            <CharacterOffsetEnd>317</CharacterOffsetEnd>
+            <POS>DT</POS>
+          </token>
+          <token id="23">
+            <word>.</word>
+            <CharacterOffsetBegin>317</CharacterOffsetBegin>
+            <CharacterOffsetEnd>318</CharacterOffsetEnd>
+            <POS>.</POS>
+          </token>
+        </tokens>
+        <parse>(ROOT (S (CC And) (ADVP (RB perhaps)) (NP (NP (DT the) (NN zombie)) (, ,) (NP (PRP$ his) (NN hunger) (JJ bottomless)) (, ,)) (VP (VBZ is) (ADVP (RB indeed)) (NP (NP (DT the) (JJ very) (NN picture)) (PP (IN of) (NP (NP (DT a) (NN man)) (SBAR (WHNP (WP who)) (S (VP (MD can) (VP (VB have) (S (NP (PRP it)) (NP (DT all))))))))))) (. .))) </parse>
+        <dependencies type="basic-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="14">picture</dependent>
+          </dep>
+          <dep type="cc">
+            <governor idx="14">picture</governor>
+            <dependent idx="1">And</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="2">perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="4">zombie</governor>
+            <dependent idx="3">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="14">picture</governor>
+            <dependent idx="4">zombie</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="7">hunger</governor>
+            <dependent idx="6">his</dependent>
+          </dep>
+          <dep type="appos">
+            <governor idx="4">zombie</governor>
+            <dependent idx="7">hunger</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="7">hunger</governor>
+            <dependent idx="8">bottomless</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="14">picture</governor>
+            <dependent idx="10">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="11">indeed</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="14">picture</governor>
+            <dependent idx="12">the</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="14">picture</governor>
+            <dependent idx="13">very</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="17">man</governor>
+            <dependent idx="15">of</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="17">man</governor>
+            <dependent idx="16">a</dependent>
+          </dep>
+          <dep type="nmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="17">man</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="20">have</governor>
+            <dependent idx="18">who</dependent>
+          </dep>
+          <dep type="aux">
+            <governor idx="20">have</governor>
+            <dependent idx="19">can</dependent>
+          </dep>
+          <dep type="acl:relcl">
+            <governor idx="17">man</governor>
+            <dependent idx="20">have</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="22">all</governor>
+            <dependent idx="21">it</dependent>
+          </dep>
+          <dep type="xcomp">
+            <governor idx="20">have</governor>
+            <dependent idx="22">all</dependent>
+          </dep>
+        </dependencies>
+        <dependencies type="collapsed-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="14">picture</dependent>
+          </dep>
+          <dep type="cc">
+            <governor idx="14">picture</governor>
+            <dependent idx="1">And</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="2">perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="4">zombie</governor>
+            <dependent idx="3">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="14">picture</governor>
+            <dependent idx="4">zombie</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="7">hunger</governor>
+            <dependent idx="6">his</dependent>
+          </dep>
+          <dep type="appos">
+            <governor idx="4">zombie</governor>
+            <dependent idx="7">hunger</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="7">hunger</governor>
+            <dependent idx="8">bottomless</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="14">picture</governor>
+            <dependent idx="10">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="11">indeed</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="14">picture</governor>
+            <dependent idx="12">the</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="14">picture</governor>
+            <dependent idx="13">very</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="17">man</governor>
+            <dependent idx="15">of</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="17">man</governor>
+            <dependent idx="16">a</dependent>
+          </dep>
+          <dep type="nmod:of">
+            <governor idx="14">picture</governor>
+            <dependent idx="17">man</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="20">have</governor>
+            <dependent idx="18">who</dependent>
+          </dep>
+          <dep type="aux">
+            <governor idx="20">have</governor>
+            <dependent idx="19">can</dependent>
+          </dep>
+          <dep type="acl:relcl">
+            <governor idx="17">man</governor>
+            <dependent idx="20">have</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="22">all</governor>
+            <dependent idx="21">it</dependent>
+          </dep>
+          <dep type="xcomp">
+            <governor idx="20">have</governor>
+            <dependent idx="22">all</dependent>
+          </dep>
+        </dependencies>
+        <dependencies type="collapsed-ccprocessed-dependencies">
+          <dep type="root">
+            <governor idx="0">ROOT</governor>
+            <dependent idx="14">picture</dependent>
+          </dep>
+          <dep type="cc">
+            <governor idx="14">picture</governor>
+            <dependent idx="1">And</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="2">perhaps</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="4">zombie</governor>
+            <dependent idx="3">the</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="14">picture</governor>
+            <dependent idx="4">zombie</dependent>
+          </dep>
+          <dep type="nmod:poss">
+            <governor idx="7">hunger</governor>
+            <dependent idx="6">his</dependent>
+          </dep>
+          <dep type="appos">
+            <governor idx="4">zombie</governor>
+            <dependent idx="7">hunger</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="7">hunger</governor>
+            <dependent idx="8">bottomless</dependent>
+          </dep>
+          <dep type="cop">
+            <governor idx="14">picture</governor>
+            <dependent idx="10">is</dependent>
+          </dep>
+          <dep type="advmod">
+            <governor idx="14">picture</governor>
+            <dependent idx="11">indeed</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="14">picture</governor>
+            <dependent idx="12">the</dependent>
+          </dep>
+          <dep type="amod">
+            <governor idx="14">picture</governor>
+            <dependent idx="13">very</dependent>
+          </dep>
+          <dep type="case">
+            <governor idx="17">man</governor>
+            <dependent idx="15">of</dependent>
+          </dep>
+          <dep type="det">
+            <governor idx="17">man</governor>
+            <dependent idx="16">a</dependent>
+          </dep>
+          <dep type="nmod:of">
+            <governor idx="14">picture</governor>
+            <dependent idx="17">man</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="20">have</governor>
+            <dependent idx="18">who</dependent>
+          </dep>
+          <dep type="aux">
+            <governor idx="20">have</governor>
+            <dependent idx="19">can</dependent>
+          </dep>
+          <dep type="acl:relcl">
+            <governor idx="17">man</governor>
+            <dependent idx="20">have</dependent>
+          </dep>
+          <dep type="nsubj">
+            <governor idx="22">all</governor>
+            <dependent idx="21">it</dependent>
+          </dep>
+          <dep type="xcomp">
+            <governor idx="20">have</governor>
+            <dependent idx="22">all</dependent>
+          </dep>
+        </dependencies>
+      </sentence>
+    </sentences>
+  </document>
+</root>
