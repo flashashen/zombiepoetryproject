@@ -1,5 +1,5 @@
 - hosts: all
-  gather_facts: false
+  gather_facts: true
   sudo: yes
 
   tasks:
@@ -12,8 +12,8 @@
     - debug: var=zombie_container
 
     - name: get mysql root password
-      shell: docker exec {{zombie_container.stdout}} tail -n 1 /mysql-root-pw.txt
-      register: root_pass
+      shell: docker exec {{zombie_container.stdout}} tail -n 1 /wordpress-db-pw.txt
+      register: wp_pass
 
 #
 #    - name: install python mysql on remote  ** this is needed if ansible mysql module is used
@@ -25,15 +25,15 @@
 #
 #   Import data from dump
 #
-#    - name: mysqldump
-#      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --password={{root_pass.stdout}}  > zombie_mysqldump_all.sql
-#      sudo: true
-#
-#    - name: copy snapshot from sever
-#      fetch: src=zombie_mysqldump_all.sql dest=../snapshots/ flat=yes fail_on_missing=yes
-#
-#    - name: Delete snapshot on server
-#      file: path=zombie_mysqldump_all.sql state=absent
+    - name: mysqldump
+      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --user=wordpress --password={{wp_pass.stdout}}  > zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql
+      sudo: true
+
+    - name: copy snapshot from sever
+      fetch: src=zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql dest=../snapshots/ flat=yes fail_on_missing=yes
+
+    - name: Delete snapshot on server
+      file: path=zombie_mysqldump_all.sql state=absent
 
 
 
@@ -54,7 +54,7 @@
 #        volumes:
 #            - /var/sync_wp:/var/sync_wp
 
-    - name: copy WP config to server
+    - name: pull WP config from server
       synchronize: mode=pull src=/var/sync_wp/www dest=../snapshots rsync_path="sudo rsync"
 
 #    - name: sync WP files to server
