@@ -36,7 +36,7 @@
     #image: flashashen/zombie-web - go back to native volumes with original image
     image: flashashen/zombie-web
     name: zombie-web-volumes
-    pull: always
+#    pull: always
     state: present
     volumes:
         - /var/lib/mysql

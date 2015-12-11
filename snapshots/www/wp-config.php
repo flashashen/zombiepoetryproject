@@ -15,29 +15,18 @@
  * @package WordPress
  */
 
-// Use these settings on the local server
-if ( file_exists( dirname( __FILE__ ) . '/wp-config-local.php' ) ) {
-  include( dirname( __FILE__ ) . '/wp-config-local.php' );
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define('DB_NAME', 'wordpress');
 
-// Otherwise use the below settings (on live server)
-} else {
+/** MySQL database username */
+define('DB_USER', 'wordpress');
 
-  // ** MySQL settings - You can get this info from your web host ** //
-  /** The name of the database for WordPress */
-  define('DB_NAME', 'wordpress');
+/** MySQL database password */
+define('DB_PASSWORD', 'xub7ohSee9Ul');
 
-  /** MySQL database username */
-  define('DB_USER', 'wordpress');
-
-  /** MySQL database password */
-  define('DB_PASSWORD', 'xub7ohSee9Ul');
-
-  /** MySQL hostname */
-  define('DB_HOST', 'localhost');
-}
-
-
-
+/** MySQL hostname */
+define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');

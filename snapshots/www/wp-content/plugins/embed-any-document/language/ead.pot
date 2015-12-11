@@ -1,0 +1,215 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Embed Any Document\n"
+"POT-Creation-Date: 2015-06-25 15:46+0530\n"
+"PO-Revision-Date: 2015-06-25 15:47+0530\n"
+"Last-Translator: \n"
+"Language-Team: Awsm Innovations <hello@awsm.in>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../aswm-embed.php:81 ../inc/popup.php:6
+msgid "Add Document"
+msgstr ""
+
+#: ../aswm-embed.php:106
+msgid "Settings"
+msgstr ""
+
+#: ../aswm-embed.php:132
+msgid "Nothing to insert"
+msgstr ""
+
+#: ../aswm-embed.php:133
+msgid "Invalid URL"
+msgstr ""
+
+#: ../aswm-embed.php:134
+msgid "Add URL"
+msgstr ""
+
+#: ../aswm-embed.php:135
+msgid "Verifying..."
+msgstr ""
+
+#: ../aswm-embed.php:181
+msgid "Download"
+msgstr ""
+
+#: ../aswm-embed.php:204
+msgid "No Url Found"
+msgstr ""
+
+#: ../aswm-embed.php:218 ../aswm-embed.php:245
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: ../aswm-embed.php:278
+msgid "Buy Pro Version"
+msgstr ""
+
+#: ../aswm-embed.php:280
+msgid "Add from "
+msgstr ""
+
+#: ../inc/functions.php:89 ../inc/functions.php:126
+msgid "Done"
+msgstr ""
+
+#: ../inc/functions.php:94
+msgid "Document"
+msgstr ""
+
+#: ../inc/functions.php:102
+msgid "File format is not supported."
+msgstr ""
+
+#: ../inc/functions.php:109
+msgid "Sorry, the file URL is not valid."
+msgstr ""
+
+#: ../inc/functions.php:129
+msgid "The document you have chosen is a not public."
+msgstr ""
+
+#: ../inc/functions.php:129
+msgid ""
+" Only the owner and explicitly shared collaborators will be able to view it."
+msgstr ""
+
+#: ../inc/popup.php:13
+msgid "Upload Document"
+msgstr ""
+
+#: ../inc/popup.php:14
+msgid "Add from URL"
+msgstr ""
+
+#: ../inc/popup.php:20
+msgid "Enter document URL"
+msgstr ""
+
+#: ../inc/popup.php:37
+msgid "Advanced Options"
+msgstr ""
+
+#: ../inc/popup.php:43 ../inc/settings.php:26
+msgid "Show Download Link"
+msgstr ""
+
+#: ../inc/popup.php:45 ../inc/settings.php:29
+msgid "For all users"
+msgstr ""
+
+#: ../inc/popup.php:45 ../inc/settings.php:29
+msgid "For Logged-in users"
+msgstr ""
+
+#: ../inc/popup.php:45 ../inc/settings.php:29
+msgid "No Download"
+msgstr ""
+
+#: ../inc/popup.php:50 ../inc/popup.php:57
+msgid "Viewer"
+msgstr ""
+
+#: ../inc/popup.php:52
+msgid "Google Docs Viewer"
+msgstr ""
+
+#: ../inc/popup.php:52
+msgid "Microsoft Office Online"
+msgstr ""
+
+#: ../inc/popup.php:67
+msgid "Shortcode Preview"
+msgstr ""
+
+#: ../inc/popup.php:76
+msgid "Insert"
+msgstr ""
+
+#: ../inc/popup.php:76
+msgid "Loading..."
+msgstr ""
+
+#: ../inc/popup.php:80
+msgid "Cancel"
+msgstr ""
+
+#: ../inc/settings.php:3
+msgid "Embed Any Document by AWSM.in"
+msgstr ""
+
+#: ../inc/settings.php:12
+msgid "Default Size"
+msgstr ""
+
+#: ../inc/settings.php:14
+msgid "Width"
+msgstr ""
+
+#: ../inc/settings.php:18
+msgid "Height"
+msgstr ""
+
+#: ../inc/settings.php:22
+msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
+msgstr ""
+
+#: ../inc/settings.php:57
+msgid "Like the plugin?"
+msgstr ""
+
+#: ../inc/settings.php:57
+msgid "Rate Now!"
+msgstr ""
+
+#: ../inc/settings.php:62
+msgid "Need Help?"
+msgstr ""
+
+#: ../inc/settings.php:62
+msgid "Open a Ticket"
+msgstr ""
+
+#: ../inc/settings.php:69
+msgid "How to Embed Documents?"
+msgstr ""
+
+#: ../inc/settings.php:70
+msgid "About Viewers"
+msgstr ""
+
+#: ../inc/settings.php:71
+msgid "Shortcode & Attributes"
+msgstr ""
+
+#: ../inc/settings.php:72
+msgid "FAQs"
+msgstr ""
+
+#: ../inc/support-mail.php:8
+msgid "Please Fill Required Fields"
+msgstr ""
+
+#: ../inc/support-mail.php:30
+msgid "We will get back to you soon"
+msgstr ""
+
+#: ../inc/support-mail.php:33
+msgid "Something went wrong"
+msgstr ""
+
+#: ../inc/support-mail.php:38
+msgid "Cheating ?"
+msgstr ""
