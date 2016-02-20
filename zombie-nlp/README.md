@@ -4,6 +4,11 @@
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home
 
 
+# Run
+
+java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -jar target/zombie-nlp-1.0-SNAPSHOT.jar
+
+
 
 # NLP tools
 
