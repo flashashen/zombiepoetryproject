@@ -14,38 +14,35 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  *
  */
-public class MutationStatisticalRegexOperation implements Mutation {
+public abstract class MutationStatisticalRegexOperation implements Mutation {
 
     public void mutate(Decomposition decomposition){
 
         List<Tree> victimTrees = decomposition.getParse();
         for (Tree victim : victimTrees) {
             TregexMatcher m = getPatternTarget().matcher(victim);
-            while (m.find()) {
-
+            while (m.findNextMatchingNode()) {
                 if (chompThisMatch(m.getMatch())) {
-                    Tree progentitorMatched = findProgenitorMatch(m.getMatch());
-                    m.getMatch().setChildren(progentitorMatched.getChildrenAsList());
-                    //m.getMatch().pennPrint();
-                    //progentitorMatched.pennPrint();
-
+                    mutate(m.getMatch());
                 }
             }
         }
     }
 
+    public abstract void mutate(Tree matchingNode);
+
+
     private int percentageChomped;
     private String patternTargetString;
     private TregexPattern patternTarget;
     private Decomposition progenitorDecomposition;
-    private String operationString;
+    protected List<String> mutationDescriptions;
 
 
-    public MutationStatisticalRegexOperation(String patternTargetString, String operationString, int percentageChomped, Decomposition progenitorDecomposition) {
+    public MutationStatisticalRegexOperation(String patternTargetString, int percentageChomped, Decomposition progenitorDecomposition) {
 
         this.percentageChomped = percentageChomped;
         this.patternTargetString = patternTargetString;
-        this.operationString = operationString;
 
         // Filter the tree list from the sentences of the zombie text to just a list
         // of source nodes for this transformation
@@ -67,6 +64,8 @@ public class MutationStatisticalRegexOperation implements Mutation {
         }
         progenitorMatchingNodes = tempTreeList.toArray(new Tree[0]);
 
+        mutationDescriptions = new ArrayList<String>();
+
     }
 
     public Tree findProgenitorMatch(Tree tree){
@@ -80,13 +79,6 @@ public class MutationStatisticalRegexOperation implements Mutation {
     }
     public void setPercentageChomped(int percentageChomped) {
         this.percentageChomped = percentageChomped;
-    }
-
-    public String getOperationString() {
-        return operationString;
-    }
-    public void setOperationString(String operationString) {
-        this.operationString = operationString;
     }
 
     public String getPatternTargetString() {

@@ -1,6 +1,9 @@
 package flash.zombie.nlp;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.ling.Label;
+import edu.stanford.nlp.ling.StringLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.Tree;
@@ -17,13 +20,18 @@ import java.util.Properties;
 public class Decomposition {
 
 
+    public static final Label MARKER_LAST_WORD_OF_PHRASE = new StringLabel("endOfPhrase");
+
+
     //private List<Tree> sentencesPartsOfSpeech;
     private final Annotation document;
 
 
     public Decomposition(String text) {
         Properties properties = new Properties();
-        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
+//        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, quote, regexner");
+//        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, sentiment, natlog, cdc, gender, depparse, truecase, relation, quote, entitymentions");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(properties);
         document = new Annotation(text);
         pipeline.annotate(document);
@@ -38,6 +46,24 @@ public class Decomposition {
             parseTrees.add(tree);
         }
         return parseTrees;
+    }
+
+    public ArrayList<Object>  getEntities() {
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        ArrayList<Object> entities = new ArrayList<>();
+        Object ner;
+        for (CoreMap sentence : sentences) {
+
+            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+                ner = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+                if (!ner.equals("O")) {
+                    entities.add(token.get(CoreAnnotations.TextAnnotation.class));
+                    continue;
+                }
+            }
+        }
+
+        return entities;
     }
 }
 
