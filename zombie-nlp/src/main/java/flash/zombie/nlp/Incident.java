@@ -14,11 +14,13 @@ public class Incident {
     public List<Tree> victimParseTrees;
     public List<Tree> zombieParseTrees;
     public String zombieText;
+    public List<String> zombieTextLines;
 
 
     public Incident() {
         victimParseTrees = new ArrayList<Tree>();
         zombieParseTrees = new ArrayList<Tree>();
+        zombieTextLines = new ArrayList<String>();
     }
 
     public String getVictimText() {

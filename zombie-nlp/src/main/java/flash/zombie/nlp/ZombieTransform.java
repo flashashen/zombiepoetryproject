@@ -47,7 +47,7 @@ class ZombieTransform {
 
         if (transformation.victimText == null) return "victim";
 
-        transformation.zombieText = progenitor.attack(transformation.victimText);
+        progenitor.attack(transformation.victimText, transformation);
         model.addAttribute("transformation", transformation);
 
         // Return name of view to render

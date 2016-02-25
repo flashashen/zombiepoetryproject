@@ -1,10 +1,13 @@
 package flash.zombie.nlp;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.StringLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations;
+import edu.stanford.nlp.trees.tregex.TregexMatcher;
+import edu.stanford.nlp.trees.tregex.TregexPattern;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.StringUtils;
 import sun.jvm.hotspot.code.DeoptimizationBlob;
@@ -24,11 +27,11 @@ import java.util.Properties;
 public class Progenitor {
 
 
-    public String attack(String text){
+    public void attack(String text, Incident transformation){
 
         Decomposition decomposition = new Decomposition(text);
         mutate(decomposition);
-        return recompose(decomposition);
+        recompose(decomposition, transformation);
     }
 
 
@@ -44,46 +47,162 @@ public class Progenitor {
     }
 
 
-    private String recompose(Decomposition decomposition) {
+    private void recompose(Decomposition decomposition, Incident transformation) {
 
-        String zombieText = "";
+        transformation.zombieText = "";
 
-        for (Tree sentence : decomposition.getParse()) {
+        List<Object> entites = decomposition.getEntities();
+        //System.out.print(entites);
 
-            // Traverse the tree in order
-            int characterCounter = 0;
-            List<Tree> nodes = sentence.preOrderNodeList();
-            StringWriter stringWriterZombie = new StringWriter();
-            for (Tree node : nodes) {
-                if (node.isLeaf() && !isComma(node)) {
 
-                    if (!isPunctuation(node))
-                        stringWriterZombie.append(' ');
-                    stringWriterZombie.append(node.value());
-                    characterCounter += node.nodeString().length();
-
-                    // Temporary insert of line breaks. Better to add in tree structure as form of punctuation
-//                    if (characterCounter > 30 && !isPunctuation(node)) {
-//                        stringWriterZombie.append("\n");
-//                        characterCounter = 0;
-//                    }
+        // Mark the last words of phrases to help with line breaks
+        List<Tree> zombieParse = decomposition.getParse();
+        for (Tree tree : zombieParse) {
+            TregexMatcher m = endOfPhrasePattern.matcher(tree);
+            while (m.findNextMatchingNode())
+                if (m.getMatch().isPreTerminal()) {
+                   // m.getMatch().getChild(0).setLabel(Decomposition.MARKER_LAST_WORD_OF_PHRASE);
+                    m.getMatch().getChild(0).setScore(100);
                 }
-            }
-           zombieText += stringWriterZombie.toString();
         }
 
-        return zombieText;
+
+        int characterCounter = 0;
+        Tree lastNode = null;
+        Tree nextNode = null;
+        StringWriter stringWriterZombie = new StringWriter();
+        Tree node;
+        boolean newLine = false;
+
+        for (Tree sentence : zombieParse) {
+
+            // Traverse the tree in order
+            Tree[] nodes = sentence.getLeaves().toArray(new Tree[0]);
+
+            for (int i=0; i<nodes.length; i++) {
+
+                node = nodes[i];
+                if (!node.isLeaf()) continue;
+
+                lastNode = (i>0) ? nodes[i-1] : null;
+                nextNode = (i<nodes.length-1) ? nodes[i+1] : null;
+                if (isComma(nextNode)) nextNode = null;
+
+                if (isComma(node)) {
+                    // Ignore most commas but replace a few with em-dash
+                    if (characterCounter > 5 && characterCounter < 25 && Math.random()*100 >= 100-20)
+                        stringWriterZombie.append(" --");
+                    else
+                        // ignore
+                        continue;
+                }
+
+//                else if (isTerminal(node)){
+//                    //newLine = true;
+//                    stringWriterZombie.append(node.value());
+////                    if (characterCounter > 35) {
+////                        newLine = true;
+//                }
+
+                else if (isPunctuation(node)){
+                    // semi-colon, colon .. what else?
+                    stringWriterZombie.append(node.value());
+                }
+
+                else {
+
+                    // Assure capitalization is correct
+                    if (entites.contains(node.value()) || lastNode == null || isTerminal(lastNode))
+                        node.setValue(StringUtils.capitalize(node.value()));
+                    else
+                        node.setValue(node.value().toLowerCase());
+
+                    stringWriterZombie.append(' ');
+
+                    stringWriterZombie.append(node.value());
+                    characterCounter += node.value().length();
+
+                }
+
+                if (newLine(lastNode, node, nextNode, characterCounter)){
+                    // stringWriterZombie.append("\n");
+                    String zombieLine = stringWriterZombie.toString();
+                    transformation.zombieText += zombieLine;
+                    transformation.zombieTextLines.add(zombieLine);
+                    stringWriterZombie = new StringWriter();
+                    characterCounter = 0;
+                }
+            }
+        }
+
+        // Add any text leftover
+        if (characterCounter > 0) {
+            String zombieLine = stringWriterZombie.toString();
+            transformation.zombieText += zombieLine;
+            transformation.zombieTextLines.add(zombieLine);
+        }
+
     }
 
 
 
 
     private boolean isComma(Tree node){
-        return ",".equals(node.nodeString());
+        return (node != null && ",".equals(node.value()));
     }
 
     private boolean isPunctuation(Tree node){
-        return StringUtils.isPunct(node.nodeString());
+        return (node != null && StringUtils.isPunct(node.value()));
+    }
+
+    private boolean isTerminal(Tree node){
+
+        if (node == null) return false;
+
+        return ".".equals(node.value())
+                || "!".equals(node.value())
+                || "?".equals(node.value());
+    }
+
+    private boolean isEndOfPhrase(Tree node){
+        return (node != null && node.score() > 0);
+    }
+
+
+    private static final int LINE_LENGTH_UPPER_BOUND = 35;
+    private static final int LINE_LENGTH_LOWER_BOUND = 25;
+    private static final int LINE_LENGTH_SUFFICIENT = 30;
+
+    private boolean newLine(Tree lastNode, Tree thisNode, Tree nextNode, int characterCounter){
+
+        if (isPunctuation(nextNode))
+            return false;
+
+        if (characterCounter > LINE_LENGTH_UPPER_BOUND) {
+            return true;
+        }
+
+        // If the line is will be made too long by a very long word, then break now
+        if (characterCounter > LINE_LENGTH_SUFFICIENT && nextNode != null && nextNode.value().length() > 10) {
+            return true;
+        }
+
+        // Break on terminal punctuation
+        if (characterCounter > LINE_LENGTH_SUFFICIENT && isTerminal(thisNode)) {
+            return true;
+        }
+
+        // If the line is likely to end in a low value word (a, the, etc), then break now
+        if (characterCounter > LINE_LENGTH_SUFFICIENT && nextNode != null && nextNode.value().length() < 4) {
+            return true;
+        }
+
+        // If this node is the end of a phrase then break as long as lower bound is reached
+        if (characterCounter > LINE_LENGTH_LOWER_BOUND && isEndOfPhrase(thisNode)) {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -97,12 +216,9 @@ public class Progenitor {
         progenitorDecomposition = new Decomposition(ZOMBIE);
 
         mutations = new ArrayList<>();
-        mutations.add(new MutationStatisticalRegexOperation(
-                "NP !> S < DT < NN",
-                "prune vdt",
-                100,
-                progenitorDecomposition
-        ));
+        mutations.add(new MutateSwapPPWithSibling(25, progenitorDecomposition));
+        mutations.add(new MutateReplaceNNFromProgenitor(100, progenitorDecomposition));
+
     }
 
     public Decomposition getDecomposition(){
@@ -110,6 +226,7 @@ public class Progenitor {
     }
 
 
+    private static final TregexPattern endOfPhrasePattern = TregexPattern.compile("__ (>>- VP |  >>- NP) $,, __");
 
     private Decomposition progenitorDecomposition;
     private List<Mutation> mutations;
