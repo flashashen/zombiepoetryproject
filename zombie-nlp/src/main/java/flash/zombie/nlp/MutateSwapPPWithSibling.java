@@ -14,7 +14,7 @@ public class MutateSwapPPWithSibling extends MutationStatisticalRegexOperation {
     private static final String MATCH_PATTERN = "__ < (PP [ $ NP | $ VBZ ])";
 
 
-    public void mutate(Tree matchingNode){
+    public String mutate(Tree matchingNode){
 
         Tree node = null;
         Integer ppNodeIndex = null, swapNodeIndex = null;
@@ -36,13 +36,27 @@ public class MutateSwapPPWithSibling extends MutationStatisticalRegexOperation {
             node = children[swapNodeIndex];
             children[swapNodeIndex] = children[ppNodeIndex];
             children[ppNodeIndex] = node;
-            mutationDescriptions.add("swapped " + children[swapNodeIndex].pennString()
-                    + " with " + children[ppNodeIndex].pennString());
+            return "PP reorder "
+                    + children[swapNodeIndex].label()
+                    + ","
+                    + children[ppNodeIndex].label()
+                    + " [" + Decomposition.getRoughRealization(children[swapNodeIndex])
+                    + "] with [" + Decomposition.getRoughRealization(children[ppNodeIndex]) + "]";
         }
+
+        return null;
     }
 
 
     public MutateSwapPPWithSibling(int percentageChomped, Decomposition progenitorDecomposition) {
         super(MATCH_PATTERN, percentageChomped, progenitorDecomposition);
+    }
+
+    @Override
+    public String toString() {
+        return "MutateSwapPPWithSibling{" +
+                "percentageChomped=" + getPercentageChomped() +
+                ", patternTargetString='" + getPatternTargetString() + '\'' +
+                '}';
     }
 }

@@ -32,6 +32,10 @@
     - name: copy snapshot from sever
       fetch: src=zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql dest=../snapshots/ flat=yes fail_on_missing=yes
 
+    - name: Create symbolic link of snapshot: zombie_mysqldump_all_latest.sql
+      command: rm -f ../snapshots/zombie_mysqldump_all_latest.sql && ln -s ../snapshots/zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql ../snapshots/zombie_mysqldump_all_latest.sql
+      local_action: true
+
     - name: Delete snapshot on server
       file: path=zombie_mysqldump_all.sql state=absent
 

@@ -36,9 +36,12 @@
 
 <hr/>
 
-<p th:each="tree : ${transformation.victimParseTrees}">
-<p th:text="'Zombie parse tree: , ' + ${tree}"/>
-</p>
+
+
+
+<p th:each="tree : ${transformation.zombieMutations}" th:text="'mutations: ' + ${tree}"/>
+
+<p th:each="tree : ${transformation.victimParseTrees}" th:text="'Zombie parse tree: ' + ${tree}"/>
 
 </span>
 

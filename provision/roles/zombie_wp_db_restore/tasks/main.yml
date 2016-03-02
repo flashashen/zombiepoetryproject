@@ -1,0 +1,25 @@
+---
+
+  - name: get mysql conatiner ip
+    shell: docker ps | grep zombie-web | awk '{ print $1 }'
+    register: zombie_container
+
+  - name: get mysql root password
+    shell: docker exec {{zombie_container.stdout}} tail -n 1 /mysql-root-pw.txt
+    register: root_pass
+
+
+#
+#   Upload and import all of the Mysql data
+#
+
+  - name: copy snapshot to sever
+    copy: src=../snapshots/zombie_mysqldump_all_latest.sql dest=.
+
+  - name: mysql import
+    shell: docker exec -i {{zombie_container.stdout}} mysql --user=root --password={{root_pass.stdout}} < zombie_mysqldump_all_latest.sql
+    sudo: true
+
+#    - name: Delete snapshot on server
+#      file: path=zombie_mysqldump_all.sql state=absent
+

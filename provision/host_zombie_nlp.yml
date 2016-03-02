@@ -1,0 +1,14 @@
+--- # Site confgiration for all hosts
+
+# map instance tags to roles
+
+- hosts: all
+  gather_facts: false
+  sudo: yes
+
+
+  roles:
+    - zombie_nlp_server
+
+
+
