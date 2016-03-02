@@ -23,13 +23,18 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
             TregexMatcher m = getPatternTarget().matcher(victim);
             while (m.findNextMatchingNode()) {
                 if (chompThisMatch(m.getMatch())) {
-                    mutate(m.getMatch());
+                    decomposition.addMutationDescription(mutate(m.getMatch()));
                 }
             }
         }
     }
 
-    public abstract void mutate(Tree matchingNode);
+    /**
+     * Mutate the tree in place
+     * @param matchingNode - next node matching the tregex pattern in the victim text
+     * @return - Description of mutation applied
+     */
+    public abstract String mutate(Tree matchingNode);
 
 
     private int percentageChomped;
@@ -64,7 +69,6 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
         }
         progenitorMatchingNodes = tempTreeList.toArray(new Tree[0]);
 
-        mutationDescriptions = new ArrayList<String>();
 
     }
 
@@ -96,6 +100,13 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
     }
 
 
+    @Override
+    public String toString() {
+        return "MutationStatisticalRegexOperation{" +
+                "percentageChomped=" + percentageChomped +
+                ", patternTargetString='" + patternTargetString + '\'' +
+                '}';
+    }
 
     private Tree[] progenitorMatchingNodes;
     boolean chompThisMatch(Tree tree){

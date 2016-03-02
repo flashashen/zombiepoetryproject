@@ -1,0 +1,18 @@
+---
+
+#
+#   Run docker container with Zombie nlp server
+#
+
+
+- name: install Docker base apps image
+  sudo: yes
+  docker:
+    image: flashashen/zombie-nlp
+    name: zombie-nlp
+    pull: always
+    state: started
+    restart_policy: always
+    ports:
+        - "8080:8080"
+

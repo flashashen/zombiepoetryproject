@@ -1,0 +1,19 @@
+--- # Site confgiration for all hosts
+
+# map instance tags to roles
+
+- hosts: zombie_wp
+  gather_facts: true
+  sudo: yes
+
+
+  roles:
+#    - rhel_docker
+#    - zombie_wp_init
+#    - zombie_wp_db_restore
+#    - zombie_wp_web_restore
+    - zombie_wp_set_hostname
+
+
+
+

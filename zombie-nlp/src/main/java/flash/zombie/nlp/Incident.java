@@ -14,6 +14,7 @@ public class Incident {
     public List<Tree> victimParseTrees;
     public List<Tree> zombieParseTrees;
     public String zombieText;
+    public List<String> zombieMutations;
     public List<String> zombieTextLines;
 
 

@@ -8,8 +8,10 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations;
+import edu.stanford.nlp.trees.TreeReader;
 import edu.stanford.nlp.util.CoreMap;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -26,6 +28,8 @@ public class Decomposition {
     //private List<Tree> sentencesPartsOfSpeech;
     private final Annotation document;
 
+    ArrayList<String> mutationDescriptions = new ArrayList<String>();
+
 
     public Decomposition(String text) {
         Properties properties = new Properties();
@@ -37,6 +41,9 @@ public class Decomposition {
         pipeline.annotate(document);
     }
 
+    public Decomposition(List<CoreMap> docMaps) {
+        document = new Annotation(docMaps);
+    }
 
     public List<Tree> getParse() {
         List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
@@ -64,6 +71,20 @@ public class Decomposition {
         }
 
         return entities;
+    }
+
+    public void addMutationDescription(String desc){
+        if (desc != null)
+            mutationDescriptions.add(desc);
+    }
+
+    public static String getRoughRealization(Tree node){
+        StringWriter writer = new StringWriter();
+        for (Tree tree: node.getLeaves()){
+            writer.write(tree.value());
+            writer.write(' ');
+        }
+        return writer.toString();
     }
 }
 

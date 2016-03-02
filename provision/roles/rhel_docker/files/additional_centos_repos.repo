@@ -1,9 +1,9 @@
 
-[cbs.centos.org_repos_virt6-testing_x86_64_os_]
-name=virt6-testing
-baseurl=http://cbs.centos.org/repos/virt6-testing/x86_64/os/
-enabled=1
-gpgcheck=0
+#[cbs.centos.org_repos_virt6-testing_x86_64_os_]
+#name=virt6-testing
+#baseurl=http://cbs.centos.org/repos/virt6-testing/x86_64/os/
+#enabled=1
+#gpgcheck=0
 
 [dl.fedoraproject.org_x86_64_]
 name=fedora
