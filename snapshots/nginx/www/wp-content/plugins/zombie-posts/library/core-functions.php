@@ -1,4 +1,4 @@
-<?php // User Submitted Posts - Core Functions
+<?php // Zombie Posts - Core Functions
 
 if (!function_exists('add_action')) die();
 

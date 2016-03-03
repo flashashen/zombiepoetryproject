@@ -1,4 +1,4 @@
-<?php // User Submitted Posts - Template Tags
+<?php // Zombie Posts - Template Tags
 
 if (!function_exists('add_action')) die();
 

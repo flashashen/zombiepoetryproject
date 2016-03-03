@@ -1,6 +1,6 @@
 /* 
-	User Submitted Posts > JavaScript > Files
-	@ https://perishablepress.com/user-submitted-posts/
+	Zombie Posts > JavaScript > Files
+	@ https://perishablepress.com/zombie-posts/
 */
 jQuery(document).ready(function($) {
 	// check min files

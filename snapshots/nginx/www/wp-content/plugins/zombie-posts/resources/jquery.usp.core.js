@@ -1,6 +1,6 @@
 /* 
-	User Submitted Posts > JavaScript > Core
-	@ https://perishablepress.com/user-submitted-posts/
+	Zombie Posts > JavaScript > Core
+	@ https://perishablepress.com/zombie-posts/
 */
 jQuery(document).ready(function($) {
 	

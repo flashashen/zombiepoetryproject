@@ -1,8 +1,8 @@
-=== User Submitted Posts ===
+=== Zombie Posts ===
 
-Plugin Name: User Submitted Posts
-Plugin URI: https://perishablepress.com/user-submitted-posts/
-Description: Enables your visitors to submit posts and images from anywhere on your site.
+Plugin Name: Zombie Posts
+Plugin URI: https://perishablepress.com/zombie-posts/
+Description: Fork of Zombie Posts by Jeff Starr
 Tags: submit, public, share, upload, images, post, posts, user, submit, user-submit, user-submitted, community, front-end, submissions, submission, frontend, front-end, front end, content, generated content, user generated, form, forms
 Author: Jeff Starr
 Author URI: http://monzilla.biz/
@@ -16,15 +16,15 @@ Text Domain: usp
 Domain Path: /languages/
 License: GPL v2 or later
 
-User Submitted Posts enables your visitors to submit posts and images from anywhere on your site.
+Zombie Form Plugin.
 
 == Description ==  
 
 **The #1 Plugin for User-Generated Content!**
 
-User Submitted Posts adds a frontend form via template tag or shortcode that enables your visitors to submit posts and upload images. Just add the following shortcode to any Post, Page, or Widget:
+Zombie Posts adds a frontend form via template tag or shortcode that enables your visitors to submit their text to zombie attack. Just add the following shortcode to any Post, Page, or Widget:
 
-`[user-submitted-posts]`
+`[zombie-posts]`
 
 That's all there is to it! Your site now can accept user generated content. Everything is super easy to customize via Plugin Settings page. 
 
@@ -44,92 +44,12 @@ USP Form fields may be set as required, optional, or disabled. You can set the P
 
 USP also enables users to upload multiple images when submitting a post. You control the min/max number of images and the min/max number of images that may be submitted.
 
-User Submitted Posts is the first and best plugin for front-end content!
-
-**Pro Version**
-
-USP Pro now available at [Plugin Planet](https://plugin-planet.com/usp-pro/)!
-
-**Features**
-
-* Let visitors submit posts from anywhere on your site
-* Option to set submitted images as featured images
-* Option to use WP's built-in rich text editor for post content
-* Use template tag or shortcode to display the submission form anywhere
-* Includes input validation and customizable captcha and hidden field to stop spam
-* Post submissions may include title, tags, category, author, url, post and image(s)
-* Redirect user to anywhere or return to current page after successful post submission
-* Includes a set of template tags for displaying and customizing user-submitted posts
-* Display submission form via WP Text (and other) widgets
-* Client-side validation with [Parsley](http://parsleyjs.org/)
-* HTML5 submission form with streamlined CSS styles
-* Option to require unique post titles
-* NEW! Use your own custom form template and stylesheet
-* NEW! 14 action/filter hooks for advanced customization
-* NEW! Make form fields optional or required
-* NEW! Auto Display Custom Fields and Images
-
-USP is simple to use and built with clean code via the WP API :)
-
-**More Features**
-
-* Translated into 10 languages
-* Option to receive email alerts for new submitted posts
-* Option to set logged-in username as submitted-post author
-* Option to set logged-in user&rsquo;s URL as the submitted URL
-* Option to set a default submission category via hidden field
-* Option to disable loading of external JavaScript file
-* Option to specify URL for targeted resource loading
-* Multiple emails supported in email alerts
-* NEW! Option to disable tracking of IP addresses
-* NEW! Option to specify custom email alert subject
-* NEW! Option to specify custom email alert message
-
-**Image Uploads**
-
-* Optionally allow/require visitors to upload any number of images
-* Specify minimum and maximum width and height for uploaded images
-* Specicy minimum and maximum number of allowed image uploads for each post
-* Includes jQuery snippet for easy choosing of multiple images
-* Automatically display submitted images
- 
-**Customization**
-
-* Control which fields are displayed in the submission form
-* Choose which categories users are allowed to select
-* Assign submitted posts to any registered user
-* Customizable success, error, and upload messages
-* Plus options for the captcha, auto-publish, and redirect-URL
-* Option to use classic form, HTML5 form, or disable only the stylesheet
-
-**Post Management**
-
-* Custom-fields saved with each post: name, IP, URL, and any image URLs
-* Set submitted posts to any status: Draft, Pending, Publish, or Moderate
-* One-click post-filtering of user-submitted posts on the Admin Posts page
-* Includes template tags for easy display of post attachments and images
-
-Plus much more! Too many features to list them all :)
-
-User Submitted Posts supports translation into any language. Current translations include:
-
-* Chinese
-* Dutch
-* French
-* German
-* Persian
-* Portuguese
-* Romanian
-* Serbian
-* Spanish (Argentina)
-* Spanish (Spain)
-
 == Installation ==
 
 **Overview**
 
-1. Upload the `/user-submitted-posts/` directory to your plugins folder and activate
-2. Go to the "User Submitted Posts" Settings Page and customize your options
+1. Upload the `/zombie-posts/` directory to your plugins folder and activate
+2. Go to the "Zombie Posts" Settings Page and customize your options
 3. Display the submission form on your page(s) using template tag or shortcode
 
 Note: if the shortcode is not working when added to your widget, try enabling the setting, "Enable Shortcodes".
@@ -142,7 +62,7 @@ NOTE that this plugin attaches uploaded images as custom fields to submitted pos
 
 **Displaying the submission form**
 
-* To display the form on a post or page, use the shortcode: `[user-submitted-posts]`
+* To display the form on a post or page, use the shortcode: `[zombie-posts]`
 * To display the form anywhere in your theme, use the template tag:
 
 	&lt;?php if (function_exists('user_submitted_posts')) user_submitted_posts(); ?&gt;
@@ -153,7 +73,7 @@ There are three main ways of customizing the form:
 
 * Via the plugin settings, you can show/hide any field, customize options, and more
 * By adding a custom form template to the `/custom/` directory, for example:
-	* Add a custom form template: `/custom/user-submitted-posts.php`
+	* Add a custom form template: `/custom/zombie-posts.php`
 	* Add a custom CSS stylesheet: `/custom/usp.css`
 * By using USP action/filter hooks (advanced):
 
@@ -175,7 +95,7 @@ usp_files_before
 usp_files_after
 usp_current_page`
 
-[Check out the complete list of action hooks for User Submitted Posts](https://perishablepress.com/action-filter-hooks-user-submitted-posts/)
+[Check out the complete list of action hooks for Zombie Posts](https://perishablepress.com/action-filter-hooks-zombie-posts/)
 
 More info about [WordPress Actions and Filters](http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters)
 
@@ -236,7 +156,7 @@ __Important!__ Many things have changed in the new version of the plugin. Please
 
 == Screenshots ==
 
-Screenshots available at the [USP Homepage](https://perishablepress.com/user-submitted-posts/)
+Screenshots available at the [USP Homepage](https://perishablepress.com/zombie-posts/)
 
 == Changelog ==
 
@@ -439,7 +359,7 @@ Note: the CSS and JavaScript for the plugin settings page is now moved to their 
 * Increased `line-height` on settings page `<td>` elements
 * Added `.inline` class to some plugin settings
 * Changed CSS for `#usp_admin_filter_posts` in usp-admin.css
-* Changed link text on Post filter button from "User Submitted Posts" to "USP"
+* Changed link text on Post filter button from "Zombie Posts" to "USP"
 * Fixed backwards setting for captcha case-sensitivity
 * Added `is_object($post)` to `usp_display_featured_image`; Thanks to [Larry Holish](holish.net)
 * Changed `application/x-javascript` to `application/javascript` in usp.php
@@ -449,7 +369,7 @@ Note: the CSS and JavaScript for the plugin settings page is now moved to their 
 * Replaced `wp-blog-header.php` with `wp-load.php` in usp.php
 * Improved sanitization of POST variables
 * Added check for empty content when content textarea is displayed on form
-* Removed closing `?>` from user-submitted-posts.php
+* Removed closing `?>` from zombie-posts.php
 * Tested with latest version of WordPress (3.7)
 * Fleshed out readme.txt with even more infos
 * General code cleanup and maintenance
@@ -555,7 +475,7 @@ There are several things that can interfere with uploading files:
 
 Note: when changing permissions on files and folders, it is important to use the least-restrictive settings possible. If you have to use more permissive settings, it is important to secure the directory against malicious activity. For more information check out: [Secure Media Uploads](https://digwp.com/2012/09/secure-media-uploads/)
 
-Update: new posts at [WP-Mix](https://wp-mix.com/) that should be useful for this: [Display all images attached to post](https://wp-mix.com/display-images-attached-post/) and [Display images with links](https://wp-mix.com/display-images-with-user-submitted-posts/)
+Update: new posts at [WP-Mix](https://wp-mix.com/) that should be useful for this: [Display all images attached to post](https://wp-mix.com/display-images-attached-post/) and [Display images with links](https://wp-mix.com/display-images-with-zombie-posts/)
 
 **How to set submitted image as the featured image?**
 
@@ -614,7 +534,7 @@ Question: "In your FAQs you mention about a paid version that allows a video fie
 
 Answer: It's available at [Plugin Planet](https://plugin-planet.com/usp-pro/). And/or as a workaround in the free version, you can use WP's built-in oEmbed functionality to allow visitors to include video URLs and WP will then embed automatically in the posts. 
 
-Question: "I'm new to wordpress and just installed your plugin User Submitted posts. What template do I add the code to have it work everywhere."
+Question: "I'm new to wordpress and just installed your plugin Zombie Posts. What template do I add the code to have it work everywhere."
 
 Answer: It really depends on the theme, as each tends to use template files differently.. it also depends on where on the page you would like to display the form, for example the sidebar (sidebar.php), the footer (footer.php), and so forth. Also, chances are that you'll need to add the form to more than one template file, for example index.php and page.php, etc. A good first place to try would be the sidebar, or maybe index.php and then go from there.
 
@@ -626,7 +546,7 @@ Question: "I really like the new Rich Text editor, but the Add Media button only
 
 Answer: As far as I know the user must be logged in to have access to file uploads, Media Library and the uploader. This is a security measure aimed at preventing people who don't know what they're doing from making a horrible, horrible mistake. Never allow open access to file uploads.
 
-Question: "Im trying to use your plugin, User Submitted posts but when I upload images via the form, they dont actually upload. I was wondering if you could help me with this?"
+Question: "Im trying to use your plugin, Zombie Posts but when I upload images via the form, they dont actually upload. I was wondering if you could help me with this?"
 
 Answer: Some things to check:
 
@@ -666,7 +586,7 @@ Answer: By default, WordPress does not enable shortcodes in widgets. I have adde
 
 **Got questions?**
 
-To ask a question, visit the [USP Homepage](https://perishablepress.com/user-submitted-posts/) or [contact me](https://perishablepress.com/contact/).
+To ask a question, visit the [USP Homepage](https://perishablepress.com/zombie-posts/) or [contact me](https://perishablepress.com/contact/).
 
 == Support development of this plugin ==
 
@@ -681,7 +601,7 @@ And/or purchase one of my premium WordPress plugins:
 
 * [BBQ Pro](https://plugin-planet.com/bbq-pro/) - Pro version of Block Bad Queries
 * [SES Pro](https://plugin-planet.com/ses-pro/) - Super-simple &amp; flexible email signup forms
-* [USP Pro](https://plugin-planet.com/usp-pro/) - Pro version of User Submitted Posts
+* [USP Pro](https://plugin-planet.com/usp-pro/) - Pro version of Zombie Posts
 
 Links, tweets and likes also appreciated. Thanks! :)
 

@@ -1,4 +1,4 @@
-<?php // User Submitted Posts - HTML5 Submission Form
+<?php // Zombie Posts - HTML5 Submission Form
 
 if (!function_exists('add_action')) die();
 
@@ -14,8 +14,8 @@ if ($usp_options['disable_required']) {
 	$files = ' usp-required-file';
 } ?>
 
-<!-- User Submitted Posts @ https://perishablepress.com/user-submitted-posts/ -->
-<div id="user-submitted-posts">
+<!-- Zombie Posts @ https://perishablepress.com/zombie-posts/ -->
+<div id="zombie-posts">
 	<?php if ($usp_options['usp_form_content'] !== '') echo $usp_options['usp_form_content']; ?>
 	
 	<form id="usp_form" method="post" enctype="multipart/form-data" action="">
@@ -26,44 +26,63 @@ if ($usp_options['disable_required']) {
 		if (isset($_GET['success']) && $_GET['success'] == '1') :
 			echo '<div id="usp-success-message">'. $usp_options['success-message'] .'</div>';
 		else :
-		
+
+
 		if (($usp_options['usp_name'] == 'show' || $usp_options['usp_name'] == 'optn') && ($usp_options['usp_use_author'] == false)) { ?>
 		
 		<fieldset class="usp-name">
 			<label for="user-submitted-name"><?php _e('Your Name', 'usp'); ?></label>
 			<input name="user-submitted-name" type="text" value="" placeholder="<?php _e('Your Name', 'usp'); ?>"<?php if (usp_check_required('usp_name')) echo $required; ?> class="usp-input">
 		</fieldset>
-		<?php } if (($usp_options['usp_url'] == 'show' || $usp_options['usp_url'] == 'optn') && ($usp_options['usp_use_url'] == false)) { ?>
+		<?php }
+
+
+		if (($usp_options['usp_url'] == 'show' || $usp_options['usp_url'] == 'optn') && ($usp_options['usp_use_url'] == false)) { ?>
 		
 		<fieldset class="usp-url">
 			<label for="user-submitted-url"><?php _e('Your URL', 'usp'); ?></label>
 			<input name="user-submitted-url" type="text" value="" placeholder="<?php _e('Your URL', 'usp'); ?>"<?php if (usp_check_required('usp_url')) echo $required; ?> class="usp-input">
 		</fieldset>
-		<?php } if ($usp_options['usp_email'] == 'show' || $usp_options['usp_email'] == 'optn') { ?>
+		<?php }
+
+
+		if ($usp_options['usp_email'] == 'show' || $usp_options['usp_email'] == 'optn') { ?>
 		
 		<fieldset class="usp-email">
 			<label for="user-submitted-email"><?php _e('Your Email', 'usp'); ?></label>
 			<input name="user-submitted-email" type="text" value="" placeholder="<?php _e('Your Email', 'usp'); ?>"<?php if (usp_check_required('usp_email')) echo $required; ?> class="usp-input">
 		</fieldset>
-		<?php } if ($usp_options['usp_title'] == 'show' || $usp_options['usp_title'] == 'optn') { ?>
-		
+		<?php }
+
+
+		if ($usp_options['usp_title'] == 'show' || $usp_options['usp_title'] == 'optn') { ?>
+
 		<fieldset class="usp-title">
 			<label for="user-submitted-title"><?php _e('Post Title', 'usp'); ?></label>
 			<input name="user-submitted-title" type="text" value="" placeholder="<?php _e('Post Title', 'usp'); ?>"<?php if (usp_check_required('usp_title')) echo $required; ?> class="usp-input">
 		</fieldset>
-		<?php } if ($usp_options['usp_tags'] == 'show' || $usp_options['usp_tags'] == 'optn') { ?>
+		<?php }
+
+
+		if ($usp_options['usp_tags'] == 'show' || $usp_options['usp_tags'] == 'optn') { ?>
 		
 		<fieldset class="usp-tags">
 			<label for="user-submitted-tags"><?php _e('Post Tags', 'usp'); ?></label>
 			<input name="user-submitted-tags" type="text" value="" placeholder="<?php _e('Post Tags', 'usp'); ?>"<?php if (usp_check_required('usp_tags')) echo $required; ?> class="usp-input">
 		</fieldset>
-		<?php } if ($usp_options['usp_captcha'] == 'show') { ?>
+		<?php }
+
+
+		if ($usp_options['usp_captcha'] == 'show') { ?>
 		
 		<fieldset class="usp-captcha">
 			<label for="user-submitted-captcha"><?php echo $usp_options['usp_question']; ?></label>
 			<input name="user-submitted-captcha" type="text" value="" placeholder="<?php _e('Antispam Question', 'usp'); ?>"<?php echo $required; ?> class="usp-input exclude<?php echo $captcha; ?>">
 		</fieldset>
-		<?php } if (($usp_options['usp_category'] == 'show' || $usp_options['usp_category'] == 'optn') && ($usp_options['usp_use_cat'] == false)) { ?>
+		<?php }
+
+
+		if (($usp_options['usp_category'] == 'show' || $usp_options['usp_category'] == 'optn') && ($usp_options['usp_use_cat'] == false)) { ?>
 		
 		<fieldset class="usp-category">
 			<label for="user-submitted-category"><?php _e('Post Category', 'usp'); ?></label>
@@ -76,37 +95,50 @@ if ($usp_options['disable_required']) {
 				
 			</select>
 		</fieldset>
-		<?php } if ($usp_options['usp_content'] == 'show' || $usp_options['usp_content'] == 'optn') { ?>
-		
+		<?php }
+
+
+		if ($usp_options['usp_content'] == 'show' || $usp_options['usp_content'] == 'optn') { ?>
+
 		<fieldset class="usp-content">
 			<?php if ($usp_options['usp_richtext_editor'] == true) { ?>
-			
-			<div class="usp_text-editor">
-			<?php $settings = array(
-				    'wpautop'          => true,  // enable rich text editor
-				    'media_buttons'    => true,  // enable add media button
-				    'textarea_name'    => 'user-submitted-content', // name
-				    'textarea_rows'    => '10',  // number of textarea rows
-				    'tabindex'         => '',    // tabindex
-				    'editor_css'       => '',    // extra CSS
-				    'editor_class'     => 'usp-rich-textarea', // class
-				    'teeny'            => false, // output minimal editor config
-				    'dfw'              => false, // replace fullscreen with DFW
-				    'tinymce'          => true,  // enable TinyMCE
-				    'quicktags'        => true,  // enable quicktags
-				    'drag_drop_upload' => true, // enable drag-drop
-				);
-				wp_editor('', 'uspcontent', apply_filters('usp_editor_settings', $settings)); ?>
-				
-			</div>
+
+				<div class="usp_text-editor">
+					<?php $settings = array(
+						'wpautop'          => true,  // enable rich text editor
+						'media_buttons'    => true,  // enable add media button
+						'textarea_name'    => 'user-submitted-content', // name
+						'textarea_rows'    => '10',  // number of textarea rows
+						'tabindex'         => '',    // tabindex
+						'editor_css'       => '',    // extra CSS
+						'editor_class'     => 'usp-rich-textarea', // class
+						'teeny'            => false, // output minimal editor config
+						'dfw'              => false, // replace fullscreen with DFW
+						'tinymce'          => true,  // enable TinyMCE
+						'quicktags'        => true,  // enable quicktags
+						'drag_drop_upload' => true, // enable drag-drop
+					);
+					wp_editor('', 'uspcontent', apply_filters('usp_editor_settings', $settings)); ?>
+
+				</div>
 			<?php } else { ?>
-				
-			<label for="user-submitted-content"><?php _e('Post Content', 'usp'); ?></label>
-			<textarea name="user-submitted-content" rows="5" placeholder="<?php _e('Post Content', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $required; ?> class="usp-textarea"></textarea>
+
+				<label for="user-submitted-content"><?php _e('Post Content', 'usp'); ?></label>
+				<textarea name="user-submitted-content" rows="5" placeholder="<?php _e('Post Content', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $required; ?> class="usp-textarea"></textarea>
 			<?php } ?>
-			
 		</fieldset>
-		<?php } if ($usp_options['usp_images'] == 'show') { ?>
+		<?php }
+
+			if ($usp_options['usp_zombie'] == 'show' || $usp_options['usp_zombie'] == 'optn') { ?>
+
+			<fieldset class="usp-content">
+				<label for="zombie-text"><?php _e('Zombie Text', 'usp'); ?></label>
+				<textarea name="zombie-text" rows="5" placeholder="<?php _e('Zombie Text', 'usp'); ?>"<?php if (usp_check_required('usp_zombie')) echo $required; ?> class="usp-input"></textarea>
+			</fieldset>
+		<?php }
+
+
+		if ($usp_options['usp_images'] == 'show') { ?>
 		<?php if ($usp_options['max-images'] !== 0) { ?>
 		
 		<fieldset class="usp-images">
@@ -142,6 +174,8 @@ if ($usp_options['disable_required']) {
 			<label for="user-submitted-verify"><?php _e('Human verification: leave this field empty.', 'usp'); ?></label>
 			<input class="exclude" name="user-submitted-verify" type="text" value="">
 		</fieldset>
+
+
 		<div id="usp-submit">
 			<?php if (!empty($usp_options['redirect-url'])) { ?>
 			
@@ -168,4 +202,4 @@ if ($usp_options['disable_required']) {
 	</form>
 </div>
 <script>(function(){var e = document.getElementById('coldform_verify'); if(e) e.parentNode.removeChild(e);})();</script>
-<!-- User Submitted Posts @ https://perishablepress.com/user-submitted-posts/ -->
+<!-- Zombie Posts @ https://perishablepress.com/zombie-posts/ -->

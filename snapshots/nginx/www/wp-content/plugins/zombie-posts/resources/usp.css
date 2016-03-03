@@ -1,23 +1,23 @@
 @charset "UTF-8";
 /* 
-	User Submitted Posts > CSS > HTML5 form
-	https://perishablepress.com/user-submitted-posts/
+	Zombie Posts > CSS > HTML5 form
+	https://perishablepress.com/zombie-posts/
 	Complete list of CSS hooks for the submission form @ http://m0n.co/e
 */
 
-div#user-submitted-posts { width: 100%; font-size: 11px; }
-div#user-submitted-posts fieldset { margin: 10px 0; padding: 0; border: 0; }
+div#zombie-posts { width: 100%; font-size: 11px; }
+div#zombie-posts fieldset { margin: 10px 0; padding: 0; border: 0; }
 
-div#user-submitted-posts fieldset label           { float: left; clear: both; width: 70%; margin: 0; padding: 0; line-height: 18px; }
-div#user-submitted-posts fieldset input.usp-input { float: left; clear: both; width: 70%; margin: 0; padding: 5px; font-size: 12px; }
-div#user-submitted-posts textarea.usp-textarea    { float: left; clear: both; width: 80%; margin: 0; padding: 5px; font-size: 12px; }
-div#user-submitted-posts select                   { float: left; clear: both; width: auto; margin: 0; padding: 5px; font-size: 12px; }
+div#zombie-posts fieldset label           { float: left; clear: both; width: 70%; margin: 0; padding: 0; line-height: 18px; }
+div#zombie-posts fieldset input.usp-input { float: left; clear: both; width: 70%; margin: 0; padding: 5px; font-size: 12px; }
+div#zombie-posts textarea.usp-textarea    { float: left; clear: both; width: 80%; margin: 0; padding: 5px; font-size: 12px; }
+div#zombie-posts select                   { float: left; clear: both; width: auto; margin: 0; padding: 5px; font-size: 12px; }
 
 div#user-submitted-image { float: left; clear: both; width: 70%; }
 div#usp-upload-message   { float: left; clear: both; width: 70%; }
 a#usp_add-another        { float: left; clear: both; }
 
-div#user-submitted-posts fieldset input.usp-input.usp-clone { width: 90%; margin: 0 0 5px 0; padding: 4px; background-color: #fafafa; }
+div#zombie-posts fieldset input.usp-input.usp-clone { width: 90%; margin: 0 0 5px 0; padding: 4px; background-color: #fafafa; }
 div#usp-submit { margin: 15px 0; }
 
 /* JS > Parsley */

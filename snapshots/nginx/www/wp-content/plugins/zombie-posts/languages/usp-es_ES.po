@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: User Submitted Posts\n"
+"Project-Id-Version: Zombie Posts\n"
 "POT-Creation-Date: 2015-03-26 10:12+0100\n"
 "PO-Revision-Date: 2015-03-26 10:22+0100\n"
 "Last-Translator: Maria Iglesias <miglesias@globalcultura.com>\n"
@@ -16,180 +16,180 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../user-submitted-posts.php:24 ../user-submitted-posts.php:66
-msgid "User Submitted Posts"
-msgstr "User Submitted Posts"
+#: ../zombie-posts.php:24 ../zombie-posts.php:66
+msgid "Zombie Posts"
+msgstr "Zombie Posts"
 
-#: ../user-submitted-posts.php:53
+#: ../zombie-posts.php:53
 msgid "requires WordPress "
 msgstr "requiere Wordpress "
 
-#: ../user-submitted-posts.php:53
+#: ../zombie-posts.php:53
 msgid " or higher, and has been deactivated!"
 msgstr " o superior y ha sido desactivado!"
 
-#: ../user-submitted-posts.php:54
+#: ../zombie-posts.php:54
 msgid "Please return to the "
 msgstr "Por favor regrese a "
 
-#: ../user-submitted-posts.php:54
+#: ../zombie-posts.php:54
 msgid "WordPress Admin area"
 msgstr "&Aacute;rea de Administraci&oacute;n de Wordpress"
 
-#: ../user-submitted-posts.php:54
+#: ../zombie-posts.php:54
 msgid "to upgrade WordPress and try again."
 msgstr "para actualizar Wordpress y vuelva a intentarlo"
 
-#: ../user-submitted-posts.php:66
+#: ../zombie-posts.php:66
 msgid "Submitted"
 msgstr "Enviado"
 
-#: ../user-submitted-posts.php:179
+#: ../zombie-posts.php:179
 msgid "User Submitted Post Info"
 msgstr "User Submitted Post Información"
 
-#: ../user-submitted-posts.php:196
+#: ../zombie-posts.php:196
 msgid "Submitter Name: "
 msgstr "Nombre del remitente: "
 
-#: ../user-submitted-posts.php:197
+#: ../zombie-posts.php:197
 msgid "Submitter Email: "
 msgstr "Email de remitente: "
 
-#: ../user-submitted-posts.php:198
+#: ../zombie-posts.php:198
 msgid "Submitter URL: "
 msgstr "URL del remitente: "
 
-#: ../user-submitted-posts.php:199
+#: ../zombie-posts.php:199
 msgid "Submitter IP: "
 msgstr "IP del remitente: "
 
-#: ../user-submitted-posts.php:326
+#: ../zombie-posts.php:326
 msgid "USP"
 msgstr "USP"
 
-#: ../user-submitted-posts.php:666
+#: ../zombie-posts.php:666
 msgid " files required"
 msgstr " archivos requeridos"
 
-#: ../user-submitted-posts.php:667
+#: ../zombie-posts.php:667
 msgid " file required"
 msgstr " archivo requerido"
 
-#: ../user-submitted-posts.php:669
+#: ../zombie-posts.php:669
 msgid " files"
 msgstr " archivos"
 
-#: ../user-submitted-posts.php:670
+#: ../zombie-posts.php:670
 msgid " file"
 msgstr " archivo"
 
-#: ../user-submitted-posts.php:672 ../user-submitted-posts.php:673
-#: ../user-submitted-posts.php:674 ../user-submitted-posts.php:675
+#: ../zombie-posts.php:672 ../zombie-posts.php:673
+#: ../zombie-posts.php:674 ../zombie-posts.php:675
 msgid " pixels"
 msgstr " pixeles"
 
-#: ../user-submitted-posts.php:678
+#: ../zombie-posts.php:678
 msgid "An error occurred. Please go back and try again."
 msgstr ""
 "Ha ocurrido un error. Vuelve atr&aacute;s e int&eacute;ntalo de nuevo, por "
 "favor"
 
-#: ../user-submitted-posts.php:685
+#: ../zombie-posts.php:685
 msgid "User login required"
 msgstr "Login requerido"
 
-#: ../user-submitted-posts.php:686
+#: ../zombie-posts.php:686
 msgid "User name required"
 msgstr "Nombre de usuario requerido"
 
-#: ../user-submitted-posts.php:687
+#: ../zombie-posts.php:687
 msgid "Post title required"
 msgstr "Título de la entrada requerido"
 
-#: ../user-submitted-posts.php:688
+#: ../zombie-posts.php:688
 msgid "Post url required"
 msgstr "URL de la entrada requerida"
 
-#: ../user-submitted-posts.php:689
+#: ../zombie-posts.php:689
 msgid "Post tags required"
 msgstr "Etiquetas del post requeridas"
 
-#: ../user-submitted-posts.php:690
+#: ../zombie-posts.php:690
 msgid "Post category required"
 msgstr "Categoría de la entrada requerida"
 
-#: ../user-submitted-posts.php:691
+#: ../zombie-posts.php:691
 msgid "Post content required"
 msgstr "Contenido de la entrada requerido"
 
-#: ../user-submitted-posts.php:692
+#: ../zombie-posts.php:692
 msgid "Correct captcha required"
 msgstr "Captcha correcto requerido"
 
-#: ../user-submitted-posts.php:693
+#: ../zombie-posts.php:693
 msgid "User email required"
 msgstr "Email de usuario requerido"
 
-#: ../user-submitted-posts.php:694
+#: ../zombie-posts.php:694
 msgid "Non-empty value for hidden field"
 msgstr "Valor no vacío para campo oculto"
 
-#: ../user-submitted-posts.php:695
+#: ../zombie-posts.php:695
 msgid "Minimum number of images not met"
 msgstr "No se cumple el mínimo de imágenes requerido"
 
-#: ../user-submitted-posts.php:696
+#: ../zombie-posts.php:696
 msgid "Maximum number of images exceeded "
 msgstr "Se ha excedido el número máximo de imágenes "
 
-#: ../user-submitted-posts.php:697
+#: ../zombie-posts.php:697
 msgid "Minimum image width not met"
 msgstr "La imagen no tiene el ancho mínimo requerido"
 
-#: ../user-submitted-posts.php:698
+#: ../zombie-posts.php:698
 msgid "Image width exceeds maximum"
 msgstr "El ancho de la imagen excede el máximo permitido"
 
-#: ../user-submitted-posts.php:699
+#: ../zombie-posts.php:699
 msgid "Minimum image height not met"
 msgstr "La imagen no tiene el alto mínimo requerido"
 
-#: ../user-submitted-posts.php:700
+#: ../zombie-posts.php:700
 msgid "Image height exceeds maximum"
 msgstr "El alto de la imagen excede el máximo permitido"
 
-#: ../user-submitted-posts.php:701
+#: ../zombie-posts.php:701
 msgid "File type not allowed (please upload images only)"
 msgstr "Tipo de archivo no permitido (por favor adjunta sólo imágenes)"
 
-#: ../user-submitted-posts.php:702
+#: ../zombie-posts.php:702
 msgid "The selected files could not be uploaded to the server"
 msgstr "Los archivos seleccionados no se han podido subir al servidor"
 
-#: ../user-submitted-posts.php:703
+#: ../zombie-posts.php:703
 msgid "The file(s) could not be uploaded"
 msgstr "El/los archivo/s no se han podido subir"
 
-#: ../user-submitted-posts.php:706
+#: ../zombie-posts.php:706
 msgid "Post not created. Please contact the site administrator for help."
 msgstr ""
 "La entrada no ha sido creada. Por favor contacta con el administrador del "
 "sitio"
 
-#: ../user-submitted-posts.php:707
+#: ../zombie-posts.php:707
 msgid "Duplicate post title. Please try again."
 msgstr "Título de la entrada duplicado. Por favor, prueba otra vez"
 
-#: ../user-submitted-posts.php:713
+#: ../zombie-posts.php:713
 msgid "Error: "
 msgstr "Error: "
 
-#: ../user-submitted-posts.php:726
+#: ../zombie-posts.php:726
 msgid "Settings"
 msgstr "Configuraci&oacute;n"
 
-#: ../user-submitted-posts.php:765
+#: ../zombie-posts.php:765
 msgid ""
 "There was an error. Please ensure that you have added a title, some content, "
 "and that you have uploaded only images."
@@ -198,142 +198,142 @@ msgstr ""
 "el  t&iacute;tulo, has a&ntilde;adido alg&uacute;n contenido y, si has "
 "adjuntado un archivo, aeg&uacute;rate de que es una imagen"
 
-#: ../user-submitted-posts.php:772 ../user-submitted-posts.php:773
-#: ../user-submitted-posts.php:775 ../user-submitted-posts.php:776
-#: ../user-submitted-posts.php:777 ../user-submitted-posts.php:784
-#: ../user-submitted-posts.php:785
+#: ../zombie-posts.php:772 ../zombie-posts.php:773
+#: ../zombie-posts.php:775 ../zombie-posts.php:776
+#: ../zombie-posts.php:777 ../zombie-posts.php:784
+#: ../zombie-posts.php:785
 msgid "show"
 msgstr ""
 
-#: ../user-submitted-posts.php:774 ../user-submitted-posts.php:778
+#: ../zombie-posts.php:774 ../zombie-posts.php:778
 msgid "hide"
 msgstr ""
 
-#: ../user-submitted-posts.php:779
+#: ../zombie-posts.php:779
 msgid "Please select your image(s) to upload."
 msgstr ""
 
-#: ../user-submitted-posts.php:786
+#: ../zombie-posts.php:786
 msgid "Success! Thank you for your submission."
 msgstr ""
 
-#: ../user-submitted-posts.php:811
+#: ../zombie-posts.php:811
 msgid "HTML5 form + CSS (<small><em>Recommended</em></small>)"
 msgstr ""
 
-#: ../user-submitted-posts.php:815
+#: ../zombie-posts.php:815
 msgid ""
 "Custom form + CSS (<small><em>You must provide the template for this "
 "option*</em></small>)"
 msgstr ""
 
-#: ../user-submitted-posts.php:819
+#: ../zombie-posts.php:819
 msgid "Disable stylesheet"
 msgstr "Desactivar estilo"
 
-#: ../user-submitted-posts.php:1022
+#: ../zombie-posts.php:1022
 msgid "Toggle all panels"
 msgstr "Alternar los paneles"
 
-#: ../user-submitted-posts.php:1031
-msgid "User Submitted Posts needs your support!"
+#: ../zombie-posts.php:1031
+msgid "Zombie Posts needs your support!"
 msgstr ""
 
-#: ../user-submitted-posts.php:1035
+#: ../zombie-posts.php:1035
 msgid "Please"
 msgstr ""
 
-#: ../user-submitted-posts.php:1035
+#: ../zombie-posts.php:1035
 msgid "Make a donation via PayPal"
 msgstr ""
 
-#: ../user-submitted-posts.php:1035
+#: ../zombie-posts.php:1035
 msgid "make a donation"
 msgstr ""
 
-#: ../user-submitted-posts.php:1035
+#: ../zombie-posts.php:1035
 msgid "and/or"
 msgstr ""
 
-#: ../user-submitted-posts.php:1036
+#: ../zombie-posts.php:1036
 msgid "Rate and review at the Plugin Directory"
 msgstr ""
 
-#: ../user-submitted-posts.php:1037
+#: ../zombie-posts.php:1037
 msgid "give it a 5-star rating"
 msgstr ""
 
-#: ../user-submitted-posts.php:1041
+#: ../zombie-posts.php:1041
 msgid ""
 "Your generous support enables continued development of this free plugin. "
 "Thank you!"
 msgstr ""
 
-#: ../user-submitted-posts.php:1046
+#: ../zombie-posts.php:1046
 msgid "Check this box if you have shown support"
 msgstr ""
 
-#: ../user-submitted-posts.php:1054
+#: ../zombie-posts.php:1054
 msgid "Overview"
 msgstr "Generalidades"
 
-#: ../user-submitted-posts.php:1058
+#: ../zombie-posts.php:1058
 msgid ""
 "(USP) enables your visitors to submit posts and upload images from anywhere "
 "on your site."
 msgstr ""
 
-#: ../user-submitted-posts.php:1059
+#: ../zombie-posts.php:1059
 msgid ""
 "To implement, configure the plugin settings and include the USP form in any "
 "post or page via shortcode or anywhere in your theme via template tag."
 msgstr ""
 
-#: ../user-submitted-posts.php:1060
+#: ../zombie-posts.php:1060
 msgid "For more functionality check out"
 msgstr ""
 
-#: ../user-submitted-posts.php:1061
+#: ../zombie-posts.php:1061
 msgid "&mdash; the ultimate solution for unlimited front-end forms."
 msgstr ""
 
-#: ../user-submitted-posts.php:1065
+#: ../zombie-posts.php:1065
 msgid "Configure settings"
 msgstr ""
 
-#: ../user-submitted-posts.php:1066
+#: ../zombie-posts.php:1066
 msgid "Get the shortcode &amp; template tag"
 msgstr ""
 
-#: ../user-submitted-posts.php:1068
+#: ../zombie-posts.php:1068
 msgid "More info:"
 msgstr ""
 
-#: ../user-submitted-posts.php:1069 ../user-submitted-posts.php:1168
+#: ../zombie-posts.php:1069 ../zombie-posts.php:1168
 msgid "and"
 msgstr "y"
 
-#: ../user-submitted-posts.php:1069
+#: ../zombie-posts.php:1069
 msgid "homepage"
 msgstr ""
 
-#: ../user-submitted-posts.php:1071
+#: ../zombie-posts.php:1071
 msgid "If you like USP, please"
 msgstr ""
 
-#: ../user-submitted-posts.php:1072
+#: ../zombie-posts.php:1072
 msgid "Rate and review this plugin at the WP Plugin Directory"
 msgstr ""
 
-#: ../user-submitted-posts.php:1073
+#: ../zombie-posts.php:1073
 msgid "rate it at WordPress.org"
 msgstr ""
 
-#: ../user-submitted-posts.php:1085
+#: ../zombie-posts.php:1085
 msgid "Options"
 msgstr "Opciones"
 
-#: ../user-submitted-posts.php:1087
+#: ../zombie-posts.php:1087
 msgid ""
 "Here you may configure options for USP. See the <code>readme.txt</code> for "
 "more information."
@@ -341,102 +341,102 @@ msgstr ""
 "Aqu&iacute; puede configurar las opciones para USP. Vea <code>readme.txt</"
 "code> para obtener m&aacute;s informaci&oacute;n."
 
-#: ../user-submitted-posts.php:1088
+#: ../zombie-posts.php:1088
 msgid "Show/Hide Form Fields"
 msgstr ""
 
-#: ../user-submitted-posts.php:1092 ../user-submitted-posts.php:1098
-#: ../user-submitted-posts.php:1104 ../user-submitted-posts.php:1110
-#: ../user-submitted-posts.php:1116 ../user-submitted-posts.php:1122
-#: ../user-submitted-posts.php:1128 ../user-submitted-posts.php:1134
-#: ../user-submitted-posts.php:1140
+#: ../zombie-posts.php:1092 ../zombie-posts.php:1098
+#: ../zombie-posts.php:1104 ../zombie-posts.php:1110
+#: ../zombie-posts.php:1116 ../zombie-posts.php:1122
+#: ../zombie-posts.php:1128 ../zombie-posts.php:1134
+#: ../zombie-posts.php:1140
 msgid "Show"
 msgstr "Mostrar"
 
-#: ../user-submitted-posts.php:1093 ../user-submitted-posts.php:1099
-#: ../user-submitted-posts.php:1105 ../user-submitted-posts.php:1111
-#: ../user-submitted-posts.php:1117 ../user-submitted-posts.php:1123
-#: ../user-submitted-posts.php:1129 ../user-submitted-posts.php:1135
-#: ../user-submitted-posts.php:1141
+#: ../zombie-posts.php:1093 ../zombie-posts.php:1099
+#: ../zombie-posts.php:1105 ../zombie-posts.php:1111
+#: ../zombie-posts.php:1117 ../zombie-posts.php:1123
+#: ../zombie-posts.php:1129 ../zombie-posts.php:1135
+#: ../zombie-posts.php:1141
 msgid "Hide"
 msgstr "Ocultar"
 
-#: ../user-submitted-posts.php:1094
+#: ../zombie-posts.php:1094
 msgid "User Name"
 msgstr "Nombre de usuario"
 
-#: ../user-submitted-posts.php:1100
+#: ../zombie-posts.php:1100
 msgid "User Email"
 msgstr "Email de usuario"
 
-#: ../user-submitted-posts.php:1106
+#: ../zombie-posts.php:1106
 msgid "Post URL"
 msgstr "URL"
 
-#: ../user-submitted-posts.php:1112 ../views/submission-form.php:50
+#: ../zombie-posts.php:1112 ../views/submission-form.php:50
 #: ../views/submission-form.php:51
 msgid "Post Title"
 msgstr "T&iacute;tulo de la entrada"
 
-#: ../user-submitted-posts.php:1118 ../views/submission-form.php:56
+#: ../zombie-posts.php:1118 ../views/submission-form.php:56
 #: ../views/submission-form.php:57
 msgid "Post Tags"
 msgstr "Etiquetas"
 
-#: ../user-submitted-posts.php:1124 ../views/submission-form.php:68
+#: ../zombie-posts.php:1124 ../views/submission-form.php:68
 msgid "Post Category"
 msgstr "Categor&iacute;a"
 
-#: ../user-submitted-posts.php:1130 ../views/submission-form.php:103
+#: ../zombie-posts.php:1130 ../views/submission-form.php:103
 #: ../views/submission-form.php:104
 msgid "Post Content"
 msgstr "Contenido"
 
-#: ../user-submitted-posts.php:1136
+#: ../zombie-posts.php:1136
 msgid "Post Images"
 msgstr "Im&aacute;genes"
 
-#: ../user-submitted-posts.php:1142
+#: ../zombie-posts.php:1142
 msgid "Challenge question (Captcha)"
 msgstr "Captcha"
 
-#: ../user-submitted-posts.php:1145
+#: ../zombie-posts.php:1145
 msgid "General Form Options"
 msgstr ""
 
-#: ../user-submitted-posts.php:1149
+#: ../zombie-posts.php:1149
 msgid "Form style"
 msgstr "Estilo"
 
-#: ../user-submitted-posts.php:1167
+#: ../zombie-posts.php:1167
 msgid ""
 "* If &ldquo;Custom&rdquo; is selected, you must upload your own template "
 "files,"
 msgstr ""
 
-#: ../user-submitted-posts.php:1169
+#: ../zombie-posts.php:1169
 msgid "Note: list of CSS selectors available at "
 msgstr ""
 
-#: ../user-submitted-posts.php:1169
-msgid "CSS selectors for User Submitted Posts"
+#: ../zombie-posts.php:1169
+msgid "CSS selectors for Zombie Posts"
 msgstr ""
 
-#: ../user-submitted-posts.php:1174
+#: ../zombie-posts.php:1174
 msgid "Include JavaScript?"
 msgstr "&iquest;Incluir Javascript?"
 
-#: ../user-submitted-posts.php:1176
+#: ../zombie-posts.php:1176
 msgid ""
 "Check this box if you want to include the external JavaScript files "
 "(recommended)."
 msgstr ""
 
-#: ../user-submitted-posts.php:1179
+#: ../zombie-posts.php:1179
 msgid "Targeted Loading"
 msgstr ""
 
-#: ../user-submitted-posts.php:1181
+#: ../zombie-posts.php:1181
 msgid ""
 "When enabled, external CSS &amp; JavaScript files are loaded on every page. "
 "Here you may specify the URL of the USP form to load resources only on that "
@@ -447,40 +447,40 @@ msgstr ""
 "para cargar los recursos s&oacute;lo en esa p&aacute;gina. Nota: dejar en "
 "blanco para cargar en todas las p&aacute;ginas."
 
-#: ../user-submitted-posts.php:1184
+#: ../zombie-posts.php:1184
 msgid "Categories"
 msgstr "Categor&iacute;as"
 
-#: ../user-submitted-posts.php:1197
+#: ../zombie-posts.php:1197
 msgid "Select which categories may be assigned to submitted posts."
 msgstr ""
 "Seleccione las categor&iacute;s que pueden ser asignadas a las entradas "
 "enviadas"
 
-#: ../user-submitted-posts.php:1201
+#: ../zombie-posts.php:1201
 msgid "Assigned Author"
 msgstr "Autor asignado"
 
-#: ../user-submitted-posts.php:1211
+#: ../zombie-posts.php:1211
 msgid ""
 "Specify the user that should be assigned as author for user-submitted posts."
 msgstr ""
 "Especifique el usuario que debe ser asignado como autor de los mensajes "
 "enviados por los usuarios."
 
-#: ../user-submitted-posts.php:1215
+#: ../zombie-posts.php:1215
 msgid "Auto Publish?"
 msgstr "&iquest;Autopublicar?"
 
-#: ../user-submitted-posts.php:1218
+#: ../zombie-posts.php:1218
 msgid "Always moderate"
 msgstr "Moderar siempre"
 
-#: ../user-submitted-posts.php:1219
+#: ../zombie-posts.php:1219
 msgid "Always publish immediately"
 msgstr "Publicar siempre inmediatamente"
 
-#: ../user-submitted-posts.php:1224
+#: ../zombie-posts.php:1224
 msgid ""
 "For submitted posts, you can always moderate (recommended), publish "
 "immediately, or publish after any number of approved posts."
@@ -489,22 +489,22 @@ msgstr ""
 "(recomendado), publicarse inmediatamente, o publicarse autom&aacute;"
 "ticamente despu&eacute;s de un n&uacute;mero determinado de env&iacute;os."
 
-#: ../user-submitted-posts.php:1228
+#: ../zombie-posts.php:1228
 msgid "Receive Email Alert"
 msgstr "Recibir alerta por correo electr&oacute;nico"
 
-#: ../user-submitted-posts.php:1230
+#: ../zombie-posts.php:1230
 msgid ""
 "Check this box if you want to be notified via email for new post submissions."
 msgstr ""
 "Marque esta casilla si desea recibir una notificaci&oacute;n por correo "
 "electr&oacute;nico de nuevos env&iacute;os de entradas."
 
-#: ../user-submitted-posts.php:1233
+#: ../zombie-posts.php:1233
 msgid "Enable Rich Text Editor"
 msgstr "Habilitar editor de texto enriquecido"
 
-#: ../user-submitted-posts.php:1235
+#: ../zombie-posts.php:1235
 msgid ""
 "Check this box if you want to enable WP rich text editing for submitted "
 "posts."
@@ -512,11 +512,11 @@ msgstr ""
 "Marque esta casilla si desea habilitar la edici&oacute;n de texto "
 "enriquecido para las entradas."
 
-#: ../user-submitted-posts.php:1238
+#: ../zombie-posts.php:1238
 msgid "Set Uploaded Image as Featured Image"
 msgstr "Establecer la imagen enviada como Imagen destacada de la entrada"
 
-#: ../user-submitted-posts.php:1240
+#: ../zombie-posts.php:1240
 msgid ""
 "Check this box if you want to set submitted images as Featured Images (aka "
 "Post Thumbnails) for posts. \n"
@@ -526,15 +526,15 @@ msgstr ""
 "im&aacute;genes destacadas (Miniaturas) para las entradas. Aviso: el archivo "
 "single.php de su tema debe incluir"
 
-#: ../user-submitted-posts.php:1241
+#: ../zombie-posts.php:1241
 msgid "to display Featured Images."
 msgstr "para mostrar Miniaturas"
 
-#: ../user-submitted-posts.php:1244
+#: ../zombie-posts.php:1244
 msgid "Email Address for Alerts"
 msgstr "Direcci&oacute;n de correo electr&oacute;nico para las alertas"
 
-#: ../user-submitted-posts.php:1246
+#: ../zombie-posts.php:1246
 msgid ""
 "If you checked the box to receive email alerts, indicate here the "
 "address(es) to which the emails should be sent."
@@ -543,17 +543,17 @@ msgstr ""
 "nico, indique aqu&iacute; la/s direcci&oacute;n/es a la que los mensajes de "
 "correo electr&oacute;nico se deben enviar."
 
-#: ../user-submitted-posts.php:1247
+#: ../zombie-posts.php:1247
 msgid "Tip: multiple addresses may be included using a comma, like so:"
 msgstr ""
 "Consejo: pueden incluirse varias direcciones, separ&aacute;ndolas mediante "
 "comas, por ejemplo: "
 
-#: ../user-submitted-posts.php:1250
+#: ../zombie-posts.php:1250
 msgid "Redirect URL"
 msgstr "URL para redirecci&oacute;n"
 
-#: ../user-submitted-posts.php:1252
+#: ../zombie-posts.php:1252
 msgid ""
 "Specify a URL to redirect the user after post-submission. Note: leave blank "
 "to redirect back to current page."
@@ -562,11 +562,11 @@ msgstr ""
 "env&iacute;o de la entrada. Nota: dejar en blanco para redirigir a la misma "
 "p&aacute;gina."
 
-#: ../user-submitted-posts.php:1255
+#: ../zombie-posts.php:1255
 msgid "Success Message"
 msgstr "Mensaje de env&iacute;o correcto"
 
-#: ../user-submitted-posts.php:1257
+#: ../zombie-posts.php:1257
 msgid ""
 "This is the success message that is displayed if post-submission is "
 "successful."
@@ -574,21 +574,21 @@ msgstr ""
 "Este es el mensaje que se muestra si la entrada se ha enviado con &eacute;"
 "xito"
 
-#: ../user-submitted-posts.php:1260
+#: ../zombie-posts.php:1260
 msgid "Error Message"
 msgstr "Mensaje de error"
 
-#: ../user-submitted-posts.php:1262
+#: ../zombie-posts.php:1262
 msgid "This is the error message that is displayed if post-submission fails."
 msgstr ""
 "Este es el mensaje que se muestra si se ha producido alg&uacute;n error al "
 "tratar de enviar la entrada"
 
-#: ../user-submitted-posts.php:1265
+#: ../zombie-posts.php:1265
 msgid "Custom Content"
 msgstr "Contenido personalizado"
 
-#: ../user-submitted-posts.php:1267
+#: ../zombie-posts.php:1267
 msgid ""
 "Here you may specify custom text/markup to be included before the submission "
 "form. Note: leave blank to disable."
@@ -597,35 +597,35 @@ msgstr ""
 "incluido en la cabecera del formulario. Nota: dejar en blanco para "
 "desactivar."
 
-#: ../user-submitted-posts.php:1270
+#: ../zombie-posts.php:1270
 msgid "Unique Titles"
 msgstr ""
 
-#: ../user-submitted-posts.php:1272
+#: ../zombie-posts.php:1272
 msgid ""
 "Require submitted post titles to be unique (useful for preventing multiple/"
 "duplicate submitted posts)."
 msgstr ""
 
-#: ../user-submitted-posts.php:1275
+#: ../zombie-posts.php:1275
 msgid "Disable Required"
 msgstr ""
 
-#: ../user-submitted-posts.php:1277
+#: ../zombie-posts.php:1277
 msgid ""
 "Disable all required attributes on default form fields (useful for "
 "troubleshooting error messages)."
 msgstr ""
 
-#: ../user-submitted-posts.php:1281
+#: ../zombie-posts.php:1281
 msgid "Registered User Info"
 msgstr ""
 
-#: ../user-submitted-posts.php:1285
+#: ../zombie-posts.php:1285
 msgid "Use registered username for author?"
 msgstr "&iquestUtilizar el nombre de Usuario registrado del autor?"
 
-#: ../user-submitted-posts.php:1287
+#: ../zombie-posts.php:1287
 msgid ""
 "Check this box if you want to automatically use the registered username as "
 "the submitted-post author. Note: this really should only be used when "
@@ -636,11 +636,11 @@ msgstr ""
 "lo se debe utilizar cuando se requiere inicio de sesi&oacute;n para los "
 "env&iacute;os"
 
-#: ../user-submitted-posts.php:1290
+#: ../zombie-posts.php:1290
 msgid "Use registered URL for submitted URL?"
 msgstr "&iquestUtilizar la URL registrada?"
 
-#: ../user-submitted-posts.php:1292
+#: ../zombie-posts.php:1292
 msgid ""
 "Check this box if you want to automatically use the registered user&rsquo;s "
 "specified URL as the submitted-post URL. Note: this really should only be "
@@ -651,11 +651,11 @@ msgstr ""
 "debe utilizar cuando se requiere inicio de sesi&oacute;n para los env&iacute;"
 "os"
 
-#: ../user-submitted-posts.php:1295
+#: ../zombie-posts.php:1295
 msgid "Use a hidden field for submitted category?"
 msgstr "&iquestUtilizar un campo oculto para la categor&iacute;a?"
 
-#: ../user-submitted-posts.php:1297
+#: ../zombie-posts.php:1297
 msgid ""
 "Check this box if you want to use a hidden category field for the submitted "
 "category. Note: this may be used to specify a default category for submitted "
@@ -666,11 +666,11 @@ msgstr ""
 "predeterminada para las entradas cuando el campo de categor&iacute;a "
 "estaacute; oculto."
 
-#: ../user-submitted-posts.php:1300
+#: ../zombie-posts.php:1300
 msgid "Category ID for hidden field"
 msgstr "ID de la categor&iacute;a para el campo oculto"
 
-#: ../user-submitted-posts.php:1302
+#: ../zombie-posts.php:1302
 msgid ""
 "Specify a cateogry (ID) to use as the default category when using the &ldquo;"
 "hidden field&rdquo; option."
@@ -678,15 +678,15 @@ msgstr ""
 "Especifique una categor&iacute;a (ID) para usar como predeterminada cuando "
 "se utiliza la opci&oacute;n \"campo oculto\"."
 
-#: ../user-submitted-posts.php:1306
+#: ../zombie-posts.php:1306
 msgid "Challenge Question (Captcha)"
 msgstr ""
 
-#: ../user-submitted-posts.php:1310
+#: ../zombie-posts.php:1310
 msgid "Challenge Question"
 msgstr "Pregunta"
 
-#: ../user-submitted-posts.php:1312
+#: ../zombie-posts.php:1312
 msgid ""
 "To prevent spam, enter a question that users must answer before submitting "
 "the form."
@@ -694,35 +694,35 @@ msgstr ""
 "Para prevenir el spam, introduzca una pregunta que el autor de la entrada "
 "debe responder antes de enviarla"
 
-#: ../user-submitted-posts.php:1315
+#: ../zombie-posts.php:1315
 msgid "Challenge Response"
 msgstr "Respuesta"
 
-#: ../user-submitted-posts.php:1317
+#: ../zombie-posts.php:1317
 msgid "Enter the <em>only</em> correct answer to the challenge question."
 msgstr ""
 "Introduzca <em>exclusivamente</em> la respuesta correcta a la pregunta de la "
 "prueba CAPTCHA"
 
-#: ../user-submitted-posts.php:1320
+#: ../zombie-posts.php:1320
 msgid "Case-sensitivity"
 msgstr "Distinguir may&uacute;sculas y min&uacute;sculas "
 
-#: ../user-submitted-posts.php:1322
+#: ../zombie-posts.php:1322
 msgid "Check this box if you want the challenge response to be case-sensitive."
 msgstr ""
 "Marque esta casilla si desea que la respuesta a la prueba CAPTCHA distinga "
 "entre may&uacute;sculas y min&uacute;sculas "
 
-#: ../user-submitted-posts.php:1326
+#: ../zombie-posts.php:1326
 msgid "Image Uploads"
 msgstr ""
 
-#: ../user-submitted-posts.php:1330
+#: ../zombie-posts.php:1330
 msgid "Upload Message"
 msgstr "Mensaje para adjuntar imagen"
 
-#: ../user-submitted-posts.php:1332
+#: ../zombie-posts.php:1332
 msgid ""
 "This is the message that appears next to upload field. Useful to state your "
 "upload guidelines/rules/etc."
@@ -730,97 +730,97 @@ msgstr ""
 "Este es el mensaje que aparece junto al campo de \"Adjuntar imagen\". "
 "&Uacute;til para indicar las directrices, limitaciones etc."
 
-#: ../user-submitted-posts.php:1335
+#: ../zombie-posts.php:1335
 msgid "&ldquo;Add another image&rdquo; link"
 msgstr ""
 
-#: ../user-submitted-posts.php:1337
+#: ../zombie-posts.php:1337
 msgid ""
 "Here you may specify your own custom markup for the &ldquo;Add another "
 "image&rdquo; link (leave blank to use the default markup)."
 msgstr ""
 
-#: ../user-submitted-posts.php:1340
+#: ../zombie-posts.php:1340
 msgid "Minimum number of images"
 msgstr "N&uacute;mero m&iacute;nimo de im&aacute;genes"
 
-#: ../user-submitted-posts.php:1343
+#: ../zombie-posts.php:1343
 msgid "Specify the <em>minimum</em> number of images."
 msgstr ""
 "Especificar el n&uacute;mero <em>m&iacute;nimo </em> de im&aacute;genes"
 
-#: ../user-submitted-posts.php:1347
+#: ../zombie-posts.php:1347
 msgid "Maximum number of images"
 msgstr "N&uacute;mero m&aacute;ximo de im&aacute;genes"
 
-#: ../user-submitted-posts.php:1350
+#: ../zombie-posts.php:1350
 msgid "Specify the <em>maximum</em> number of images."
 msgstr ""
 "Especificar el n&uacute;mero <em> m&aacute;ximo </em> de im&aacute;genes"
 
-#: ../user-submitted-posts.php:1354
+#: ../zombie-posts.php:1354
 msgid "Minimum image width"
 msgstr "Ancho m&iacute;nimo de la imagen"
 
-#: ../user-submitted-posts.php:1356
+#: ../zombie-posts.php:1356
 msgid "Specify a <em>minimum width</em> (in pixels) for uploaded images."
 msgstr ""
 "Especifique un ancho <em> m&iacute;nimo </ em> (en p&iacute;xeles) de las "
 "im&aacute;genes adjuntas."
 
-#: ../user-submitted-posts.php:1359
+#: ../zombie-posts.php:1359
 msgid "Minimum image height"
 msgstr "Altura m&iacute;nima de la imagen"
 
-#: ../user-submitted-posts.php:1361
+#: ../zombie-posts.php:1361
 msgid "Specify a <em>minimum height</em> (in pixels) for uploaded images."
 msgstr ""
 "Especifique una altura <em>m&iacute;nima </ em> (en p&iacute;xeles) de las "
 "im&aacute;genes adjuntas."
 
-#: ../user-submitted-posts.php:1364
+#: ../zombie-posts.php:1364
 msgid "Maximum image width"
 msgstr "Ancho m&aacute;ximo de la imagen"
 
-#: ../user-submitted-posts.php:1366
+#: ../zombie-posts.php:1366
 msgid "Specify a <em>maximum width</em> (in pixels) for uploaded images."
 msgstr ""
 "Especifique un ancho <em>m&aacute;ximo </ em> (en p&iacute;xeles) de las "
 "im&aacute;genes adjuntas."
 
-#: ../user-submitted-posts.php:1369
+#: ../zombie-posts.php:1369
 msgid "Maximum image height"
 msgstr "Altura m&aacute;xima de la imagen"
 
-#: ../user-submitted-posts.php:1371
+#: ../zombie-posts.php:1371
 msgid "Specify a <em>maximum height</em> (in pixels) for uploaded images."
 msgstr ""
 "Especifique una altura <em>m&iacute;nima </ em> (en p&iacute;xeles) de las "
 "im&aacute;genes adjuntas."
 
-#: ../user-submitted-posts.php:1375 ../user-submitted-posts.php:1403
+#: ../zombie-posts.php:1375 ../zombie-posts.php:1403
 msgid "Save Settings"
 msgstr "Guardar Configuraci&oacute;n"
 
-#: ../user-submitted-posts.php:1379
+#: ../zombie-posts.php:1379
 msgid "Shortcode &amp; Template Tag"
 msgstr "Shortcode &amp; Etiqueta de plantilla"
 
-#: ../user-submitted-posts.php:1382
+#: ../zombie-posts.php:1382
 msgid "Shortcode"
 msgstr ""
 
-#: ../user-submitted-posts.php:1383
+#: ../zombie-posts.php:1383
 msgid "Use this shortcode to display the USP Form on any post or page:"
 msgstr ""
 "Utilice este Shortcode para mostrar el formulario de USP en cualquier "
 "entrada o p&aacute;gina:"
 
-#: ../user-submitted-posts.php:1386
+#: ../zombie-posts.php:1386
 msgid "Template tag"
 msgstr "Etiqueta de plantilla"
 
-#: ../user-submitted-posts.php:1387
+#: ../zombie-posts.php:1387
 msgid ""
 "Use this template tag to display the USP Form anywhere in your theme "
 "template:"
@@ -828,15 +828,15 @@ msgstr ""
 "Utilice esta etiqueta de plantilla para visualizar el formulario de USP en "
 "cualquier lugar en la plantilla de tema:"
 
-#: ../user-submitted-posts.php:1392
+#: ../zombie-posts.php:1392
 msgid "Restore Default Options"
 msgstr "Restaurar opciones por defecto"
 
-#: ../user-submitted-posts.php:1396
+#: ../zombie-posts.php:1396
 msgid "Restore default options upon plugin deactivation/reactivation."
 msgstr "Restaurar opiones por defecto al activar / desactivar"
 
-#: ../user-submitted-posts.php:1400
+#: ../zombie-posts.php:1400
 msgid ""
 "<strong>Tip:</strong> leave this option unchecked to remember your settings. "
 "Or, to go ahead and restore all default options, check the box, save your "
@@ -847,15 +847,15 @@ msgstr ""
 "marque la casilla, guarde la configuraci&oacute;n, y luego desactive / "
 "active el plugin."
 
-#: ../user-submitted-posts.php:1407
+#: ../zombie-posts.php:1407
 msgid "Updates &amp; Info"
 msgstr "Actualizaciones e Informaci&oacute;n"
 
-#: ../user-submitted-posts.php:1447
+#: ../zombie-posts.php:1447
 msgid "Save Preference"
 msgstr ""
 
-#: ../user-submitted-posts.php:1453
+#: ../zombie-posts.php:1453
 msgid ""
 "Are you sure you want to restore all default options? (this action cannot be "
 "undone)"
@@ -969,8 +969,8 @@ msgstr "Enviar publicaci&oacute;n"
 #~ "Para deshabilitar la hoja de estilo del plugin, seleccione Deshabilitar. "
 #~ "La lista completa de las etiquetas de CSS para el formulario en"
 
-#~ msgid "CSS Hooks for User Submitted Posts"
-#~ msgstr "Etiquetas CSS para User Submitted Posts"
+#~ msgid "CSS Hooks for Zombie Posts"
+#~ msgstr "Etiquetas CSS para Zombie Posts"
 
 #~ msgid ""
 #~ "Check this box if you want to include the external JavaScript file. Note: "

@@ -1,4 +1,4 @@
-/* User Submitted Posts > Plugin Settings */
+/* Zombie Posts > Plugin Settings */
 
 jQuery(document).ready(function($){
 	

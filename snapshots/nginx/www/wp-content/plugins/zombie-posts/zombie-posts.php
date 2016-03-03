@@ -1,13 +1,16 @@
 <?php 
 /*
-	Plugin Name: User Submitted Posts
-	Plugin URI: https://perishablepress.com/user-submitted-posts/
-	Description: Enables your visitors to submit posts and images from anywhere on your site.
+
+    Copied from below. flashashen 2016-03-03
+
+	Plugin Name: Zombie Posts
+	Plugin URI:
+	Description: Enables your visitors to submit their text to zombie attack.
 	Tags: submit, public, share, upload, images, post, posts, user, submit, user-submit, user-submitted, community, front-end, submissions, submission, frontend, front-end, front end, content, generated content, user generated, form, forms
-	Author: Jeff Starr
-	Author URI: http://monzilla.biz/
-	Donate link: http://m0n.co/donate
-	Contributors: specialk
+	Author: Jeff Starr. Butchered by flashashen.
+	Author URI:
+	Donate link:
+	Contributors:
 	Requires at least: 4.1
 	Tested up to: 4.4
 	Stable tag: trunk
@@ -21,13 +24,13 @@ if (!defined('ABSPATH')) die();
 
 $usp_wp_vers = '4.1';
 $usp_version = '20151113';
-$usp_plugin  = __('User Submitted Posts', 'usp');
+$usp_plugin  = __('Zombie Posts', 'usp');
 $usp_options = get_option('usp_options');
-$usp_path    = plugin_basename(__FILE__); // '/user-submitted-posts/user-submitted-posts.php';
-$usp_logo    = plugins_url() . '/user-submitted-posts/images/usp-logo.jpg';
-$usp_pro     = plugins_url() . '/user-submitted-posts/images/usp-pro.png';
-$usp_wpurl   = 'https://wordpress.org/plugins/user-submitted-posts/';
-$usp_homeurl = 'https://perishablepress.com/user-submitted-posts/';
+$usp_path    = plugin_basename(__FILE__); // '/zombie-posts/zombie-posts.php';
+$usp_logo    = plugins_url() . '/zombie-posts/images/usp-logo.jpg';
+$usp_pro     = plugins_url() . '/zombie-posts/images/usp-pro.png';
+//$usp_wpurl   = 'https://wordpress.org/plugins/zombie-posts/';
+//$usp_homeurl = 'https://perishablepress.com/zombie-posts/';
 
 $usp_post_meta_IsSubmission   = 'is_submission';
 $usp_post_meta_SubmitterIp    = 'user_submit_ip';
@@ -35,6 +38,8 @@ $usp_post_meta_Submitter      = 'user_submit_name';
 $usp_post_meta_SubmitterUrl   = 'user_submit_url';
 $usp_post_meta_SubmitterEmail = 'user_submit_email';
 $usp_post_meta_Image          = 'user_submit_image';
+$usp_post_meta_Zombie         = 'zombie_text';
+
 
 // includes
 include ('library/template-tags.php');
@@ -71,7 +76,7 @@ if (isset($usp_options['enable_shortcodes']) && $usp_options['enable_shortcodes'
 // add new post status
 add_filter ('post_stati', 'usp_addNewPostStatus');
 function usp_addNewPostStatus($postStati) {
-	$postStati['submitted'] = array(__('Submitted', 'usp'), __('User Submitted Posts', 'usp'), _n_noop('Submitted', 'Submitted'));
+	$postStati['submitted'] = array(__('Submitted', 'usp'), __('Zombie Posts', 'usp'), _n_noop('Submitted', 'Submitted'));
 	return apply_filters('usp_post_status', $postStati);
 }
 
@@ -121,9 +126,10 @@ function usp_checkForPublicSubmission() {
 		if (isset($_POST['user-submitted-captcha']))  $captcha  = sanitize_text_field($_POST['user-submitted-captcha']);
 		if (isset($_POST['user-submitted-verify']))   $verify   = sanitize_text_field($_POST['user-submitted-verify']);
 		if (isset($_POST['user-submitted-content']))  $content  = stripslashes($_POST['user-submitted-content']);
+		if (isset($_POST['zombie-text']))             $zombie   = sanitize_text_field($_POST['zombie-text']);
 		if (isset($_POST['user-submitted-category'])) $category = intval($_POST['user-submitted-category']);
 		
-		$result = usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $category);
+		$result = usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $category);
 		
 		$post_id = false; 
 		if (isset($result['id'])) $post_id = $result['id'];
@@ -320,13 +326,13 @@ function usp_load_admin_styles($hook) {
 	/*
 		wp_enqueue_style($handle, $src, $deps, $ver, $media)
 		wp_enqueue_script($handle, $src, $deps, $ver, $in_footer)
-		$_GET['page'] = user-submitted-posts/user-submitted-posts.php
+		$_GET['page'] = zombie-posts/zombie-posts.php
 	*/
 	if (is_admin()) {
 		
 		$base = plugins_url() .'/'. basename(dirname(__FILE__));
 		
-		if ($hook == 'settings_page_user-submitted-posts/user-submitted-posts') {
+		if ($hook == 'settings_page_zombie-posts/zombie-posts') {
 			wp_enqueue_style('usp_admin_styles', $base .'/resources/usp-admin.css', false, $usp_version, 'all');
 			wp_enqueue_script('usp_admin_script', $base .'/resources/jquery.usp.admin.js', array('jquery'), $usp_version, false);
 		}
@@ -358,7 +364,7 @@ function usp_display_form($atts = array(), $content = null) {
 	else include($default);
 	return apply_filters('usp_form_shortcode', ob_get_clean());
 }
-add_shortcode ('user-submitted-posts', 'usp_display_form');
+add_shortcode ('zombie-posts', 'usp_display_form');
 
 // template tag
 function user_submitted_posts() {
@@ -485,12 +491,13 @@ function usp_check_images($files) {
 }
 
 // prepare submitted post
-function usp_prepare_post($title, $content, $author_id, $author, $ip) {
+function usp_prepare_post($title, $content, $zombie, $author_id, $author, $ip) {
 	global $usp_options, $usp_post_meta_Submitter, $usp_post_meta_SubmitterIp;
 	
 	$postData = array();
 	$postData['post_title']   = $title;
 	$postData['post_content'] = $content;
+	$postData['post_zombie']  = $zombie;
 	$postData['post_author']  = $author_id;
 	$postData['post_status']  = apply_filters('usp_post_status', 'pending');
 	
@@ -526,8 +533,8 @@ function usp_check_duplicates($title) {
 }
 
 // process submission
-function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $category) {
-	global $usp_options, $usp_post_meta_IsSubmission, $usp_post_meta_SubmitterIp, $usp_post_meta_Submitter, $usp_post_meta_SubmitterUrl, $usp_post_meta_SubmitterEmail, $usp_post_meta_Image;
+function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $category) {
+	global $usp_options, $usp_post_meta_Zombie, $usp_post_meta_IsSubmission, $usp_post_meta_SubmitterIp, $usp_post_meta_Submitter, $usp_post_meta_SubmitterUrl, $usp_post_meta_SubmitterEmail, $usp_post_meta_Image;
 	
 	// check errors
 	$newPost = array('id' => false, 'error' => false);
@@ -546,7 +553,8 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 	if (isset($usp_options['usp_tags'])     && ($usp_options['usp_tags']     == 'show') && empty($tags))     $newPost['error'][] = 'required-tags';
 	if (isset($usp_options['usp_category']) && ($usp_options['usp_category'] == 'show') && empty($category)) $newPost['error'][] = 'required-category';
 	if (isset($usp_options['usp_content'])  && ($usp_options['usp_content']  == 'show') && empty($content))  $newPost['error'][] = 'required-content';
-	
+	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-content';
+
 	if (isset($usp_options['usp_captcha']) && ($usp_options['usp_captcha'] == 'show') && !usp_spamQuestion($captcha)) $newPost['error'][] = 'required-captcha';
 	if (isset($usp_options['usp_email'])   && ($usp_options['usp_email']   == 'show') && !usp_validateEmail($email))  $newPost['error'][] = 'required-email';
 	
@@ -561,7 +569,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 	}
 	
 	// submit post
-	$postData = usp_prepare_post($title, $content, $author_id, $author, $ip);
+	$postData = usp_prepare_post($title, $content, $zombie, $author_id, $author, $ip);
 	
 	do_action('usp_insert_before', $postData);
 	$newPost['id'] = wp_insert_post($postData);
@@ -604,7 +612,8 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 		}
 		do_action('usp_files_after', $attach_ids);
 		update_post_meta($post_id, $usp_post_meta_IsSubmission, true);
-		
+
+		if (!empty($zombie)) update_post_meta($post_id, $usp_post_meta_Zombie,         $zombie);
 		if (!empty($author)) update_post_meta($post_id, $usp_post_meta_Submitter,      $author);
 		if (!empty($url))    update_post_meta($post_id, $usp_post_meta_SubmitterUrl,   $url);
 		if (!empty($email))  update_post_meta($post_id, $usp_post_meta_SubmitterEmail, $email);
@@ -695,7 +704,7 @@ function usp_send_mail_alert($post_id, $title) {
 		$message = preg_replace($patterns, $replacements, $message);
 		$message = apply_filters('usp_mail_message', $message);
 		
-		$headers  = 'X-Mailer: User Submitted Posts'. "\n";
+		$headers  = 'X-Mailer: Zombie Posts'. "\n";
 		$headers .= 'From: '. $blog_name .' <'. $from .'>'. "\n";
 		$headers .= 'Reply-To: '. $blog_name .' <'. $from .'>'. "\n";
 		$headers .= 'Content-Type: text/plain; charset="'. get_option('blog_charset') .'"'. "\n";
@@ -872,6 +881,7 @@ function usp_add_defaults() {
 			'usp_casing'          => 0,
 			'usp_captcha'         => __('show', 'usp'),
 			'usp_content'         => __('show', 'usp'),
+			'usp_zombie'          => __('show', 'usp'),
 			'success-message'     => __('Success! Thank you for your submission.', 'usp'),
 			'usp_form_version'    => 'current',
 			'usp_email_alerts'    => 1,
@@ -1079,6 +1089,7 @@ function usp_validate_options($input) {
 	$input['usp_question']        = wp_filter_nohtml_kses($input['usp_question']);
 	$input['usp_captcha']         = wp_filter_nohtml_kses($input['usp_captcha']);
 	$input['usp_content']         = wp_filter_nohtml_kses($input['usp_content']);
+	$input['usp_zombie']          = wp_filter_nohtml_kses($input['usp_zombie']);
 	$input['usp_email_address']   = wp_filter_nohtml_kses($input['usp_email_address']);
 	$input['usp_use_cat_id']      = wp_filter_nohtml_kses($input['usp_use_cat_id']);
 	$input['usp_display_url']     = wp_filter_nohtml_kses($input['usp_display_url']);
@@ -1204,71 +1215,14 @@ function usp_render_form() {
 			
 			<div class="metabox-holder">
 				<div class="meta-box-sortables ui-sortable">
-					
-					<div id="mm-panel-alert"<?php echo $display_alert; ?> class="postbox">
-						<h2><?php _e('We need your support!', 'usp'); ?></h2>
-						<div class="toggle">
-							<div class="mm-panel-alert">
-								<p>
-									<?php _e('Please', 'usp'); ?> <a target="_blank" href="http://m0n.co/donate" title="<?php _e('Make a donation via PayPal', 'usp'); ?>"><?php _e('make a donation', 'usp'); ?></a> <?php _e('and/or', 'usp'); ?> 
-									<a target="_blank" href="http://wordpress.org/support/view/plugin-reviews/<?php echo basename(dirname(__FILE__)); ?>?rate=5#postform" title="<?php _e('Rate and review at the Plugin Directory', 'usp'); ?>">
-										<?php _e('give this plugin a 5-star rating', 'usp'); ?>&nbsp;&raquo;
-									</a>
-								</p>
-								<p>
-									<?php _e('Your generous support enables continued development of this free plugin. Thank you!', 'usp'); ?>
-								</p>
-								<div class="dismiss-alert">
-									<div class="dismiss-alert-wrap">
-										<input class="input-alert" name="usp_options[version_alert]" type="checkbox" value="1" <?php if (isset($usp_options['version_alert'])) checked('1', $usp_options['version_alert']); ?> />  
-										<label class="description" for="usp_options[version_alert]"><?php _e('Check this box if you have shown support', 'usp') ?></label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div id="mm-panel-overview" class="postbox">
-						<h2><?php _e('Overview', 'usp'); ?></h2>
-						<div class="toggle">
-							<div class="mm-panel-overview clear">
-								<p class="mm-overview-intro">
-									<strong><abbr title="<?php echo $usp_plugin; ?>">USP</abbr></strong> <?php _e('enables your visitors to submit posts and upload images from the front-end of your site. ', 'usp'); ?> 
-									<?php _e('For advanced functionality and unlimited forms, check out', 'usp'); ?> <strong><a href="https://plugin-planet.com/usp-pro/" target="_blank">USP Pro</a></strong> 
-									<?php _e('&mdash; the ultimate solution for user-generated content.', 'usp'); ?>
-								</p>
-								<div class="mm-left-div">
-									<ul>
-										<li>
-											<strong><?php _e('Quick start:', 'usp'); ?></strong> <a id="mm-panel-primary-link" href="#mm-panel-primary"><?php _e('configure settings', 'usp'); ?></a> 
-											<?php _e('and then', 'usp'); ?> <a id="mm-panel-secondary-link" href="#mm-panel-secondary"><?php _e('display the form', 'usp'); ?></a>
-										</li>
-										<li>
-											<strong><?php _e('More info:', 'usp'); ?></strong> <a target="_blank" href="<?php echo plugins_url('/user-submitted-posts/readme.txt', dirname(__FILE__)); ?>">readme.txt</a>, 
-											<a target="_blank" href="<?php echo $usp_wpurl; ?>"><?php _e('WP Plugin Page', 'usp'); ?></a>, <?php _e('and', 'usp'); ?> 
-											<a target="_blank" href="<?php echo $usp_homeurl; ?>"><?php _e('Homepage', 'usp'); ?></a>
-										</li>
-										<li><strong><?php _e('Support:', 'usp'); ?></strong> <?php _e('if you like USP, please', 'usp'); ?> 
-											<a target="_blank" href="http://wordpress.org/support/view/plugin-reviews/<?php echo basename(dirname(__FILE__)); ?>?rate=5#postform" title="<?php _e('Rate and review this plugin at the WP Plugin Directory', 'usp'); ?>">
-												<?php _e('give it a 5-star rating', 'usp'); ?>&nbsp;&raquo;
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="mm-right-div">
-									<a class="mm-pro-blurb" target="_blank" href="https://plugin-planet.com/usp-pro/" title="Unlimited front-end forms">Get USP Pro</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					
+
 					<div id="mm-panel-primary" class="postbox">
 						
 						<h2><?php _e('Options', 'usp'); ?></h2>
 						
 						<div class="toggle<?php if (!isset($_GET['settings-updated'])) { echo ' default-hidden'; } ?>">
 							
-							<p><?php _e('Configure your settings for User Submitted Posts.', 'usp'); ?></p>
+							<p><?php _e('Configure your settings for Zombie Posts.', 'usp'); ?></p>
 							
 							<h3><?php _e('Form Fields', 'usp'); ?></h3>
 							
@@ -1335,7 +1289,7 @@ function usp_render_form() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label class="description" for="usp_options[usp_content]"><?php _e('Post Content', 'usp'); ?></label></th>
+										<th scope="row"><label class="description" for="usp_options[usp_content]"><?php _e('Victim Text', 'usp'); ?></label></th>
 										<td>
 											<select name="usp_options[usp_content]" id="usp_options[usp_content]">
 												<option <?php if ($usp_options['usp_content'] == 'show') echo 'selected="selected"'; ?> value="show"><?php _e('Display and require', 'usp'); ?></option>
@@ -1344,6 +1298,19 @@ function usp_render_form() {
 											</select>
 										</td>
 									</tr>
+
+									<tr>
+										<th scope="row"><label class="description" for="usp_options[usp_zombie]"><?php _e('Zombie Text', 'usp'); ?></label></th>
+										<td>
+											<select name="usp_options[usp_zombie]" id="usp_options[usp_zombie]">
+												<option <?php if ($usp_options['usp_zombie'] == 'show') echo 'selected="selected"'; ?> value="show"><?php _e('Display and require', 'usp'); ?></option>
+												<option <?php if ($usp_options['usp_zombie'] == 'optn') echo 'selected="selected"'; ?> value="optn"><?php _e('Display but do not require', 'usp'); ?></option>
+												<option <?php if ($usp_options['usp_zombie'] == 'hide') echo 'selected="selected"'; ?> value="hide"><?php _e('Disable this field', 'usp'); ?></option>
+											</select>
+										</td>
+									</tr>
+
+
 									<tr>
 										<th scope="row"><label class="description" for="usp_options[usp_captcha]"><?php _e('Challenge Question', 'usp'); ?></label></th>
 										<td>
@@ -1693,7 +1660,7 @@ function usp_render_form() {
 							
 							<h3><?php _e('Shortcode', 'usp'); ?></h3>
 							<p><?php _e('Use this shortcode to display the USP Form on any Post or Page:', 'usp'); ?></p>
-							<p><code class="mm-code">[user-submitted-posts]</code></p>
+							<p><code class="mm-code">[zombie-posts]</code></p>
 
 							<h3><?php _e('Template tag', 'usp'); ?></h3>
 							<p><?php _e('Use this template tag to display the USP Form anywhere in your theme template:', 'usp'); ?></p>
@@ -1717,23 +1684,23 @@ function usp_render_form() {
 						</div>
 					</div>
 					
-					<div id="mm-panel-current" class="postbox">
-						<h2><?php _e('Updates &amp; Info', 'usp'); ?></h2>
-						<div class="toggle">
-							<div id="mm-iframe-wrap">
-								<iframe src="https://perishablepress.com/current/index-usp.html"></iframe>
-							</div>
-						</div>
-					</div>
+<!--					<div id="mm-panel-current" class="postbox">-->
+<!--						<h2>--><?php //_e('Updates &amp; Info', 'usp'); ?><!--</h2>-->
+<!--						<div class="toggle">-->
+<!--							<div id="mm-iframe-wrap">-->
+<!--								<iframe src="https://perishablepress.com/current/index-usp.html"></iframe>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 					
 				</div>
 			</div>
 			
-			<div id="mm-credit-info">
-				<a target="_blank" href="<?php echo $usp_homeurl; ?>" title="<?php echo $usp_plugin; ?> Homepage"><?php echo $usp_plugin; ?></a> by 
-				<a target="_blank" href="http://twitter.com/perishable" title="Jeff Starr on Twitter">Jeff Starr</a> @ 
-				<a target="_blank" href="http://monzilla.biz/" title="Obsessive Web Design &amp; Development">Monzilla Media</a>
-			</div>
+<!--			<div id="mm-credit-info">-->
+<!--				<a target="_blank" href="--><?php //echo $usp_homeurl; ?><!--" title="--><?php //echo $usp_plugin; ?><!-- Homepage">--><?php //echo $usp_plugin; ?><!--</a> by -->
+<!--				<a target="_blank" href="http://twitter.com/perishable" title="Jeff Starr on Twitter">Jeff Starr</a> @ -->
+<!--				<a target="_blank" href="http://monzilla.biz/" title="Obsessive Web Design &amp; Development">Monzilla Media</a>-->
+<!--			</div>-->
 		</form>
 	</div>
 	
