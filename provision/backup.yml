@@ -32,10 +32,6 @@
     - name: copy snapshot from sever
       fetch: src=zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql dest=../snapshots/ flat=yes fail_on_missing=yes
 
-    - name: Create symbolic link of snapshot: zombie_mysqldump_all_latest.sql
-      command: rm -f ../snapshots/zombie_mysqldump_all_latest.sql && ln -s ../snapshots/zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql ../snapshots/zombie_mysqldump_all_latest.sql
-      local_action: true
-
     - name: Delete snapshot on server
       file: path=zombie_mysqldump_all.sql state=absent
 
@@ -48,7 +44,7 @@
     - file:  path=/var/sync_wp state=directory mode=0755
 
     - name: Run volume sync container
-      shell: docker run --rm -v /var/sync_wp:/var/sync_wp --volumes-from zombie-web-volumes flashashen/zombie-web cp -r /usr/share/nginx/www /var/sync_wp/
+      shell: docker run --rm -v /var/sync_wp:/var/sync_wp --volumes-from zombie-web-volumes flashashen/zombie-web cp -r /usr/share/nginx /var/sync_wp/
 #        image: flashashen/zombie-web
 #        name: wp_sync
 #        command: cp /usr/share/nginx/www/* /var/sync_wp/
@@ -59,7 +55,7 @@
 #            - /var/sync_wp:/var/sync_wp
 
     - name: pull WP config from server
-      synchronize: mode=pull src=/var/sync_wp/www dest=../snapshots rsync_path="sudo rsync"
+      synchronize: mode=pull src=/var/sync_wp/nginx dest=../snapshots rsync_path="sudo rsync"
 
 #    - name: sync WP files to server
 #      fetch: src=/var/sync_wp/www dest=../snapshots/www

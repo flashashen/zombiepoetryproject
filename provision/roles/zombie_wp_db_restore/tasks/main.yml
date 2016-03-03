@@ -13,13 +13,18 @@
 #   Upload and import all of the Mysql data
 #
 
+  - name: get filename of latest snapshot
+    local_action: shell basename `ls -Art ../snapshots/*.sql| tail -n 1`
+    sudo: false
+    register: last_db_dump
+
   - name: copy snapshot to sever
-    copy: src=../snapshots/zombie_mysqldump_all_latest.sql dest=.
+    copy: src=../snapshots/{{last_db_dump.stdout}} dest=.
 
   - name: mysql import
-    shell: docker exec -i {{zombie_container.stdout}} mysql --user=root --password={{root_pass.stdout}} < zombie_mysqldump_all_latest.sql
+    shell: docker exec -i {{zombie_container.stdout}} mysql --user=root --password={{root_pass.stdout}} < {{last_db_dump.stdout}}
     sudo: true
 
-#    - name: Delete snapshot on server
-#      file: path=zombie_mysqldump_all.sql state=absent
+  - name: Delete snapshot on server
+    file: path={{last_db_dump.stdout}} state=absent
 
