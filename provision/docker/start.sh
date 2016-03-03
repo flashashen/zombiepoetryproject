@@ -1,4 +1,9 @@
 #!/bin/bash
+
+
+if [ ! -f /mysql-root-pw.txt ]; then
+
+
 if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   #mysql has to be started this way as it doesn't work to call from /etc/init.d
   /usr/bin/mysqld_safe &

@@ -31,20 +31,32 @@
   when: zombie_image_info.changed
 
 
-- name: Zombie Data Volumes
+- name: Create volume container - host mount
   sudo: yes
   docker:
-    #image: flashashen/zombie-web - go back to native volumes with original image
     image: flashashen/zombie-web
     name: zombie-web-volumes
-#    pull: always
+    #pull: always
     state: present
     volumes:
+        - "{{host_wp_www_dir}}:/usr/share/nginx"
         - /var/lib/mysql
-        - /usr/share/nginx
+  when: host_wp_www_dir is defined
+
+- name: Create volume container - docker volume
+  sudo: yes
+  docker:
+    image: flashashen/zombie-web
+    name: zombie-web-volumes
+    #pull: always
+    state: present
+    volumes:
+        - "/usr/share/nginx"
+        - /var/lib/mysql
+  when: host_wp_www_dir is not defined
 
 
-- name: install Docker base apps image
+- name: Create wordpress container
   sudo: yes
   docker:
     image: flashashen/zombie-web
@@ -56,6 +68,7 @@
         - "80:80"
         - "3306:3306"
     volumes_from: zombie-web-volumes
+
 
 - name: wait for port 80 before continuing. two minutes max
   wait_for: host=127.0.0.1 port=80 timeout=120
