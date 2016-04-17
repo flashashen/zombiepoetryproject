@@ -6,6 +6,7 @@ import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
+import flash.zombie.nlp.model.Incident;
 
 import java.util.ArrayList;
 

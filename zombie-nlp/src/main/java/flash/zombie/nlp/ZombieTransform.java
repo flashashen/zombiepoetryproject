@@ -1,5 +1,8 @@
 package flash.zombie.nlp;
 
+import edu.stanford.nlp.trees.Tree;
+import flash.zombie.nlp.model.Incident;
+import flash.zombie.nlp.model.Transformation;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +15,7 @@ class ZombieTransform {
 
 
 
-    @ModelAttribute("transformation")
+    @ModelAttribute("incident")
     public Incident getTransformation(){
         return new Incident();
     }
@@ -33,25 +36,69 @@ class ZombieTransform {
 //    }
 
     @ModelAttribute
-    public Incident transformation(@RequestParam(required=false) String text) {
-        Incident transformation = new Incident();
-        transformation.victimText = text;
-        return transformation;
+    public Incident incident(@RequestParam(required=false) String text) {
+        Incident incident = new Incident();
+        incident.victimText = text;
+        return incident;
+    }
+
+    @ModelAttribute
+    public Incident incident(
+            @RequestParam(required=false) String victimText,
+            @RequestParam(required=false) String zombieText) {
+        Incident incident = new Incident();
+        incident.victimText = victimText;
+        incident.zombieText = zombieText;
+        return incident;
     }
 
 
-    @RequestMapping(value="/victim"/*,  method= RequestMethod.POST*/)
-//    @ResponseBody
-    public String victim(
-            Incident transformation, Model model) {
+    @RequestMapping(value="/victim")
+    @ResponseBody
+    public Incident victim(@RequestBody Incident incident) {
 
-        if (transformation.victimText == null) return "victim";
+        if (incident == null || incident.victimText == null || incident.victimText.length() == 0){
+            Incident inc = new Incident();
+            inc.setZombieText("no victim text provided");
+            return inc;
+        }
 
-        progenitor.attack(transformation.victimText, transformation);
-        model.addAttribute("transformation", transformation);
+        progenitor.attack(incident);
+
+
+
+        System.out.println("\n****************************************************************************");
+        System.out.println("****************************************************************************\n");
+
+//        for (String mutation : incident.zombieMutations) {
+//            System.out.println(mutation);
+//        }
+//
+//        for (Tree victimTree : incident.getVictimParseTrees()) {
+//            System.out.println(victimTree.toString());
+//        }
+
+        System.out.println(incident.getZombieText());
 
         // Return name of view to render
-        return "victim";
+//        IncidentReport report = new IncidentReport();
+//        report.zombie = incident.getZombieText();
+//        report.setZombieMutations(incident.zombieMutations);
+        return incident;
+    }
+
+    @RequestMapping(value="/victim_test"/*,  method= RequestMethod.POST*/)
+//    @ResponseBody
+    public String victimTest(
+            Incident incident, Model model) {
+
+        if (incident == null || incident.victimText == null) return "victim_test";
+
+        progenitor.attack(incident);
+        model.addAttribute("incident", incident);
+
+        // Return name of view to render
+        return "victim_test";
     }
 
 
