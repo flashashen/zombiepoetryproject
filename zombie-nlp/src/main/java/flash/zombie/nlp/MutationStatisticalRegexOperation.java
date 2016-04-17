@@ -6,6 +6,8 @@ import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
 import edu.stanford.nlp.trees.tregex.tsurgeon.Tsurgeon;
 import edu.stanford.nlp.trees.tregex.tsurgeon.TsurgeonMatcher;
+import flash.zombie.nlp.model.Incident;
+import flash.zombie.nlp.model.Sentence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +18,15 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class MutationStatisticalRegexOperation implements Mutation {
 
-    public void mutate(Decomposition decomposition){
+    public void mutate(Sentence sentence){
 
-        List<Tree> victimTrees = decomposition.getParse();
-        for (Tree victim : victimTrees) {
-            TregexMatcher m = getPatternTarget().matcher(victim);
+        Tree victimRoot = sentence.getParseTree();
+            TregexMatcher m = getPatternTarget().matcher(victimRoot);
             while (m.findNextMatchingNode()) {
                 if (chompThisMatch(m.getMatch())) {
-                    decomposition.addMutationDescription(mutate(m.getMatch()));
+                    sentence.getMutations().add(mutate(m.getMatch()));
                 }
             }
-        }
     }
 
     /**
@@ -110,7 +110,8 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
 
     private Tree[] progenitorMatchingNodes;
     boolean chompThisMatch(Tree tree){
-        return  (Math.random()*100 >= 100-percentageChomped);
+        double value =  Math.random()*100;
+        return (value >= 100-percentageChomped);
     }
 
 

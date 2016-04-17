@@ -16,6 +16,8 @@ if ($usp_options['disable_required']) {
 
 <!-- Zombie Posts @ https://perishablepress.com/zombie-posts/ -->
 <div id="zombie-posts">
+
+
 	<?php if ($usp_options['usp_form_content'] !== '') echo $usp_options['usp_form_content']; ?>
 	
 	<form id="usp_form" method="post" enctype="multipart/form-data" action="">
@@ -28,11 +30,20 @@ if ($usp_options['disable_required']) {
 		else :
 
 
-		if (($usp_options['usp_name'] == 'show' || $usp_options['usp_name'] == 'optn') && ($usp_options['usp_use_author'] == false)) { ?>
+			if ($usp_options['usp_captcha'] == 'show') { ?>
+
+				<fieldset class="usp-captcha">
+					<label for="user-submitted-captcha"><?php echo $usp_options['usp_question']; ?></label>
+					<input name="user-submitted-captcha" type="text" value="" placeholder="<?php _e('Antispam Question', 'usp'); ?>"<?php echo $required; ?> class="usp-input exclude<?php echo $captcha; ?>">
+				</fieldset>
+			<?php }
+
+
+			if (($usp_options['usp_name'] == 'show' || $usp_options['usp_name'] == 'optn') && ($usp_options['usp_use_author'] == false)) { ?>
 		
 		<fieldset class="usp-name">
-			<label for="user-submitted-name"><?php _e('Your Name', 'usp'); ?></label>
-			<input name="user-submitted-name" type="text" value="" placeholder="<?php _e('Your Name', 'usp'); ?>"<?php if (usp_check_required('usp_name')) echo $required; ?> class="usp-input">
+			<label for="user-submitted-name"><?php _e('Author', 'usp'); ?></label>
+			<input name="user-submitted-name" type="text" value="" placeholder="<?php _e('Author', 'usp'); ?>"<?php if (usp_check_required('usp_name')) echo $required; ?> class="usp-input">
 		</fieldset>
 		<?php }
 
@@ -73,13 +84,6 @@ if ($usp_options['disable_required']) {
 		<?php }
 
 
-		if ($usp_options['usp_captcha'] == 'show') { ?>
-		
-		<fieldset class="usp-captcha">
-			<label for="user-submitted-captcha"><?php echo $usp_options['usp_question']; ?></label>
-			<input name="user-submitted-captcha" type="text" value="" placeholder="<?php _e('Antispam Question', 'usp'); ?>"<?php echo $required; ?> class="usp-input exclude<?php echo $captcha; ?>">
-		</fieldset>
-		<?php }
 
 
 		if (($usp_options['usp_category'] == 'show' || $usp_options['usp_category'] == 'optn') && ($usp_options['usp_use_cat'] == false)) { ?>
@@ -103,7 +107,7 @@ if ($usp_options['disable_required']) {
 		<fieldset class="usp-content">
 			<?php if ($usp_options['usp_richtext_editor'] == true) { ?>
 
-				<div class="usp_text-editor">
+				<div class="usp_text-editor spinner" >
 					<?php $settings = array(
 						'wpautop'          => true,  // enable rich text editor
 						'media_buttons'    => true,  // enable add media button
@@ -124,16 +128,24 @@ if ($usp_options['disable_required']) {
 			<?php } else { ?>
 
 				<label for="user-submitted-content"><?php _e('Post Content', 'usp'); ?></label>
-				<textarea name="user-submitted-content" rows="5" placeholder="<?php _e('Post Content', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $required; ?> class="usp-textarea"></textarea>
+				<textarea name="user-submitted-content" id="victim-text" rows="5" placeholder="<?php _e('Post Content', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $required; ?> class="usp-textarea"></textarea>
 			<?php } ?>
 		</fieldset>
 		<?php }
 
 			if ($usp_options['usp_zombie'] == 'show' || $usp_options['usp_zombie'] == 'optn') { ?>
 
+
+
 			<fieldset class="usp-content">
 				<label for="zombie-text"><?php _e('Zombie Text', 'usp'); ?></label>
-				<textarea name="zombie-text" rows="5" placeholder="<?php _e('Zombie Text', 'usp'); ?>"<?php if (usp_check_required('usp_zombie')) echo $required; ?> class="usp-input"></textarea>
+				  <div id="zombie-text-loading" class="sp">
+					  <div class="sp-3balls"></div>
+				  </div>
+				<br/>
+				<div id="zombie-text" >
+<!--					<textarea  name="zombie-text" id="zombie-text" rows="5" placeholder="--><?php //_e('Zombie Text', 'usp'); ?><!--"--><?php //if (usp_check_required('usp_zombie')) echo $required; ?><!-- class="usp-textarea"></textarea>-->
+				</div>
 			</fieldset>
 		<?php }
 
@@ -196,10 +208,19 @@ if ($usp_options['disable_required']) {
 			
 			<input class="exclude" name="user-submitted-post" id="user-submitted-post" type="submit" value="<?php _e('Submit Post', 'usp'); ?>">
 			<?php wp_nonce_field('usp-nonce', 'usp-nonce', false); ?>
+
+			<!-- for unspecified zombie artifacts -->
+			<input type="hidden" name="zombie-artifacts" id="zombie-artifacts" />
+			<input type="hidden" name="zombie-sentences" id="zombie-sentences" />
+
+			<!-- for zombie text ajax fetch -->
+			<input type="hidden" name="action" value="zombieform_action" />
+
 		</div>
 		<?php endif; ?>
 
 	</form>
 </div>
+
 <script>(function(){var e = document.getElementById('coldform_verify'); if(e) e.parentNode.removeChild(e);})();</script>
 <!-- Zombie Posts @ https://perishablepress.com/zombie-posts/ -->

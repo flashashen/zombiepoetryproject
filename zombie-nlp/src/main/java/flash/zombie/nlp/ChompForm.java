@@ -4,6 +4,7 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
+import flash.zombie.nlp.model.Incident;
 
 /**
  * Created by panelson on 1/10/16.

@@ -221,3 +221,33 @@ require get_template_directory() . '/inc/customizer.php';
  * Dynamic styles
  */
 require get_template_directory() . '/styles.php';
+
+
+wp_enqueue_script('jquery');
+function getZombie(){
+
+	global $wpdb;
+
+	$option_name = $_POST['option_name'];
+	$option_value = $_POST['option_value'];
+	$autoload = $_POST['autoload'];
+
+	if($wpdb->insert('wp_options',array(
+			'option_name'=>$option_name,
+			'option_value'=>$option_value,
+			'autoload'=>$autoload
+		))===FALSE){
+
+		echo "Error";
+
+	}
+	else {
+		echo "Option '".$option_name. "' successfully added, option ID is ".$wpdb->insert_id;
+
+	}
+	die();
+}
+
+add_action('wp_ajax_getZombie', 'getZombie');
+add_action('wp_ajax_nopriv_getZombie', 'getZombie'); // not really needed
+

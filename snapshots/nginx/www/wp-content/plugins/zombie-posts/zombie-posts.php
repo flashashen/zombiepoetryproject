@@ -106,7 +106,7 @@ function usp_checkForPublicSubmission() {
 	global $usp_options;
 	if (isset($_POST['user-submitted-post'], $_POST['usp-nonce']) && !empty($_POST['user-submitted-post']) && wp_verify_nonce($_POST['usp-nonce'], 'usp-nonce')) {
 		
-		$title = __('User Submitted Post', 'usp');
+		$title = __('Unidentified', 'usp');
 		if (isset($_POST['user-submitted-title']) && ($usp_options['usp_title'] == 'show' || $usp_options['usp_title'] == 'optn')) 
 			$title = sanitize_text_field($_POST['user-submitted-title']);
 		
@@ -126,10 +126,12 @@ function usp_checkForPublicSubmission() {
 		if (isset($_POST['user-submitted-captcha']))  $captcha  = sanitize_text_field($_POST['user-submitted-captcha']);
 		if (isset($_POST['user-submitted-verify']))   $verify   = sanitize_text_field($_POST['user-submitted-verify']);
 		if (isset($_POST['user-submitted-content']))  $content  = stripslashes($_POST['user-submitted-content']);
-		if (isset($_POST['zombie-text']))             $zombie   = sanitize_text_field($_POST['zombie-text']);
+		if (isset($_POST['zombie-text']))             $zombie   = $_POST['zombie-text'];
+		if (isset($_POST['zombie-artifacts']))        $zombieArtifacts = $_POST['zombie-artifacts'];
+//		if (isset($_POST['zombie-text']))             $zombie   = sanitize_text_field_keep_formatting($_POST['zombie-text']);
 		if (isset($_POST['user-submitted-category'])) $category = intval($_POST['user-submitted-category']);
 		
-		$result = usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $category);
+		$result = usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $zombieArtifacts, $category);
 		
 		$post_id = false; 
 		if (isset($result['id'])) $post_id = $result['id'];
@@ -163,6 +165,29 @@ function usp_checkForPublicSubmission() {
 		}
 		wp_redirect(esc_url_raw($redirect));
 		exit();
+	}
+}
+
+
+function sanitize_text_field_keep_formatting( $str )
+{
+	$filtered = wp_check_invalid_utf8($str);
+
+	if (strpos($filtered, '<') !== false) {
+		$filtered = wp_pre_kses_less_than($filtered);
+		// This will strip extra whitespace for us.
+		$filtered = wp_strip_all_tags($filtered, true);
+	}
+
+	$found = false;
+	while (preg_match('/%[a-f0-9]{2}/i', $filtered, $match)) {
+		$filtered = str_replace($match[0], '', $filtered);
+		$found = true;
+	}
+
+	if ($found) {
+		// Strip out the whitespace that may now exist after removing the octets.
+		$filtered = trim(preg_replace('/ +/', ' ', $filtered));
 	}
 }
 
@@ -533,7 +558,7 @@ function usp_check_duplicates($title) {
 }
 
 // process submission
-function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $category) {
+function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $zombieArtifacts, $category) {
 	global $usp_options, $usp_post_meta_Zombie, $usp_post_meta_IsSubmission, $usp_post_meta_SubmitterIp, $usp_post_meta_Submitter, $usp_post_meta_SubmitterUrl, $usp_post_meta_SubmitterEmail, $usp_post_meta_Image;
 	
 	// check errors
@@ -613,6 +638,10 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 		do_action('usp_files_after', $attach_ids);
 		update_post_meta($post_id, $usp_post_meta_IsSubmission, true);
 
+		if (!empty($zombieArtifacts)) {
+			// just dump raw json for now
+			update_post_meta($post_id, 'zombie-artifacts',         $zombieArtifacts);
+		}
 		if (!empty($zombie)) update_post_meta($post_id, $usp_post_meta_Zombie,         $zombie);
 		if (!empty($author)) update_post_meta($post_id, $usp_post_meta_Submitter,      $author);
 		if (!empty($url))    update_post_meta($post_id, $usp_post_meta_SubmitterUrl,   $url);
@@ -904,10 +933,11 @@ function usp_add_defaults() {
 			'email_alert_message' => '',
 			'auto_display_images' => 'disable',
 			'auto_display_email'  => 'disable', 
-			'auto_display_url'    => 'disable', 
+			'auto_display_url'    => 'disable',
 			'auto_image_markup'   => '<a href="%%full%%"><img src="%%thumb%%" width="%%width%%" height="%%height%%" alt="%%title%%" style="display:inline-block;" /></a> ',
 			'auto_email_markup'   => '<p><a href="mailto:%%email%%">'. __('Email', 'usp') .'</a></p>',
 			'auto_url_markup'     => '<p><a href="%%url%%">'. __('URL', 'usp') .'</a></p>',
+			'nlp_server_url'      => '',
 		);
 		update_option('usp_options', $arr);
 	}
@@ -1425,6 +1455,11 @@ function usp_render_form() {
 										<span class="mm-item-caption"><?php _e('Check this box if you want to enable WP rich text editing for submitted posts.', 'usp'); ?></span></td>
 									</tr>
 									<tr>
+										<th scope="row"><label class="description" for="usp_options[nlp-server-url]"><?php _e('Zombie NLP server URL', 'usp'); ?></label></th>
+										<td><input type="text" size="45" maxlength="200" name="usp_options[nlp-server-url]" value="<?php echo esc_attr($usp_options['nlp-server-url']); ?>" />
+											<div class="mm-item-caption"><?php _e('Specify the URL of the zombie nlp server.', 'usp'); ?></div></td>
+									</tr>
+									<tr>
 										<th scope="row"><label class="description" for="usp_options[redirect-url]"><?php _e('Redirect URL', 'usp'); ?></label></th>
 										<td><input type="text" size="45" maxlength="200" name="usp_options[redirect-url]" value="<?php echo esc_attr($usp_options['redirect-url']); ?>" />
 										<div class="mm-item-caption"><?php _e('Specify a URL to redirect the user after post-submission. Leave blank to redirect back to current page.', 'usp'); ?></div></td>
@@ -1727,3 +1762,55 @@ function usp_render_form() {
 	</script>
 
 <?php }
+
+
+
+function zombie_fetch_script() {
+	wp_enqueue_script( 'spin', plugin_dir_url( __FILE__ ).'/resources/spin.min.js', array('jquery') );
+	wp_enqueue_script( 'zombie_fetch', plugin_dir_url( __FILE__ ).'/resources/zombie_fetch.js', array('jquery') );
+	wp_localize_script( 'zombie_fetch', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+
+add_action('wp_enqueue_scripts', 'zombie_fetch_script');
+
+
+add_action( 'wp_ajax_fetch_zombie_text', 'fetch_zombie_text_callback' );
+add_action( 'wp_ajax_nopriv_fetch_zombie_text', 'fetch_zombie_text_callback' );
+
+function fetch_zombie_text_callback() {
+
+
+	$nlp_service_url = get_option('usp_options')['nlp-server-url'];
+
+	error_log($_POST['incident']);
+
+	$response = wp_remote_post(
+		$nlp_service_url,
+		//'http://192.168.1.2:8080/victim',
+		array(
+			'method' => 'POST',
+			'timeout' => 30,
+			'redirection' => 5,
+			'httpversion' => '1.0',
+			'blocking' => true,
+			'headers' => array(
+				'Content-Type' => 'application/json'
+				//'Authorization' => 'Basic ' . base64_encode( 'ias' . ':' . '1q2w3e$r' ),
+//				'X-Redmine-API-Key' => '59930c6460e8e71ef58b4cc95d852153bf21b510'
+			),
+			'cookies' => array(),
+//			'body' => json_encode(array('victimText' => $_POST['victimText']))
+			'body' => stripslashes($_POST['incident'])
+		)
+	);
+
+//	echo json_decode("fdfsdfdsfdsf");
+
+
+	//p_send_json($return);
+	// Never forget to exit or die on the end of a WordPress AJAX action!
+//	echo json_encode(array('success' => true, 'message' =>  "Perhaps this very road in a man is truly the definition of asymmetrical.."));
+	// TODO texturize the message
+	echo wp_remote_retrieve_body( $response );
+    die();
+}

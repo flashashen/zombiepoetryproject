@@ -1,0 +1,274 @@
+/*
+Theme Name: Fashionistas-Zombie
+Theme URI:
+Author: flashashen
+Author URI:
+Template: fashionistas
+Description: Child of fashionistas theme for custom layout of zombie data
+Version: 1.0
+License: GNU General Public License v3.0
+License URI: license.txt
+Tags: black, white, two-columns, fixed-layout, threaded-comments, full-width-template, custom-menu
+*/
+
+
+@import url("../fashionistas/style.css");
+
+/*.container {*/
+    /*width: 800px;*/
+/*}*/
+
+/*#zombie-post-title h2.entry-title {*/
+    /*margin:100px 150px 100px 80px;*/
+/*}*/
+
+
+span.zombie_text {
+    font-size: 12px;
+    color: #52706B;
+}
+
+
+
+
+body {
+    background-color: #f9f9f9;
+    margin-top: 25px;
+}
+
+.col-sm-2 {
+    padding: 10px;
+    border-radius: 4px;
+    height: 125px;
+    margin-bottom: 10px;
+}
+
+/* this style matches wp/fashionista textarea style. fragile. */
+.sp {
+    /*float: left;*/
+    position: relative;
+    clear: both;
+    width: 80%;
+    height: 130px; /* this is to match textarea w rows=5. fragile. */
+    margin: 0;
+    /*margin-bottom: 10px;*/
+    padding: 5px;
+    font-size: 12px;
+    white-space: pre;
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
+    /*-webkit-appearance: textarea;*/
+    /*-webkit-rtl-ordering: logical;*/
+    /*-webkit-user-select: text;*/
+    /*flex-direction: column;*/
+    /*resize: both;*/
+    /*cursor: auto;*/
+    /*white-space: pre-wrap;*/
+    border-radius: 0;
+    /*border: 1px solid #ccc;*/
+    /*background-color: #fff;*/
+    /*border: 1px solid #ccc;*/
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border linear .2s,box-shadow linear .2s;
+
+}
+
+
+/* Spinner 3Balls Scale */
+.sp-3balls, .sp-3balls:before, .sp-3balls:after {
+    border-radius: 50%;
+    background-color: #000;
+    width: 18px;
+    height: 18px;
+    transform-origin: center center;
+    display: inline-block;
+}
+
+.sp-3balls {
+    position: relative;
+    background-color: black;
+    opacity: 1;
+    -webkit-animation: spScaleAlpha 1s infinite linear;
+    animation: spScaleAlpha 1s infinite linear;
+}
+
+.sp-3balls:before, .sp-3balls:after {
+    content: '';
+    position: relative;
+    opacity: 0.25;
+}
+
+.sp-3balls:before {
+    left: 30px;
+    top: 0px;
+    -webkit-animation: spScaleAlphaBefore 1s infinite linear;
+    animation: spScaleAlphaBefore 1s infinite linear;
+}
+
+.sp-3balls:after {
+    left: -30px;
+    top: -23px;
+    -webkit-animation: spScaleAlphaAfter 1s infinite linear;
+    animation: spScaleAlphaAfter 1s infinite linear;
+}
+
+@-webkit-keyframes spScaleAlpha {
+    0% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 0.25;
+    }
+    66% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes spScaleAlpha {
+    0% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 0.25;
+    }
+    66% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes spScaleAlphaBefore {
+    0% {
+        opacity: 0.25;
+    }
+    33% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 0.25;
+    }
+}
+@keyframes spScaleAlphaBefore {
+    0% {
+        opacity: 0.25;
+    }
+    33% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 0.25;
+    }
+}
+@-webkit-keyframes spScaleAlphaAfter {
+    33% {
+        opacity: 0.25;
+    }
+    66% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.25;
+    }
+}
+@keyframes spScaleAlphaAfter {
+    33% {
+        opacity: 0.25;
+    }
+    66% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.25;
+    }
+}
+
+
+
+
+@font-face {
+    font-family: "demo";
+    src: url('fonts/icons.woff') format("woff"), url('fonts/icons.ttf') format("truetype");
+}
+
+@keyframes loadingStart {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+#css-input:checked ~ .loading .loading-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-animation: loadingStart 3s 300ms linear 1 both;
+    -moz-animation: loadingStart 3s 300ms linear 1 both;
+    -o-animation: loadingStart 3s 300ms linear 1 both;
+    animation: loadingStart 3s 300ms linear 1 both;
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+#css-input:checked ~ .loading .loading-text {
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+    text-shadow: white 0 0 1em, white 0 0 0.5em, white 0 0 0.25em;
+    position: relative;
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#css-input:checked ~ .loading .loading-text:after {
+    content: "...";
+}
+#css-input:checked ~ .loading .loading-spinner {
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: -3.9375rem auto 0;
+    color: #1a1d1d;
+    text-align: center;
+}
+#css-input:checked ~ .loading .loading-icon {
+    font-size: 4.8125rem;
+    line-height: 5.25rem;
+    text-shadow: rgba(255, 255, 255, 0.75) 0 0 0.5em;
+    -webkit-animation: loading 1s steps(4) infinite;
+    -moz-animation: loading 1s steps(4) infinite;
+    -o-animation: loading 1s steps(4) infinite;
+    animation: loading 1s steps(4) infinite;
+    display: block;
+    vertical-align: middle;
+}
+#css-input:checked ~ .loading .loading-icon:before {
+    vertical-align: middle;
+    content: "\e000";
+    font-family: "demo";
+}
+
