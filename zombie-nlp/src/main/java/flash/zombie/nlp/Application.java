@@ -6,8 +6,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
-import java.util.Arrays;
-
 
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {

@@ -1,12 +1,10 @@
 package flash.zombie.nlp;
 
-import edu.stanford.nlp.trees.Tree;
 import flash.zombie.nlp.model.Incident;
-import flash.zombie.nlp.model.Transformation;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller

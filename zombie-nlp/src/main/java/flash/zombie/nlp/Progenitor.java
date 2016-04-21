@@ -1,8 +1,5 @@
 package flash.zombie.nlp;
 
-import edu.stanford.nlp.trees.*;
-import edu.stanford.nlp.trees.tregex.TregexMatcher;
-import edu.stanford.nlp.trees.tregex.TregexPattern;
 import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
 

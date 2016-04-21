@@ -2,8 +2,6 @@ package flash.zombie.nlp;
 
 import edu.stanford.nlp.trees.Tree;
 
-import java.util.List;
-
 /**
  *
  */
