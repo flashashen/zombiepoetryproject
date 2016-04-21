@@ -63,8 +63,9 @@ Vagrant.configure(2) do |config|
         zombie_wp.vm.provision "ansible" do |ansible|
             ansible.limit = 'all'
             #ansible.raw_arguments  = "--ask-vault-pass"
-            ansible.playbook = "host_zombie_wp.yml"
+            #ansible.playbook = "backup.yml"
             #ansible.playbook = "restore.yml"
+            ansible.playbook = "host_zombie_wp.yml"
             ansible.verbose = "vvvv"
             ansible.groups = {
                 "zombie_wp"  =>  ["zombie_wp"],

@@ -23,7 +23,7 @@
 
 
 #
-#   Import data from dump
+#   Dump sql data
 #
     - name: mysqldump
       shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --user=wordpress --password={{wp_pass.stdout}}  > zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql
