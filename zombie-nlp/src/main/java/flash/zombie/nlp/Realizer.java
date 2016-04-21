@@ -5,10 +5,6 @@ import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
 import edu.stanford.nlp.util.StringUtils;
 import flash.zombie.nlp.model.Sentence;
-import org.languagetool.JLanguageTool;
-import org.languagetool.MultiThreadedJLanguageTool;
-import org.languagetool.language.AmericanEnglish;
-import org.languagetool.rules.RuleMatch;
 
 import java.io.IOException;
 import java.io.StringWriter;

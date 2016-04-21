@@ -5,12 +5,10 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.Label;
 import edu.stanford.nlp.ling.StringLabel;
 import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.JSONOutputter;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.pipeline.TextOutputter;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations;
-import edu.stanford.nlp.trees.TreeReader;
 import edu.stanford.nlp.util.CoreMap;
 import flash.zombie.nlp.model.Sentence;
 
@@ -27,6 +25,8 @@ public class Decomposition {
 
 
     public static final Label MARKER_LAST_WORD_OF_PHRASE = new StringLabel("endOfPhrase");
+//    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|\\:|\\;|[!?]+";
+    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|:|;|--|[!?]+";
 
 
     //private List<Tree> sentencesPartsOfSpeech;
@@ -34,11 +34,12 @@ public class Decomposition {
 
     ArrayList<String> mutationDescriptions = new ArrayList<String>();
 
+
     public static final StanfordCoreNLP pipeline;
     static {
         Properties properties = new Properties();
         properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
-//        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, quote, regexner");
+        properties.setProperty("ssplit.boundaryTokenRegex", SENTENCE_BOUNDARY_REGEX);
 //        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, sentiment, natlog, cdc, gender, depparse, truecase, relation, quote, entitymentions");
         pipeline = new StanfordCoreNLP(properties);
     }
@@ -47,6 +48,7 @@ public class Decomposition {
 
         // Remove junk / Normalize input
         text = text.replace("\\", "");
+
 
         document = new Annotation(text);
         pipeline.annotate(document);

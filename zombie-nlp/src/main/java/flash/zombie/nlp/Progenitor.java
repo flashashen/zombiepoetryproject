@@ -22,9 +22,11 @@ public class Progenitor {
     public void attack(Incident incident){
 
         Sentence victimSentence, zombieSentence;
+        boolean forceZombification = true;
 
         // Decompose/Analyze the victim text
         if (incident.getVictim() == null) {
+            forceZombification = false;
             Decomposition decomposition = new Decomposition(incident.victimText);
             incident.setVictim(decomposition.getSentences());
             incident.setZombie(new ArrayList<>(incident.getVictim().size()));
@@ -48,15 +50,25 @@ public class Progenitor {
 //                incident.getZombie().set(i, zombieSentence);
 //            }
 
-            // Then apply all mutations to the zombie sentence
+            // Then apply all mutations to the zombie sentence.
             if (zombieSentence.isAttack()) {
                 zombieSentence.setParseTree(victimSentence.getParseTree().deepCopy());
                 zombieSentence.setMutations(new ArrayList<>());
                 zombieSentence.setText("");
-                for (Mutation mutation : mutations) {
-                    mutation.mutate(zombieSentence);
+
+                // Keep trying if no mutations result and if force flag is true.
+                // force flag should be true when zombification was selective.
+                i = 0;
+                while (forceZombification
+                        && (zombieSentence.getMutations() == null || zombieSentence.getMutations().size() == 0)
+                        && i < 10) {
+
+                    for (Mutation mutation : mutations) {
+                        mutation.mutate(zombieSentence);
+                    }
+                    zombieSentence.setAttack(false);
+                    i++;
                 }
-                zombieSentence.setAttack(false);
             }
         }
 
