@@ -103,6 +103,16 @@
 
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.5.2</version>
+			<scope>system</scope>
+			<classifier>models</classifier>
+			<systemPath>${project.basedir}/lib/stanford-corenlp-models-small.jar</systemPath>
+		</dependency>
+
+
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-parser</artifactId>
 			<version>3.5.2</version>
 		</dependency>
