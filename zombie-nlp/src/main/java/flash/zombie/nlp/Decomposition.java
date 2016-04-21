@@ -25,8 +25,8 @@ public class Decomposition {
 
 
     public static final Label MARKER_LAST_WORD_OF_PHRASE = new StringLabel("endOfPhrase");
-//    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|\\:|\\;|[!?]+";
-    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|:|;|--|[!?]+";
+    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|\\:|\\;|[!?]+";
+//    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|:|;|--|[!?]+";
 
 
     //private List<Tree> sentencesPartsOfSpeech;
@@ -38,7 +38,8 @@ public class Decomposition {
     public static final StanfordCoreNLP pipeline;
     static {
         Properties properties = new Properties();
-        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
+//        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse");
+        properties.setProperty("annotators", "tokenize, ssplit, pos, parse");
         properties.setProperty("ssplit.boundaryTokenRegex", SENTENCE_BOUNDARY_REGEX);
 //        properties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, sentiment, natlog, cdc, gender, depparse, truecase, relation, quote, entitymentions");
         pipeline = new StanfordCoreNLP(properties);

@@ -56,19 +56,18 @@ public class Progenitor {
                 zombieSentence.setMutations(new ArrayList<>());
                 zombieSentence.setText("");
 
-                // Keep trying if no mutations result and if force flag is true.
-                // force flag should be true when zombification was selective.
-                i = 0;
-                while (forceZombification
-                        && (zombieSentence.getMutations() == null || zombieSentence.getMutations().size() == 0)
-                        && i < 10) {
+                // Keep trying if no mutations result and if force flag is true. force flag should be true when zombification was selective.
+                int j = 0;
+                do {
 
                     for (Mutation mutation : mutations) {
                         mutation.mutate(zombieSentence);
                     }
                     zombieSentence.setAttack(false);
-                    i++;
-                }
+                    j++;
+                } while (forceZombification
+                        && (zombieSentence.getMutations() == null || zombieSentence.getMutations().size() == 0)
+                        && j < 10);
             }
         }
 
