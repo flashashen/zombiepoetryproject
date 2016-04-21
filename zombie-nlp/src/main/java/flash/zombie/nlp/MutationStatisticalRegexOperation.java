@@ -1,12 +1,8 @@
 package flash.zombie.nlp;
 
 import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.Trees;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
-import edu.stanford.nlp.trees.tregex.tsurgeon.Tsurgeon;
-import edu.stanford.nlp.trees.tregex.tsurgeon.TsurgeonMatcher;
-import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
 
 import java.util.ArrayList;

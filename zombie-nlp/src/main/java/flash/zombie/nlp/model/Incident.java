@@ -1,8 +1,5 @@
 package flash.zombie.nlp.model;
 
-import edu.stanford.nlp.trees.Tree;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
