@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nascent Zombie NLP Server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="#" th:action="@{/victim}" th:object="${transformation}" method="post">
+    <input type="text" th:field="*{victimText}" />
+</form>
+
+<span th:if="${transformation.victimText != null}">
+
+<p th:text="'Victim text: ' + ${transformation.victimText}"/>
+
+    <p th:each="tree : ${transformation.victimParseTrees}">
+        <p th:text="'Victim parse tree: , ' + ${tree}"/>
+    </p>
+
+</span>
+
+
+<span th:if="${transformation.victimParseTrees != null}">
+
+
+
+<p th:text="'Zombie text: ' + ${transformation.zombieText}"/>
+
+
+      <hr/>
+
+    <p th:each="line : ${transformation.zombieTextLines}" th:text="${line}">
+
+    </p>
+
+<hr/>
+
+
+
+
+<p th:each="tree : ${transformation.zombieMutations}" th:text="'mutations: ' + ${tree}"/>
+
+<p th:each="tree : ${transformation.victimParseTrees}" th:text="'Zombie parse tree: ' + ${tree}"/>
+
+</span>
+
+
+</body>
+</html>
