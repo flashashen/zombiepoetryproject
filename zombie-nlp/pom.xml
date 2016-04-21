@@ -93,12 +93,13 @@
 			<version>3.5.2</version>
 		</dependency>
 
-		<dependency>
-			<groupId>edu.stanford.nlp</groupId>
-			<artifactId>stanford-corenlp</artifactId>
-			<version>3.5.2</version>
-			<classifier>models</classifier>
-		</dependency>
+		<!-- copied in just what we need to meet heroku slug size limit -->
+		<!--<dependency>-->
+			<!--<groupId>edu.stanford.nlp</groupId>-->
+			<!--<artifactId>stanford-corenlp</artifactId>-->
+			<!--<version>3.5.2</version>-->
+			<!--<classifier>models</classifier>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
