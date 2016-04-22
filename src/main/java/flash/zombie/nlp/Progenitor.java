@@ -1,5 +1,7 @@
 package flash.zombie.nlp;
 
+import edu.stanford.nlp.ling.StringLabel;
+import edu.stanford.nlp.trees.Tree;
 import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
 
@@ -53,23 +55,30 @@ public class Progenitor {
                 zombieSentence.setMutations(new ArrayList<>());
                 zombieSentence.setText("");
 
+
+                if (!forceZombification) {
+                    applyAllMutations(zombieSentence);
+                }
+
                 // Keep trying if no mutations result and if force flag is true. force flag should be true when zombification was selective.
-                int j = 0;
-                do {
+                else {
+                    int j = 0;
+                    do {
+                        applyAllMutations(zombieSentence);
+                        j++;
+                    } while (forceZombification
+                            && (zombieSentence.getMutations().size() == 0)
+                            && j < 10);
 
-                    for (Mutation mutation : mutations) {
-                        mutation.mutate(zombieSentence);
+                    // If there still isn't a mutation, then force replace the whole thing with a fragment. The root node
+                    // of every sentence will be 'ROOT'. We have to leave that alone so replace the first child. There
+                    // seems to always be a single child of ROOT (S,SQ, or FRAG)
+                    if (zombieSentence.getMutations().size() == 0) {
+                        Tree node = zombieSentence.getParseTree();
+                        node.firstChild().setLabel(new StringLabel("FRAG"));
+                        node.firstChild().setValue("FRAG");
+                        fragMutator.mutate(zombieSentence, true);
                     }
-                    zombieSentence.setAttack(false);
-                    j++;
-                } while (forceZombification
-                        && (zombieSentence.getMutations().size() == 0)
-                        && j < 10);
-
-                // If there still isn't a mutation, then replace the whole thing with a fragment
-                if (zombieSentence.getMutations().size() == 0){
-                    zombieSentence.getMutations().add(
-                            MutateReplaceFragFromSignatureZombieFrags.mutateNode(zombieSentence.getParseTree()));
                 }
             }
         }
@@ -86,10 +95,12 @@ public class Progenitor {
     }
 
 
-
-
-
-
+    private void applyAllMutations(Sentence zombieSentence){
+        for (Mutation mutation : mutations) {
+            mutation.mutate(zombieSentence);
+        }
+        zombieSentence.setAttack(false);
+    }
 
 
     public Progenitor() {
@@ -104,12 +115,25 @@ public class Progenitor {
 
         mutations = new ArrayList<>();
         //mutations.add(new MutateSwapPPWithSibling(20, progenitorDecomposition));
-        mutations.add(new MutateReplaceChildrenFromProgenitor(60, progenitorDecomposition));
+        mutations.add(new MutateReplaceChildrenFromProgenitor("NP (< SBAR | < NN | < NNS )", 60, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("VBG", 60, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("VBD", 60, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("RB | RBR | RBS", 40, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("JJ | JJR | JJS", 40, progenitorDecomposition));
-        mutations.add(new MutateReplaceFragFromSignatureZombieFrags(50, progenitorDecomposition));
+//        mutations.add(new MutateReplaceFragFromSignatureZombieFrags(50, progenitorDecomposition));
+
+
+
+        // Setup a special mutator for fragments. Source text is a list of phrases. Override the
+        // phrase head node (beneath the root) as a FRAG and then let MutateReplaceChildrenFromProgenitor
+        // process as normal.
+        Decomposition fragDecomposition = new Decomposition(String.join(" ", FRAGMENTS));
+        for (Tree frag : fragDecomposition.getParse()){
+            frag.firstChild().setLabel(new StringLabel("FRAG"));
+            frag.firstChild().setValue("FRAG");
+        }
+        fragMutator = new MutateReplaceChildrenFromProgenitor("FRAG", 50, fragDecomposition);
+        mutations.add(fragMutator);
 
 
 
@@ -143,7 +167,32 @@ public class Progenitor {
     }
 
 
-
+    static final String[] FRAGMENTS = {
+            "is this innocence, surviving at the cost of mind?",
+            "honestly, I don’t know where to go from here.",
+            "this, friend, is where we are.",
+            "what else?",
+            "alluvial soil, detrital dirt, turning world.",
+            "Movement.",
+            "You are a stranger, sight to see.",
+            "My God, what have you done? What will you become?",
+            "I was not myself then; I am not me now. ",
+            " (Now, hold on a sec, before you get the wrong idea. Let me segue, let me keep you since I’ve got you).",
+            "Mute the voice. ",
+            "Do you remember? ",
+            "Inside, you feel the chill. ",
+            "Do not look to the sky. ",
+            "It’s all for you. ",
+            "Deep blues. ",
+            "Oh, You’re close. ",
+            "Please, Please stop.",
+            "Take me back to my work. ",
+            "Against your will, you’ll feel it then.",
+            "Are you nervous? ",
+            "Entirely plausible.",
+            "Might’ve been any one of us? ",
+            "Don’t worry. ",
+            "It’s a zombie life we lead. "};
 
 
     public Decomposition getDecomposition(){
@@ -154,7 +203,7 @@ public class Progenitor {
 
     private Decomposition progenitorDecomposition;
     private List<Mutation> mutations;
-    private MutationStatisticalRegexOperation forcedFragMutator;
+    private MutateReplaceChildrenFromProgenitor fragMutator;
 
 
         //
