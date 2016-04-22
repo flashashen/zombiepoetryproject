@@ -63,8 +63,14 @@ public class Progenitor {
                     zombieSentence.setAttack(false);
                     j++;
                 } while (forceZombification
-                        && (zombieSentence.getMutations() == null || zombieSentence.getMutations().size() == 0)
+                        && (zombieSentence.getMutations().size() == 0)
                         && j < 10);
+
+                // If there still isn't a mutation, then replace the whole thing with a fragment
+                if (zombieSentence.getMutations().size() == 0){
+                    zombieSentence.getMutations().add(
+                            MutateReplaceFragFromSignatureZombieFrags.mutateNode(zombieSentence.getParseTree()));
+                }
             }
         }
 
@@ -104,6 +110,7 @@ public class Progenitor {
         mutations.add(new MutateSimpleReplaceFromProgenitor("RB | RBR | RBS", 40, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("JJ | JJR | JJS", 40, progenitorDecomposition));
         mutations.add(new MutateReplaceFragFromSignatureZombieFrags(50, progenitorDecomposition));
+
 
 
 //        BufferedReader br = null;
@@ -147,7 +154,7 @@ public class Progenitor {
 
     private Decomposition progenitorDecomposition;
     private List<Mutation> mutations;
-   // private final String ZOMBIE = "Another town, another attack: Shots, then a show of conflagration. Blood rushes from our limbs, grooving the old channels, pooling hearts and minds. [Our Zombie Life] We bring to our bright screens our heat and our tears, proclaiming, as one, the suddenness of our pain, pleading to let some good be born of this. Buy my book, this one quickly shares, which alone might console and explain. The rest of us decide, without conviction, not to chirp a word. Is this innocence, surviving at the cost of mind? The country, still, is better, where blackbirds shawl the treetops, mimic the huffing wind. At night, the scent of skunk slices clean through the walls to where dreams spool and roll in bellies that growl and burst";
+    private MutationStatisticalRegexOperation forcedFragMutator;
 
 
         //
