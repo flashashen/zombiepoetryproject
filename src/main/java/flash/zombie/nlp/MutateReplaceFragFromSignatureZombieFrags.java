@@ -13,6 +13,7 @@ public class MutateReplaceFragFromSignatureZombieFrags extends MutationStatistic
 
 
     public String mutate(Tree matchingNode){
+
        // String fragment = getRandomFragment();
         Tree matchingChild = null;
         Integer fragmentChildIndex = null;
@@ -25,19 +26,23 @@ public class MutateReplaceFragFromSignatureZombieFrags extends MutationStatistic
         }
 
         if (fragmentChildIndex != null){
-            //matchingNode.setChild(fragmentChildIndex, fragment);
-            String matchString = Decomposition.getRoughRealization(matchingNode);
-            matchingChild.setLabel(new StringLabel("SIGNATURE_FRAG"));
-            matchingChild.setValue(getRandomFragment());
-            matchingChild.setChildren(new Tree[]{});
-            return "- replace ["
-                    +  matchString
-                    + "] with ["
-                    +  matchingChild.value()
-                    + "]";
+            return mutateNode(matchingChild);
         }
 
         return "- failed to find mactched FRAG. Check code";
+    }
+
+
+    public static String mutateNode(Tree node){
+        String matchString = Decomposition.getRoughRealization(node);
+        node.setLabel(new StringLabel("SIGNATURE_FRAG"));
+        node.setValue(getRandomFragment());
+        node.setChildren(new Tree[]{});
+        return "- replace ["
+                +  matchString
+                + "] with ["
+                +  node.value()
+                + "]";
     }
 
 
@@ -56,7 +61,7 @@ public class MutateReplaceFragFromSignatureZombieFrags extends MutationStatistic
                 '}';
     }
 
-    public String getRandomFragment(){
+    public static String getRandomFragment(){
         return FRAGMENTS[
                 ThreadLocalRandom.current().nextInt(0, FRAGMENTS.length)
                 ];

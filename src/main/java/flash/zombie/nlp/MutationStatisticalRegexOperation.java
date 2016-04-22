@@ -41,13 +41,18 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
 
 
     public MutationStatisticalRegexOperation(String patternTargetString, int percentageChomped, Decomposition progenitorDecomposition) {
+        init(patternTargetString, percentageChomped, progenitorDecomposition);
+    }
+
+
+    public synchronized void init(String patternTargetString, int percentageChomped, Decomposition progenitorDecomposition) {
 
         this.percentageChomped = percentageChomped;
         this.patternTargetString = patternTargetString;
 
         // Filter the tree list from the sentences of the zombie text to just a list
         // of source nodes for this transformation
-//        for (Tree tree: zombieSourceTrees) {
+//        for (Tree tree: zombieSourceTrees) {f
 //            TregexMatcher matcher = getPatternTarget().matcher(tree);
 //            while (matcher.find())
 //                tempTreeList.add(matcher.getMatch());
@@ -67,6 +72,12 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
 
 
     }
+
+    public void reset(String patternTargetString, int percentageChomped){
+
+    }
+
+
 
     public Tree findProgenitorMatch(Tree tree){
         return progenitorMatchingNodes[
