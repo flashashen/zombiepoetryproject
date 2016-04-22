@@ -9,17 +9,17 @@ public class MutateReplaceChildrenFromProgenitor extends MutationStatisticalRege
 
 
     public String mutate(Tree matchingNode){
-        Tree progentitorMatched = findProgenitorMatch(matchingNode);
-        String pennString = Decomposition.getRoughRealization(matchingNode);
-        matchingNode.setChildren(progentitorMatched.getChildrenAsList());
-        return "- replace [" + pennString + "] with [" + Decomposition.getRoughRealization(matchingNode) + "]";
-
+        return replaceChildren(matchingNode, findProgenitorMatch(matchingNode));
     }
 
+    public static String replaceChildren(Tree target, Tree source){
+        String pennString = Decomposition.getRoughRealization(target);
+        target.setChildren(source.getChildrenAsList());
+        return "- replace [" + pennString + "] with [" + Decomposition.getRoughRealization(source) + "]";
+    }
 
-    public MutateReplaceChildrenFromProgenitor(int percentageChomped, Decomposition progenitorDecomposition) {
-      //  super( "NP !> S < DT < NN", percentageChomped, progenitorDecomposition);
-        super( "NP (< SBAR | < NN | < NNS )", percentageChomped, progenitorDecomposition);
+    public MutateReplaceChildrenFromProgenitor(String matchPattern, int percentageChomped, Decomposition progenitorDecomposition) {
+        super(matchPattern, percentageChomped, progenitorDecomposition);
     }
 
     @Override

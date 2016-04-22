@@ -14,30 +14,32 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class MutationStatisticalRegexOperation implements Mutation {
 
-    public void mutate(Sentence sentence){
 
-        Tree victimRoot = sentence.getParseTree();
-            TregexMatcher m = getPatternTarget().matcher(victimRoot);
-            while (m.findNextMatchingNode()) {
-                if (chompThisMatch(m.getMatch())) {
-                    sentence.getMutations().add(mutate(m.getMatch()));
-                }
-            }
+    public void mutate(Sentence sentence){
+        mutate(sentence, false);
     }
 
-    /**
-     * Mutate the tree in place
-     * @param matchingNode - next node matching the tregex pattern in the victim text
-     * @return - Description of mutation applied
-     */
+    public void mutate(Sentence sentence, boolean force) {
+        Tree victimRoot = sentence.getParseTree();
+        TregexMatcher m = getPatternTarget().matcher(victimRoot);
+        while (m.findNextMatchingNode()) {
+            if (force || chompThisMatch(m.getMatch())) {
+                sentence.getMutations().add(mutate(m.getMatch()));
+            }
+        }
+    }
+
+        /**
+         * Mutate the tree in place
+         * @param matchingNode - next node matching the tregex pattern in the victim text
+         * @return - Description of mutation applied
+         */
     public abstract String mutate(Tree matchingNode);
 
 
     private int percentageChomped;
     private String patternTargetString;
     private TregexPattern patternTarget;
-    private Decomposition progenitorDecomposition;
-    protected List<String> mutationDescriptions;
 
 
     public MutationStatisticalRegexOperation(String patternTargetString, int percentageChomped, Decomposition progenitorDecomposition) {
@@ -58,24 +60,23 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
 //                tempTreeList.add(matcher.getMatch());
 //        }
 
-        this.progenitorDecomposition = progenitorDecomposition;
+        progenitorMatchingNodes = initializeProgenitorMatchingNodes(progenitorDecomposition);
 
+
+    }
+
+    public Tree[] initializeProgenitorMatchingNodes(Decomposition decomposition){
         // Put all matches from the progenitor text into an array
         ArrayList<Tree> tempTreeList = new ArrayList<Tree>();
-        for (Tree tree : this.progenitorDecomposition.getParse()) {
+        for (Tree tree : decomposition.getParse()) {
             TregexMatcher m = getPatternTarget().matcher(tree);
 
             while (m.find())
                 tempTreeList.add(m.getMatch());
         }
-        progenitorMatchingNodes = tempTreeList.toArray(new Tree[0]);
-
-
+        return tempTreeList.toArray(new Tree[0]);
     }
 
-    public void reset(String patternTargetString, int percentageChomped){
-
-    }
 
 
 
