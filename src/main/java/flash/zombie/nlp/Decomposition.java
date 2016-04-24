@@ -25,8 +25,8 @@ public class Decomposition {
 
 
     public static final Label MARKER_LAST_WORD_OF_PHRASE = new StringLabel("endOfPhrase");
-    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|\\:|\\;|[!?]+";
-//    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|:|;|--|[!?]+";
+//    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|\\:|\\;|[!?]+";
+    public static final String SENTENCE_BOUNDARY_REGEX = "\\.|:|;|--|[!?]+";
 
 
     //private List<Tree> sentencesPartsOfSpeech;
