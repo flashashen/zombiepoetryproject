@@ -376,20 +376,27 @@ function usp_editor_style($mce_css){
 add_filter('mce_css', 'usp_editor_style');
 
 // shortcode
-function usp_display_form($atts = array(), $content = null) {
+function usp_display_infection($atts = array(), $content = null) {
 	global $usp_options;
-	
-	$default = WP_PLUGIN_DIR .'/'. basename(dirname(__FILE__)) .'/views/submission-form.php';
-	$custom  = WP_PLUGIN_DIR .'/'. basename(dirname(__FILE__)) .'/custom/submission-form.php';
-	
+	$default = WP_PLUGIN_DIR .'/'. basename(dirname(__FILE__)) .'/views/infection.php';
 	if ($atts === true) $redirect = usp_currentPageURL();
-	
 	ob_start();
-	if ($usp_options['usp_form_version'] == 'custom' && file_exists($custom)) include($custom);
-	else include($default);
+	include($default);
 	return apply_filters('usp_form_shortcode', ob_get_clean());
 }
-add_shortcode ('zombie-posts', 'usp_display_form');
+add_shortcode ('zombie-infection', 'usp_display_infection');
+add_shortcode ('zombie-posts', 'usp_display_infection');
+
+
+function usp_display_incidents($atts = array(), $content = null) {
+	$default = WP_PLUGIN_DIR .'/'. basename(dirname(__FILE__)) .'/views/incidents.php';
+	if ($atts === true) $redirect = usp_currentPageURL();
+	ob_start();
+	include($default);
+	return apply_filters('usp_form_shortcode', ob_get_clean());
+}
+add_shortcode ('zombie-incidents', 'usp_display_incidents');
+
 
 // template tag
 function user_submitted_posts() {
@@ -578,7 +585,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 	if (isset($usp_options['usp_tags'])     && ($usp_options['usp_tags']     == 'show') && empty($tags))     $newPost['error'][] = 'required-tags';
 	if (isset($usp_options['usp_category']) && ($usp_options['usp_category'] == 'show') && empty($category)) $newPost['error'][] = 'required-category';
 	if (isset($usp_options['usp_content'])  && ($usp_options['usp_content']  == 'show') && empty($content))  $newPost['error'][] = 'required-content';
-	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-content';
+//	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-content';
 
 	if (isset($usp_options['usp_captcha']) && ($usp_options['usp_captcha'] == 'show') && !usp_spamQuestion($captcha)) $newPost['error'][] = 'required-captcha';
 	if (isset($usp_options['usp_email'])   && ($usp_options['usp_email']   == 'show') && !usp_validateEmail($email))  $newPost['error'][] = 'required-email';
@@ -1377,12 +1384,12 @@ function usp_render_form() {
 												<p><?php _e('With this option, you can copy the plugin&rsquo;s default templates:', 'usp'); ?></p>
 												<ul>
 													<li><code>/resources/usp.css</code></li>
-													<li><code>/views/submission-form.php</code></li>
+													<li><code>/views/infection.php</code></li>
 												</ul>
 												<p><?php _e('..and upload them to the plugin&rsquo;s', 'usp'); ?> <code>/custom/</code> <?php _e('directory:', 'usp'); ?></p>
 												<ul>
 													<li><code>/custom/usp.css</code></li>
-													<li><code>/custom/submission-form.php</code></li>
+													<li><code>/custom/infection.php</code></li>
 												</ul>
 												<p>
 													<?php _e('That will enable you to customize the form and styles as desired. Note: the', 'usp'); ?> <code>/custom/usp.css</code> 
