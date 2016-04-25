@@ -36,27 +36,36 @@ jQuery(document).ready(function($) {
     $('#zombie-text').show();
 
 
-    //$("#zombie-text-actions").on('click', function (event) { $(this).show() });
-
-    $("#zombie-text").on('click', 'span.zombie_text',
+    /*
+            On click select the sentence, displaying the Inspect bookends
+     */
+    $("#zombie-text").on('click', 'span.zombie_sentence',
         function (event) {
 
-            selectZombieSentence($(this));
+            if (!$(this).prop("selected")) {
+                selectZombieSentence($(this));
+            }
+        }
+    );
 
-            //// Set all spans to default
-            //var sentenceSpans = $("span.zombie_text")
-            //sentenceSpans.css({backgroundColor: "#FFFFFF", borderWidth: "0" }); // {display: "none", border-width: "0"});
-            //
-            //sentenceSpans.find("span.zombie_text_actions").css("display", "none");
-            //
-            //// Setup this span as active
-            //$(this).css({backgroundColor: "#e6e6e6", borderWidth: "0"});
-            //$(this).find('span.zombie_text_actions').css({display: "inline"});
+    /*
+            If already selected and text received a click, rezombify the sentence
+     */
+    $("#zombie-text").on('click', 'span.zombie_sentence_text',
+        function (event) {
+
+            var parent = $(this).parent("span.zombie_sentence");
+            if (parent.prop("selected")) {
+                ajax_zombify_sentence(parent.attr("data-sentence"));
+            }
         }
     );
 
 
-    $("#zombie-text").on('dblclick', 'span.zombie_text',
+    /*
+            On A double click, rezombify the sentence
+     */
+    $("#zombie-text").on('dblclick', 'span.zombie_sentence',
         function (event) {
             ajax_zombify_sentence($(this).attr("data-sentence"))
         }
@@ -129,26 +138,22 @@ function appendSentences(zombieDiv, sentences, sentence_index) {
     // then append each sentence
     jQuery(sentences).each(function (index, sentence) {
 
-        var span = jQuery('<span class="zombie_text"></span>');
-        span.append(sentence.text.replace(/(?:\r\n|\r|\n)/g, '<br />'));
-        span.attr("data-sentence",index);
+        var sentenceSpan = jQuery('<span class="zombie_sentence"></span>');
+        sentenceSpan.attr("data-sentence",index);
 
-       // var actionsSpan = buildZombieTextActionsSpan(sentence);
-        //actionsSpan.hide();
-        //span.click(
-        //    function() {
-        //        actionsSpan.show();
-        //    }, function() {
-        //        actionsSpan.hide();
-        //    }
-        //);
-        span.prepend(buildZombieTextActionsSpan(sentence, span));
-        span.append(buildZombieTextActionsSpan(sentence, span));
+        sentenceSpan.append(buildInspectButton(sentence));
 
-        zombieDiv.append(span);
+        var textSpan = jQuery('<span class="zombie_sentence_text"></span>');
+        textSpan.append(sentence.text.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+        sentenceSpan.append(textSpan);
+
+        sentenceSpan.append(buildInspectButton(sentence));
+
+
+        zombieDiv.append(sentenceSpan);
 
         if (undefined != sentence_index && sentence_index == index){
-            selectZombieSentence(span)
+            selectZombieSentence(sentenceSpan)
         }
     });
 }
@@ -156,15 +161,28 @@ function appendSentences(zombieDiv, sentences, sentence_index) {
 
 function selectZombieSentence(selectedSentenceSpan) {
 
-    // Set all spans to default
-    var sentenceSpans = jQuery("span.zombie_text")
-    sentenceSpans.css({backgroundColor: "#FFFFFF", borderWidth: "0" }); // {display: "none", border-width: "0"});
+    var textActions = selectedSentenceSpan.find('span.zombie_sentence_actions');
 
-    sentenceSpans.find("span.zombie_text_actions").css("display", "none");
+    if ("none" == textActions.css("display")) {
 
-    // Setup this span as active
-    selectedSentenceSpan.css({backgroundColor: "#e6e6e6", borderWidth: "0"});
-    selectedSentenceSpan.find('span.zombie_text_actions').css({display: "inline"});
+        // Reset background and remove buttons for all sentences
+        allSentenceSpans = jQuery("span.zombie_sentence");
+        allSentenceSpans.find("span.zombie_sentence_text").css({backgroundColor: "#FFFFFF"});
+        allSentenceSpans.find("span.zombie_sentence_actions").css("display", "none");
+        allSentenceSpans.prop("selected", false);
+
+
+        // Setup this sentence as selected with background color change and Inspect button
+        selectedSentenceSpan.find('span.zombie_sentence_text').css({backgroundColor: "#e6e6e6"});
+        selectedSentenceSpan.find('span.zombie_sentence_actions').css({display: "inline"});
+        selectedSentenceSpan.prop("selected", true);
+    }
+    else {
+        ajax_zombify_sentence($(this).attr("data-sentence"));
+    }
+
+
+
 }
 
 
@@ -175,7 +193,7 @@ function appendMutations(mutationsDiv, mutations) {
 
     // then append each sentence
     jQuery(mutations).each(function (index, mutation) {
-        var span = jQuery('<span class="zombie_text"></span>');
+        var span = jQuery('<span></span>');
         span.append(mutation + '<br />');
         //span.attr("data-sentence",index);
         mutationsDiv.append(span);
@@ -204,32 +222,40 @@ function showMutationsDialog(sentence){
     });
 }
 
-function buildZombieTextActionsSpan(sentence, sentenceSpan) {
 
+//function buildZombifyButton(sentence, sentenceSpan){
+//    var actionButton = jQuery('<span title="Re-zombify the selected sentence">Z</span>');
+//    actionButton.css({backgroundColor: "#000000", color: "#e6e6e6", padding: '7px', margin: '4px'});
+//    actionButton.tooltip({show:{delay: 2000}});
+//    actionButton.click(function (event) {
+//            ajax_zombify_sentence(sentenceSpan.attr("data-sentence"))
+//    });
+//    return actionButton;
+//}
 
-    var style = {display: 'none', paddingRight: '3px', paddingLeft: '3px'};
-    var actionsElment = jQuery('<span class="zombie_text_actions" ></span>');
-    actionsElment.css(style);
-
-    var actionButton = jQuery('<span title="Re-zombify the selected sentence">Z</span>');
-    actionButton.css({backgroundColor: "#000000", color: "#e6e6e6", padding: '3px', margin: '1px'});
-    actionButton.tooltip({show:{delay: 2000}});
-    actionButton.click(function (event) {
-            ajax_zombify_sentence(sentenceSpan.attr("data-sentence"))
-        });
-    actionsElment.append(actionButton);
-
-    actionButton = jQuery('<span title="Inspect mutations in selected sentence" >I</span>');
-    actionButton.css({backgroundColor: "#000000", color: "#e6e6e6", padding: '3px', margin: '1px'});
+function buildInspectButton(sentence){
+    actionButton = jQuery('<span class="zombie_sentence_actions" title="Inspect mutations in selected sentence" >I</span>');
+    actionButton.css({display: 'none', backgroundColor: "#000000", color: "#e6e6e6", padding: '7px', margin: '4px'});
     actionButton.tooltip({show:{delay: 2000}});
     actionButton.click(function (event) {
         showMutationsDialog(sentence)
     });
-    actionsElment.append(actionButton);
-
-    return actionsElment;
-
+    return actionButton;
 }
+
+
+//
+//function buildZombieTextActionsSpan(sentence, sentenceSpan) {
+//
+//
+//    var style = {display: 'none', paddingRight: '3px', paddingLeft: '3px'};
+//    var actionsElment = jQuery('<span class="zombie_sentence_actions" ></span>');
+//    actionsElment.css(style);
+//
+//    actionsElment.append(buildInspectButton(sentence, sentenceSpan));
+//
+//    return actionsElment;
+//}
 
 
 
