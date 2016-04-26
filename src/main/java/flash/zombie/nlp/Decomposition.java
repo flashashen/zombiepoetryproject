@@ -112,6 +112,7 @@ public class Decomposition {
         List<Sentence> sentences = new ArrayList(stanfordSentences.size());
         for (CoreMap standfordSentence : stanfordSentences) {
             Sentence sentence = new Sentence();
+            sentence.setText(standfordSentence.toString());
             sentence.setParseTree(standfordSentence.get(TreeCoreAnnotations.TreeAnnotation.class));
             sentences.add(sentence);
         }
