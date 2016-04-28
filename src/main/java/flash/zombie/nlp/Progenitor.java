@@ -97,6 +97,8 @@ public class Progenitor {
 
     private void applyAllMutations(Sentence zombieSentence){
         for (Mutation mutation : mutations) {
+//            remove for now since mutation count is important. have to do this right apparently
+//            zombieSentence.getMutations().add(mutation.toString());
             mutation.mutate(zombieSentence);
         }
         zombieSentence.setAttack(false);

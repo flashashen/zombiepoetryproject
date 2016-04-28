@@ -22,11 +22,17 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
     public void mutate(Sentence sentence, boolean force) {
         Tree victimRoot = sentence.getParseTree();
         TregexMatcher m = getPatternTarget().matcher(victimRoot);
+        int count = 0;
         while (m.findNextMatchingNode()) {
             if (force || chompThisMatch(m.getMatch())) {
+                count++;
                 sentence.getMutations().add(mutate(m.getMatch()));
             }
         }
+
+//        remove for now since the mutation count is used for mutation logic.
+//        if (count == 0)
+//            sentence.getMutations().add("-- none");
     }
 
         /**
