@@ -16,7 +16,7 @@ public class MutateSimpleReplaceFromProgenitor extends MutationStatisticalRegexO
             matchingNode = matchingNode.firstChild();
         String priorValue = matchingNode.value();
         matchingNode.setValue(progentitorMatched.value());
-        return "- replace ["
+        return "-- replace ["
                 + priorValue
                 + "] with ["
                 + matchingNode.value()
