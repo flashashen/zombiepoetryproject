@@ -18,6 +18,8 @@ public class Realizer {
 
   //  Decomposition decomposition;
     int characterCounter;
+    int lineCounter;
+
     StringWriter stringWriterZombie;
 
 //    public Realizer(Decomposition decomposition) {
@@ -28,6 +30,7 @@ public class Realizer {
 
 
         characterCounter = 0;
+        lineCounter = 0;
         StringWriter aggregateWriter = new StringWriter();;
 
         for (Sentence sentence : sentences) {
@@ -38,7 +41,6 @@ public class Realizer {
             // temporarily keep writing to the aggregate
             String sentenceString = stringWriterZombie.toString();
             aggregateWriter.write(sentenceString);
-
        }
 
         return aggregateWriter.toString();
@@ -184,6 +186,12 @@ public class Realizer {
 
             if (newLine_v2(lastNode, node, nextNode, characterCounter)) {
                 stringWriterZombie.append('\n');
+
+                lineCounter++;
+                if (lineCounter%4==0){
+                    stringWriterZombie.append('\n');
+                }
+
                 //String zombieLine = stringWriterZombie.toString();
                 //transformation.zombieTextLines.add(zombieLine);
                 characterCounter = 0;
