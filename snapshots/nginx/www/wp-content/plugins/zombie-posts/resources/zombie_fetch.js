@@ -4,33 +4,7 @@
 
 jQuery(document).ready(function($) {
 
-    //$("#zombie-text").val("hello world");
-
-    var requestTimer;
-    var xhr;
-
-//    $(document).on({
-//        ajaxStart: function() {
-//            $("#zombie-text").addClass("fa");
-//            $("#zombie-text").addClass("fa-refresh");
-//            $("#zombie-text").addClass("fa-spin");
-//        },
-//        ajaxStop: function() { $("#zombie-text").removeClass("loading"); }
-//    });
-//
-//    // Adding Font Awsome spinner, hidden by default
-//    $('img.ajax-loader').after('<i class="fa fa-refresh fa-spin ajax-loader-cusom" style="visibility: hidden"></i>');
-//
-//// Show new spinner on Send button click
-//    $('.wpcf7-submit').on('click', function () {
-//        $('.ajax-loader-cusom').css({ visibility: 'visible' });
-//    });
-//
-//// Hide new spinner on result
-//    $('div.wpcf7').on('wpcf7:invalid wpcf7:spam wpcf7:mailsent wpcf7:mailfailed', function () {
-//        $('.ajax-loader-cusom').css({ visibility: 'hidden' });
-//    });
-
+   
     $("input[type=submit]").attr('disabled','disabled');
     $('#zombie-text-loading').hide();
     $('#zombie-text').show();
@@ -98,7 +72,7 @@ jQuery(document).ready(function($) {
                 dataType: 'json',
                 success: function (response) {
                     console.log('the value is' + response);
-                    appendSentences($("#zombie-text"), response.zombie);
+                    appendSentences($("#zombie-text"), response);
                     // Re-jsonify the response hoping for an assosiative array in php of artifacts to save as post meta
                     $("#zombie-artifacts").val(JSON.stringify(response));
                     $("#zombie-sentences").val(response.zombie)
@@ -130,24 +104,24 @@ function show_zombie_div(){
 
 
 
-function appendSentences(zombieDiv, sentences, sentence_index) {
+function appendSentences(zombieDiv, model, sentence_index) {
 
     // first empty the element
     zombieDiv.empty();
 
     // then append each sentence
-    jQuery(sentences).each(function (index, sentence) {
+    jQuery(model.zombie).each(function (index, sentence) {
 
         var sentenceSpan = jQuery('<span class="zombie_sentence"></span>');
         sentenceSpan.attr("data-sentence",index);
 
-        sentenceSpan.append(buildInspectButton(sentence));
+        sentenceSpan.append(buildSupplementalButton(sentence, model.victim[index]));
 
         var textSpan = jQuery('<span class="zombie_sentence_text"></span>');
-        textSpan.append(sentence.text.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+        textSpan.append(sentence.text.replace(/(?:\r\n|\r|\n)/g, '<br/>'));
         sentenceSpan.append(textSpan);
 
-        sentenceSpan.append(buildInspectButton(sentence));
+        sentenceSpan.append(buildSupplementalButton(sentence, model.victim[index]));
 
 
         zombieDiv.append(sentenceSpan);
@@ -189,73 +163,116 @@ function selectZombieSentence(selectedSentenceSpan) {
 function appendMutations(mutationsDiv, mutations) {
 
     // first empty the element
-    mutationsDiv.empty();
+    //mutationsDiv.empty();
 
     // then append each sentence
     jQuery(mutations).each(function (index, mutation) {
         var span = jQuery('<span></span>');
-        span.append(mutation + '<br />');
+        span.append(mutation + '<br/>');
         //span.attr("data-sentence",index);
         mutationsDiv.append(span);
     });
 }
 
+function appendParseString(parseDiv, parseString) {
 
-function showMutationsDialog(sentence){
+    // first empty the element
+   // parseDiv.empty();
+    var finalString = parseString.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+    finalString = finalString.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+    finalString = finalString.replace(/ /g, '&nbsp');
+    //finalString = finalString.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+    parseDiv.append(finalString);
 
-    var dialogspan = jQuery('<div class="widget"></div>');
-    appendMutations(dialogspan, sentence.mutations);
+}
+
+
+function showSupplementalDialog(zombieSentence, victimSentence){
+
+    /*
+            destroy exiting dialog if there is one. Only support a single, modal for now.
+     */
+    try {
+        jQuery('div.ui-dialog').remove();
+    }
+    catch(err) { }
+
+
+    var dialogspan = jQuery('<div id="supl" class="widget"></div>');
+
+    var list = jQuery('<ul class="nav nav-tabs"><li class="active"><a data-toggle="tab" href="#supl_text">Text</a></li><li><a data-toggle="tab" href="#supl_mutations">Mutations</a></li><li><a data-toggle="tab" href="#supl_vparse">Victim Parse</a></li><li><a data-toggle="tab" href="#supl_zparse">Zombie Parse</a></li></ul>');
+
+
+    dialogspan.append(list);
+
+    var contentDiv = jQuery('<div class="tab-content"></div>');
+    contentDiv.css({fontSize: "x-small"})
+
+    var tDiv = jQuery('<div class="tab-pane fade in active" id="supl_text"></div>');
+    var p = jQuery('</p>')
+    p.append(victimSentence.text)
+    tDiv.append(p);
+
+    p = jQuery('</p>')
+    p.append(' ..... mutated to ....')
+    tDiv.append(p);
+
+    p = jQuery('</p>')
+    p.append(zombieSentence.text)
+    tDiv.append(p);
+    contentDiv.append(tDiv);
+
+    var mDiv = jQuery('<div class="tab-pane fade" id="supl_mutations"></div>');
+    appendMutations(mDiv, zombieSentence.mutations);
+    contentDiv.append(mDiv);
+
+    var vpDiv = jQuery('<div class="tab-pane fade" id="supl_vparse"></div>');
+    appendParseString(vpDiv, victimSentence.parseString);
+    contentDiv.append(vpDiv);
+
+    var zpDiv = jQuery('<div class="tab-pane fade" id="supl_zparse"></div>');
+    appendParseString(zpDiv, zombieSentence.parseString);
+    contentDiv.append(zpDiv);
+
+
+
+
+    //appendParseString(dialogspan, sentence.parseString);
+    dialogspan.append(contentDiv);
+    //dialogspan.tabs();
+
     dialogspan.dialog({
         autoOpen: true,
-        resizable: false,
+        resizable: true,
         height:'auto',
         width:'auto',
-        title: "Mutations",
-        modal: false,
+        title: "Supplemental",
+        modal: true,
         dialogClass: 'widget',
         closeOnEscape: true,
         buttons: {
             Dismiss: function() {
                 jQuery( this ).dialog('destroy').remove();
             }
+        },
+        create: function() {
+            jQuery(this).css("maxHeight", jQuery(window).height());
         }
     });
 }
 
 
-//function buildZombifyButton(sentence, sentenceSpan){
-//    var actionButton = jQuery('<span title="Re-zombify the selected sentence">Z</span>');
-//    actionButton.css({backgroundColor: "#000000", color: "#e6e6e6", padding: '7px', margin: '4px'});
-//    actionButton.tooltip({show:{delay: 2000}});
-//    actionButton.click(function (event) {
-//            ajax_zombify_sentence(sentenceSpan.attr("data-sentence"))
-//    });
-//    return actionButton;
-//}
 
-function buildInspectButton(sentence){
-    actionButton = jQuery('<span class="zombie_sentence_actions" title="Inspect mutations in selected sentence" >I</span>');
+function buildSupplementalButton(victimSentence, zombieSentence){
+    actionButton = jQuery('<span class="zombie_sentence_actions" title="Inspect mutations in selected sentence" >S</span>');
     actionButton.css({display: 'none', backgroundColor: "#000000", color: "#e6e6e6", padding: '7px', margin: '4px'});
     actionButton.tooltip({show:{delay: 2000}});
     actionButton.click(function (event) {
-        showMutationsDialog(sentence)
+        showSupplementalDialog(victimSentence, zombieSentence)
     });
     return actionButton;
 }
 
-
-//
-//function buildZombieTextActionsSpan(sentence, sentenceSpan) {
-//
-//
-//    var style = {display: 'none', paddingRight: '3px', paddingLeft: '3px'};
-//    var actionsElment = jQuery('<span class="zombie_sentence_actions" ></span>');
-//    actionsElment.css(style);
-//
-//    actionsElment.append(buildInspectButton(sentence, sentenceSpan));
-//
-//    return actionsElment;
-//}
 
 
 
@@ -285,7 +302,7 @@ function ajax_zombify_sentence (sentence_number) {
             dataType: 'json',
             success: function (response) {
                 console.log('the value is' + response);
-                appendSentences(jQuery("#zombie-text"), response.zombie, sentence_index);
+                appendSentences(jQuery("#zombie-text"), response, sentence_index);
                 // Re-jsonify the response hoping for an assosiative array in php of artifacts to save as post meta
                 jQuery("#zombie-artifacts").val(JSON.stringify(response));
                 jQuery("#zombie-sentences").val(response.zombie)
