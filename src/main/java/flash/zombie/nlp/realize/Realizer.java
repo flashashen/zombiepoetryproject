@@ -1,4 +1,4 @@
-package flash.zombie.nlp;
+package flash.zombie.nlp.realize;
 
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
@@ -20,7 +20,13 @@ public class Realizer {
     int characterCounter;
     int lineCounter;
 
-    StringWriter stringWriterZombie;
+
+
+    ZombieTokens zombieTokens;
+
+
+
+ //   StringWriter stringWriterZombie;
 
 //    public Realizer(Decomposition decomposition) {
 //        this.decomposition = decomposition;
@@ -31,19 +37,27 @@ public class Realizer {
 
         characterCounter = 0;
         lineCounter = 0;
+        zombieTokens = new ZombieTokens();
+
         StringWriter aggregateWriter = new StringWriter();;
 
         for (Sentence sentence : sentences) {
-            stringWriterZombie = new StringWriter();
+//            stringWriterZombie = new StringWriter();
             writeSentence(sentence, null);
-            sentence.setText(stringWriterZombie.toString());
+//            sentence.setText(stringWriterZombie.toString());
 
             // temporarily keep writing to the aggregate
-            String sentenceString = stringWriterZombie.toString();
-            aggregateWriter.write(sentenceString);
+//            String sentenceString = stringWriterZombie.toString();
+//            aggregateWriter.write(sentenceString);
+
+            // new realizer data. indicate sentence break.
+            zombieTokens.terminateSentence();
        }
 
-        return aggregateWriter.toString();
+        while(zombieTokens.smoothLineLengths() > 0);
+        zombieTokens.setSentenceText(sentences);
+
+        return zombieTokens.toString();
     }
 
 
@@ -109,7 +123,8 @@ public class Realizer {
 
                 // Ignore most commas but replace a few with em-dash
                 if (characterCounter > 5 && characterCounter < 25 && Math.random() * 100 >= 100 - 20) {
-                    stringWriterZombie.append(" --");
+                    //stringWriterZombie.append(" --");
+                    zombieTokens.addSpaceOrPunctuation(" --");
                     System.out.println("Realizer: append ' --'");
                 } else {
                     // ignore
@@ -121,17 +136,21 @@ public class Realizer {
             // Open quote has a space before and none after
             else if (isOpenQuote(childNode)) {
                 System.out.println("Realizer: openquote: " + childNode.value());
-                stringWriterZombie.append(' ');
+                //stringWriterZombie.append(' ');
+                zombieTokens.addSpaceOrPunctuation(" ");
                 System.out.println("Realizer: append space before open quote");
-                stringWriterZombie.append(childNode.value());
+                //stringWriterZombie.append(childNode.value());
+                zombieTokens.addSpaceOrPunctuation(childNode.value());
             }
 
             else if (isPunctuation(childNode)) {
                 if (isDash(childNode)){
-                    stringWriterZombie.append(' ');
+                    //stringWriterZombie.append(' ');
+                    zombieTokens.addSpaceOrPunctuation(" ");
                 }
                 System.out.println("Realizer: punctution: " + childNode.value());
-                stringWriterZombie.append(childNode.value());
+                //stringWriterZombie.append(childNode.value());
+                zombieTokens.addSpaceOrPunctuation(childNode.value());
                 //stringWriterZombie.append(' ');
             }
 
@@ -173,24 +192,29 @@ public class Realizer {
                         && !nodeIsSpace(lastNode)
                         && !isOpenQuote(lastNode)
                         && !isRightPartPossesiveOrContraction(childNode)) {
-                    stringWriterZombie.append(' ');
+                    //stringWriterZombie.append(' ');
+                    zombieTokens.addSpaceOrPunctuation(" ");
                     System.out.println("Realizer: append space");
                 }
 
 
                 System.out.println("Realizer: append value: " + childNode.value());
-                stringWriterZombie.append(childNode.value());
+                //stringWriterZombie.append(childNode.value());
+                zombieTokens.addNode(childNode, ZombieToken.ZombieTokenType.WORD);
                 characterCounter += childNode.value().length();
 
             }
 
             if (newLine_v2(lastNode, node, nextNode, characterCounter)) {
-                stringWriterZombie.append('\n');
+                //stringWriterZombie.append('\n');
+                zombieTokens.terminateLine();
 
-                lineCounter++;
-                if (lineCounter%4==0){
-                    stringWriterZombie.append('\n');
-                }
+//                // Add extra line break for quick stanzas
+//                lineCounter++;
+//                if (lineCounter%4==0){
+//                    //stringWriterZombie.append('\n');
+//                    zombieTokens.terminateStanza();
+//                }
 
                 //String zombieLine = stringWriterZombie.toString();
                 //transformation.zombieTextLines.add(zombieLine);
@@ -291,6 +315,13 @@ public class Realizer {
         if (node.isPreTerminal())
             node = node.getChild(0);
         return (node.score() > 0) || isTerminal(node) || leafValueIsOneOf(node, ";", ":") || isOpenQuote(node);
+    }
+
+    private double getScore(Tree node){
+        if (node == null) return 0;
+        if (node.isPreTerminal())
+            node = node.getChild(0);
+        return node.score();
     }
 
     private boolean nodeIsSpace(Tree node){

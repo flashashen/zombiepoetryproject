@@ -4,6 +4,7 @@ import edu.stanford.nlp.ling.StringLabel;
 import edu.stanford.nlp.trees.Tree;
 import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
+import flash.zombie.nlp.realize.Realizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,8 +91,9 @@ public class Progenitor {
 
         // Realize zombie text
         incident.zombieText = "";
-        Realizer realizer = new Realizer();
-        incident.zombieText += realizer.realize(incident.getZombie());
+        //Realizer realizer = new Realizer();
+        //incident.zombieText += realizer.realize(incident.getZombie());
+        new Realizer().realize(incident.getZombie());
     }
 
 
