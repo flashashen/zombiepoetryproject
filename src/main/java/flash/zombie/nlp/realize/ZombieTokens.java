@@ -168,6 +168,32 @@ public class ZombieTokens {
     }
 
 
+    public void applyStanza(int linesPerStanza){
+
+        // 0 means no stanza breaks
+        if (linesPerStanza == 0) return;
+
+        ZombieToken current = root;
+        int counter = 0;
+
+        while (current.next != null) {
+
+            // Text, punctuation, line breaks are all just written to the buffer
+            if (ZombieToken.ZombieTokenType.LB.equals(current.type)) {
+                counter++;
+                if (counter%linesPerStanza == 0){
+                    // A stanza terminator should follow. Add if it's not already there
+                    if (!ZombieToken.ZombieTokenType.STZ.equals(current.next.type)) {
+                        ZombieToken token = new ZombieToken(ZombieToken.ZombieTokenType.STZ);
+                        token.text = "\n";
+                        token.insertSelfAfter(current);
+                    }
+                }
+            }
+            current = current.next;
+        }
+    }
+
 
     public int smoothLineLengths() {
 
