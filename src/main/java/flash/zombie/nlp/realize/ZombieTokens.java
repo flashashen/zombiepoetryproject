@@ -106,7 +106,10 @@ public class ZombieTokens {
             current = current.next;
         }
 
-        averageLineLength = totalCharacterCount / lineBreaks.size();
+        if (lineBreaks.size() > 0)
+            averageLineLength = totalCharacterCount / lineBreaks.size();
+        else
+            averageLineLength = totalCharacterCount;
      }
 
 
