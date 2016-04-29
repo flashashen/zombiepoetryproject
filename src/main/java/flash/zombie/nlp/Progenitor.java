@@ -8,6 +8,7 @@ import flash.zombie.nlp.realize.Realizer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -93,7 +94,20 @@ public class Progenitor {
         incident.zombieText = "";
         //Realizer realizer = new Realizer();
         //incident.zombieText += realizer.realize(incident.getZombie());
-        new Realizer().realize(incident.getZombie());
+
+        if (incident.linesPerStanza == null) {
+            double random = Math.random();
+            if (random <= 0.3)
+                incident.linesPerStanza = 4;
+            else if (random <= 0.6)
+                incident.linesPerStanza = 3;
+            else if (random <= 0.9)
+                incident.linesPerStanza = 2;
+            else
+                incident.linesPerStanza = 0;
+        }
+
+        new Realizer().realize(incident.getZombie(), incident.linesPerStanza);
     }
 
 

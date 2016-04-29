@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class Incident {
 
+    public Integer linesPerStanza = null;
+
     public String victimText;
     //    public List<Tree> victimParseTrees;
 //    public List<Tree> zombieParseTrees;
@@ -55,5 +57,13 @@ public class Incident {
 
     public void setZombie(List<Sentence> zombie) {
         this.zombie = zombie;
+    }
+
+    public int getLinesPerStanza() {
+        return linesPerStanza;
+    }
+
+    public void setLinesPerStanza(int linesPerStanza) {
+        this.linesPerStanza = linesPerStanza;
     }
 }

@@ -32,7 +32,7 @@ public class Realizer {
 //        this.decomposition = decomposition;
 //    }
 
-    public String realize(List<Sentence> sentences) {
+    public String realize(List<Sentence> sentences, int linesPerStanza) {
 
 
         characterCounter = 0;
@@ -55,6 +55,7 @@ public class Realizer {
        }
 
         while(zombieTokens.smoothLineLengths() > 0);
+        zombieTokens.applyStanza(linesPerStanza);
         zombieTokens.setSentenceText(sentences);
 
         return zombieTokens.toString();
