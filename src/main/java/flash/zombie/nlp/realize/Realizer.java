@@ -163,6 +163,10 @@ public class Realizer {
                     childNode.setValue("]");
                 else if ("-LSB-".compareToIgnoreCase(childNode.value()) == 0)
                     childNode.setValue("[");
+                else if ("-LRB-".compareToIgnoreCase(childNode.value()) == 0)
+                    childNode.setValue("(");
+                else if ("-RRB-".compareToIgnoreCase(childNode.value()) == 0)
+                    childNode.setValue(")");
 
                 // Assure capitalization is correct
                 if (lastNode == null) {
