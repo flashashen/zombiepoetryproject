@@ -19,8 +19,23 @@ jQuery(document).ready(function($) {
             if (!$(this).prop("selected")) {
                 selectZombieSentence($(this));
             }
+
+            // clicks in the zombie sentence are handled. Kill this event so
+            // clicks not matching span.zombie_sentence will deselect all sentences
+            event.stopPropagation();
         }
     );
+
+
+    /*
+     On click select that is not a zombie sentence, deselect all sentences
+     */
+    $("#zombie-text").on('click',
+        function (event) {
+            deselectAllZombieSentences();
+        }
+    );
+
 
     /*
             If already selected and text received a click, rezombify the sentence
@@ -112,26 +127,45 @@ function appendSentences(zombieDiv, model, sentence_index) {
     // then append each sentence
     jQuery(model.zombie).each(function (index, sentence) {
 
-        var sentenceSpan = jQuery('<span class="zombie_sentence"></span>');
-        sentenceSpan.attr("data-sentence",index);
+        //if (sentence.endsStanza){
+        //    zombieDiv.append("</br></p>");
+        //}
+        //else {
+            var sentenceSpan = jQuery('<span class="zombie_sentence"></span>');
+            sentenceSpan.attr("data-sentence", index);
 
-        sentenceSpan.append(buildSupplementalButton(sentence, model.victim[index]));
+            sentenceSpan.append(buildSupplementalButton(sentence, model.victim[index]));
 
-        var textSpan = jQuery('<span class="zombie_sentence_text"></span>');
-        textSpan.append(sentence.text.replace(/(?:\r\n|\r|\n)/g, '<br/>'));
-        sentenceSpan.append(textSpan);
+            var textSpan = jQuery('<span class="zombie_sentence_text"></span>');
 
-        sentenceSpan.append(buildSupplementalButton(sentence, model.victim[index]));
+            // replace double line breaks with a br and a paragraph. this is a stanza break
+            var text = sentence.text.replace(/(?:\n\n)/g, '<br/><p/>');
+            // replace any remaining line breaks with a br, though there probably won't be any.
+            textSpan.append(sentence.text.replace(/(?:\r\n|\r|\n)/g, '<br/>'));
+            sentenceSpan.append(textSpan);
+
+            sentenceSpan.append(buildSupplementalButton(sentence, model.victim[index]));
 
 
-        zombieDiv.append(sentenceSpan);
+            zombieDiv.append(sentenceSpan);
 
-        if (undefined != sentence_index && sentence_index == index){
-            selectZombieSentence(sentenceSpan)
-        }
+            if (undefined != sentence_index && sentence_index == index) {
+                selectZombieSentence(sentenceSpan)
+            }
+        //}
     });
 }
 
+
+function deselectAllZombieSentences(){
+
+    // Reset background and remove buttons for all sentences
+    allSentenceSpans = jQuery("span.zombie_sentence");
+    allSentenceSpans.find("span.zombie_sentence_text").css({backgroundColor: "#FFFFFF"});
+    allSentenceSpans.find("span.zombie_sentence_actions").css("display", "none");
+    allSentenceSpans.prop("selected", false);
+
+}
 
 function selectZombieSentence(selectedSentenceSpan) {
 
@@ -140,10 +174,7 @@ function selectZombieSentence(selectedSentenceSpan) {
     if ("none" == textActions.css("display")) {
 
         // Reset background and remove buttons for all sentences
-        allSentenceSpans = jQuery("span.zombie_sentence");
-        allSentenceSpans.find("span.zombie_sentence_text").css({backgroundColor: "#FFFFFF"});
-        allSentenceSpans.find("span.zombie_sentence_actions").css("display", "none");
-        allSentenceSpans.prop("selected", false);
+        deselectAllZombieSentences();
 
 
         // Setup this sentence as selected with background color change and Inspect button
@@ -297,8 +328,15 @@ function ajax_zombify_sentence (sentence_number) {
 
         jQuery.ajax({
             type: "POST",
+
+            // direct
+            //url: "http://localhost:8090/victim",
+            //data: incident,
+
+            // via WP ajax handler
             url: ajax_object.ajax_url,
             data: data,
+
             dataType: 'json',
             success: function (response) {
                 console.log('the value is' + response);
@@ -306,6 +344,25 @@ function ajax_zombify_sentence (sentence_number) {
                 // Re-jsonify the response hoping for an assosiative array in php of artifacts to save as post meta
                 jQuery("#zombie-artifacts").val(JSON.stringify(response));
                 jQuery("#zombie-sentences").val(response.zombie)
+            },
+            error: function (jqXHR, exception) {
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                jQuery("#zombie-text").html(msg);
             },
             complete: show_zombie_div
         });
