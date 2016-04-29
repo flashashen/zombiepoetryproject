@@ -134,12 +134,7 @@ public class Progenitor {
         mutations = new ArrayList<>();
         //mutations.add(new MutateSwapPPWithSibling(20, progenitorDecomposition));
         mutations.add(new MutateReplaceChildrenFromProgenitor("NP (< SBAR | < NN | < NNS )", 60, progenitorDecomposition));
-        mutations.add(new MutateSimpleReplaceFromProgenitor("VBG", 60, progenitorDecomposition));
-        mutations.add(new MutateSimpleReplaceFromProgenitor("VBD", 60, progenitorDecomposition));
-        mutations.add(new MutateSimpleReplaceFromProgenitor("RB | RBR | RBS", 40, progenitorDecomposition));
-        mutations.add(new MutateSimpleReplaceFromProgenitor("JJ | JJR | JJS", 40, progenitorDecomposition));
 //        mutations.add(new MutateReplaceFragFromSignatureZombieFrags(50, progenitorDecomposition));
-
 
 
         // Setup a special mutator for fragments. Source text is a list of phrases. Override the
@@ -152,6 +147,12 @@ public class Progenitor {
         }
         fragMutator = new MutateReplaceChildrenFromProgenitor("FRAG", 50, fragDecomposition);
         mutations.add(fragMutator);
+
+        mutations.add(new MutateSimpleReplaceFromProgenitor("VBG", 60, progenitorDecomposition));
+        mutations.add(new MutateSimpleReplaceFromProgenitor("VBD", 60, progenitorDecomposition));
+        mutations.add(new MutateSimpleReplaceFromProgenitor("RB | RBR | RBS", 40, progenitorDecomposition));
+        mutations.add(new MutateSimpleReplaceFromProgenitor("JJ | JJR | JJS", 40, progenitorDecomposition));
+
 
 
 
