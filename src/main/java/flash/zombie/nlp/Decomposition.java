@@ -50,8 +50,22 @@ public class Decomposition {
         // Remove junk / Normalize input
         text = text.replace("\\", "");
 
+        // Now un-cap anything after a line break;
+        char[] characters = text.toCharArray();
+        boolean afterLineBreak = false;
+        for (int i=0; i<characters.length; i++){
 
-        document = new Annotation(text);
+            if (text.charAt(i) == '\n') {
+                afterLineBreak = true;
+            }
+            else if (afterLineBreak && characters[i] >= 'A' && characters[i] <= 'z'){
+                characters[i] = Character.toLowerCase(characters[i]);
+                afterLineBreak = false;
+            }
+        }
+
+
+        document = new Annotation(new String(characters));
         pipeline.annotate(document);
 
         PrintWriter writer = null;
@@ -168,10 +182,12 @@ public class Decomposition {
 
     public static void decapitalizeSentenceStarters(List<Tree> parse){
         Tree leaf;
+        char[] characters;
         for (Tree sentence :  parse)  {
             leaf = sentence.getLeaves().get(0);
             System.out.println("uncapping first word of pregenitor. first word detected:  " + leaf.value());
             leaf.setValue(leaf.value().toLowerCase());
+
             System.out.println(" now:  " + leaf.value());
         }
     }

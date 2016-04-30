@@ -697,7 +697,7 @@ public class Progenitor {
             "her rag, moving to the rhythm " +
             "she made, dancing for joy and sorrow " +
             "among a sudden shower of stars. " +
-            "There’s the Ruins, and there’s the Fort " +
+            "There’s the ruins, and there’s the fort " +
             "where rains pour. Your speech turns martial. " +
 //            "[Self-guided Tour]" +
             "Days buisey scenes had past away. " +
@@ -705,7 +705,7 @@ public class Progenitor {
             "So wrote one James Addison Boyd, " +
             "who was later killed in battle, " +
             "as wave upon wave broke upon " +
-            "and then swamped the earthworks. . Against " +
+            "and then swamped the earthworks. Against " +
             "your will, you’ll feel it then, that old " +
             "southern ache, your birthright, tyranny " +
             "of pride disguised as civility. " +
