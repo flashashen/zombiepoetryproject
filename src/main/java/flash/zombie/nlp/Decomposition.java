@@ -45,7 +45,12 @@ public class Decomposition {
         pipeline = new StanfordCoreNLP(properties);
     }
 
-    public Decomposition(String text) {
+    public boolean defensiveCopy = false;
+
+    public Decomposition(String text, boolean defensiveCopy) {
+
+        // If this flag is set don't return backing data to callers getParse and getSentences
+        this.defensiveCopy = defensiveCopy;
 
         // Remove junk / Normalize input
         text = text.replace("\\", "");
@@ -86,7 +91,7 @@ public class Decomposition {
         // Un-capitalize the first word of each sentence so substitutions won't
         // put caps where we don't want them. The realization code will re-capitalize
         //List<Object> entites = progenitorDecomposition.getEntities();
-        Decomposition.decapitalizeSentenceStarters(getParse());
+        decapitalizeSentenceStarters();
 
     }
 
@@ -116,7 +121,10 @@ public class Decomposition {
         List<Tree> parseTrees = new ArrayList(sentences.size());
         for (CoreMap sentence : sentences) {
             Tree tree = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
-            parseTrees.add(tree);
+            if (defensiveCopy)
+                parseTrees.add(tree.deepCopy());
+            else
+                parseTrees.add(tree);
         }
         return parseTrees;
     }
@@ -127,7 +135,10 @@ public class Decomposition {
         for (CoreMap standfordSentence : stanfordSentences) {
             Sentence sentence = new Sentence();
             sentence.setText(standfordSentence.toString());
-            sentence.setParseTree(standfordSentence.get(TreeCoreAnnotations.TreeAnnotation.class));
+            if (defensiveCopy)
+                sentence.setParseTree(standfordSentence.get(TreeCoreAnnotations.TreeAnnotation.class).deepCopy());
+            else
+                sentence.setParseTree(standfordSentence.get(TreeCoreAnnotations.TreeAnnotation.class));
             sentences.add(sentence);
         }
 
@@ -180,15 +191,16 @@ public class Decomposition {
         return writer.toString();
     }
 
-    public static void decapitalizeSentenceStarters(List<Tree> parse){
+    public void decapitalizeSentenceStarters(){
         Tree leaf;
-        char[] characters;
-        for (Tree sentence :  parse)  {
-            leaf = sentence.getLeaves().get(0);
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        for (CoreMap sentence : sentences) {
+            Tree tree = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
+            leaf = tree.getLeaves().get(0);
             System.out.println("uncapping first word of pregenitor. first word detected:  " + leaf.value());
             leaf.setValue(leaf.value().toLowerCase());
-
             System.out.println(" now:  " + leaf.value());
+
         }
     }
 }
