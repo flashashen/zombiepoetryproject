@@ -107,7 +107,7 @@ public class Progenitor {
                 incident.linesPerStanza = 0;
         }
 
-        new Realizer().realize(incident.getZombie(), incident.linesPerStanza);
+        new Realizer().realize(incident, incident.linesPerStanza);
     }
 
 

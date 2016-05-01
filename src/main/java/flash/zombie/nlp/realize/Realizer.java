@@ -4,6 +4,7 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
 import edu.stanford.nlp.util.StringUtils;
+import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
 
 import java.io.StringWriter;
@@ -32,7 +33,7 @@ public class Realizer {
 //        this.decomposition = decomposition;
 //    }
 
-    public String realize(List<Sentence> sentences, int linesPerStanza) {
+    public String realize(Incident incident, int linesPerStanza) {
 
 
         characterCounter = 0;
@@ -41,7 +42,7 @@ public class Realizer {
 
         StringWriter aggregateWriter = new StringWriter();;
 
-        for (Sentence sentence : sentences) {
+        for (Sentence sentence : incident.getZombie()) {
 //            stringWriterZombie = new StringWriter();
             writeSentence(sentence, null);
 //            sentence.setText(stringWriterZombie.toString());
@@ -56,7 +57,7 @@ public class Realizer {
 
         while(zombieTokens.smoothLineLengths() > 0);
         zombieTokens.applyStanza(linesPerStanza);
-        zombieTokens.setSentenceText(sentences);
+        zombieTokens.setZombieText(incident);
 
         return zombieTokens.toString();
     }
