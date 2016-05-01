@@ -28,7 +28,7 @@ public class Progenitor {
         // Decompose/Analyze the victim text
         if (incident.getVictim() == null) {
             forceZombification = false;
-            Decomposition decomposition = new Decomposition(incident.victimText);
+            Decomposition decomposition = new Decomposition(incident.victimText, false);
             incident.setVictim(decomposition.getSentences());
             incident.setZombie(new ArrayList<>(incident.getVictim().size()));
             for (Sentence sentence : incident.getVictim()){
@@ -128,7 +128,7 @@ public class Progenitor {
     private void init() {
 
         // Pre-analyze the progenitor poem for use by mutation objects
-        progenitorDecomposition = new Decomposition(ZOMBIE);
+        progenitorDecomposition = new Decomposition(ZOMBIE, true);
 
 
         mutations = new ArrayList<>();
@@ -140,7 +140,7 @@ public class Progenitor {
         // Setup a special mutator for fragments. Source text is a list of phrases. Override the
         // phrase head node (beneath the root) as a FRAG and then let MutateReplaceChildrenFromProgenitor
         // process as normal.
-        Decomposition fragDecomposition = new Decomposition(String.join(" ", FRAGMENTS));
+        Decomposition fragDecomposition = new Decomposition(String.join(" ", FRAGMENTS), true);
         for (Tree frag : fragDecomposition.getParse()){
             frag.firstChild().setLabel(new StringLabel("FRAG"));
             frag.firstChild().setValue("FRAG");
@@ -232,7 +232,7 @@ public class Progenitor {
         // [ Bedtime Story] [Lamech Killed Cain] [Tamales]
 
 
-    private final String ZOMBIE = "Zombie Ride-Along " +
+    private final String ZOMBIE =
             "Another town, another attack: " +
             "Shots, then a show of conflagration. " +
             "Blood rushes from our limbs, grooving " +
@@ -391,21 +391,15 @@ public class Progenitor {
             "alone gave us depth, and this flatness, " +
             "this sheen, we named hunger. In time, it " +
             "assumed a leadership position " +
-            "among us, our holy mother " +
-            "of movement. " +
-            " (Now, hold on a sec, " +
-            "before you get the wrong idea. " +
-            "Let me segue, let me keep you " +
-            "since I’ve got you. " +
-            " Remember those " +
-            "B-sides of your youth, how you felt " +
+            "among us, our holy mother of movement. " +
+            "Remember those B-sides of your youth, how you felt " +
             "sorry for those songs, sad ballasts " +
             "to siblings who stayed out late, climbing " +
             "the charts? They float in our oceans now, " +
             "fresh expanding islands that mean " +
             "we wait for nothing but our deaths. " +
             "How will we know it when it comes " +
-            "for us? We’re rolling, B-sides and all.) " +
+            "for us? We’re rolling, B-sides and all. " +
             "The tow truck arrives from somewhere else, " +
             "its owner a teacher at the high school,  " +
             "which he points out. A wooden sign  " +
@@ -419,18 +413,17 @@ public class Progenitor {
             "founded by a freed slave. Of course, " +
             "the whites soon tried to buy it back, " +
             "returning the farmers to the fates " +
-            "they’d fled. " +
-            " What desperation led them " +
+            "they’d fled. What desperation led them " +
             "to this spot? Even now that the hard " +
             "work of cultivation has long been done, " +
             "you can see how inhospitable " +
             "it must have been. Swamp and forest " +
             "and nothing for miles. Perhaps that’s it— " +
             "a spot miles from the real dangers. " +
-            "(You’re not more than twenty minutes " +
+            "You’re not more than twenty minutes " +
             "from the river, but this thought does not " +
             "console. Your resolve to do justice " +
-            "to this place pools in the wet heat.) " +
+            "to this place pools in the wet heat. " +
             "Like almost every small town, this one " +
             "sports cosmetic touches, lime and pink " +
             "building fronts, but it’s deeply asleep. " +
@@ -440,8 +433,7 @@ public class Progenitor {
             "a hurricane to cool things off, " +
             "you happen to have one coming, " +
             "an easy thought for someone like you— " +
-            "This is someone’s home. " +
-            " Mute the voice. " +
+            "This is someone’s home. Mute the voice. " +
             "You ask for guidance and I give " +
             "you platitudes, a knitted brow.  " +
             "Latitudes? Attitudes. Our course — " +
@@ -452,7 +444,7 @@ public class Progenitor {
             "They’ll sit awhile here instead of there. " +
             "They’ll trade those lights for whatever " +
             "is on your flashing screen. " +
-            " Who stops " +
+            "Who stops " +
             "anymore for just a drink? Only " +
             "such travelers as we. We alone. " +
             "Recalculating….Find the route " +
@@ -460,9 +452,9 @@ public class Progenitor {
             "who toss hungry guests their dinner rolls. " +
             "They shoot across the room like stars. " +
             "From the roadside, a sign yells at you " +
-            "to Repent!, but you are too far gone. " +
+            "to repent! but you are too far gone. " +
             "Off-road, a small graveyard beckons, " +
-            "where Sweet little Sammy lies, dead " +
+            "where sweet little Sammy lies, dead " +
             "before he could crawl. His foot stone " +
             "is a tree trunk that must have sprouted " +
             "and fallen long after young Sammy. " +
@@ -539,10 +531,10 @@ public class Progenitor {
             "having tied off her life down below. " +
             "Now you’re north of Vicksburg. The road " +
             "is here as it’s always been, two-lanes " +
-            "through the white and chocolate fields, A Kennedy Came " +
-            "the greens of rice and soy and corn. through Here " +
-            "You pass a patch ribboned with flowers, with Tears in His " +
-            "volunteers sprung up in orderly rows. Eyes " +
+            "through the white and chocolate fields, " +
+            "the greens of rice and soy and corn. A Kennedy came through here with tears in his eyes. " +
+            "You pass a patch ribboned with flowers,  " +
+            "volunteers sprung up in orderly rows. " +
             "Your friend and guide says he remembers " +
             "riding through these farms as they burned, " +
             "bands of orange fire, the black smoke " +
@@ -556,14 +548,14 @@ public class Progenitor {
             "of columns, cell tower, and school, " +
             "the grass hip-high on its roof. You feel " +
             "vaguely guilty, but everyone leaves. " +
-            "You stop for a stretch, but don’t see it— " +
+            "You stop for a stretch, but don’t see it — " +
             "the sparkling ground, glitter of glass " +
             "from houses that were not built to last. " +
             "That old store is just the kind of place " +
             "you like, even before you see " +
             "the sign marking it as the site " +
              //[Onward] " +
-            "of Roosevelt’s “Teddy Bear Hunt.” " +
+            "of Roosevelt’s “teddy bear hunt.” " +
             "The porch is smiling broadly, wood " +
             "panels stretching back down to the earth. " +
             "A group of hunters greet you, but " +
@@ -599,8 +591,7 @@ public class Progenitor {
             "china dish above the fat, flat lines " +
             "of our sight. Smells like someone died, " +
             "but it’s only the fields. " +
-            " Oh, that’s " +
-            "a family plot. You can tell because " +
+            "Oh, that’s a family plot. You can tell because " +
             "the headstones still lean. The others " +
             "got wood, which went faster back to dust. " +
             "Port Gibson to Natchez, Natchez " +
@@ -686,10 +677,8 @@ public class Progenitor {
             "the rooms, the dust on the man’s clothes " +
             "and hair became shooting sparks of light. " +
             "“I’m burning,” he cried. " +
-            "“Take me back " +
-            "to my work.” " +
-            " And then it did seem " +
-            "as if he were on fire, not like " +
+            "“Take me back to my work.” " +
+            " And then it did seem as if he were on fire, not like " +
             "a wick, which burns and burns, but a match " +
             "which flashes and is snuffed out. The girl, " +
             "in amazement, moved to the windows, " +
@@ -712,7 +701,7 @@ public class Progenitor {
             "You’ll feel it so strongly you’ll head back " +
             "in your mind to the ruins, those columns " +
             "connected by iron. An empire waist, " +
-            "you joked, noting the Kudzu that grew " +
+            "you joked, noting the kudzu that grew " +
             "from their tops. Leaving, you saw the sign " +
             "which warned the whole thing was unstable. " +
             "Dear blinds in fields beneath the road. " +
