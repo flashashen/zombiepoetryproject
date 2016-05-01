@@ -266,7 +266,7 @@ public class Realizer {
         if (node == null) return false;
         if (node.isPreTerminal())
             node = node.getChild(0);
-        return ("`").equals(node) || StringUtils.isPunct(node.value());
+        return node.value().startsWith("`") || node.value().startsWith("'") || StringUtils.isPunct(node.value());
     }
 
     private boolean leafValueIs(Tree node, String value){
