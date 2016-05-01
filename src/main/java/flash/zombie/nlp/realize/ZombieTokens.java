@@ -1,6 +1,7 @@
 package flash.zombie.nlp.realize;
 
 import edu.stanford.nlp.trees.Tree;
+import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
 
 import java.io.StringWriter;
@@ -114,11 +115,14 @@ public class ZombieTokens {
 
 
 
-    public void setSentenceText(List<Sentence> sentences) {
+    public void setZombieText(Incident incident) {
 
         ZombieToken current = root;
         int sentenceIndex = 0;
         StringWriter stringWriterZombie = new StringWriter();
+        StringWriter aggregateStringWriterZombie = new StringWriter();
+        incident.setZombieText("");
+        String text;
 
         while (current != null) {
 
@@ -129,7 +133,9 @@ public class ZombieTokens {
 
             // terminate sentence on terminator
             if (ZombieToken.ZombieTokenType.ST.equals(current.type)) {
-                sentences.get(sentenceIndex).setText(stringWriterZombie.toString());
+                text = stringWriterZombie.toString();
+                aggregateStringWriterZombie.write(text);
+                incident.getZombie().get(sentenceIndex).setText(text);
                 stringWriterZombie = new StringWriter();
                 sentenceIndex++;
             }
@@ -137,9 +143,12 @@ public class ZombieTokens {
             current = current.next;
         }
 
-        if (sentenceIndex != sentences.size()) {
+        if (sentenceIndex != incident.getZombie().size()) {
             throw new RuntimeException("Zombie token realizer didn't finish on ST of last sentence as expected");
         }
+
+        incident.setZombieText(aggregateStringWriterZombie.toString());
+
     }
 
 
