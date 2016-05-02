@@ -154,6 +154,7 @@ public class Progenitor {
         mutations.add(new MutateSimpleReplaceFromProgenitor("JJ | JJR | JJS", 40, progenitorDecomposition));
 
 
+        mutations.add(new MutateSimpleReplaceFromProgenitor("NN", "PRP", 40, progenitorDecomposition));
 
 
 //        BufferedReader br = null;

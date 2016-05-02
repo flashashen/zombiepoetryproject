@@ -3,6 +3,7 @@ package flash.zombie.nlp;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
+import edu.stanford.nlp.util.StringUtils;
 import flash.zombie.nlp.model.Sentence;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
 
     public void mutate(Sentence sentence, boolean force) {
         Tree victimRoot = sentence.getParseTree();
-        TregexMatcher m = getPatternTarget().matcher(victimRoot);
+        TregexMatcher m = getPatternSource().matcher(victimRoot);
         int count = 0;
         while (m.findNextMatchingNode()) {
             if (force || chompThisMatch(m.getMatch())) {
@@ -45,18 +46,24 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
 
     private int percentageChomped;
     private String patternTargetString;
+    private String patternSourceString;
+    private TregexPattern patternSource;
     private TregexPattern patternTarget;
 
 
     public MutationStatisticalRegexOperation(String patternTargetString, int percentageChomped, Decomposition progenitorDecomposition) {
-        init(patternTargetString, percentageChomped, progenitorDecomposition);
+        init(patternTargetString, null, percentageChomped, progenitorDecomposition);
+    }
+    public MutationStatisticalRegexOperation(String patternTargetString, String patternSoureString, int percentageChomped, Decomposition progenitorDecomposition) {
+        init(patternTargetString, patternSoureString, percentageChomped, progenitorDecomposition);
     }
 
 
-    public synchronized void init(String patternTargetString, int percentageChomped, Decomposition progenitorDecomposition) {
+    public synchronized void init(String patternTargetString, String patternSourceString, int percentageChomped, Decomposition progenitorDecomposition) {
 
         this.percentageChomped = percentageChomped;
         this.patternTargetString = patternTargetString;
+        this.patternSourceString = patternSourceString;
 
         // Filter the tree list from the sentences of the zombie text to just a list
         // of source nodes for this transformation
@@ -112,6 +119,26 @@ public abstract class MutationStatisticalRegexOperation implements Mutation {
         }
         return patternTarget;
     }
+
+    public String getPatternSourceString() {
+        return patternSourceString;
+    }
+
+    public void setPatternSourceString(String patternSourceString) {
+        this.patternSourceString = patternSourceString;
+    }
+
+    public TregexPattern getPatternSource() {
+        if (patternSource == null){
+
+            if (patternSourceString == null)
+                patternSource = patternTarget;
+            else
+                patternSource = TregexPattern.compile(patternSourceString);
+        }
+        return patternSource;
+    }
+
 
 
     @Override
