@@ -24,10 +24,12 @@ public class MutateSimpleReplaceFromProgenitor extends MutationStatisticalRegexO
 
     }
 
-//    String pattern;
     public MutateSimpleReplaceFromProgenitor(String pattern, int percentageChomped, Decomposition progenitorDecomposition) {
         super(pattern, percentageChomped, progenitorDecomposition);
-//        this.pattern = pattern;
+    }
+
+    public MutateSimpleReplaceFromProgenitor(String targetPattern, String sourcePattern, int percentageChomped, Decomposition progenitorDecomposition) {
+        super(targetPattern, sourcePattern, percentageChomped, progenitorDecomposition);
     }
 
     @Override
