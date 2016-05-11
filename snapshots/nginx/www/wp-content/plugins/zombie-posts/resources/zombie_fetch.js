@@ -5,9 +5,10 @@
 jQuery(document).ready(function($) {
 
    
-    $("input[type=submit]").attr('disabled','disabled');
+    $("#user-submitted-post").attr('disabled','disabled');
     $('#zombie-text-loading').hide();
     $('#zombie-text').show();
+    $('#zombie-instructions').hide();
 
 
     /*
@@ -90,8 +91,27 @@ jQuery(document).ready(function($) {
                     appendSentences($("#zombie-text"), response);
                     // Re-jsonify the response hoping for an assosiative array in php of artifacts to save as post meta
                     $("#zombie-artifacts").val(JSON.stringify(response));
-                    $("#zombie-sentences").val(response.zombie)
+                    jQuery("#zombie-text-full").val(response.zombieText);
+                    //$("#zombie-sentences").val(response.zombie)
                 },
+                error: function (jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    jQuery("#zombie-text").html(msg);},
                 complete: show_zombie_div
             });
 
@@ -107,14 +127,17 @@ function hide_zombie_div(){
     //var spinner = new Spinner(opts).spin(target);
     jQuery('#zombie-text-loading').show();
     jQuery('#zombie-text').hide();
-    jQuery("input[type=submit]").attr('disabled','disabled');
+    //jQuery('#zombie-instructions').hide();
+
+    jQuery("#user-submitted-post").attr('disabled','disabled');
 }
 
 function show_zombie_div(){
     //jQuery('.spin').spin('hide');
     jQuery('#zombie-text-loading').hide();
     jQuery('#zombie-text').show();
-    jQuery("input[type=submit]").removeAttr('disabled');
+    jQuery('#zombie-instructions').show();
+    jQuery("#user-submitted-post").removeAttr('disabled');
 }
 
 
@@ -199,7 +222,7 @@ function appendMutations(mutationsDiv, mutations) {
     // then append each sentence
     jQuery(mutations).each(function (index, mutation) {
         var span = jQuery('<span></span>');
-        span.append(mutation + '<br/>');
+        span.append(mutation.replace(/(?:\r\n|\r|\n)/g, '<br/>') + '<br/>');
         //span.attr("data-sentence",index);
         mutationsDiv.append(span);
     });
@@ -343,7 +366,8 @@ function ajax_zombify_sentence (sentence_number) {
                 appendSentences(jQuery("#zombie-text"), response, sentence_index);
                 // Re-jsonify the response hoping for an assosiative array in php of artifacts to save as post meta
                 jQuery("#zombie-artifacts").val(JSON.stringify(response));
-                jQuery("#zombie-sentences").val(response.zombie)
+                jQuery("#zombie-text-full").val(response.zombieText);
+                //jQuery("#zombie-sentences").val(response.zombie)
             },
             error: function (jqXHR, exception) {
                 var msg = '';

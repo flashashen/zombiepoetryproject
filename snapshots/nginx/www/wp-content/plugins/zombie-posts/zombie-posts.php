@@ -73,6 +73,77 @@ if (isset($usp_options['enable_shortcodes']) && $usp_options['enable_shortcodes'
 	add_filter('widget_text', 'do_shortcode', 10); 
 }
 
+
+
+function display_zombie_element($slug)
+{
+	$args = array(
+		'name'        => $slug,
+		'post_type'   => 'post',
+		'post_status' => 'private',
+		'numberposts' => 1
+	);
+	$my_posts = get_posts($args);
+	if( $my_posts ) :
+		echo $my_posts[0]->post_content;
+	endif;
+}
+
+
+
+// TODO update this to convert content to formatted zombie if it's an incidenct. otherwise pass through
+function zombie_content_filter($content) {
+//	// assuming you have created a page/post entitled 'debug'
+
+	$isIncident = false;
+
+	foreach ( get_the_category() as $category ) {
+		if ($category->name == 'Incidents') {
+			$isIncident = true;
+			break;
+		}
+	}
+
+
+	if ($isIncident == true) {
+
+//		$zombie_text = nl2br(wptexturize(get_post_meta( $GLOBALS['post']->ID, 'co', 1 )));
+		$victim_text = nl2br(wptexturize(get_post_meta( $GLOBALS['post']->ID, 'zombie_text', 1 )));
+//		$zombie_artifcats = json_decode(get_post_meta( $GLOBALS['post']->ID, 'zombie-artifacts', 1 ));
+//		foreach ($zombie_artifcats->zombie as $sentence )
+//			$zombie_text = $zombie_text . nl2br(wptexturize($sentence->text));
+//		foreach ($zombie_artifcats->victim as $sentence )
+//			$victim_text = $victim_text . nl2br(wptexturize($sentence->text));
+
+//
+
+//		$victim_text = "test victim text";
+//		$zombie_text = "test zombie text";
+		$new_content = sprintf('<div class="clearfix entry-content container-fluid">
+						<div class="row-fluid">
+							<div class="span5">
+								%s
+							</div>
+							<div class="span1">
+								=>
+							</div>
+							<div class="span6">
+								%s
+							</div>
+						</div>
+					</div>', $victim_text, $content);
+		$content = $new_content;
+		return $new_content;
+	}
+
+	return $content;
+}
+
+add_filter( 'the_content', 'zombie_content_filter' );
+
+
+
+
 // add new post status
 add_filter ('post_stati', 'usp_addNewPostStatus');
 function usp_addNewPostStatus($postStati) {
@@ -125,14 +196,31 @@ function usp_checkForPublicSubmission() {
 		if (isset($_POST['user-submitted-tags']))     $tags     = sanitize_text_field($_POST['user-submitted-tags']);
 		if (isset($_POST['user-submitted-captcha']))  $captcha  = sanitize_text_field($_POST['user-submitted-captcha']);
 		if (isset($_POST['user-submitted-verify']))   $verify   = sanitize_text_field($_POST['user-submitted-verify']);
-		if (isset($_POST['user-submitted-content']))  $content  = stripslashes($_POST['user-submitted-content']);
-		if (isset($_POST['zombie-text']))             $zombie   = $_POST['zombie-text'];
 		if (isset($_POST['zombie-artifacts']))        $zombieArtifacts = $_POST['zombie-artifacts'];
-//		if (isset($_POST['zombie-text']))             $zombie   = sanitize_text_field_keep_formatting($_POST['zombie-text']);
+		if (isset($_POST['zombie-text-full']))        $zombie  = $_POST['zombie-text-full'];
 		if (isset($_POST['user-submitted-category'])) $category = intval($_POST['user-submitted-category']);
-		
+
+		// zombie isn't used anymore as a meta field. zombie text is the content now. everything else goes in a big json ball.
+//		$zombie = $content;
+		if (isset($_POST['user-submitted-content']))  $content  = stripslashes($_POST['user-submitted-content']);
+//
+//
+
+		// now just swap to see if it works
+		$temp = $zombie;
+		$zombie = $content;
+		$content = $temp;
+
+
+
+//		$zombie_artifcats = json_decode($zombieArtifacts, true);
+//		$content = var_export($zombie_artifcats);
+////		foreach ($zombie_artifcats->zombie as $sentence )
+////			$content = $content . nl2br(wptexturize($sentence->text));
+
+
 		$result = usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, $tags, $captcha, $verify, $content, $zombie, $zombieArtifacts, $category);
-		
+
 		$post_id = false; 
 		if (isset($result['id'])) $post_id = $result['id'];
 		
@@ -585,7 +673,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 	if (isset($usp_options['usp_tags'])     && ($usp_options['usp_tags']     == 'show') && empty($tags))     $newPost['error'][] = 'required-tags';
 	if (isset($usp_options['usp_category']) && ($usp_options['usp_category'] == 'show') && empty($category)) $newPost['error'][] = 'required-category';
 	if (isset($usp_options['usp_content'])  && ($usp_options['usp_content']  == 'show') && empty($content))  $newPost['error'][] = 'required-content';
-//	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-content';
+	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-content';
 
 	if (isset($usp_options['usp_captcha']) && ($usp_options['usp_captcha'] == 'show') && !usp_spamQuestion($captcha)) $newPost['error'][] = 'required-captcha';
 	if (isset($usp_options['usp_email'])   && ($usp_options['usp_email']   == 'show') && !usp_validateEmail($email))  $newPost['error'][] = 'required-email';
@@ -599,6 +687,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 			return $newPost;
 		}
 	}
+
 	
 	// submit post
 	$postData = usp_prepare_post($title, $content, $zombie, $author_id, $author, $ip);
@@ -821,7 +910,7 @@ function usp_error_message() {
 			elseif ($e == 'required-url')      $error[] = __('Post url required', 'usp');
 			elseif ($e == 'required-tags')     $error[] = __('Post tags required', 'usp');
 			elseif ($e == 'required-category') $error[] = __('Post category required', 'usp');
-			elseif ($e == 'required-content')  $error[] = __('Post content required', 'usp');
+			elseif ($e == 'required-content')  $error[] = __('Victim text required', 'usp');
 			elseif ($e == 'required-captcha')  $error[] = __('Correct captcha required', 'usp');
 			elseif ($e == 'required-email')    $error[] = __('User email required', 'usp');
 			elseif ($e == 'spam-verify')       $error[] = __('Non-empty value for hidden field', 'usp');
@@ -1296,7 +1385,7 @@ function usp_render_form() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label class="description" for="usp_options[usp_title]"><?php _e('Post Title', 'usp'); ?></label></th>
+										<th scope="row"><label class="description" for="usp_options[usp_title]">Title</label></th>
 										<td>
 											<select name="usp_options[usp_title]" id="usp_options[usp_title]">
 												<option <?php if ($usp_options['usp_title'] == 'show') echo 'selected="selected"'; ?> value="show"><?php _e('Display and require', 'usp'); ?></option>

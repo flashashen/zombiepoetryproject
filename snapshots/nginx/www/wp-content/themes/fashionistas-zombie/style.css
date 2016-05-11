@@ -22,10 +22,16 @@ Tags: black, white, two-columns, fixed-layout, threaded-comments, full-width-tem
     /*margin:100px 150px 100px 80px;*/
 /*}*/
 
+.cptch_wrap {
+    display: inline-flex;
+    position: relative;
+    clear: both;
+}
+
 
 span.zombie_text {
     font-size: 12px;
-    color: #52706B;
+    /*color: #52706B;*/
 }
 
 

@@ -14,6 +14,9 @@ if ($usp_options['disable_required']) {
 	$files = ' usp-required-file';
 } ?>
 
+
+
+
 <!-- Zombie Posts @ https://perishablepress.com/zombie-posts/ -->
 <div id="zombie-posts">
 
@@ -33,6 +36,7 @@ if ($usp_options['disable_required']) {
 			if ($usp_options['usp_captcha'] == 'show') { ?>
 
 				<fieldset class="usp-captcha">
+
 					<label for="user-submitted-captcha"><?php echo $usp_options['usp_question']; ?></label>
 					<input name="user-submitted-captcha" type="text" value="" placeholder="<?php _e('Antispam Question', 'usp'); ?>"<?php echo $required; ?> class="usp-input exclude<?php echo $captcha; ?>">
 				</fieldset>
@@ -53,7 +57,7 @@ if ($usp_options['disable_required']) {
 		<fieldset class="usp-url">
 			<label for="user-submitted-url"><?php _e('Your URL', 'usp'); ?></label>
 			<input name="user-submitted-url" type="text" value="" placeholder="<?php _e('Your URL', 'usp'); ?>"<?php if (usp_check_required('usp_url')) echo $required; ?> class="usp-input">
-		</fieldset>
+		</fieldset>full pa
 		<?php }
 
 
@@ -69,7 +73,7 @@ if ($usp_options['disable_required']) {
 		if ($usp_options['usp_title'] == 'show' || $usp_options['usp_title'] == 'optn') { ?>
 
 		<fieldset class="usp-title">
-			<label for="user-submitted-title"><?php _e('Post Title', 'usp'); ?></label>
+			<label for="user-submitted-title">Title</label>
 			<input name="user-submitted-title" type="text" value="" placeholder="<?php _e('Post Title', 'usp'); ?>"<?php if (usp_check_required('usp_title')) echo $required; ?> class="usp-input">
 		</fieldset>
 		<?php }
@@ -127,8 +131,8 @@ if ($usp_options['disable_required']) {
 				</div>
 			<?php } else { ?>
 
-				<label for="user-submitted-content"><?php _e('Post Content', 'usp'); ?></label>
-				<textarea name="user-submitted-content" id="victim-text" rows="5" placeholder="<?php _e('Post Content', 'usp'); ?>"<?php if (usp_check_required('usp_content')) echo $required; ?> class="usp-textarea"></textarea>
+				<label for="user-submitted-content">Victim Text</label>
+				<textarea name="user-submitted-content" id="victim-text" maxlength="1800" rows="5" placeholder="Victim Text"<?php if (usp_check_required('usp_content')) echo $required; ?> class="usp-textarea"></textarea>
 			<?php } ?>
 		</fieldset>
 		<?php }
@@ -136,16 +140,37 @@ if ($usp_options['disable_required']) {
 			if ($usp_options['usp_zombie'] == 'show' || $usp_options['usp_zombie'] == 'optn') { ?>
 
 
+		<hr/>
 
-			<fieldset class="usp-content">
-				<label for="zombie-text"><?php _e('Zombie Text', 'usp'); ?></label>
-				  <div id="zombie-text-loading" class="sp">
-					  <div class="sp-3balls"></div>
-				  </div>
-				<br/>
-				<div id="zombie-text" >
-<!--					<textarea  name="zombie-text" id="zombie-text" rows="5" placeholder="--><?php //_e('Zombie Text', 'usp'); ?><!--"--><?php //if (usp_check_required('usp_zombie')) echo $required; ?><!-- class="usp-textarea"></textarea>-->
+
+				<div class="clearfix entry-content container-fluid">
+					<div class="row-fluid">
+						<div class="span7">
+
+						<fieldset class="usp-content">
+						<label for="zombie-text"><?php _e('Zombie Text', 'usp'); ?></label>
+						  <div id="zombie-text-loading" class="sp">
+							  <div class="sp-3balls"></div>
+						  </div>
+						<br/>
+
+						<div id="zombie-text" ></div>
+
+						</div>
+<!--						<div class="span1"></div>-->
+
+						<div id="zombie-instructions" class="span5 zombie-instructions">
+
+							<?php display_zombie_element("infection-site-re-zombify-instrcutions") ?>
+
+						</div>
+					</div>
 				</div>
+
+
+
+
+
 			</fieldset>
 		<?php }
 
@@ -188,22 +213,16 @@ if ($usp_options['disable_required']) {
 		</fieldset>
 
 
-<!---->
-<!--			<div id="dialog-message" title="Important information">-->
-<!--				<span class="ui-state-default"><span class="ui-icon ui-icon-info" style="float:left; margin:0 7px 0 0;"></span></span>-->
-<!--				<div style="margin-left: 23px;">-->
-<!--					<p>-->
-<!--						We're closed during the winter holiday from 21st of December, 2010 until 10th of January 2011.-->
-<!--						<br /><br />-->
-<!--						Our hotel will reopen at 11th of January 2011.<br /><br />-->
-<!--						Another line which demonstrates the auto height adjustment of the dialog component.-->
-<!--					</p></div>-->
-<!--			</div>-->
+
+			<div id="captcha_zombie">
+
+			<?php if( function_exists( 'cptch_display_captcha_custom' ) ) {
+				echo "<input type='hidden' name='cntctfrm_contact_action' value='true' />"; echo cptch_display_captcha_custom();
+			} ?>
+
+			<div id="usp-submit">
 
 
-
-
-		<div id="usp-submit">
 			<?php if (!empty($usp_options['redirect-url'])) { ?>
 			
 			<input class="usp-hidden exclude" type="hidden" name="redirect-override" value="<?php echo $usp_options['redirect-url']; ?>">
@@ -226,17 +245,19 @@ if ($usp_options['disable_required']) {
 
 			<!-- for unspecified zombie artifacts -->
 			<input type="hidden" name="zombie-artifacts" id="zombie-artifacts" />
-			<input type="hidden" name="zombie-sentences" id="zombie-sentences" />
+			<input type="hidden" name="zombie-text-full" id="zombie-text-full" />
 
 			<!-- for zombie text ajax fetch -->
 			<input type="hidden" name="action" value="zombieform_action" />
 
 		</div>
+
+			<hr/>
+
+		</div>
+
 		<?php endif; ?>
 
-		<div id="dialog-confirm" title="Empty the recycle bin?">
-			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
-		</div>
 
 	</form>
 </div>
