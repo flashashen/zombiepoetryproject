@@ -30,7 +30,7 @@ public class Progenitor {
             forceZombification = false;
             Decomposition decomposition = new Decomposition(incident.victimText, false);
             incident.setVictim(decomposition.getSentences());
-            incident.setZombie(new ArrayList<>(incident.getVictim().size()));
+            incident.setZombie(new ArrayList<Sentence>(incident.getVictim().size()));
             for (Sentence sentence : incident.getVictim()){
                 zombieSentence = new Sentence();
                 zombieSentence.setAttack(true);
@@ -54,7 +54,7 @@ public class Progenitor {
             // Then apply all mutations to the zombie sentence.
             if (zombieSentence.isAttack()) {
                 zombieSentence.setParseTree(victimSentence.getParseTree().deepCopy());
-                zombieSentence.setMutations(new ArrayList<>());
+                zombieSentence.setMutations(new ArrayList<String>());
                 zombieSentence.setText("");
 
 
