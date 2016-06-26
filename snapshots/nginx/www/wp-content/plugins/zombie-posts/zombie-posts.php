@@ -97,15 +97,17 @@ function zombie_content_filter($content) {
 
 	$isIncident = false;
 
-	foreach ( get_the_category() as $category ) {
-		if ($category->name == 'Incidents') {
-			$isIncident = true;
-			break;
-		}
-	}
+	$raw_meta_text = get_post_meta( $GLOBALS['post']->ID, 'zombie_text', 1 );
+
+//	foreach ( get_the_category() as $category ) {
+//		if ($category->name == 'Incidents') {
+//			$isIncident = true;
+//			break;
+//		}
+//	}
 
 
-	if ($isIncident == true) {
+	if ($raw_meta_text) {
 
 //		$zombie_text = nl2br(wptexturize(get_post_meta( $GLOBALS['post']->ID, 'co', 1 )));
 		$victim_text = nl2br(wptexturize(get_post_meta( $GLOBALS['post']->ID, 'zombie_text', 1 )));
