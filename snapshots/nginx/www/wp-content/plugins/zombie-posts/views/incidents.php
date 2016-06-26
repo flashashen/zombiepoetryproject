@@ -10,7 +10,8 @@
 
 		$query = array (
 			'posts_per_page' => 20,
-			'meta_key' => 'zombie-artifacts'
+			'meta_key' => 'zombie-artifacts',
+			'category_name' => 'incidents'
 		);
 		$queryObject = new WP_Query($query);
 
