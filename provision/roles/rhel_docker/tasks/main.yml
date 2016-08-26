@@ -1,5 +1,10 @@
 ---
 
+
+- name: disable selinux
+  selinux: state=disabled
+
+
 - name: Enable additional yum repos
   copy: src=additional_centos_repos.repo
       dest=/etc/yum.repos.d/additional_centos_repos.repo
@@ -32,13 +37,20 @@
   yum: "name='{{ item }}' state=present disable_gpg_check=true"
   with_items:
 #    - http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-    - docker-io
+    - docker-engine
 
-- name: Install Python
-  yum: "name='{{ item }}' state=present disable_gpg_check=true"
-  with_items:
-    - python-pip
-    - python-docker-py
+
+- name: download pip install script
+  get_url: url=https://bootstrap.pypa.io/get-pip.py dest=. 
+  
+- name: install pip from script
+  command: python get-pip.py
+  
+# - name: Install python-docker
+#   yum: "name='{{ item }}' state=present disable_gpg_check=true update_cache=yes" 
+#   with_items:
+#     # - python-pip
+#     - python-docker-py
 
 - name: Install GIT
   yum: "name='{{ item }}' state=present disable_gpg_check=true"

@@ -1,1 +1,1 @@
-{"virtualbox":{"/workspace":{"guestpath":"/workspace","hostpath":"/Users/panelson/workspace","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/panelson/workspace/zombiepoetryproject/provision","disabled":false}}}
+{"virtualbox":{"/workspace":{"guestpath":"/workspace","hostpath":"/Users/panelson/workspace","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/panelson/workspace_test/zombiepoetryproject/provision","disabled":false,"__vagrantfile":true}}}

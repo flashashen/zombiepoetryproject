@@ -1,0 +1,40 @@
+#
+## !! nginx proxy doesn't work with compose V 2 b/c container ip resolution fails. There is a note on
+#version: '2'
+#
+#services:
+
+#db:
+#  image: mariadb
+#  environment:
+#    MYSQL_ROOT_PASSWORD: example
+
+
+zombie-nlp:
+  image: flashashen/zombie-nlp
+  ports:
+    - "8080"
+
+#
+#zombie-web-volumes:
+#    build: ./frontend/wordpress
+#
+#
+#zombie-web:
+#  build: ./frontend/wordpress
+##    image: flashashen/zombie-web
+#  ports:
+#    - "80:80"
+#    - "3306:3306"
+#  volumes_from:
+#    - zombie-web-volumes
+#  links:
+#    - zombie-nlp
+#    - db:mysql
+
+
+
+
+
+
+

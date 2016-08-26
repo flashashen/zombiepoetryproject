@@ -1,0 +1,7 @@
+- hosts: zombie
+  gather_facts: true
+  sudo: yes
+
+
+  roles:
+   - zombie_wp_db_backup

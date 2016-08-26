@@ -1,12 +1,42 @@
 ---
 
-  - name: get mysql conatiner ip
-    shell: docker ps | grep zombie-web | awk '{ print $1 }'
-    register: zombie_container
 
-  - name: get mysql root password
-    shell: docker exec {{zombie_container.stdout}} tail -n 1 /mysql-root-pw.txt
-    register: root_pass
+  - name: Create volume container for db
+    sudo: yes
+    docker:
+      image: mysql/mysql-server
+      name: zombie-db-volume
+      #pull: always
+      state: present
+      volumes:
+          - /var/lib/mysql
+      env:
+        MYSQL_ROOT_PASSWORD: "{{db_root_pass}}"
+
+  - name: Create DB container
+    sudo: yes
+    docker:
+      image: mysql/mysql-server
+      name: zombie-db
+     # pull: always
+      state: started
+      restart_policy: always
+      ports:
+          - "3306"
+ #     volumes_from: zombie-db-volume
+      env:
+        MYSQL_ROOT_PASSWORD: "{{db_root_pass}}"
+
+  # wait for db to come up. import further down was failing
+  # - name: wait for mysql to come up
+  #   wait_for: port=3306
+
+
+  - name: get mysql conatiner ip
+    shell: "docker ps | grep zombie-db | awk '{ print $1 }'"
+    changed_when: False
+    register: db_container
+
 
 
 #
@@ -16,13 +46,14 @@
   - name: get filename of latest snapshot
     local_action: shell basename `ls -Art ../snapshots/*.sql| tail -n 1`
     sudo: false
+    changed_when: False
     register: last_db_dump
 
   - name: copy snapshot to sever
     copy: src=../snapshots/{{last_db_dump.stdout}} dest=.
 
   - name: mysql import
-    shell: docker exec -i {{zombie_container.stdout}} mysql --user=root --password={{root_pass.stdout}} < {{last_db_dump.stdout}}
+    shell: docker exec -i {{db_container.stdout}} mysql --user=root --password={{db_root_pass}} < {{last_db_dump.stdout}}
     sudo: true
 
   - name: Delete snapshot on server
