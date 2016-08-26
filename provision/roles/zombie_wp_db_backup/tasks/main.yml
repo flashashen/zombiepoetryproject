@@ -1,0 +1,26 @@
+---
+
+    - name: get mysql conatiner ip
+      sudo: yes
+      shell: docker ps | grep zombie-db | awk '{ print $1 }'
+      register: zombie_container
+
+    - debug: var=zombie_container
+
+
+#
+#   Dump sql data
+#
+    - name: mysqldump
+      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --user=root --password={{db_root_pass}} > zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql
+      sudo: true
+
+    - name: copy snapshot from sever
+      fetch: src=zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql dest=../snapshots/ flat=yes fail_on_missing=yes
+
+    - name: Delete snapshot on server
+      file: path=zombie_mysqldump_all.sql state=absent
+
+
+
+

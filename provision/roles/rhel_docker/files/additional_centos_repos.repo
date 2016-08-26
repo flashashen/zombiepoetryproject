@@ -1,12 +1,21 @@
 
-#[cbs.centos.org_repos_virt6-testing_x86_64_os_]
+#[cbs.centos.org_repos_virt7-testing_x86_64_os_]
 #name=virt6-testing
-#baseurl=http://cbs.centos.org/repos/virt6-testing/x86_64/os/
+#baseurl=http://cbs.centos.org/repos/virt7-testing/x86_64/os/
 #enabled=1
 #gpgcheck=0
 
+
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+
+
 [dl.fedoraproject.org_x86_64_]
 name=fedora
-baseurl=http://dl.fedoraproject.org/pub/epel/6/x86_64/
+baseurl=http://dl.fedoraproject.org/pub/epel/7/x86_64/
 enabled=1
 gpgcheck=0

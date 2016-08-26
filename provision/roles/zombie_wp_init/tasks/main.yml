@@ -12,61 +12,63 @@
   stat: path=/usr/share/nginx/www
   register: nginx_config
 
-- name: start temp image to cp files
+# - name: start temp image to cp files
+#   sudo: yes
+#   docker:
+#     image: flashashen/zombie-web
+#     state: present
+#     name: temp_for_volume_copy
+#   when: nginx_config.stat.exists == true
+#   register: zombie_image_info
+# 
+# - debug: var=zombie_image_info
+
+# - name: copy nginx data where it will be mounted back as host vol
+#   shell: docker cp {{zombie_image_info.containers[0].Id}}:/var/lib/mysql /data/zombie/
+#   when: zombie_image_info.changed
+
+# - name: copy mysql data where it will be mounted back as host vol
+#   shell: docker cp {{zombie_image_info.containers[0].Id}}:/usr/share/nginx /data/zombie/
+#   when: zombie_image_info.changed
+
+
+- name: Create volume container - host mount for development
   sudo: yes
   docker:
-    image: flashashen/zombie-web
-    state: present
-    name: temp_for_volume_copy
-  when: nginx_config.stat.exists == true
-  register: zombie_image_info
-
-- debug: var=zombie_image_info
-
-- name: copy nginx data where it will be mounted back as host vol
-  shell: docker cp {{zombie_image_info.containers[0].Id}}:/var/lib/mysql /data/zombie/
-  when: zombie_image_info.changed
-- name: copy mysql data where it will be mounted back as host vol
-  shell: docker cp {{zombie_image_info.containers[0].Id}}:/usr/share/nginx /data/zombie/
-  when: zombie_image_info.changed
-
-
-- name: Create volume container - host mount
-  sudo: yes
-  docker:
-    image: flashashen/zombie-web
+    image: flashashen/zombie-web-nodb
     name: zombie-web-volumes
     #pull: always
     state: present
     volumes:
-        - "{{host_wp_www_dir}}:/usr/share/nginx"
+        - "{{host_wp_www_dir}}:{{wp_webroot}}"
         - /var/lib/mysql
-  when: host_wp_www_dir is defined
+  when: not((host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == ''))
 
 - name: Create volume container - docker volume
   sudo: yes
   docker:
-    image: flashashen/zombie-web
+    image: flashashen/zombie-web-nodb
     name: zombie-web-volumes
     #pull: always
     state: present
     volumes:
-        - "/usr/share/nginx"
+        - "{{wp_webroot}}"
         - /var/lib/mysql
-  when: host_wp_www_dir is not defined
+  when: (host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == '')
 
 
 - name: Create wordpress container
   sudo: yes
   docker:
-    image: flashashen/zombie-web
+    image: flashashen/zombie-web-nodb
     name: zombie-web
     pull: always
     state: started
     restart_policy: always
+    links: 
+      - zombie-db:mysql
     ports:
-        - "80:80"
-        - "3306:3306"
+      - "80:80"
     volumes_from: zombie-web-volumes
 
 
