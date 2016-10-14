@@ -11,4 +11,4 @@ ADD zombie-nlp-1.0-SNAPSHOT.jar /zombie-nlp-1.0-SNAPSHOT.jar
 EXPOSE 8080
 
 
-CMD ["/bin/bash", "java -jar /zombie-nlp-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/zombie-nlp-1.0-SNAPSHOT.jar"]
