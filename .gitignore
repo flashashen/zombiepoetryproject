@@ -48,6 +48,7 @@
 ######################
 *.log
 *.sqlite
+*.sql
 
 # Maven build output
 ######################
@@ -125,5 +126,5 @@ Session.vim
 ######################
 **/.vagrant
 
-
+**/.vscode
 

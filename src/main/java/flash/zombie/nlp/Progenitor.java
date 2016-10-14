@@ -8,7 +8,6 @@ import flash.zombie.nlp.realize.Realizer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -150,11 +149,9 @@ public class Progenitor {
 
         mutations.add(new MutateSimpleReplaceFromProgenitor("VBG", 60, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("VBD", 60, progenitorDecomposition));
-        mutations.add(new MutateSimpleReplaceFromProgenitor("RB | RBR | RBS", 40, progenitorDecomposition));
+        mutations.add(new MutateSimpleReplaceFromProgenitor("RB | RBR | RBS", 50, progenitorDecomposition));
         mutations.add(new MutateSimpleReplaceFromProgenitor("JJ | JJR | JJS", 40, progenitorDecomposition));
-
-
-        mutations.add(new MutateSimpleReplaceFromProgenitor("NN", "PRP", 40, progenitorDecomposition));
+        mutations.add(new MutateSimpleReplaceFromProgenitor("NN", "PRP", 50, progenitorDecomposition));
 
 
 //        BufferedReader br = null;
@@ -705,7 +702,7 @@ public class Progenitor {
             "you joked, noting the kudzu that grew " +
             "from their tops. Leaving, you saw the sign " +
             "which warned the whole thing was unstable. " +
-            "Dear blinds in fields beneath the road. " +
+            "Deer blinds in fields beneath the road. " +
             "Are you nervous? Fiddle with the dial. " +
             "In time, the static sounds like code. " +
             "Tell me what you have not done. Confess, " +
