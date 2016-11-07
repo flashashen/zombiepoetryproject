@@ -9,6 +9,7 @@
 52.32.188.200    # recovery ec2 instance
 50.112.10.226    # fresh instance
 52.39.104.229    # recover locked up intance 8/24/16
+54.212.237.242   # standby instance 11/7/16
 
 [zombie]
 107.191.50.155
@@ -19,6 +20,9 @@
 52.32.188.200
 50.112.10.226
 52.39.104.229
+54.212.237.242
+
+
 
 [dev]
 192.168.99.100  db_root_pass=example
@@ -34,3 +38,4 @@
 52.32.11.169   wp_siteurl=http://www.zombiepoetryproject.com
 50.112.10.226  wp_siteurl=http://www.zombiepoetryproject.com
 52.39.104.229  wp_siteurl=http://www.zombiepoetryproject.com
+54.212.237.242
