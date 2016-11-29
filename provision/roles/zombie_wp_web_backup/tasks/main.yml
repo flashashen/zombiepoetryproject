@@ -1,0 +1,19 @@
+---
+
+
+#
+#   Copy Wordpress files (plugins, config, etc)
+#
+    - file:  path=/var/sync_wp state=absent
+    - file:  path=/var/sync_wp state=directory mode=0755
+
+    - name: Run volume sync container
+      shell: docker run --rm -v /var/sync_wp:/var/sync_wp --volumes-from zombie-web-volumes flashashen/zombie-web cp -r /usr/share/nginx /var/sync_wp/
+
+    - name: pull WP config from server
+      synchronize: mode=pull src=/var/sync_wp/nginx dest=../snapshots rsync_path="sudo rsync"
+
+
+
+
+

@@ -1,0 +1,22 @@
+[all]
+#107.191.50.155  # vultr
+#23.226.233.110  # ramnode
+#192.168.99.100  # docker local vm
+#52.38.236.71    # ec2
+#52.39.123.147   # ec2  internal 172-31-20-22
+#52.40.78.192
+#52.32.11.169     # ?
+#52.32.188.200    # recovery ec2 instance
+#50.112.10.226    # fresh instance
+52.39.104.229    # prod as of 8/24/16. died 20016/11/28
+54.212.237.242   # standby instance as of 11/7/16. promoted 2016/11/28
+
+[zombie-web]
+52.39.104.229
+54.212.237.242
+
+[toast]
+52.39.104.229  #wp_siteurl=http://52.39.104.229
+
+[prod]
+54.212.237.242 wp_siteurl=http://www.zombiepoetryproject.com

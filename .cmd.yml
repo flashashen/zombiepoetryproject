@@ -1,0 +1,14 @@
+
+edit_secrets: ansible-vault edit provision/group_vars/zombie-web
+
+setup_user: ansible-playbook -vvv --extra-vars "username=$(whoami)" -e "ansible_ssh_user=ec2-user" -e 'host_key_checking=False'  --private-key ~/Downloads/zombie_wp_keypair.pem  provision/setup_user.yml --limit $1
+provision: ansible-playbook provision/site_wp.yml --limit
+
+wp_backup: ansible-playbook provision/wp_backup.yml --limit
+wp_restore: ansible-playbook provision/wp_restore.yml --limit
+wp_reset_hostname: ansible-playbook provision/wp_sethostname.yml --limit
+
+db_backup: ansible-playbook provision/db_backup.yml --limit
+db_restore: ansible-playbook provision/db_restore.yml --limit
+
+
