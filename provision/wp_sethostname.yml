@@ -1,0 +1,15 @@
+--- # Site confgiration for all hosts
+
+# map instance tags to roles
+
+- hosts: zombie-web
+  gather_facts: true
+  sudo: yes
+
+
+  roles:
+   - zombie_wp_set_hostname
+
+
+
+
