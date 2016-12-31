@@ -10,13 +10,22 @@
 #50.112.10.226    # fresh instance
 52.39.104.229    # prod as of 8/24/16. died 20016/11/28
 54.212.237.242   # standby instance as of 11/7/16. promoted 2016/11/28
+35.163.125.195    # prod on mike's ec2 as of dec 12
 
 [zombie-web]
 52.39.104.229
 54.212.237.242
+35.163.125.195
+zombie-server
 
 [toast]
 52.39.104.229  #wp_siteurl=http://52.39.104.229
 
 [prod]
 54.212.237.242 wp_siteurl=http://www.zombiepoetryproject.com
+
+[new]
+35.163.125.195 wp_siteurl=http://www.zombiepoetryproject.com
+
+[mini]
+zombie-server
