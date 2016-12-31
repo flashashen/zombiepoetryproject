@@ -16,10 +16,10 @@
     synchronize: src=../snapshots/nginx dest=/var/sync_wp rsync_path="sudo rsync"
 
   - name: update wordpress db yser
-    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_USER" line="define('DB_USER', 'root');"
+    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_USER" line="define('DB_USER', '{{db_wordpress_user}}');"
 
   - name: update wordpress db password
-    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_PASSWORD" line="define('DB_PASSWORD', '{{db_root_pass}}');"
+    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_PASSWORD" line="define('DB_PASSWORD', '{{db_wordpress_password}}');"
 
   - name: update wordpress db host
     lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_HOST" line="define('DB_HOST', 'mysql');"
