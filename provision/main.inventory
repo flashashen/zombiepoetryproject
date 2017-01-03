@@ -18,6 +18,11 @@
 35.163.125.195
 zombie-server
 
+
+[mac]
+zombie-server
+
+
 [toast]
 52.39.104.229  #wp_siteurl=http://52.39.104.229
 

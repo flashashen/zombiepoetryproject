@@ -41,7 +41,6 @@
     state: present
     volumes:
         - "{{host_wp_www_dir}}:{{wp_webroot}}"
-        - /var/lib/mysql
   when: not((host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == ''))
 
 - name: Create volume container - docker volume
@@ -53,7 +52,6 @@
     state: present
     volumes:
         - "{{wp_webroot}}"
-        - /var/lib/mysql
   when: (host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == '')
 
 

@@ -127,4 +127,5 @@ Session.vim
 **/.vagrant
 
 **/.vscode
+**.retry
 
