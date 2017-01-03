@@ -1,0 +1,9 @@
+Changelog
+
+Fashionistas 1.05
+----------------------
+- added changelog.txt;
+- superfish plugin update;
+- supersubs.js (deprecated) removed;
+- added hoverIntent.js for superfish menu (touch device support)
+- various CSS improvements/fixes for mobile menu;

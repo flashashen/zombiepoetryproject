@@ -9,7 +9,7 @@
 
   roles:
 #   - rhel_docker
-   - zombie_wp_db_restore
+#   - zombie_wp_db_restore
    - { role: zombie_wp_init }
 #   - { role: zombie_wp_init, host_wp_www_dir: "/workspace/zombiewww" }
    - zombie_wp_web_restore
