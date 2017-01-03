@@ -1,7 +1,9 @@
 
+ssh_prod: ssh 54.212.237.242
 edit_secrets: ansible-vault edit provision/group_vars/zombie-web
+edit_inv: vim provision/main.inventory
 
-setup_user: ansible-playbook -vvv --extra-vars "username=$(whoami)" -e "ansible_ssh_user=ec2-user" -e 'host_key_checking=False'  --private-key ~/Downloads/zombie_wp_keypair.pem  provision/setup_user.yml --limit $1
+setup_user: ansible -vvv --extra-vars "username=$(whoami)" -e "ansible_ssh_user=panelson  " -e 'host_key_checking=False'  --private-key ~/Downloads/zombie_wp_keypair.pem  provision/setup_user.yml --limit $1
 provision: ansible-playbook provision/site_wp.yml --limit
 
 wp_backup: ansible-playbook provision/wp_backup.yml --limit
@@ -11,4 +13,8 @@ wp_reset_hostname: ansible-playbook provision/wp_sethostname.yml --limit
 db_backup: ansible-playbook provision/db_backup.yml --limit
 db_restore: ansible-playbook provision/db_restore.yml --limit
 
+test2: ansible all -i zombie-server, -m shell -a '/usr/local/bin/docker ps'
+test:
+  - ans.rcmd: docker ps
+# ansible mini -i provision/main.inventory  -e "ansible_ssh_user=panelson" -m  authorized_key -a 'user=panelson key=https://github.com/flashashen.keys'
 
