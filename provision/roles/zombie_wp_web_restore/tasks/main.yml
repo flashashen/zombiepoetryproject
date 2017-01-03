@@ -1,7 +1,7 @@
 ---
 
   - name: get mysql conatiner ip
-    shell: "docker ps | grep zombie-web | awk '{ print $1 }'"
+    shell: "{{docker_cmd}} ps | grep zombie-web | awk '{ print $1 }'"
     register: zombie_container
 
 
@@ -13,7 +13,9 @@
   - file:  path=/var/sync_wp state=directory mode=0755
 
   - name: copy WP config to server
-    synchronize: src=../snapshots/nginx dest=/var/sync_wp rsync_path="sudo rsync"
+    #synchronize: src=../snapshots/nginx dest=/var/sync_wp rsync_path="sudo rsync"
+    synchronize: src=../snapshots/nginx dest=/var/sync_wp
+    sudo: yes
 
   - name: update wordpress db yser
     lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_USER" line="define('DB_USER', '{{db_wordpress_user}}');"
@@ -25,8 +27,8 @@
     lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_HOST" line="define('DB_HOST', 'mysql');"
 
   - name: Run volume copy container
-    shell: docker run --rm -v /var/sync_wp:/var/sync_wp --volumes-from zombie-web-volumes flashashen/zombie-web cp -r /var/sync_wp/nginx/www/* {{wp_webroot}}
+    shell: "{{docker_cmd}} docker cp /var/sync_wp/nginx/www/ zombie-web-volumes:/var/www/html {{wp_webroot}}"
 
   - name: set owner and group of wp-content to www-data so plugins and themes can intalled from admin screen.
-    shell: docker exec {{zombie_container.stdout}} chown -R www-data:www-data {{wp_webroot}}/wp-content
+    shell: "{{docker_cmd}} exec {{zombie_container.stdout}} chown -R www-data:www-data {{wp_webroot}}/wp-content"
     

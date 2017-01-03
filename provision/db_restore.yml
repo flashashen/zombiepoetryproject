@@ -1,6 +1,6 @@
 - hosts: zombie-web
 #  gather_facts: true
-  sudo: yes
+#  sudo: yes
 
   roles:
    - zombie_wp_db_restore

@@ -33,7 +33,7 @@
 
 
   - name: get mysql conatiner ip
-    shell: "docker ps | grep zombie-db | awk '{ print $1 }'"
+    shell: "{{docker_cmd}} ps | grep zombie-db | awk '{ print $1 }'"
     changed_when: False
     register: db_container
 
@@ -43,18 +43,29 @@
 #   Upload and import all of the Mysql data
 #
 
+
   - name: get filename of latest snapshot
-    local_action: shell basename `ls -Art ../snapshots/*.sql| tail -n 1`
+    local_action: shell find $(pwd)/.. -name zombie_mysqldump_all*.sql
     sudo: false
     changed_when: False
     register: last_db_dump
 
+  - debug:
+      var: last_db_dump
+
+
+  - name: get base filename of latest snapshot
+    local_action: shell basename `find .. -name zombie_mysqldump_all*.sql`
+    sudo: false
+    changed_when: False
+    register: last_db_dump_basename
+
   - name: copy snapshot to sever
-    copy: src=../snapshots/{{last_db_dump.stdout}} dest=.
+    copy: src={{last_db_dump.stdout}} dest=.
 
   - name: mysql import
-    shell: docker exec -i {{db_container.stdout}} mysql --user=root --password={{db_root_pass}} < {{last_db_dump.stdout}}
-    sudo: true
+    shell: '{{docker_cmd}} exec -i {{db_container.stdout}} mysql --user=root --password={{db_root_pass}} < {{last_db_dump_basename.stdout}}'
+#    sudo: true
 
   - name: Delete snapshot on server
     file: path={{last_db_dump.stdout}} state=absent
