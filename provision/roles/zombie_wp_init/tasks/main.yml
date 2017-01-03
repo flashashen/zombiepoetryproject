@@ -56,7 +56,7 @@
 
 
 - name: Create wordpress container
-  sudo: yes
+#  sudo: yes
   docker:
     image: flashashen/zombie-web-nodb
     name: zombie-web
