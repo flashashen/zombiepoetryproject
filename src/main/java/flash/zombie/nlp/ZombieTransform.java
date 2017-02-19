@@ -1,6 +1,7 @@
 package flash.zombie.nlp;
 
 import flash.zombie.nlp.model.Incident;
+import flash.zombie.nlp.realize.Realizer;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,27 @@ class ZombieTransform {
         Incident incident = new Incident();
         incident.victimText = victimText;
         incident.zombieText = zombieText;
+        return incident;
+    }
+
+
+    @RequestMapping(value="/rerealize", produces = "application/json")
+    @ResponseBody
+    public Incident rerealize(@RequestBody Incident incident) {
+
+        System.out.println("\n****************************************************************************");
+        System.out.println(incident.getZombieText());
+
+        if (incident == null || incident.zombieText == null || incident.zombieText.length() == 0) {
+            Incident inc = new Incident();
+            inc.setZombieText("no zombie text provided");
+            return inc;
+        }
+
+        Decomposition decomposition = new Decomposition(incident.zombieText, false);
+        incident.setZombie(decomposition.getSentences());
+        new Realizer().realize(incident);
+        System.out.println(incident.getZombieText());
         return incident;
     }
 
