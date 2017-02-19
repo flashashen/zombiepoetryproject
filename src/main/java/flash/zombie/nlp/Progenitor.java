@@ -89,7 +89,11 @@ public class Progenitor {
 //        }
 
 
-        // Realize zombie text
+        new Realizer().realize(incident);
+    }
+
+
+    private void realize(Incident incident){
         incident.zombieText = "";
         //Realizer realizer = new Realizer();
         //incident.zombieText += realizer.realize(incident.getZombie());
@@ -106,7 +110,7 @@ public class Progenitor {
                 incident.linesPerStanza = 0;
         }
 
-        new Realizer().realize(incident, incident.linesPerStanza);
+        new Realizer().realize(incident);
     }
 
 

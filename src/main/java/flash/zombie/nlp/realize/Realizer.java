@@ -21,42 +21,35 @@ public class Realizer {
     int characterCounter;
     int lineCounter;
 
-
-
     ZombieTokens zombieTokens;
 
 
+    public String realize(Incident incident) {
 
- //   StringWriter stringWriterZombie;
+        incident.zombieText = "";
 
-//    public Realizer(Decomposition decomposition) {
-//        this.decomposition = decomposition;
-//    }
+        if (incident.linesPerStanza == null) {
+            double random = Math.random();
+            if (random <= 0.3)
+                incident.linesPerStanza = 4;
+            else if (random <= 0.6)
+                incident.linesPerStanza = 3;
+            else if (random <= 0.9)
+                incident.linesPerStanza = 2;
+            else
+                incident.linesPerStanza = 0;
+        }
 
-    public String realize(Incident incident, int linesPerStanza) {
-
-
-        characterCounter = 0;
-        lineCounter = 0;
         zombieTokens = new ZombieTokens();
 
-        StringWriter aggregateWriter = new StringWriter();;
-
         for (Sentence sentence : incident.getZombie()) {
-//            stringWriterZombie = new StringWriter();
             writeSentence(sentence, null);
-//            sentence.setText(stringWriterZombie.toString());
-
-            // temporarily keep writing to the aggregate
-//            String sentenceString = stringWriterZombie.toString();
-//            aggregateWriter.write(sentenceString);
-
             // new realizer data. indicate sentence break.
             zombieTokens.terminateSentence();
        }
 
         while(zombieTokens.smoothLineLengths() > 0);
-        zombieTokens.applyStanza(linesPerStanza);
+        zombieTokens.applyStanza(incident.linesPerStanza);
         zombieTokens.setZombieText(incident);
 
         return zombieTokens.toString();
