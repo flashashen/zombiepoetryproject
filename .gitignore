@@ -126,6 +126,21 @@ Session.vim
 ######################
 **/.vagrant
 
+
+# node dependencies
+**/node_modules
 **/.vscode
 **.retry
 
+# production
+**/build
+
+# misc
+.DS_Store
+npm-debug.log
+
+# vscode stuff
+*.d.ts
+.vscode/
+typings.json
+jsconfig.json

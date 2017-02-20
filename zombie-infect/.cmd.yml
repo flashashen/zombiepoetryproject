@@ -1,0 +1,9 @@
+
+test:
+  - npm start &
+#  - cd server; npm run server &
+#  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
+
+chrome:
+  - pkill -a -i "Google Chrome"
+  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
