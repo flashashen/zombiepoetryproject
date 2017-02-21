@@ -2,28 +2,24 @@
 
 - hosts: all
   gather_facts: false
-  remote_user: root
-  sudo: true
-
-  #vars_prompt:
-  #  inst_name: "What's the name of the instance?"
-  #vars:
-  #    username: "panelson"   .. now expected in --extra-vars
-
-
+#  remote_user: "{{initial_remote_user}}"
+#  vars:
+#       ansible_ssh_pass: tcuser
+#       ansible_ssh_user: docker
+##       private_key_file: "{{initial_remote_key}}"
 
   tasks:
 
 
     - name: create user
-      user: name={{username}}
+      user: name={{local_user}}
 
     - name: install python selinux module
       yum: name=libselinux-python
 
 
     - name: setup authorized key
-      authorized_key: user={{username}} key=https://github.com/flashashen.keys
+      authorized_key: user={{local_user}} key=https://github.com/flashashen.keys
 #      authorized_key: user={{username}} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
     - name: add sudo privilege

@@ -1,0 +1,34 @@
+
+mysql:
+  image: mysql/mysql-server
+  environment:
+    MYSQL_ROOT_PASSWORD: "root"
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wordpress
+    MYSQL_PASSWORD: wordpress
+
+
+#zombie-nlp:
+#  image: flashashen/zombie-nlp
+#  ports:
+#    - "8080:8080"
+
+
+zombie-web:
+  image: wordpress
+  ports:
+    - "80:80"
+  volumes:
+    - ./zombie-web/www/:/var/www/html/
+  links:
+#    - zombie-nlp
+    - mysql
+  environment:
+    WORDPRESS_DB_USER: wordpress
+    WORDPRESS_DB_PASSWORD: wordpress
+
+
+
+
+
+

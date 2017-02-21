@@ -1,10 +1,31 @@
 
+infectdebug:
+  - cd zombie-infect; npm start &
+#  - cd server; npm run server &
+#  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
+
+infectchrome:
+  - pkill -a -i "Google Chrome"
+  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
+
+infectbuild:
+  - cd zombie-infect; npm run build
+
+
+
+
+wpsyncn_to_mini: rsync -azP ./zombie-web/www/ flash@zombie-server:/Applications/MAMP/htdocs/
+
+
 ssh_prod: ssh 54.212.237.242
 edit_secrets: ansible-vault edit provision/group_vars/zombie-web
 edit_inv: vim provision/main.inventory
 
-setup_user: ansible -vvv --extra-vars "username=$(whoami)" -e "ansible_ssh_user=panelson  " -e 'host_key_checking=False'  --private-key ~/Downloads/zombie_wp_keypair.pem  provision/setup_user.yml --limit $1
+#setup_user: 'ansible -vvv --extra-vars "username=$(whoami)" {{ansible_ssh_options}}  provision/setup_user.yml --limit $1'
+setup_user: ansible-playbook provision/setup_user.yml  --ask-pass -vvvv --limit
+
 provision: ansible-playbook provision/site_wp.yml --limit
+nlp: ansible-playbook provision/site_nlp.yml --limit
 
 wp_backup: ansible-playbook provision/wp_backup.yml --limit
 wp_restore: ansible-playbook provision/wp_restore.yml --limit
@@ -13,8 +34,32 @@ wp_reset_hostname: ansible-playbook provision/wp_sethostname.yml --limit
 db_backup: ansible-playbook provision/db_backup.yml --limit
 db_restore: ansible-playbook provision/db_restore.yml --limit
 
+wp_user_list: ansible-playbook provision/user_list.yml --limit
+
+
+#wp_user_setp_pass:  ansible-playbook provision/wp_restore.yml --extra-vars "username=$(whoami)" --limit
+#  dkr.exec: '{{docker_cmd}} exec -i {{zombie_db_container_name}} mysql update wp_users set user_pass = md5('Qwerty123!') where user_nicename = 'flashashen';'
+#
+#   fix access by wp user to msyql
+#  GRANT ALL ON wordpress.* to 'wordpress'@'172.17.0.3' IDENTIFIED BY 'wordpress'
+#
+#- name: Retrieve stuff from mysql
+#  command: >
+#    mysql --user=alice --password=topsecret dbname
+#    --host=147.102.160.1 --batch --skip-column-names
+#    --execute="SELECT stuff from stuff_table"
+#  register: stuff
+#  always_run: True
+#  changed_when: False
+
+
 test2: ansible all -i zombie-server, -m shell -a '/usr/local/bin/docker ps'
 test:
   - ans.rcmd: docker ps
 # ansible mini -i provision/main.inventory  -e "ansible_ssh_user=panelson" -m  authorized_key -a 'user=panelson key=https://github.com/flashashen.keys'
 
+# cat ~/.ssh/id_rsa.pub | ssh docker@192.168.99.100 'umask 0077; mkdir -p .ssh; cat >> .ssh/authorized_keys && echo "Key copied"'
+
+
+
+#Zombie NLP server URL = https://zombie-nlp-test.herokuapp.com/victim

@@ -51,7 +51,7 @@ class ZombieTransform {
         return incident;
     }
 
-
+    @CrossOrigin
     @RequestMapping(value="/rerealize", produces = "application/json")
     @ResponseBody
     public Incident rerealize(@RequestBody Incident incident) {
@@ -73,6 +73,7 @@ class ZombieTransform {
     }
 
 
+    @CrossOrigin
     @RequestMapping(value="/victim", produces = "application/json")
     @ResponseBody
     public Incident victim(@RequestBody Incident incident) {

@@ -8,9 +8,9 @@
 #
 
 
-- name: Failsafe stat check to make sure existing config is not overwritten
-  stat: path=/usr/share/nginx/www
-  register: nginx_config
+#- name: Failsafe stat check to make sure existing config is not overwritten
+#  stat: path=/usr/share/nginx/www
+#  register: nginx_config
 
 # - name: start temp image to cp files
 #   sudo: yes
@@ -31,29 +31,31 @@
 #   shell: docker cp {{zombie_image_info.containers[0].Id}}:/usr/share/nginx /data/zombie/
 #   when: zombie_image_info.changed
 
+#
+#- name: Create volume container - host mount for development
+#  sudo: yes
+#  docker:
+#    image: flashashen/zombie-web-nodb
+#    name: zombie-web-volumes
+#    #pull: always
+#    state: present
+#    volumes:
+#        - "{{host_wp_www_dir}}:{{wp_webroot}}"
+#  when: not((host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == ''))
+#
+#- name: Create volume container - docker volume
+#  sudo: yes
+#  docker:
+#    image: flashashen/zombie-web-nodb
+#    name: zombie-web-volumes
+#    #pull: always
+#    state: present
+#    volumes:
+#        - "{{wp_webroot}}"
+#  when: (host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == '')
 
-- name: Create volume container - host mount for development
-  sudo: yes
-  docker:
-    image: flashashen/zombie-web-nodb
-    name: zombie-web-volumes
-    #pull: always
-    state: present
-    volumes:
-        - "{{host_wp_www_dir}}:{{wp_webroot}}"
-  when: not((host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == ''))
-
-- name: Create volume container - docker volume
-  sudo: yes
-  docker:
-    image: flashashen/zombie-web-nodb
-    name: zombie-web-volumes
-    #pull: always
-    state: present
-    volumes:
-        - "{{wp_webroot}}"
-  when: (host_wp_www_dir is undefined) or (host_wp_www_dir is none) or (host_wp_www_dir|trim == '')
-
+- name: docker login
+  shell: "{{docker_cmd}} login -u flashashen -p duck3riz3!"
 
 - name: Create wordpress container
 #  sudo: yes
@@ -67,7 +69,7 @@
       - zombie-db:mysql
     ports:
       - "80:80"
-    volumes_from: zombie-web-volumes
+#    volumes_from: zombie-web-volumes
 
 
 - name: wait for port 80 before continuing. two minutes max

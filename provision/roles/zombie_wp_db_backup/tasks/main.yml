@@ -2,7 +2,7 @@
 
     - name: get mysql conatiner ip
       sudo: yes
-      shell: docker ps | grep zombie-db | awk '{ print $1 }'
+      shell: "{{docker_cmd}}  ps | grep zombie-db | awk '{ print $1 }'"
       register: zombie_container
 
     - debug: var=zombie_container
@@ -12,7 +12,7 @@
 #   Dump sql data
 #
     - name: mysqldump
-      shell: docker exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --user=root --password={{db_root_pass}} > zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql
+      shell: "{{docker_cmd}}  exec {{zombie_container.stdout}} mysqldump --all-databases --single-transaction --user=root --password={{db_root_pass}} > zombie_mysqldump_all_{{ansible_date_time.iso8601}}.sql"
       sudo: true
 
     - name: copy snapshot from sever

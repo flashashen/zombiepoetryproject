@@ -1,0 +1,8 @@
+
+initial_remote_user: docker
+initial_remote_pass: tcuser
+initial_remote_key:
+
+
+ansible_ssh_user: docker
+ansible_ssh_pass: tcuser
