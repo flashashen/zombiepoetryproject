@@ -1,12 +1,15 @@
 ---
 
   - name: get mysql conatiner ip
-    shell: docker ps | grep zombie-db | awk '{ print $1 }'
+    shell: "{{docker_cmd}} ps | grep zombie-db | awk '{ print $1 }'"
     changed_when: false
     register: zombie_container
 
+  - debug:
+      var: hostvars[inventory_hostname]
+
   - name: set wp_siteurl var to ip if not already defined
-    set_fact: wp_siteurl=http://{{ hostvars[inventory_hostname]['ansible_eth0']['ipv4']['address'] }}
+    set_fact: wp_siteurl=http://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
     when: wp_siteurl is not defined
 
   - name: show wp_siteutl to be used to set wp mysql config
@@ -14,7 +17,7 @@
 
   - name: mysql update of hostname options
     shell: >
-        docker exec -i {{zombie_container.stdout}} mysql --user=root --password={{db_root_pass}} wordpress -e
+        {{docker_cmd}} exec -i {{zombie_container.stdout}} mysql --user=root --password={{db_root_pass}} wordpress -e
         "update wp_options set option_value = '{{wp_siteurl}}' where option_name in ('siteurl','home');"
     sudo: true
 

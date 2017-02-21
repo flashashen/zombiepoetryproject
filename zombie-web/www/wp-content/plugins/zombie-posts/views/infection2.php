@@ -15,12 +15,7 @@ if ($usp_options['disable_required']) {
 } ?>
 
 
-
 <div id="root">
-
-<script type="text/javascript" src="http://www.zombiepoetryproject.com/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js?ver=4.3.1"></script>
-<script type="text/javascript" src="http://www.zombiepoetryproject.com/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js.map"></script>
-
 
 
 <script>(function(){var e = document.getElementById('coldform_verify'); if(e) e.parentNode.removeChild(e);})();</script>

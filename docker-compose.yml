@@ -1,36 +1,58 @@
 #
 ## !! nginx proxy doesn't work with compose V 2 b/c container ip resolution fails. There is a note on
-#version: '2'
-#
-#services:
+version: '2'
 
-db:
-  image: mariadb
-  environment:
-    MYSQL_ROOT_PASSWORD: example
+services:
 
-
-# zombie-nlp:
-#  image: flashashen/zombie-nlp
-#  ports:
-#    - "8080"
+  zombie-db-volume:
+    image: mysql/mysql-server
+    name: zombie-db-volume
+    state: present
+    volumes:
+        - /var/lib/mysql
+    env:
+      MYSQL_ROOT_PASSWORD: "{{db_root_pass}}"
 
 
-zombie-web-volumes:
-   image: flashashen/zombie-web-nodb
+   db:
+      image: mysql/mysql-server
+      name: zombie-db
+      state: started
+      restart_policy: always
+      ports:
+          - "3306"
+      volumes_from: zombie-db-volume
+      env:
+        MYSQL_ROOT_PASSWORD: "{{db_root_pass}}"
+
+  zombie-nlp:
+      image: flashashen/zombie-nlp
+      state: started
+      restart_policy: always
+      ports:
+        - "8080:8080"
 
 
-zombie-web:
-#  build: ./frontend/wordpress
-   image: flashashen/zombie-web-nodb
- ports:
-   - "80:80"
-  #  - "3306:3306"
- volumes_from:
-   - zombie-web-volumes
- links:
-   - zombie-nlp
-   - db:mysql
+  zombie-web-volumes:
+     build: zombie-web
+     image: flashashen/zombie-web-nodb:20170102
+     state: present
+
+     volumes:
+       - zombie-web/wwww:/var/www/html
+
+  zombie-web:
+     build: zombie-web
+     image: flashashen/zombie-web-nodb:20170102
+     # pull: always
+    ports:
+     - "80:80"
+    #  - "3306:3306"
+    volumes_from:
+     - zombie-web-volumes
+    links:
+#     - zombie-nlp
+     - db:mysql
 
 
 

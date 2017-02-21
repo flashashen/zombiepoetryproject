@@ -1,0 +1,16 @@
+--- #
+
+- hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: fetch zombie users
+    shell: '{{docker_cmd}} exec -i {{zombie_db_container_name}} mysql --user=root --password={{db_root_pass}}  -e "select host, user from mysql.user"'
+    register: result
+
+  - name: list users
+    debug: msg="{{item}}"
+    with_items: "{{result.stdout_lines}}"
+#    when: result.stdout_lines
+
+

@@ -1,1 +1,10 @@
 docker_cmd: docker
+docker_pass: duck3riz3!
+
+zombie_db_container_name: zombie-db
+
+local_user: panelson
+
+initial_remote_user: root
+initial_remote_pass:
+initial_remote_key: ~/.ssh/id_rsa

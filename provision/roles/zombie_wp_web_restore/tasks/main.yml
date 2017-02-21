@@ -1,34 +1,56 @@
 ---
 
-  - name: get mysql conatiner ip
-    shell: "{{docker_cmd}} ps | grep zombie-web | awk '{ print $1 }'"
-    register: zombie_container
-
-
-
+#  - name: get mysql conatiner ip
+#    shell: "{{docker_cmd}} ps | grep zombie-web | awk '{ print $1 }'"
+#    register: zombie_container
 #
+
+#  - name: login to docker repo
+#    shell: '{{docker_cmd}} login -p {{docker_pass}} -u flashashen'
+
+  - name: docker login
+    shell: "{{docker_cmd}} login -u flashashen -p duck3riz3!"
+
+
+  - name: Create wordpress container
+  #  sudo: yes
+    docker:
+      image: flashashen/zombie-web-nodb:20170102
+      name: zombie-web
+      pull: always
+      state: started
+      restart_policy: always
+      links:
+        - zombie-db:mysql
+      ports:
+        - "80:80"
+      env:
+        WORDPRESS_DB_HOST: mysql
+        WORDPRESS_DB_PASSWORD: "{{db_wordpress_password}}"
+        WORDPRESS_DB_USER: "{{db_wordpress_user}}"
+
 #   Copy Wordpress files (plugins, config, etc)
 #
 
-  - file:  path=/var/sync_wp state=directory mode=0755
+#  - file:  path=/var/sync_wp state=directory mode=0755
+#
+#  - name: copy WP config to server
+#    #synchronize: src=../snapshots/nginx dest=/var/sync_wp rsync_path="sudo rsync"
+#    synchronize: src=../snapshots/nginx dest=/var/sync_wp
+#    sudo: yes
 
-  - name: copy WP config to server
-    #synchronize: src=../snapshots/nginx dest=/var/sync_wp rsync_path="sudo rsync"
-    synchronize: src=../snapshots/nginx dest=/var/sync_wp
-    sudo: yes
+#  - name: update wordpress db yser
+#    lineinfile: dest="{{wp_webroot}}/wp-config.php" regexp="DB_USER" line="define('DB_USER', '{{db_wordpress_user}}');"
+#
+#  - name: update wordpress db password
+#    lineinfile: dest="{{wp_webroot}}/wp-config.php" regexp="DB_PASSWORD" line="define('DB_PASSWORD', '{{db_wordpress_password}}');"
+#
+#  - name: update wordpress db host
+#    lineinfile: dest="{{wp_webroot}}/wp-config.php" regexp="DB_HOST" line="define('DB_HOST', 'mysql');"
 
-  - name: update wordpress db yser
-    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_USER" line="define('DB_USER', '{{db_wordpress_user}}');"
-
-  - name: update wordpress db password
-    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_PASSWORD" line="define('DB_PASSWORD', '{{db_wordpress_password}}');"
-
-  - name: update wordpress db host
-    lineinfile: dest="/var/sync_wp/nginx/www/wp-config.php" regexp="DB_HOST" line="define('DB_HOST', 'mysql');"
-
-  - name: Run volume copy container
-    shell: "{{docker_cmd}} docker cp /var/sync_wp/nginx/www/ zombie-web-volumes:/var/www/html {{wp_webroot}}"
-
-  - name: set owner and group of wp-content to www-data so plugins and themes can intalled from admin screen.
-    shell: "{{docker_cmd}} exec {{zombie_container.stdout}} chown -R www-data:www-data {{wp_webroot}}/wp-content"
-    
+#  - name: Run volume copy container
+#    shell: "{{docker_cmd}} cp /var/sync_wp/nginx/www/ zombie-web-volumes:/var/www/html {{wp_webroot}}"
+#
+#  - name: set owner and group of wp-content to www-data so plugins and themes can intalled from admin screen.
+#    shell: "{{docker_cmd}} exec {{zombie_container.stdout}} chown -R www-data:www-data {{wp_webroot}}/wp-content"
+#

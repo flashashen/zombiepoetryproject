@@ -1,0 +1,10 @@
+--- #
+
+- hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: fetch zombie users
+    shell: "{{docker_cmd}} exec -i zombie-db mysql update wp_users set user_pass = md5('{{wp_user}}') where user_nicename = '{{wp_pass}}';"
+
+

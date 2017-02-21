@@ -11,9 +11,16 @@
 
 #- name: run docker-compose
 #  command: docker-compose up -d
+#- name: Log into DockerHub
+#  docker_login:
+#    username: flashashen
+#    password: duck3riz3!
+#    email: flashashen@gmail.com
 
+- name: login to docker repo
+  shell: '{{docker_cmd}} login -p {{docker_pass}} -u flashashen'
 
-- name: install Docker base apps image
+- name: run zombie nlp app in docker
   sudo: yes
   docker:
     image: flashashen/zombie-nlp
