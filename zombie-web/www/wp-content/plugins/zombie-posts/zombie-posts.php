@@ -421,8 +421,10 @@ if (!function_exists('usp_enqueueResources')) {
 		if (!is_admin()) {
 			if ($display_css) {
 				wp_enqueue_style('usp_style', $usp_css, false, null, 'all');
+				wp_enqueue_style('infectstyle', $base_url .'/resources/infect/css/main.70ae4915.css');
 			}
 			if ($display_js) {
+			    wp_enqueue_script('infectjs',  $base_url .'/resources/infect/js/main.6aa52043.js');
 				wp_enqueue_script('usp_cookie',  $base_url .'/resources/jquery.cookie.js',      array('jquery'), null);
 				wp_enqueue_script('usp_parsley', $base_url .'/resources/jquery.parsley.min.js', array('jquery'), null);
 				wp_enqueue_script('usp_core',    $base_url .'/resources/jquery.usp.core.js',    array('jquery'), null);
