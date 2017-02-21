@@ -1,18 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actionAttack, actionSentenceSelect } from '../actions';
+import { actionAttack, actionSentenceSelect, breakText } from '../actions';
 
 
 
 
-function breakText(text){
-    // console.log('breaking text:' + text)
-    var brokenText = text.replace(/(?:\n\n)/g, '<br/><p></p>');
-    // replace any remaining line breaks with a br, though there probably won't be any.
-    brokenText = brokenText.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-    // console.log('broken text:' + brokenText)
-    return brokenText
-
-}
 
 const styleDisplayBlock = {
     outline: '0px solid tranparent'
