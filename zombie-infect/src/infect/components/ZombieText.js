@@ -85,10 +85,9 @@ const ZombieText = ({
     zombieIndexMarker,
     dispatch}) => (
 
-    <div>
-        {fullscreen ? "" : <hr/>}
+    <div className="span5">
 
-        <label for="zombie-text">Zombie Text</label><br/><p/>
+        <label htmlFor="zombie-text">Zombie Text</label><br/><p/>
 
         <div id="zombie-text"
              className={fullscreen ? 'zombie_fullscreen' : 'zombie_inplace'}

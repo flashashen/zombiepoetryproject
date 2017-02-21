@@ -274,10 +274,10 @@ body {
 }
 
 
-/*div#zombie-text {*/
+div#zombie-text {
     /*padding: 20px;*/
-    /*font-size: 0.80rem;*/
-/*}*/
+    font-size: 0.80rem;
+}
 
 div.zombie-instructions {
     font-color: #a6a6a6;
@@ -359,7 +359,7 @@ div#usp-submit { margin: 15px 0; }
 }
 
 .zombie_inplace {
-    font-size: 0.9em;
+    /*font-size: 0.80rem;*/
     padding-left:10%;
     /*color: #52706B;*/
 }

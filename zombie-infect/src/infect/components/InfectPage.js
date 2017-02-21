@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import ZombieText from './ZombieText';
 import VictimText from './VictimText';
 import ZombieInstructions from './ZombieInstructions';
+import ZombieMutations from './ZombieMutations';
 
-import { actionAttack, actionSentenceSelect,  NEW_VICTIM, SENTENCE_SELECT_NEXT, SENTENCE_SELECT_PREVIOUS, SENTENCE_ZOMBIE_SELECT_NEXT, SENTENCE_ZOMBIE_SELECT_PREVIOUS  } from '../actions';
+import { actionAttack, actionSentenceSelect, breakText, NEW_VICTIM, SENTENCE_SELECT_NEXT, SENTENCE_SELECT_PREVIOUS, SENTENCE_ZOMBIE_SELECT_NEXT, SENTENCE_ZOMBIE_SELECT_PREVIOUS  } from '../actions';
 
 // import './fashionistas.css';
 
@@ -43,7 +45,6 @@ class InfectPage extends Component {
     }, 1000, 0);
 
 
-
     victimTextChangeHandler(e) {
         e.preventDefault();
         this.props.dispatch({
@@ -53,27 +54,86 @@ class InfectPage extends Component {
         this.handleZombieTextUpdatedDebounced(e);
     }
 
+    outputDelineatedText(text){
+        return (<span dangerouslySetInnerHTML={{__html: breakText(text)}}/>);
+    }
+
+    zombieElements(props){
+        return (
+            <div className="row-fluid">
+
+            <ZombieText
+                fullscreen={props.fullscreen}
+                zombieChoices={props.zombieChoices}
+                zombieChosenIndexes={props.zombieChosenIndexes}
+                selectedSentenceIndex={props.selectedSentenceIndex}
+                zombieIndexMarker={props.zombieIndexMarker}
+                dispatch={props.dispatch}/>
+
+
+                {!props.fullscreen && <div className="span5">
+                <Tabs onSelect={this.handleSelect} on >
+
+                    <TabList>
+                        <Tab>Help</Tab>
+                        <Tab>Text</Tab>
+                        <Tab>Mutations</Tab>
+                        <Tab>V Parse</Tab>
+                        <Tab>Z Parse</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <ZombieInstructions/>
+                    </TabPanel>
+
+                    <TabPanel>
+                        {/*<ZombieMutations*/}
+                            {/*zombieChoices={props.zombieChoices}*/}
+                            {/*zombieChosenIndexes={props.zombieChosenIndexes}*/}
+                            {/*selectedSentenceIndex={props.selectedSentenceIndex}*/}
+                            dispatch={props.dispatch}
+                        {this.outputDelineatedText(this.props.zombieChoices[props.selectedSentenceIndex][this.props.zombieChosenIndexes[props.selectedSentenceIndex]].text)}
+                         " mutated to ... "
+                        {this.outputDelineatedText(this.props.victim[props.selectedSentenceIndex].text)}
+                        />
+                    </TabPanel>
+                    <TabPanel>
+                        {this.outputDelineatedText(this.props.zombieChoices[props.selectedSentenceIndex][this.props.zombieChosenIndexes[props.selectedSentenceIndex]].mutations.join('\n'))}
+                    </TabPanel>
+                    <TabPanel>
+                        {this.outputDelineatedText(this.props.victim[props.selectedSentenceIndex].parseString)}
+                    </TabPanel>
+                    <TabPanel>
+                        {this.outputDelineatedText(this.props.zombieChoices[props.selectedSentenceIndex][this.props.zombieChosenIndexes[props.selectedSentenceIndex]].parseString)}
+                    </TabPanel>
+                </Tabs>
+            </div>}
+        </div>);
+    }
+
+
 
     render() {
         return (
-            <div id="main"
-                 className="site-main"><div className="clearfix container">
+            <div id="main"className="site-main"><div className="clearfix container">
                 <div id="content" className="site-content-wide" role="main">
                 <article className="container clearfix post-117 page type-page status-publish hentry">
-                <div>
+
+                <div id="zombie-posts" className="clearfix entry-content">
+                    <form id="usp_form" method="post" enctype="multipart/form-data" action="">
 
                     <VictimText victimText={this.props.victimText}
                                 title={this.props.title}
                                 author={this.props.author}
                                 victimTextChangeHandler={this.victimTextChangeHandler}/>
-                    <ZombieText fullscreen={this.props.fullscreen}
-                                zombieChoices={this.props.zombieChoices}
-                                zombieChosenIndexes={this.props.zombieChosenIndexes}
-                                selectedSentenceIndex={this.props.selectedSentenceIndex}
-                                zombieIndexMarker={this.props.zombieIndexMarker}
-                                dispatch={this.props.dispatch}/>
-                   {/*<ZombieInstructions/>*/}
 
+                    {this.props.fullscreen ? "" : <hr/>}
+
+                    {this.props.zombieChoices && this.props.zombieChoices.length>0 && this.zombieElements(this.props)}
+
+
+
+                </form>
                 </div>
                 </article>
                 </div>

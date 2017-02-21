@@ -206,6 +206,9 @@ export function incident(incident_state = initState, action) {
                     new_state.zombieChoices.push([action.incident.zombie[i]]);
                     new_state.zombieChosenIndexes.push(0)
                 }
+                new_state.selectedSentenceIndex = 0;
+                new_state.zombieIndexMarker = -1;
+
             }
 
             return new_state;
