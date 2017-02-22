@@ -41,37 +41,43 @@ const styleDisplayBlock = {
 
 function zombieKeyNavigate(dispatch, e) {
 
-    e.preventDefault();
     if (e.key == 'ArrowUp') {
         // up arrow
+        e.preventDefault();
         dispatch({type: actions.SENTENCE_SELECT_PREVIOUS});
     }
     else if (e.key == 'ArrowDown') {
         // down arrow
+        e.preventDefault();
         dispatch(actions.actionRelineate())
         dispatch({ type: actions.SENTENCE_SELECT_NEXT});
     }
     else if (e.key == 'ArrowLeft') {
         // left arrow
+        e.preventDefault();
         dispatch({type: actions.SENTENCE_ZOMBIE_SELECT_PREVIOUS});
     }
     else if (e.key == "ArrowRight") {
         // right arrow
+        e.preventDefault();
         dispatch({type: actions.SENTENCE_ZOMBIE_SELECT_NEXT});
     }
     else if (e.key == "f") {
         // Instigate a new zombie attack
         // var nodes = Array.prototype.slice.call(e.target.parentNode.childNodes);
+        e.preventDefault();
         dispatch({type: actions.ZOMBIE_FULL_SCREEN_TOGGLE});
     }
     else if (e.key == "Escape") {
         // Instigate a new zombie attack
         // var nodes = Array.prototype.slice.call(e.target.parentNode.childNodes);
+        e.preventDefault();
         dispatch({type: actions.ZOMBIE_ESCAPE});
     }
     else if (e.key == " ") {
         // Instigate a new zombie attack
         // var nodes = Array.prototype.slice.call(e.target.parentNode.childNodes);
+        e.preventDefault();
         dispatch(actions.actionAttack())
     }
 }
@@ -85,7 +91,7 @@ const ZombieText = ({
     zombieIndexMarker,
     dispatch}) => (
 
-    <div className="span5">
+    <div className="span6">
 
         <label htmlFor="zombie-text">Zombie Text</label><br/><p/>
 
@@ -116,8 +122,6 @@ ZombieText.propTypes = {
     zombieChoices: PropTypes.array,
     zombieChosenIndexes: PropTypes.array,
     selectedSentenceIndex: PropTypes.number,
-    // sentenceSelectDispatcher: PropTypes.func,
-    // sentenceAttackDispatcher: PropTypes.func,
     dispatch: PropTypes.func,
     fullscreen: PropTypes.bool,
 };
