@@ -274,14 +274,6 @@ body {
 }
 
 
-div#zombie-text {
-    /*padding: 20px;*/
-    font-size: 0.80rem;
-}
-
-div.zombie-instructions {
-    font-color: #a6a6a6;
-}
 
 div#zombie-posts { width: 100%; font-size: 11px; }
 div#zombie-posts fieldset { margin: 10px 0; padding: 0; border: 0; }
@@ -311,6 +303,17 @@ div#usp-submit { margin: 15px 0; }
 .usp-js { display: block; }
 
 
+
+
+div#zombie-text {
+/*padding: 20px;*/
+ font-size: 0.80rem;
+/*line-height: normal;*/
+}
+
+/*div.zombie-instructions {*/
+    /*font-color: #a6a6a6;*/
+/*}*/
 
 
 
@@ -359,7 +362,17 @@ div#usp-submit { margin: 15px 0; }
 }
 
 .zombie_inplace {
-    /*font-size: 0.80rem;*/
+    font-size: 0.80rem;
     padding-left:10%;
     /*color: #52706B;*/
+}
+
+.zombie_block_quote {
+    display: block;
+    font-style: italic;
+    /*background: #F1F0EA;*/
+    /*border: 1px solid #DDDBCC;*/
+    /*border-radius: 3px;*/
+    padding: 0.2em 0em 0.2em 1.0em;
+    /*overflow: scroll;*/
 }

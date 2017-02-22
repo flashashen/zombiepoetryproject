@@ -7,9 +7,7 @@ import edu.stanford.nlp.util.StringUtils;
 import flash.zombie.nlp.model.Incident;
 import flash.zombie.nlp.model.Sentence;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

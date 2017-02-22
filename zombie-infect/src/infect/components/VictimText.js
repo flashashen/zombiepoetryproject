@@ -11,18 +11,7 @@ const VictimText = ({ victimText, author, title, victimTextChangeHandler  }) => 
 
     <div id="zombie-posts">
         {/*  took out 'enctype' but what was it for?? <form id="usp_form" method="post" enctype="multipart/form-data" action="">*/}
-            <form id="usp_form" method="post" action="">
-
-
-        <fieldset className="usp-name">
-            <label htmlFor="user-submitted-name">Author</label>
-            <input name="author" type="text" value={author} placeholder="Author" className="usp-input"/>
-        </fieldset>
-
-        <fieldset className="usp-title">
-            <label htmlFor="user-submitted-title">Title</label>
-            <input name="title" type="text" value={title} placeholder="Post Title" className="usp-input"/>
-        </fieldset>
+            {/*<form id="usp_form" method="post" action="">*/}
 
         <fieldset className="usp-content">
 
@@ -39,7 +28,7 @@ const VictimText = ({ victimText, author, title, victimTextChangeHandler  }) => 
         </fieldset>
 
 
-        </form>
+        {/*</form>*/}
     </div>
 
 );

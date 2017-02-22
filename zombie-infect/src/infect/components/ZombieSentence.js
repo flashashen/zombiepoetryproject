@@ -15,10 +15,7 @@ const ZombieSentence = ({ dispatch, text, sentenceIndex, zombieIndexMarker, acti
 
     <span
         onKeyDown={keyHandler}
-        tabIndex="-1"
         id={'zombie_sentence_'+sentenceIndex.toString()}>
-
-         {zombieIndexMarker>=0 ? <p/> : ""}
 
         { active
             ? zombiesLeft
@@ -32,12 +29,12 @@ const ZombieSentence = ({ dispatch, text, sentenceIndex, zombieIndexMarker, acti
                 className="zombie_sentence_active"
                 onClick={() => dispatch(actionAttack())}
                 tabIndex="0"
-                dangerouslySetInnerHTML={{__html: (zombieIndexMarker>=0) ? (text) : breakText(text)}}/>
+                dangerouslySetInnerHTML={{__html: breakText(text) }}/>
             : <span
                 style={styleDisplayBlock}
                 className="zombie_sentence"
-                tabIndex="0"
                 onClick={() => dispatch(actionSentenceSelect(sentenceIndex))}
+                tabIndex="-1"
                 dangerouslySetInnerHTML={{__html: breakText(text)}}/>
         }
 
@@ -48,7 +45,6 @@ const ZombieSentence = ({ dispatch, text, sentenceIndex, zombieIndexMarker, acti
                 : <i className="icon-stop"/>
             : '' }
 
-        {zombieIndexMarker>=0 ? <p/> : ""}
 
     </span>
 

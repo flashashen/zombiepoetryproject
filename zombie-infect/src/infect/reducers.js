@@ -1,6 +1,9 @@
 import {
     ZOMBIE_FULL_SCREEN_TOGGLE,
     ZOMBIE_ESCAPE,
+    INFO_TAB_SELECT_NEXT,
+    INFO_TAB_SELECT_PREVIOUS,
+    INFO_TAB_SELECT_INDEX,
     NEW_VICTIM,
     SENTENCE_SELECT,
     SENTENCE_SELECT_NEXT,
@@ -19,6 +22,7 @@ import {
 const initState = {
     "selectedSentenceIndex": -1,
     "zombieIndexMarker": -1,
+    "selectedInfoIndex": 0,
     "victimText": "Because having a college education and being a homeowner isn’t all what it’s cracked up to be. Check out these homeowner tax opportunities and take advantage of those that apply! Probably one of the most grownup emails I have received. I am now a homeowner and responsible for stuff. *Gulp* Pumpkin Growing for the Homeowner: It may not be autumn just yet, but pumpkin growing needs to be thought of. Rising home prices boost homeowner equity. Homeowner was on her way home from work & saw police, fire outside. Then she noticed vehicle in her living room.",
 };
 
@@ -40,7 +44,21 @@ export function incident(incident_state = initState, action) {
                 });
             }
             return incident_state;
-
+        //
+        // case INFO_TAB_SELECT_NEXT:
+        //     return Object.assign({}, incident_state, {
+        //         selectedInfoIndex: (incident_state.selectedInfoIndex += 1) % 4
+        //     });
+        //
+        // case INFO_TAB_SELECT_PREVIOUS:
+        //     return Object.assign({}, incident_state, {
+        //         selectedInfoIndex: incident_state.selectedInfoIndex==0 ? 3 : incident_state.selectedInfoIndex-1
+        //     });
+        //
+        // case INFO_TAB_SELECT_INDEX:
+        //     return Object.assign({}, incident_state, {
+        //         selectedInfoIndex: action.index
+        //     });
 
         case NEW_VICTIM:
             return Object.assign({}, incident_state, {

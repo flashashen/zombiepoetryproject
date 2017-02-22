@@ -13,6 +13,9 @@ export const SENTENCE_SELECT_NEXT = 'SENTENCE_SELECT_NEXT';
 export const SENTENCE_SELECT_PREVIOUS = 'SENTENCE_SELECT_PREVIOUS';
 export const SENTENCE_ZOMBIE_SELECT_NEXT = 'SENTENCE_ZOMBIE_SELECT_NEXT';
 export const SENTENCE_ZOMBIE_SELECT_PREVIOUS = 'SENTENCE_ZOMBIE_SELECT_PREVIOUS';
+export const INFO_TAB_SELECT_INDEX = 'INFO_TAB_SELECT_INDEX';
+export const INFO_TAB_SELECT_NEXT = 'INFO_TAB_SELECT_NEXT';
+export const INFO_TAB_SELECT_PREVIOUS = 'INFO_TAB_SELECT_PREVIOUS';
 
 // Remote zombification results
 export const ATTACK_REQUEST = 'ATTACK_REQUEST';
@@ -37,11 +40,11 @@ export const INVALIDATE_INCIDENT = 'INVALIDATE_INCIDENT';
 
 
 export function breakText(text){
-    // console.log('breaking text:' + text)
+    console.log('breaking text:' + text)
     var brokenText = text.replace(/(?:\n\n)/g, '<br/><p></p>');
     // replace any remaining line breaks with a br, though there probably won't be any.
     brokenText = brokenText.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-    // console.log('broken text:' + brokenText)
+    console.log('broken text:' + brokenText)
     return brokenText
 
 }
@@ -105,7 +108,7 @@ export function actionSentenceSelect(index) {
 //  Helpers to hide some of the array indexing in the state
 //
 export function getSelectedSentenceIndex(action, state){
-    return (action.selectedSentenceIndex && action.selectedSentenceIndex >= 0)
+    return (action.selectedSentenceIndex >= 0)
         ? action.selectedSentenceIndex
         : (state.selectedSentenceIndex >= 0) ? state.selectedSentenceIndex : 0
 }
@@ -186,7 +189,8 @@ function relineateSuccess(selectedSentenceIndex) {
 }
 
 
-const API_ROOT = 'http://www.zombiepoetryproject.com:8080';
+const API_ROOT = 'http://192.168.1.3:8080';
+// const API_ROOT = 'http://www.zombiepoetryproject.com:8080';
 // const API_ROOT = 'https://zombie-nlp-test.herokuapp.com'
 function remoteAttack(incident) {
   const url = `${API_ROOT}/victim`;
