@@ -28,7 +28,7 @@ public class Realizer {
 
         incident.zombieText = "";
 
-        if (incident.linesPerStanza == null || incident.linesPerStanza <= 0) {
+        if (incident.linesPerStanza == null || incident.linesPerStanza < 0) {
             double random = Math.random();
             if (random <= 0.3)
                 incident.linesPerStanza = 4;
