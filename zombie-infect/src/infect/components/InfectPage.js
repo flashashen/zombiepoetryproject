@@ -29,9 +29,9 @@ class InfectPage extends Component {
 
     debounce(func, wait, immediate) {
         var timeout;
-        return function() {
+        return function () {
             var context = this, args = arguments;
-            var later = function() {
+            var later = function () {
                 timeout = null;
                 if (!immediate) func.apply(context, args);
             };
@@ -42,11 +42,10 @@ class InfectPage extends Component {
         };
     };
 
-    handleZombieTextUpdatedDebounced = this.debounce( (e) => {
+    handleZombieTextUpdatedDebounced = this.debounce((e) => {
         // this.props.dispatch(victimTextWalksItoAZombieBar(e.target.value));
         this.props.dispatch(actionAttack());
     }, 1000, 0);
-
 
 
     componentWillMount() {
@@ -75,11 +74,11 @@ class InfectPage extends Component {
                 this.panel3.focus();
                 break;
         }
-     }
+    }
 
 
     focusTab(input, index) {
-        if (input != null && this.props.selectedInfoIndex==index) {
+        if (input != null && this.props.selectedInfoIndex == index) {
             input.focus();
             input.select();
         }
@@ -91,9 +90,10 @@ class InfectPage extends Component {
             this.tabs.focus();
         }
     }
-     //autoFocus
 
-    setref(component){
+    //autoFocus
+
+    setref(component) {
         if (component)
             this.tabs = component;
     }
@@ -141,10 +141,59 @@ class InfectPage extends Component {
     //     console.log('Selected tab: ' + index + ', Last tab: ' + last);
     // }
 
-    outputDelineatedText(text){
+    outputDelineatedText(text) {
         return (<span dangerouslySetInnerHTML={{__html: breakText(text)}}/>);
     }
 
+    submit() {
+        return (
+            <div id="usp-submit">
+                <input className="exclude" name="user-submitted-post"
+                       id="user-submitted-post"
+                       type="submit" value="Submit Post"/>
+
+                <input type="hidden" id="usp-nonce" name="usp-nonce" value="7a150f8af9"/>
+            </div>);
+    }
+
+    captchya() {
+        return (
+            <div id="captcha_zombie">
+                <input type="hidden" name="cntctfrm_contact_action" value="true"/>
+
+                <span className="cptch_wrap">
+
+                        <label className="cptch_label" htmlFor="cptch_input_66">
+                            <span className="cptch_span">
+                                <img className="cptch_img "
+                                     src="data: image/png;base64,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"/></span>
+                            <span className="cptch_span">&nbsp;×&nbsp;</span>
+                            <span className="cptch_span">
+
+                                <input id="cptch_input_66" className="cptch_input" type="text"
+                                        autoComplete="off" name="cptch_number" value=""
+                                        maxLength="2"
+                                        size="2" aria-required="true" required="required"
+                                        style={{marginBottom: "0", display: "inline", fontSize: "12px", width: "40px"}}
+                                />
+
+                            </span>
+                            <span className="cptch_span">&nbsp;=&nbsp;</span>
+                            <span className="cptch_span">42</span>
+                            <input type="hidden" name="cptch_result" value="4FU="/>
+                            <input type="hidden" name="cptch_time" value="1487802991"/>
+                            <input type="hidden" value="Version: 4.1.9"/>
+                        </label>
+
+                        <span className="cptch_reload_button_wrap hide-if-no-js">
+						    <span className="cptch_reload_button dashicons dashicons-update"></span>
+					    </span>
+                    </span>
+
+                {this.submit()}
+
+            </div>);
+    }
 
     zombieElements(props) {
         return (
@@ -206,45 +255,55 @@ class InfectPage extends Component {
     }
 
 
-
     render() {
         return (
-            <div id="main"className="site-main"><div className="clearfix container">
-                <div id="content" className="site-content-wide" role="main">
-                {/*<article className="container clearfix post-117 page type-page status-publish hentry">*/}
+            <div id="main" className="site-main">
+                <div className="clearfix container">
+                    <div id="content" className="site-content-wide" role="main">
 
-                <div id="zombie-posts" className="clearfix entry-content">
-                    <form id="usp_form" method="post" encType="multipart/form-data" action="">
+                        <div id="zombie-posts" className="clearfix entry-content">
+                            <form id="usp_form" method="post" encType="multipart/form-data" action="">
 
+                                {this.props.fullscreen ? "" :
+                                    <span>
+                                        <fieldset className="usp-name">
+                                            <label htmlFor="user-submitted-name">Author</label>
+                                            <input name="author" type="text" value={this.props.author}
+                                                   placeholder="Author"
+                                                   className="usp-input"/>
+                                        </fieldset>
 
-                        {this.props.fullscreen ? "" :
-                            <span>
-                            <fieldset className="usp-name">
-                                <label htmlFor="user-submitted-name">Author</label>
-                                <input name="author" type="text" value={this.props.author} placeholder="Author" className="usp-input"/>
-                            </fieldset>
+                                        <fieldset className="usp-title">
+                                            <label htmlFor="user-submitted-title">Title</label>
+                                            <input name="title" type="text" value={this.props.title}
+                                                   placeholder="Post Title"
+                                                   className="usp-input"/>
+                                        </fieldset>
 
-                            <fieldset className="usp-title">
-                                <label htmlFor="user-submitted-title">Title</label>
-                                <input name="title" type="text" value={this.props.title} placeholder="Post Title" className="usp-input"/>
-                            </fieldset>
+                                        <VictimText victimText={this.props.victimText}
+                                                    victimTextChangeHandler={this.victimTextChangeHandler}/>
+                                        <hr/>
+                                    </span>}
 
-                            <VictimText victimText={this.props.victimText}
-                                        victimTextChangeHandler={this.victimTextChangeHandler}/>
-                            <hr/>
-                            </span>
-                        }
+                                {this.props.zombieChoices && this.props.zombieChoices.length > 0 && this.zombieElements(this.props)}
 
-                    {this.props.zombieChoices && this.props.zombieChoices.length>0 && this.zombieElements(this.props)}
+                                <input type="hidden" name="zombie-text-full" id="zombie-text-full"
+                                       value={this.props.zombieText}/>
+                                <input type="hidden" name="zombie-artifacts" id="zombie-artifacts"
+                                       value={this.props.zombie}/>
 
-                </form>
+                                {/*{this.captchya()}*/}
+
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-                {/*</article>*/}
-                </div>
-            </div></div>
+            </div>
         );
     }
 }
+
 
 InfectPage.propTypes = {
     selectedSentenceIndex: PropTypes.number,

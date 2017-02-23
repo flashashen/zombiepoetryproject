@@ -44,6 +44,7 @@ function zombieKeyNavigate(dispatch, e) {
     if (e.key == 'ArrowUp') {
         // up arrow
         e.preventDefault();
+        dispatch(actions.actionRelineate())
         dispatch({type: actions.SENTENCE_SELECT_PREVIOUS});
     }
     else if (e.key == 'ArrowDown') {

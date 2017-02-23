@@ -66,6 +66,8 @@ export function incident(incident_state = initState, action) {
                 selectedSentenceIndex: -1,
                 zombieIndexMarker: -1,
                 zombieChoices: [],
+                zombie: null,
+                victim: null,
                 zombieText: "",
                 isFetching: false
             });
@@ -80,8 +82,8 @@ export function incident(incident_state = initState, action) {
             var index = getSelectedSentenceIndex(action, incident_state)
             return Object.assign({}, incident_state, {
                 selectedSentenceIndex: index,
-                // set marker back to -1 to indicate no selection in progress
-                zombieIndexMarker: -1
+                // set marker
+                zombieIndexMarker: incident_state.zombieChosenIndexes[index]
             });
 
         case SENTENCE_SELECT_NEXT:
@@ -89,8 +91,8 @@ export function incident(incident_state = initState, action) {
             if (index < incident_state.zombieChoices.length-1) {
                 return Object.assign({}, incident_state, {
                     selectedSentenceIndex: index+1,
-                    // set marker back to -1 to indicate no selection in progress
-                    zombieIndexMarker: -1
+                    // set marker
+                    zombieIndexMarker: incident_state.zombieChosenIndexes[index+1]
                 });
             }
             return incident_state;
@@ -100,8 +102,8 @@ export function incident(incident_state = initState, action) {
             if (index > 0) {
                 return Object.assign({}, incident_state, {
                     selectedSentenceIndex: index-1,
-                    // set marker back to -1 to indicate no selection in progress
-                    zombieIndexMarker: -1
+                    // set marker
+                    zombieIndexMarker: incident_state.zombieChosenIndexes[index-1]
                 });
             }
             return incident_state;
@@ -117,10 +119,12 @@ export function incident(incident_state = initState, action) {
                 return Object.assign({}, incident_state, {
                     zombieChosenIndexes: new_indexes,
                     // set zombie selection marker to initial choice, don't change it after that
-                    zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
-                        ? incident_state.zombieChosenIndexes[index]
-                        : incident_state.zombieIndexMarker
-                });
+                    // zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
+                    //     ? incident_state.zombieChosenIndexes[index]
+                    //     : incident_state.zombieIndexMarker,
+                    // Make sure zombieText is current with user selections
+                    zombieText: getZombieText(incident_state.zombieChoices, new_indexes)
+            });
             }
             return incident_state;
 
@@ -132,14 +136,20 @@ export function incident(incident_state = initState, action) {
             // if (incident_state.zombieChosenIndexes[index] < incident_state.zombieChoices[index].length-1){
                 var new_indexes = incident_state.zombieChosenIndexes.slice(0)
                 new_indexes[index] = new_indexes[index]+1
-                return Object.assign({}, incident_state, {
+                var new_state = Object.assign({}, incident_state, {
                     zombieChosenIndexes: new_indexes,
                     // set zombie selection marker to initial choice, don't change it after that
-                    zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
-                        ? incident_state.zombieChosenIndexes[index]
-                        : incident_state.zombieIndexMarker
+                    // zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
+                    //     ? incident_state.zombieChosenIndexes[index]
+                    //     : incident_state.zombieIndexMarker,
+                    // Make sure zombieText is current with user selections
+                    zombieText: getZombieText(incident_state.zombieChoices, new_indexes)
                 });
+                // Keep zombie updated for submit. Getting
+                new_state.zombie[index] = new_state.zombieChoices[index][new_state.zombieChosenIndexes[index]]
+                return new_state;
             }
+
             return incident_state;
 
 
@@ -183,7 +193,7 @@ export function incident(incident_state = initState, action) {
                 zombie: action.incident.zombie,
             });
 
-            if (action.selectedSentenceIndex && action.selectedSentenceIndex >= 0 && incident_state.zombieChoices){
+            if (action.selectedSentenceIndex >= 0){
 
                 // Check if the zombie text is not already
                 // var duplicate = incident_state.zombieChoices.find(function(text){

@@ -10,14 +10,11 @@ const VictimText = ({ victimText, author, title, victimTextChangeHandler  }) => 
 
 
     <div id="zombie-posts">
-        {/*  took out 'enctype' but what was it for?? <form id="usp_form" method="post" enctype="multipart/form-data" action="">*/}
-            {/*<form id="usp_form" method="post" action="">*/}
-
         <fieldset className="usp-content">
 
-            <label htmlFor="victimText">Victim Text</label>
+            <label htmlFor="user-submitted-content">Victim Text</label>
             <textarea
-                name="victimText"
+                name="user-submitted-content"
                 onChange={victimTextChangeHandler}
                 id="victim-text"
                 maxLength="1800"
@@ -26,9 +23,6 @@ const VictimText = ({ victimText, author, title, victimTextChangeHandler  }) => 
                 className="usp-textarea"
                 value={victimText}/>
         </fieldset>
-
-
-        {/*</form>*/}
     </div>
 
 );
