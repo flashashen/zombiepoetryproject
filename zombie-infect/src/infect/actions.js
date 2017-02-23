@@ -189,8 +189,8 @@ function relineateSuccess(selectedSentenceIndex) {
 }
 
 
-const API_ROOT = 'http://192.168.1.3:8080';
-// const API_ROOT = 'http://www.zombiepoetryproject.com:8080';
+// const API_ROOT = 'http://192.168.1.3:8080';
+const API_ROOT = 'http://172.20.10.5:8080';
 // const API_ROOT = 'https://zombie-nlp-test.herokuapp.com'
 function remoteAttack(incident) {
   const url = `${API_ROOT}/victim`;
@@ -233,7 +233,8 @@ export function actionRelineate() {
         var incident = getState().incident;
 
         // Make sure zombieText is current with user selections
-        incident.zombieText = getZombieText(incident.zombieChoices, incident.zombieChosenIndexes);
+        //   **** it is already now. done in the reduces any time its needed
+        // incident.zombieText = getZombieText(incident.zombieChoices, incident.zombieChosenIndexes);
 
         if (!incident.isFetching
                 && incident.zombieIndexMarker >= 0
