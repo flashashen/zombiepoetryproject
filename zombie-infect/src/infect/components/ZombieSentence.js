@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { actionAttack, actionSentenceSelect, breakText } from '../actions';
+import { actionAttack, actionSentenceSelect, breakText, SENTENCE_ZOMBIE_SELECT_PREVIOUS, SENTENCE_ZOMBIE_SELECT_NEXT  } from '../actions';
 
 
 
@@ -19,8 +19,8 @@ const ZombieSentence = ({ dispatch, text, sentenceIndex, zombieIndexMarker, acti
 
         { active
             ? zombiesLeft
-                ? <i className="icon-chevron-left"/>
-                : <i className="icon-stop"/>
+                ? <i className="icon-chevron-left" tabIndex="-1" onClick={(e) => {e.preventDefault(); dispatch({type: SENTENCE_ZOMBIE_SELECT_PREVIOUS })}}/>
+                : <i className="icon-stop" tabIndex="-1" />
             : '' }
 
 
@@ -41,8 +41,8 @@ const ZombieSentence = ({ dispatch, text, sentenceIndex, zombieIndexMarker, acti
 
         { active
             ? zombiesRight
-                ? <i className="icon-chevron-right"/>
-                : <i className="icon-stop"/>
+                ? <i className="icon-chevron-right" tabIndex="-1"  onClick={() => {dispatch({type: SENTENCE_ZOMBIE_SELECT_NEXT})}}/>
+                : <i className="icon-stop" tabIndex="-1" />
             : '' }
 
 

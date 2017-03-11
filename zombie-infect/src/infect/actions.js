@@ -40,11 +40,11 @@ export const INVALIDATE_INCIDENT = 'INVALIDATE_INCIDENT';
 
 
 export function breakText(text){
-    console.log('breaking text:' + text)
+    // console.log('breaking text:' + text)
     var brokenText = text.replace(/(?:\n\n)/g, '<br/><p></p>');
     // replace any remaining line breaks with a br, though there probably won't be any.
     brokenText = brokenText.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-    console.log('broken text:' + brokenText)
+    // console.log('broken text:' + brokenText)
     return brokenText
 
 }
@@ -188,9 +188,9 @@ function relineateSuccess(selectedSentenceIndex) {
     };
 }
 
-
+const API_ROOT = 'http://www.zombiepoetryproject.com:8080';
 // const API_ROOT = 'http://192.168.1.3:8080';
-const API_ROOT = 'http://172.20.10.5:8080';
+//const API_ROOT = 'http://172.20.10.5:8080';
 // const API_ROOT = 'https://zombie-nlp-test.herokuapp.com'
 function remoteAttack(incident) {
   const url = `${API_ROOT}/victim`;
@@ -216,6 +216,7 @@ function remoteAttack(incident) {
 //         relineateSuccess(incident.selectedSentenceIndex),
 //         attackFailure(incident.selectedSentenceIndex));
 // }
+
 
 
 // Do remote request if not already in progress. The return value is itself a function

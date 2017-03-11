@@ -177,6 +177,17 @@ function usp_check_required($field) {
 add_action ('parse_request', 'usp_checkForPublicSubmission');
 function usp_checkForPublicSubmission() {
 	global $usp_options;
+
+
+
+//	foreach($_POST as $key=>$val)
+//	{
+//		echo $key . ' : ' . $val . '<br/>';
+//	}
+//	die();
+
+
+
 	if (isset($_POST['user-submitted-post'], $_POST['usp-nonce']) && !empty($_POST['user-submitted-post']) && wp_verify_nonce($_POST['usp-nonce'], 'usp-nonce')) {
 		
 		$title = __('Unidentified', 'usp');
@@ -185,7 +196,7 @@ function usp_checkForPublicSubmission() {
 		
 		$files = array();
 		if (isset($_FILES['user-submitted-image'])) $files = $_FILES['user-submitted-image'];
-		
+
 		$ip = 'undefined';
 		if ($usp_options['disable_ip_tracking']) $ip = 'not recorded';
 		if (isset($_SERVER['REMOTE_ADDR']) && !$usp_options['disable_ip_tracking']) $ip = sanitize_text_field($_SERVER['REMOTE_ADDR']);
@@ -198,9 +209,10 @@ function usp_checkForPublicSubmission() {
 		if (isset($_POST['user-submitted-tags']))     $tags     = sanitize_text_field($_POST['user-submitted-tags']);
 		if (isset($_POST['user-submitted-captcha']))  $captcha  = sanitize_text_field($_POST['user-submitted-captcha']);
 		if (isset($_POST['user-submitted-verify']))   $verify   = sanitize_text_field($_POST['user-submitted-verify']);
-		if (isset($_POST['zombie-artifacts']))        $zombieArtifacts = $_POST['zombie-artifacts'];
+//		if (isset($_POST['zombie-artifacts']))        $zombieArtifacts = $_POST['zombie-artifacts'];
 		if (isset($_POST['zombie-text-full']))        $zombie  = $_POST['zombie-text-full'];
 		if (isset($_POST['user-submitted-category'])) $category = intval($_POST['user-submitted-category']);
+
 
 		// zombie isn't used anymore as a meta field. zombie text is the content now. everything else goes in a big json ball.
 //		$zombie = $content;
@@ -677,7 +689,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 	if (isset($usp_options['usp_tags'])     && ($usp_options['usp_tags']     == 'show') && empty($tags))     $newPost['error'][] = 'required-tags';
 	if (isset($usp_options['usp_category']) && ($usp_options['usp_category'] == 'show') && empty($category)) $newPost['error'][] = 'required-category';
 	if (isset($usp_options['usp_content'])  && ($usp_options['usp_content']  == 'show') && empty($content))  $newPost['error'][] = 'required-content';
-	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-content';
+	if (isset($usp_options['usp_zombie'])  && ($usp_options['usp_zombie']  == 'show') && empty($zombie))     $newPost['error'][] = 'required-zombie';
 
 	if (isset($usp_options['usp_captcha']) && ($usp_options['usp_captcha'] == 'show') && !usp_spamQuestion($captcha)) $newPost['error'][] = 'required-captcha';
 	if (isset($usp_options['usp_email'])   && ($usp_options['usp_email']   == 'show') && !usp_validateEmail($email))  $newPost['error'][] = 'required-email';
@@ -742,6 +754,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 			// just dump raw json for now
 			update_post_meta($post_id, 'zombie-artifacts',         $zombieArtifacts);
 		}
+
 		if (!empty($zombie)) update_post_meta($post_id, $usp_post_meta_Zombie,         $zombie);
 		if (!empty($author)) update_post_meta($post_id, $usp_post_meta_Submitter,      $author);
 		if (!empty($url))    update_post_meta($post_id, $usp_post_meta_SubmitterUrl,   $url);
@@ -914,7 +927,8 @@ function usp_error_message() {
 			elseif ($e == 'required-url')      $error[] = __('Post url required', 'usp');
 			elseif ($e == 'required-tags')     $error[] = __('Post tags required', 'usp');
 			elseif ($e == 'required-category') $error[] = __('Post category required', 'usp');
-			elseif ($e == 'required-content')  $error[] = __('Victim text required', 'usp');
+			elseif ($e == 'required-content')  $error[] = __('Did you supply a victim?', 'usp');
+			elseif ($e == 'required-zombie')   $error[] = __('We have a problem. Zombie is missing. Watch out behind you.', 'usp');
 			elseif ($e == 'required-captcha')  $error[] = __('Correct captcha required', 'usp');
 			elseif ($e == 'required-email')    $error[] = __('User email required', 'usp');
 			elseif ($e == 'spam-verify')       $error[] = __('Non-empty value for hidden field', 'usp');

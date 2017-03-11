@@ -12,7 +12,7 @@ Tags: black, white, two-columns, fixed-layout, threaded-comments, full-width-tem
 */
 
 
-@import url("../fashionistas/style.css");
+@import url("./css/fashionistas.css");
 
 /*.container {*/
     /*width: 800px;*/

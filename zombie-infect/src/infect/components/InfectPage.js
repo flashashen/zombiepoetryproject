@@ -207,9 +207,9 @@ class InfectPage extends Component {
                     zombieIndexMarker={props.zombieIndexMarker}
                     dispatch={props.dispatch}/>
 
-                <p className="span1"/>
 
-                {!props.fullscreen && <div className="span6">
+
+                {!props.fullscreen && <div className="span6 ">
                     <div>
 
                         <Tabs >
@@ -262,20 +262,19 @@ class InfectPage extends Component {
                     <div id="content" className="site-content-wide" role="main">
 
                         <div id="zombie-posts" className="clearfix entry-content">
-                            <form id="usp_form" method="post" encType="multipart/form-data" action="">
 
                                 {this.props.fullscreen ? "" :
                                     <span>
                                         <fieldset className="usp-name">
                                             <label htmlFor="user-submitted-name">Author</label>
-                                            <input name="author" type="text" value={this.props.author}
+                                            <input name="user-submitted-name" type="text" value={this.props.author}
                                                    placeholder="Author"
                                                    className="usp-input"/>
                                         </fieldset>
 
                                         <fieldset className="usp-title">
                                             <label htmlFor="user-submitted-title">Title</label>
-                                            <input name="title" type="text" value={this.props.title}
+                                            <input name="user-submitted-title" type="text" value={this.props.title}
                                                    placeholder="Post Title"
                                                    className="usp-input"/>
                                         </fieldset>
@@ -287,14 +286,18 @@ class InfectPage extends Component {
 
                                 {this.props.zombieChoices && this.props.zombieChoices.length > 0 && this.zombieElements(this.props)}
 
+                            <fieldset className="zombie-text-full">
                                 <input type="hidden" name="zombie-text-full" id="zombie-text-full"
                                        value={this.props.zombieText}/>
+                                </fieldset>
+
+                            <fieldset className="zombie-artifacts">
                                 <input type="hidden" name="zombie-artifacts" id="zombie-artifacts"
                                        value={this.props.zombie}/>
+                            </fieldset>
 
                                 {/*{this.captchya()}*/}
 
-                            </form>
                         </div>
 
                     </div>
