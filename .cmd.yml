@@ -60,6 +60,8 @@ test:
 
 # cat ~/.ssh/id_rsa.pub | ssh docker@192.168.99.100 'umask 0077; mkdir -p .ssh; cat >> .ssh/authorized_keys && echo "Key copied"'
 
-
+#
+# change infect app target nlp server
+# docker exec -it zombie-web cat /var/www/html/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js > js.outdocker exec -it zombie-web cat /var/www/html/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js > js.out
 
 #Zombie NLP server URL = https://zombie-nlp-test.herokuapp.com/victim

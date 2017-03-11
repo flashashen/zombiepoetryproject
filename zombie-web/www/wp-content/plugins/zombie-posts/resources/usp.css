@@ -6,15 +6,6 @@
 */
 
 
-div#zombie-text {
-	padding: 20px;
-	font-size: 0.80rem;
-}
-
-div.zombie-instructions {
-	font-color: #a6a6a6;
-}
-
 div#zombie-posts { width: 100%; font-size: 11px; }
 div#zombie-posts fieldset { margin: 10px 0; padding: 0; border: 0; }
 

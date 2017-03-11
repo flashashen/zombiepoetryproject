@@ -12,7 +12,7 @@
 54.212.237.242   # standby instance as of 11/7/16. promoted 2016/11/28
 35.163.125.195    # prod on mike's ec2 as of dec 12
 192.168.99.100   # docker
-
+47.202.126.81     # mini external
 
 [zombie-web]
 52.39.104.229
@@ -20,12 +20,14 @@
 35.163.125.195
 192.168.1.12
 192.168.99.100
-dwddddddlocalhost
+localhost
+47.202.126.81
 
 [mac]
 zombie-server
 192.168.1.12
 localhost
+47.202.126.81
 
 [local]
 192.168.99.100
@@ -41,3 +43,6 @@ localhost
 
 [mini]
 192.168.1.12 wp_siteurl=http://www.zombiepoetryproject.com   # external ip 47.202.126.81
+
+[mini-ext]
+47.202.126.81 wp_siteurl=http://www.zombiepoetryproject.com

@@ -92,7 +92,7 @@ const ZombieText = ({
     zombieIndexMarker,
     dispatch}) => (
 
-    <div className="span6">
+    <div className="span6" style={{minWidth: "30em"}}>
 
         <label htmlFor="zombie-text">Zombie Text</label><br/><p/>
 

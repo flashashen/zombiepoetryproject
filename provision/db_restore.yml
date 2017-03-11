@@ -3,4 +3,4 @@
 #  sudo: yes
 
   roles:
-   - zombie_wp_db_restore_native
+   - zombie_wp_db_restore

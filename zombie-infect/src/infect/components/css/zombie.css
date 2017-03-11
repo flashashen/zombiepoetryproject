@@ -342,7 +342,10 @@ div#zombie-text {
 }
 
 
-.zombie_sentence span p {
+span.zombie_sentence p {
+    padding-bottom: 2em;
+}
+span.zombie_sentence_active p {
     padding-bottom: 2em;
 }
 

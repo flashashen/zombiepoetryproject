@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react';
 import './css/zombie.css';
 
 
-const ZombieSentenceMarker = ({ sentenceIndex, leftOrRigt }) => (
-  <i className="icon-chevron-right"/>
+const ZombieSentenceMarker = ({ sentenceIndex, leftOrRigt, clickHandler }) => (
+  <i className="icon-chevron-right" onClick={clickHandler}/>
 );
 
 // {/*<span className="zombie_sentence_actions ">S</span>*/}
@@ -15,7 +15,8 @@ const ZombieSentenceMarker = ({ sentenceIndex, leftOrRigt }) => (
 
 ZombieSentenceMarker.propTypes = {
   sentenceIndex: PropTypes.number,
-    leftOrRigt: PropTypes.string
+  leftOrRigt: PropTypes.string,
+  clickHandler: PropTypes.func,
 };
 
 export default ZombieSentenceMarker;

@@ -9,25 +9,41 @@
 #    shell: '{{docker_cmd}} login -p {{docker_pass}} -u flashashen'
 
   - name: docker login
-    shell: "{{docker_cmd}} login -u flashashen -p duck3riz3!"
+    shell: "{{docker_cmd}} login -u flashashen -p duck3riz3! && {{docker_cmd}} pull flashashen/zombie-web-nodb:20170302"
+
+
+#docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+
+  - name: setup nginx proxy
+    docker:
+        image: jwilder/nginx-proxy
+        name: nginx-proxy
+        state: started
+        restart_policy: always
+        ports:
+         - "80:80"
+        volumes:
+         - /var/run/docker.sock:/tmp/docker.sock:ro
 
 
   - name: Create wordpress container
   #  sudo: yes
     docker:
-      image: flashashen/zombie-web-nodb:20170102
+      image: flashashen/zombie-web-nodb:20170302
       name: zombie-web
-      pull: always
+      #pull: always
       state: started
       restart_policy: always
       links:
         - zombie-db:mysql
-      ports:
-        - "80:80"
+      extra_hosts:
+        www.zombiepoetryproject.com: 127.0.0.1
       env:
         WORDPRESS_DB_HOST: mysql
         WORDPRESS_DB_PASSWORD: "{{db_wordpress_password}}"
         WORDPRESS_DB_USER: "{{db_wordpress_user}}"
+        VIRTUAL_HOST: www.zombiepoetryproject.com
+        VIRTUAL_PORT: 80
 
 #   Copy Wordpress files (plugins, config, etc)
 #

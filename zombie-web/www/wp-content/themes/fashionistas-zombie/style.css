@@ -3,7 +3,7 @@ Theme Name: Fashionistas-Zombie
 Theme URI:
 Author: flashashen
 Author URI:
-Template: fashionistas
+Template: fashionistas-zombie
 Description: Child of fashionistas theme for custom layout of zombie data
 Version: 1.0
 License: GNU General Public License v3.0
@@ -12,7 +12,7 @@ Tags: black, white, two-columns, fixed-layout, threaded-comments, full-width-tem
 */
 
 
-@import url("../fashionistas/style.css");
+@import url("css/fashionistas.css");
 
 /*.container {*/
     /*width: 800px;*/
@@ -27,9 +27,6 @@ span.zombie_text {
     font-size: 12px;
     /*color: #52706B;*/
 }
-
-
-
 
 body {
     background-color: #f9f9f9;
