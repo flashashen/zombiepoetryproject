@@ -41,44 +41,68 @@ const styleDisplayBlock = {
 
 function zombieKeyNavigate(dispatch, e) {
 
+<<<<<<< HEAD
+    e.preventDefault();
+    if (e.key == 'ArrowUp') {
+        // up arrow
+=======
     if (e.key == 'ArrowUp') {
         // up arrow
         e.preventDefault();
         dispatch(actions.actionRelineate())
+>>>>>>> split
         dispatch({type: actions.SENTENCE_SELECT_PREVIOUS});
     }
     else if (e.key == 'ArrowDown') {
         // down arrow
+<<<<<<< HEAD
+=======
         e.preventDefault();
+>>>>>>> split
         dispatch(actions.actionRelineate())
         dispatch({ type: actions.SENTENCE_SELECT_NEXT});
     }
     else if (e.key == 'ArrowLeft') {
         // left arrow
+<<<<<<< HEAD
+=======
         e.preventDefault();
+>>>>>>> split
         dispatch({type: actions.SENTENCE_ZOMBIE_SELECT_PREVIOUS});
     }
     else if (e.key == "ArrowRight") {
         // right arrow
+<<<<<<< HEAD
+=======
         e.preventDefault();
+>>>>>>> split
         dispatch({type: actions.SENTENCE_ZOMBIE_SELECT_NEXT});
     }
     else if (e.key == "f") {
         // Instigate a new zombie attack
         // var nodes = Array.prototype.slice.call(e.target.parentNode.childNodes);
+<<<<<<< HEAD
+=======
         e.preventDefault();
+>>>>>>> split
         dispatch({type: actions.ZOMBIE_FULL_SCREEN_TOGGLE});
     }
     else if (e.key == "Escape") {
         // Instigate a new zombie attack
         // var nodes = Array.prototype.slice.call(e.target.parentNode.childNodes);
+<<<<<<< HEAD
+=======
         e.preventDefault();
+>>>>>>> split
         dispatch({type: actions.ZOMBIE_ESCAPE});
     }
     else if (e.key == " ") {
         // Instigate a new zombie attack
         // var nodes = Array.prototype.slice.call(e.target.parentNode.childNodes);
+<<<<<<< HEAD
+=======
         e.preventDefault();
+>>>>>>> split
         dispatch(actions.actionAttack())
     }
 }
@@ -92,9 +116,16 @@ const ZombieText = ({
     zombieIndexMarker,
     dispatch}) => (
 
+<<<<<<< HEAD
+    <div>
+        {fullscreen ? "" : <hr/>}
+
+        <label for="zombie-text">Zombie Text</label><br/><p/>
+=======
     <div className="span6" style={{minWidth: "30em"}}>
 
         <label htmlFor="zombie-text">Zombie Text</label><br/><p/>
+>>>>>>> split
 
         <div id="zombie-text"
              className={fullscreen ? 'zombie_fullscreen' : 'zombie_inplace'}
@@ -123,6 +154,11 @@ ZombieText.propTypes = {
     zombieChoices: PropTypes.array,
     zombieChosenIndexes: PropTypes.array,
     selectedSentenceIndex: PropTypes.number,
+<<<<<<< HEAD
+    // sentenceSelectDispatcher: PropTypes.func,
+    // sentenceAttackDispatcher: PropTypes.func,
+=======
+>>>>>>> split
     dispatch: PropTypes.func,
     fullscreen: PropTypes.bool,
 };

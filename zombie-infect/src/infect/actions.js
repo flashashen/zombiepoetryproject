@@ -13,9 +13,12 @@ export const SENTENCE_SELECT_NEXT = 'SENTENCE_SELECT_NEXT';
 export const SENTENCE_SELECT_PREVIOUS = 'SENTENCE_SELECT_PREVIOUS';
 export const SENTENCE_ZOMBIE_SELECT_NEXT = 'SENTENCE_ZOMBIE_SELECT_NEXT';
 export const SENTENCE_ZOMBIE_SELECT_PREVIOUS = 'SENTENCE_ZOMBIE_SELECT_PREVIOUS';
+<<<<<<< HEAD
+=======
 export const INFO_TAB_SELECT_INDEX = 'INFO_TAB_SELECT_INDEX';
 export const INFO_TAB_SELECT_NEXT = 'INFO_TAB_SELECT_NEXT';
 export const INFO_TAB_SELECT_PREVIOUS = 'INFO_TAB_SELECT_PREVIOUS';
+>>>>>>> split
 
 // Remote zombification results
 export const ATTACK_REQUEST = 'ATTACK_REQUEST';
@@ -38,6 +41,8 @@ export const INVALIDATE_INCIDENT = 'INVALIDATE_INCIDENT';
 
 
 
+<<<<<<< HEAD
+=======
 
 export function breakText(text){
     // console.log('breaking text:' + text)
@@ -50,6 +55,7 @@ export function breakText(text){
 }
 
 
+>>>>>>> split
 //
 // export function victimTextWalksItoAZombieBar(text) {
 //     return {
@@ -103,12 +109,19 @@ export function actionSentenceSelect(index) {
 
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> split
 //
 //  Helpers to hide some of the array indexing in the state
 //
 export function getSelectedSentenceIndex(action, state){
+<<<<<<< HEAD
+    return (action.selectedSentenceIndex && action.selectedSentenceIndex >= 0)
+=======
     return (action.selectedSentenceIndex >= 0)
+>>>>>>> split
         ? action.selectedSentenceIndex
         : (state.selectedSentenceIndex >= 0) ? state.selectedSentenceIndex : 0
 }
@@ -188,9 +201,14 @@ function relineateSuccess(selectedSentenceIndex) {
     };
 }
 
+<<<<<<< HEAD
+
+const API_ROOT = 'http://192.168.1.3:8080';
+=======
 const API_ROOT = 'http://www.zombiepoetryproject.com:8080';
 // const API_ROOT = 'http://192.168.1.3:8080';
 //const API_ROOT = 'http://172.20.10.5:8080';
+>>>>>>> split
 // const API_ROOT = 'https://zombie-nlp-test.herokuapp.com'
 function remoteAttack(incident) {
   const url = `${API_ROOT}/victim`;
@@ -218,7 +236,10 @@ function remoteAttack(incident) {
 // }
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> split
 // Do remote request if not already in progress. The return value is itself a function
 export function actionAttack() {
   return (dispatch, getState) => {
@@ -234,8 +255,12 @@ export function actionRelineate() {
         var incident = getState().incident;
 
         // Make sure zombieText is current with user selections
+<<<<<<< HEAD
+        incident.zombieText = getZombieText(incident.zombieChoices, incident.zombieChosenIndexes);
+=======
         //   **** it is already now. done in the reduces any time its needed
         // incident.zombieText = getZombieText(incident.zombieChoices, incident.zombieChosenIndexes);
+>>>>>>> split
 
         if (!incident.isFetching
                 && incident.zombieIndexMarker >= 0

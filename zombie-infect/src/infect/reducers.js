@@ -1,9 +1,12 @@
 import {
     ZOMBIE_FULL_SCREEN_TOGGLE,
     ZOMBIE_ESCAPE,
+<<<<<<< HEAD
+=======
     INFO_TAB_SELECT_NEXT,
     INFO_TAB_SELECT_PREVIOUS,
     INFO_TAB_SELECT_INDEX,
+>>>>>>> split
     NEW_VICTIM,
     SENTENCE_SELECT,
     SENTENCE_SELECT_NEXT,
@@ -22,7 +25,10 @@ import {
 const initState = {
     "selectedSentenceIndex": -1,
     "zombieIndexMarker": -1,
+<<<<<<< HEAD
+=======
     "selectedInfoIndex": 0,
+>>>>>>> split
     "victimText": "Because having a college education and being a homeowner isn’t all what it’s cracked up to be. Check out these homeowner tax opportunities and take advantage of those that apply! Probably one of the most grownup emails I have received. I am now a homeowner and responsible for stuff. *Gulp* Pumpkin Growing for the Homeowner: It may not be autumn just yet, but pumpkin growing needs to be thought of. Rising home prices boost homeowner equity. Homeowner was on her way home from work & saw police, fire outside. Then she noticed vehicle in her living room.",
 };
 
@@ -44,6 +50,9 @@ export function incident(incident_state = initState, action) {
                 });
             }
             return incident_state;
+<<<<<<< HEAD
+
+=======
         //
         // case INFO_TAB_SELECT_NEXT:
         //     return Object.assign({}, incident_state, {
@@ -59,6 +68,7 @@ export function incident(incident_state = initState, action) {
         //     return Object.assign({}, incident_state, {
         //         selectedInfoIndex: action.index
         //     });
+>>>>>>> split
 
         case NEW_VICTIM:
             return Object.assign({}, incident_state, {
@@ -66,8 +76,11 @@ export function incident(incident_state = initState, action) {
                 selectedSentenceIndex: -1,
                 zombieIndexMarker: -1,
                 zombieChoices: [],
+<<<<<<< HEAD
+=======
                 zombie: null,
                 victim: null,
+>>>>>>> split
                 zombieText: "",
                 isFetching: false
             });
@@ -82,8 +95,13 @@ export function incident(incident_state = initState, action) {
             var index = getSelectedSentenceIndex(action, incident_state)
             return Object.assign({}, incident_state, {
                 selectedSentenceIndex: index,
+<<<<<<< HEAD
+                // set marker back to -1 to indicate no selection in progress
+                zombieIndexMarker: -1
+=======
                 // set marker
                 zombieIndexMarker: incident_state.zombieChosenIndexes[index]
+>>>>>>> split
             });
 
         case SENTENCE_SELECT_NEXT:
@@ -91,8 +109,13 @@ export function incident(incident_state = initState, action) {
             if (index < incident_state.zombieChoices.length-1) {
                 return Object.assign({}, incident_state, {
                     selectedSentenceIndex: index+1,
+<<<<<<< HEAD
+                    // set marker back to -1 to indicate no selection in progress
+                    zombieIndexMarker: -1
+=======
                     // set marker
                     zombieIndexMarker: incident_state.zombieChosenIndexes[index+1]
+>>>>>>> split
                 });
             }
             return incident_state;
@@ -102,8 +125,13 @@ export function incident(incident_state = initState, action) {
             if (index > 0) {
                 return Object.assign({}, incident_state, {
                     selectedSentenceIndex: index-1,
+<<<<<<< HEAD
+                    // set marker back to -1 to indicate no selection in progress
+                    zombieIndexMarker: -1
+=======
                     // set marker
                     zombieIndexMarker: incident_state.zombieChosenIndexes[index-1]
+>>>>>>> split
                 });
             }
             return incident_state;
@@ -119,12 +147,19 @@ export function incident(incident_state = initState, action) {
                 return Object.assign({}, incident_state, {
                     zombieChosenIndexes: new_indexes,
                     // set zombie selection marker to initial choice, don't change it after that
+<<<<<<< HEAD
+                    zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
+                        ? incident_state.zombieChosenIndexes[index]
+                        : incident_state.zombieIndexMarker
+                });
+=======
                     // zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
                     //     ? incident_state.zombieChosenIndexes[index]
                     //     : incident_state.zombieIndexMarker,
                     // Make sure zombieText is current with user selections
                     zombieText: getZombieText(incident_state.zombieChoices, new_indexes)
             });
+>>>>>>> split
             }
             return incident_state;
 
@@ -136,6 +171,16 @@ export function incident(incident_state = initState, action) {
             // if (incident_state.zombieChosenIndexes[index] < incident_state.zombieChoices[index].length-1){
                 var new_indexes = incident_state.zombieChosenIndexes.slice(0)
                 new_indexes[index] = new_indexes[index]+1
+<<<<<<< HEAD
+                return Object.assign({}, incident_state, {
+                    zombieChosenIndexes: new_indexes,
+                    // set zombie selection marker to initial choice, don't change it after that
+                    zombieIndexMarker: (incident_state.zombieIndexMarker < 0)
+                        ? incident_state.zombieChosenIndexes[index]
+                        : incident_state.zombieIndexMarker
+                });
+            }
+=======
                 var new_state = Object.assign({}, incident_state, {
                     zombieChosenIndexes: new_indexes,
                     // set zombie selection marker to initial choice, don't change it after that
@@ -150,6 +195,7 @@ export function incident(incident_state = initState, action) {
                 return new_state;
             }
 
+>>>>>>> split
             return incident_state;
 
 
@@ -193,7 +239,11 @@ export function incident(incident_state = initState, action) {
                 zombie: action.incident.zombie,
             });
 
+<<<<<<< HEAD
+            if (action.selectedSentenceIndex && action.selectedSentenceIndex >= 0 && incident_state.zombieChoices){
+=======
             if (action.selectedSentenceIndex >= 0){
+>>>>>>> split
 
                 // Check if the zombie text is not already
                 // var duplicate = incident_state.zombieChoices.find(function(text){
@@ -234,9 +284,12 @@ export function incident(incident_state = initState, action) {
                     new_state.zombieChoices.push([action.incident.zombie[i]]);
                     new_state.zombieChosenIndexes.push(0)
                 }
+<<<<<<< HEAD
+=======
                 new_state.selectedSentenceIndex = 0;
                 new_state.zombieIndexMarker = -1;
 
+>>>>>>> split
             }
 
             return new_state;

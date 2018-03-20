@@ -131,6 +131,16 @@ Session.vim
 
 # node dependencies
 **/node_modules
+<<<<<<< HEAD
+
+# production
+**/build
+
+# misc
+.DS_Store
+npm-debug.log
+
+=======
 **/.vscode
 **.retry
 
@@ -141,6 +151,7 @@ Session.vim
 .DS_Store
 npm-debug.log
 
+>>>>>>> split
 # vscode stuff
 *.d.ts
 .vscode/

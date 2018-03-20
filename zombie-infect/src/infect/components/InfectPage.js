@@ -1,13 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
+=======
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+>>>>>>> split
 
 import ZombieText from './ZombieText';
 import VictimText from './VictimText';
 import ZombieInstructions from './ZombieInstructions';
+<<<<<<< HEAD
+
+import { actionAttack, actionSentenceSelect,  NEW_VICTIM, SENTENCE_SELECT_NEXT, SENTENCE_SELECT_PREVIOUS, SENTENCE_ZOMBIE_SELECT_NEXT, SENTENCE_ZOMBIE_SELECT_PREVIOUS  } from '../actions';
+=======
 import ZombieMutations from './ZombieMutations';
 
 import { actionAttack, actionSentenceSelect, breakText, NEW_VICTIM, INFO_TAB_SELECT_PREVIOUS, INFO_TAB_SELECT_NEXT, INFO_TAB_SELECT_INDEX, SENTENCE_SELECT_NEXT, SENTENCE_SELECT_PREVIOUS, SENTENCE_ZOMBIE_SELECT_NEXT, SENTENCE_ZOMBIE_SELECT_PREVIOUS  } from '../actions';
+>>>>>>> split
 
 // import './fashionistas.css';
 
@@ -22,16 +30,25 @@ class InfectPage extends Component {
         super(props);
         this.handleZombieTextUpdatedDebounced = this.handleZombieTextUpdatedDebounced.bind(this);
         this.victimTextChangeHandler = this.victimTextChangeHandler.bind(this);
+<<<<<<< HEAD
+=======
         this.keyHandler = this.keyHandler.bind(this);
         this.focus = this.focus.bind(this);
         this.setref = this.setref.bind(this);
+>>>>>>> split
     }
 
     debounce(func, wait, immediate) {
         var timeout;
+<<<<<<< HEAD
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+=======
         return function () {
             var context = this, args = arguments;
             var later = function () {
+>>>>>>> split
                 timeout = null;
                 if (!immediate) func.apply(context, args);
             };
@@ -42,12 +59,18 @@ class InfectPage extends Component {
         };
     };
 
+<<<<<<< HEAD
+    handleZombieTextUpdatedDebounced = this.debounce( (e) => {
+=======
     handleZombieTextUpdatedDebounced = this.debounce((e) => {
+>>>>>>> split
         // this.props.dispatch(victimTextWalksItoAZombieBar(e.target.value));
         this.props.dispatch(actionAttack());
     }, 1000, 0);
 
 
+<<<<<<< HEAD
+=======
     componentWillMount() {
         this.panel0 = null;
         this.panel1 = null;
@@ -127,6 +150,7 @@ class InfectPage extends Component {
 
     }
 
+>>>>>>> split
 
     victimTextChangeHandler(e) {
         e.preventDefault();
@@ -137,6 +161,33 @@ class InfectPage extends Component {
         this.handleZombieTextUpdatedDebounced(e);
     }
 
+<<<<<<< HEAD
+
+    render() {
+        return (
+            <div id="main"
+                 className="site-main"><div className="clearfix container">
+                <div id="content" className="site-content-wide" role="main">
+                <article className="container clearfix post-117 page type-page status-publish hentry">
+                <div>
+
+                    <VictimText victimText={this.props.victimText}
+                                title={this.props.title}
+                                author={this.props.author}
+                                victimTextChangeHandler={this.victimTextChangeHandler}/>
+                    <ZombieText fullscreen={this.props.fullscreen}
+                                zombieChoices={this.props.zombieChoices}
+                                zombieChosenIndexes={this.props.zombieChosenIndexes}
+                                selectedSentenceIndex={this.props.selectedSentenceIndex}
+                                zombieIndexMarker={this.props.zombieIndexMarker}
+                                dispatch={this.props.dispatch}/>
+                   {/*<ZombieInstructions/>*/}
+
+                </div>
+                </article>
+                </div>
+            </div></div>
+=======
     // handleSelect(index, last) {
     //     console.log('Selected tab: ' + index + ', Last tab: ' + last);
     // }
@@ -303,11 +354,15 @@ class InfectPage extends Component {
                     </div>
                 </div>
             </div>
+>>>>>>> split
         );
     }
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> split
 InfectPage.propTypes = {
     selectedSentenceIndex: PropTypes.number,
     linesPerStanza: PropTypes.number,
@@ -322,7 +377,10 @@ InfectPage.propTypes = {
     error: PropTypes.object,
     zombieIndexMarker: PropTypes.number,
     fullscreen: PropTypes.bool,
+<<<<<<< HEAD
+=======
     selectedInfoIndex: PropTypes.number,
+>>>>>>> split
 };
 
 
@@ -344,7 +402,10 @@ function mapStateToProps(state) {
         selectedSentenceIndex: state.incident.selectedSentenceIndex,
         zombieIndexMarker: state.incident.zombieIndexMarker,
         fullscreen: state.incident.fullscreen,
+<<<<<<< HEAD
+=======
         selectedInfoIndex: state.incident.selectedInfoIndex
+>>>>>>> split
     };
 }
 
