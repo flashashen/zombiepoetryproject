@@ -8,8 +8,8 @@
 #  - name: login to docker repo
 #    shell: '{{docker_cmd}} login -p {{docker_pass}} -u flashashen'
 
-  - name: docker login
-    shell: "{{docker_cmd}} login -u flashashen -p duck3riz3! && {{docker_cmd}} pull flashashen/zombie-web-nodb:20170302"
+#  - name: docker login
+#    shell: "{{docker_cmd}} login -u flashashen -p duck3riz3! && {{docker_cmd}} pull flashashen/zombie-web-nodb:20170302"
 
 
 #docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
@@ -36,8 +36,8 @@
       restart_policy: always
       links:
         - zombie-db:mysql
-      extra_hosts:
-        www.zombiepoetryproject.com: 127.0.0.1
+      #extra_hosts:
+      #  www.zombiepoetryproject.com: 127.0.0.1
       env:
         WORDPRESS_DB_HOST: mysql
         WORDPRESS_DB_PASSWORD: "{{db_wordpress_password}}"

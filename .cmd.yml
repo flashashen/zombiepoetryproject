@@ -53,6 +53,7 @@ wp_user_list: ansible-playbook provision/user_list.yml --limit
 #  changed_when: False
 
 
+test3: echo {cfg[ans][inventory_file]}
 test2: ansible all -i zombie-server, -m shell -a '/usr/local/bin/docker ps'
 test:
   - ans.rcmd: docker ps
@@ -65,3 +66,5 @@ test:
 # docker exec -it zombie-web cat /var/www/html/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js > js.outdocker exec -it zombie-web cat /var/www/html/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js > js.out
 
 #Zombie NLP server URL = https://zombie-nlp-test.herokuapp.com/victim
+
+# added www.zombiepoetryproject.com to container hosts file. use extra-hosts to do this autmatically. need ansible v2
