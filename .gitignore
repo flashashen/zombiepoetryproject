@@ -50,6 +50,8 @@
 *.sqlite
 *.sql
 
+snapshots
+
 # Maven build output
 ######################
 target/

@@ -1,5 +1,4 @@
 FROM ubuntu:trusty
-MAINTAINER Eugene Ware <eugene@noblesamurai.com>
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
