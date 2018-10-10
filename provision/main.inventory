@@ -36,7 +36,7 @@ localhost
 52.39.104.229  #wp_siteurl=http://52.39.104.229
 
 [prod]
-54.212.237.242 wp_siteurl=http://www.zombiepoetryproject.com
+192.168.1.12 wp_siteurl=http://www.zombiepoetryproject.com
 
 [new]
 35.163.125.195 wp_siteurl=http://www.zombiepoetryproject.com

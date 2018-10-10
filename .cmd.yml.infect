@@ -1,9 +1,12 @@
 
-test:
-  - npm start &
+infectdebug:
+  - cd zombie-infect; npm start &
 #  - cd server; npm run server &
 #  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
 
-chrome:
+infectbuild:
+  - cd zombie-infect; npm run build
+
+chromeinsecure:
   - pkill -a -i "Google Chrome"
   - open -a Google\ Chrome --args --disable-web-security --user-data-dir

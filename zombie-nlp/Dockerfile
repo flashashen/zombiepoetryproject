@@ -5,7 +5,7 @@ FROM java:8
 ENV DEBIAN_FRONTEND noninteractive
 
 
-ADD zombie-nlp-1.0-SNAPSHOT.jar /zombie-nlp-1.0-SNAPSHOT.jar
+ADD target/zombie-nlp-1.0-SNAPSHOT.jar /zombie-nlp-1.0-SNAPSHOT.jar
 
 # private expose
 EXPOSE 8080

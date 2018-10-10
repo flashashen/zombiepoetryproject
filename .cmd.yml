@@ -1,4 +1,73 @@
 
+dsh: 2
+ns: flash.zombie
+
+
+vars:
+  REPO_WEB: flashashen/zombie-web
+  TAG_WEB: "20181010"
+  JAVA_HOME: /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
+  INFECT_BUILD_DIR: zombie-infect/build/static
+  INFECT_WWW_DIR: www/wp-content/plugins/zombie-posts/resources/infect
+  stack_name: zombie
+  OPT_COMPOSE_OVERRIDE: ""
+
+  CMD_BUILD_INFECT: &CMD_BUILD_INFECT
+    - cd zombie-infect && npm run build
+    - cp {{INFECT_BUILD_DIR}}/js/main*.js {{INFECT_WWW_DIR}}/js/infectbundle.js
+    - cp {{INFECT_BUILD_DIR}}/js/main*js.map {{INFECT_WWW_DIR}}/css/infectbundle.js.map
+    - cp {{INFECT_BUILD_DIR}}/css/main*.css {{INFECT_WWW_DIR}}/css/infectbundle.css
+
+
+up: docker stack deploy --with-registry-auth -c {{COMPOSE_FILENAME}} {{stack_name}}
+stop: docker stack remove {{stack_name}}
+ps: "{{CMD_PS}}"
+
+
+contexts:
+
+  prod:
+    vars:
+      service: web
+      DOCKER_HOST: mini:2375
+      repo: "{{REPO_WEB}}"
+      tag: "{{TAG_WEB}}"
+    up:
+      - "{{CMD_DOCKER_PUSH}}"
+      - docker pull {{DOCKER_IMAGE}}
+      - docker stack deploy --with-registry-auth -c {{COMPOSE_FILENAME}} {{stack_name}}
+      - docker service update --force --image {{DOCKER_IMAGE}} {{stack_name}}_web
+    stop: docker stack remove {{stack_name}}
+    ps: "{{CMD_PS}}"
+    logs: "{{CMD_LOGS}}"
+
+  nlp:
+    vars:
+      service: nlp
+      _DSH_CTX_WORK_DIR: zombie-nlp
+      repo: "flashashen/zombie-nlp"
+      tag: latest
+
+    build:
+      - mvn install
+    logs: "{{CMD_LOGS}}"
+
+
+  web:
+    vars:
+      service: web
+      _DSH_CTX_WORK_DIR: zombie-web
+      repo: "{{REPO_WEB}}"
+      tag: "{{TAG_WEB}}"
+
+    logs: "{{CMD_LOGS}}"
+    build:
+      - *CMD_BUILD_INFECT
+      - export DOCKER_HOST={{DOCKER_HOST_LOCAL}} && docker build -t {{DOCKER_IMAGE}} .
+    release: export DOCKER_HOST={{DOCKER_HOST_LOCAL}} && docker push {{DOCKER_IMAGE}}
+    update: docker service update --force --image {{DOCKER_IMAGE}} {{stack_name}}_{{service}}
+
+
 infectdebug:
   - cd zombie-infect; npm start &
 #  - cd server; npm run server &
@@ -8,16 +77,13 @@ infectchrome:
   - pkill -a -i "Google Chrome"
   - open -a Google\ Chrome --args --disable-web-security --user-data-dir
 
-infectbuild:
-  - cd zombie-infect; npm run build
+infectbuild: *CMD_BUILD_INFECT
 
 
 
 
 wpsyncn_to_mini: rsync -azP ./zombie-web/www/ flash@zombie-server:/Applications/MAMP/htdocs/
 
-
-ssh_prod: ssh 54.212.237.242
 edit_secrets: ansible-vault edit provision/group_vars/zombie-web
 edit_inv: vim provision/main.inventory
 
@@ -36,35 +102,3 @@ db_restore: ansible-playbook provision/db_restore.yml --limit
 
 wp_user_list: ansible-playbook provision/user_list.yml --limit
 
-
-#wp_user_setp_pass:  ansible-playbook provision/wp_restore.yml --extra-vars "username=$(whoami)" --limit
-#  dkr.exec: '{{docker_cmd}} exec -i {{zombie_db_container_name}} mysql update wp_users set user_pass = md5('Qwerty123!') where user_nicename = 'flashashen';'
-#
-#   fix access by wp user to msyql
-#  GRANT ALL ON wordpress.* to 'wordpress'@'172.17.0.3' IDENTIFIED BY 'wordpress'
-#
-#- name: Retrieve stuff from mysql
-#  command: >
-#    mysql --user=alice --password=topsecret dbname
-#    --host=147.102.160.1 --batch --skip-column-names
-#    --execute="SELECT stuff from stuff_table"
-#  register: stuff
-#  always_run: True
-#  changed_when: False
-
-
-test3: echo {cfg[ans][inventory_file]}
-test2: ansible all -i zombie-server, -m shell -a '/usr/local/bin/docker ps'
-test:
-  - ans.rcmd: docker ps
-# ansible mini -i provision/main.inventory  -e "ansible_ssh_user=panelson" -m  authorized_key -a 'user=panelson key=https://github.com/flashashen.keys'
-
-# cat ~/.ssh/id_rsa.pub | ssh docker@192.168.99.100 'umask 0077; mkdir -p .ssh; cat >> .ssh/authorized_keys && echo "Key copied"'
-
-#
-# change infect app target nlp server
-# docker exec -it zombie-web cat /var/www/html/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js > js.outdocker exec -it zombie-web cat /var/www/html/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js > js.out
-
-#Zombie NLP server URL = https://zombie-nlp-test.herokuapp.com/victim
-
-# added www.zombiepoetryproject.com to container hosts file. use extra-hosts to do this autmatically. need ansible v2
