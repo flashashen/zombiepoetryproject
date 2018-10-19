@@ -4,8 +4,17 @@ ns: flash.zombie
 
 
 vars:
+
   REPO_WEB: flashashen/zombie-web
-  TAG_WEB: "20181010"
+  TAG_WEB: dev
+  DOCKER_IMAGE_WEB: "{{REPO_WEB}}:{{TAG_WEB}}"
+
+  REPO_NLP: flashashen/zombie-nlp
+  TAG_NLP: dev
+  DOCKER_IMAGE_NLP: "{{REPO_NLP}}:{{TAG_NLP}}"
+  DOCKER_IMAGE_DB: mysql:5.7.23
+
+  DOCKERFILE: Dockerfile
   JAVA_HOME: /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
   INFECT_BUILD_DIR: zombie-infect/build/static
   INFECT_WWW_DIR: www/wp-content/plugins/zombie-posts/resources/infect
@@ -15,8 +24,29 @@ vars:
   CMD_BUILD_INFECT: &CMD_BUILD_INFECT
     - cd zombie-infect && npm run build
     - cp {{INFECT_BUILD_DIR}}/js/main*.js {{INFECT_WWW_DIR}}/js/infectbundle.js
-    - cp {{INFECT_BUILD_DIR}}/js/main*js.map {{INFECT_WWW_DIR}}/css/infectbundle.js.map
+    - cp {{INFECT_BUILD_DIR}}/js/main*.js.map {{INFECT_WWW_DIR}}/css/infectbundle.js.map
     - cp {{INFECT_BUILD_DIR}}/css/main*.css {{INFECT_WWW_DIR}}/css/infectbundle.css
+
+
+  WEB_COMMANDS: &WEB_COMMANDS
+      logs: "{{CMD_LOGS}}"
+      build:
+        - cd zombie-infect && npm run build
+        - cp {{INFECT_BUILD_DIR}}/js/main*.js.map {{INFECT_WWW_DIR}}/js/infectbundle.js.map
+        - cp {{INFECT_BUILD_DIR}}/js/main*.js {{INFECT_WWW_DIR}}/js/infectbundle.js
+        - cp {{INFECT_BUILD_DIR}}/css/main*.css {{INFECT_WWW_DIR}}/css/infectbundle.css
+        - docker build -f {{DOCKERFILE}} -t {{DOCKER_IMAGE_WEB}} .
+      push: docker push {DOCKER_IMAGE_WEB}
+      update: docker service update --force --image {{DOCKER_IMAGE_WEB}} {{stack_name}}_{{service}}
+
+
+  NLP_COMMANDS: &NLP_COMMANDS
+      build:
+        - mvn install
+        - docker build -f {{DOCKERFILE}} -t {{DOCKER_IMAGE_NLP}} .
+      push: docker push {DOCKER_IMAGE_NLP}
+      update: docker service update --force --image {{DOCKER_IMAGE_NLP}} zombie_nlp
+      logs: "{{CMD_LOGS}}"
 
 
 up: docker stack deploy --with-registry-auth -c {{COMPOSE_FILENAME}} {{stack_name}}
@@ -24,81 +54,94 @@ stop: docker stack remove {{stack_name}}
 ps: "{{CMD_PS}}"
 
 
+
 contexts:
 
-  prod:
-    vars:
-      service: web
-      DOCKER_HOST: mini:2375
-      repo: "{{REPO_WEB}}"
-      tag: "{{TAG_WEB}}"
-    up:
-      - "{{CMD_DOCKER_PUSH}}"
-      - docker pull {{DOCKER_IMAGE}}
-      - docker stack deploy --with-registry-auth -c {{COMPOSE_FILENAME}} {{stack_name}}
-      - docker service update --force --image {{DOCKER_IMAGE}} {{stack_name}}_web
-    stop: docker stack remove {{stack_name}}
-    ps: "{{CMD_PS}}"
-    logs: "{{CMD_LOGS}}"
 
   nlp:
     vars:
       service: nlp
       _DSH_CTX_WORK_DIR: zombie-nlp
-      repo: "flashashen/zombie-nlp"
-      tag: latest
-
-    build:
-      - mvn install
-    logs: "{{CMD_LOGS}}"
-
+    commands: *NLP_COMMANDS
 
   web:
     vars:
-      service: web
       _DSH_CTX_WORK_DIR: zombie-web
       repo: "{{REPO_WEB}}"
       tag: "{{TAG_WEB}}"
+      service: web
+    commands: *WEB_COMMANDS
 
+    contexts:
+      infect:
+
+        up: cd zombie-infect && npm start &
+        stop: pkill -f react-scripts
+        #  - cd server; npm run server &
+        #  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
+
+        chrome:
+          - pkill -a -i "Google Chrome"
+          - open -a Google\ Chrome --args --disable-web-security --user-data-dir
+
+        build: *CMD_BUILD_INFECT
+
+
+
+  prod:
+    vars:
+      service: web
+      DOCKER_HOST: raspberrypi:2376
+      DOCKERFILE: Dockerfile.arm
+      repo: "{{REPO_WEB}}"
+      tag: "{{TAG_WEB}}-arm"
+      DOCKER_IMAGE_DB: yobasystems/alpine-mariadb:arm32v7
+      TAG_NLP: "1.0-arm"
+      TAG_WEB: "2.1-arm"
+
+    contexts:
+      web:
+        vars:
+          _DSH_CTX_WORK_DIR: zombie-web
+
+        commands: *WEB_COMMANDS
+      nlp:
+        vars:
+          _DSH_CTX_WORK_DIR: zombie-nlp
+        commands: *NLP_COMMANDS
+
+
+    up:
+#      - "{{CMD_DOCKER_PUSH}}"
+#      - docker build -f {{DOCKERFILE}} -t {{DOCKER_IMAGE_WEB}} .
+#      - docker pull {{DOCKER_IMAGE}}
+      - docker stack deploy --with-registry-auth -c {{COMPOSE_FILENAME}} {{stack_name}}
+      - docker service update --force --image {{DOCKER_IMAGE_WEB}} {{stack_name}}_{{service}}
+
+    stop: docker stack remove {{stack_name}}
+    ps: "{{CMD_PS}}"
     logs: "{{CMD_LOGS}}"
-    build:
-      - *CMD_BUILD_INFECT
-      - export DOCKER_HOST={{DOCKER_HOST_LOCAL}} && docker build -t {{DOCKER_IMAGE}} .
-    release: export DOCKER_HOST={{DOCKER_HOST_LOCAL}} && docker push {{DOCKER_IMAGE}}
-    update: docker service update --force --image {{DOCKER_IMAGE}} {{stack_name}}_{{service}}
-
-
-infectdebug:
-  - cd zombie-infect; npm start &
-#  - cd server; npm run server &
-#  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
-
-infectchrome:
-  - pkill -a -i "Google Chrome"
-  - open -a Google\ Chrome --args --disable-web-security --user-data-dir
-
-infectbuild: *CMD_BUILD_INFECT
+    db_kill:
+      - docker service rm zombie_db
+      - docker volume rm zombie_db
+    db_backup: ansible-playbook provision/db_backup.yml --limit mini
+    db_restore: ansible-playbook provision/db_restore.yml --limit mini
 
 
 
 
-wpsyncn_to_mini: rsync -azP ./zombie-web/www/ flash@zombie-server:/Applications/MAMP/htdocs/
 
 edit_secrets: ansible-vault edit provision/group_vars/zombie-web
 edit_inv: vim provision/main.inventory
 
 #setup_user: 'ansible -vvv --extra-vars "username=$(whoami)" {{ansible_ssh_options}}  provision/setup_user.yml --limit $1'
-setup_user: ansible-playbook provision/setup_user.yml  --ask-pass -vvvv --limit
+#setup_user: ansible-playbook provision/setup_user.yml  --ask-pass -vvvv --limit
+#provision: ansible-playbook provision/site_wp.yml --limit
+#nlp: ansible-playbook provision/site_nlp.yml --limit
+#wpsyncn_to_mini: rsync -azP ./zombie-web/www/ flash@zombie-server:/Applications/MAMP/htdocs/
 
-provision: ansible-playbook provision/site_wp.yml --limit
-nlp: ansible-playbook provision/site_nlp.yml --limit
-
-wp_backup: ansible-playbook provision/wp_backup.yml --limit
-wp_restore: ansible-playbook provision/wp_restore.yml --limit
-wp_reset_hostname: ansible-playbook provision/wp_sethostname.yml --limit
-
-db_backup: ansible-playbook provision/db_backup.yml --limit
-db_restore: ansible-playbook provision/db_restore.yml --limit
-
+#wp_backup: ansible-playbook provision/wp_backup.yml --limit
+#wp_restore: ansible-playbook provision/wp_restore.yml --limit
+#wp_reset_hostname: ansible-playbook provision/wp_sethostname.yml --limit
 wp_user_list: ansible-playbook provision/user_list.yml --limit
 

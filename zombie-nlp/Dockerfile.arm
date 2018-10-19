@@ -1,0 +1,9 @@
+FROM arm32v7/openjdk:8-jre-slim
+
+ADD target/zombie-nlp-1.0-SNAPSHOT.jar /zombie-nlp-1.0-SNAPSHOT.jar
+
+# private expose
+EXPOSE 8080
+
+
+CMD ["java", "-jar", "/zombie-nlp-1.0-SNAPSHOT.jar"]

@@ -1,7 +1,7 @@
 ---
 
   - name: get mysql conatiner ip
-    shell: "{{docker_cmd}} ps | grep zombie-db | awk '{ print $1 }'"
+    shell: "{{docker_cmd}} ps | grep zombie_db | awk '{ print $1 }'"
     changed_when: false
     register: zombie_container
 

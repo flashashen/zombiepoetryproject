@@ -66,7 +66,7 @@
     state: started
     restart_policy: always
     links: 
-      - zombie-db:mysql
+      - zombie_db:mysql
     ports:
       - "80:80"
 #    volumes_from: zombie-web-volumes

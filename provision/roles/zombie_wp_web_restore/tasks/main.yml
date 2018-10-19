@@ -35,7 +35,7 @@
       state: started
       restart_policy: always
       links:
-        - zombie-db:mysql
+        - zombie_db:mysql
       #extra_hosts:
       #  www.zombiepoetryproject.com: 127.0.0.1
       env:

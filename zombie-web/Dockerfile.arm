@@ -1,4 +1,4 @@
-FROM wordpress
+FROM arm32v7/wordpress
 
 #COPY www /var/www/html
 COPY www/wp-content/themes /var/www/html/wp-content/themes

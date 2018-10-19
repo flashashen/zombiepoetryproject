@@ -2,7 +2,7 @@
 
     - name: get mysql conatiner ip
       sudo: yes
-      shell: "{{docker_cmd}}  ps | grep zombie-db | awk '{ print $1 }'"
+      shell: "{{docker_cmd}}  ps | grep zombie_db | awk '{ print $1 }'"
       register: zombie_container
 
     - debug: var=zombie_container

@@ -1,2 +1,9 @@
-main
-test
+src
+**/*.original
+**/classes
+**/docker
+**/generated-sources
+**/generated-test-sources
+**/maven-status
+**/surefire-reports
+**/test-classes

@@ -752,7 +752,7 @@ function usp_createPublicSubmission($title, $files, $ip, $author, $url, $email, 
 
 		if (!empty($zombieArtifacts)) {
 			// just dump raw json for now
-			update_post_meta($post_id, 'zombie-artifacts',         $zombieArtifacts);
+			update_post_meta($post_id, 'zombie-artifacts', $zombieArtifacts);
 		}
 
 		if (!empty($zombie)) update_post_meta($post_id, $usp_post_meta_Zombie,         $zombie);

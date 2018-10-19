@@ -4,8 +4,14 @@
   gather_facts: false
 
   tasks:
+
+  - name: get mysql conatiner ip
+    sudo: yes
+    shell: "{{docker_cmd}}  ps | grep zombie_db | awk '{ print $1 }'"
+    register: zombie_container
+
   - name: fetch zombie users
-    shell: '{{docker_cmd}} exec -i {{zombie_db_container_name}} mysql --user=root --password={{db_root_pass}}  -e "select host, user from mysql.user"'
+    shell: '{{docker_cmd}} exec -i {{zombie_container.stdout}} mysql --user=root --password={{db_root_pass}}  -e "select host, user from mysql.user"'
     register: result
 
   - name: list users
