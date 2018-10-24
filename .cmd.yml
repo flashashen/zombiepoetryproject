@@ -14,6 +14,7 @@ vars:
   DOCKER_IMAGE_NLP: "{{REPO_NLP}}:{{TAG_NLP}}"
   DOCKER_IMAGE_DB: mysql:5.7.23
 
+  COMPOSE_FILENAME: docker-compose.dev.yml
   DOCKERFILE: Dockerfile
   JAVA_HOME: /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
   INFECT_BUILD_DIR: zombie-infect/build/static
@@ -36,7 +37,7 @@ vars:
         - cp {{INFECT_BUILD_DIR}}/js/main*.js {{INFECT_WWW_DIR}}/js/infectbundle.js
         - cp {{INFECT_BUILD_DIR}}/css/main*.css {{INFECT_WWW_DIR}}/css/infectbundle.css
         - docker build -f {{DOCKERFILE}} -t {{DOCKER_IMAGE_WEB}} .
-      push: docker push {DOCKER_IMAGE_WEB}
+      push: docker push {{DOCKER_IMAGE_WEB}}
       update: docker service update --force --image {{DOCKER_IMAGE_WEB}} {{stack_name}}_{{service}}
 
 
@@ -98,6 +99,7 @@ contexts:
       DOCKER_IMAGE_DB: yobasystems/alpine-mariadb:arm32v7
       TAG_NLP: "1.0-arm"
       TAG_WEB: "2.1-arm"
+      COMPOSE_FILENAME: docker-compose.yml
 
     contexts:
       web:

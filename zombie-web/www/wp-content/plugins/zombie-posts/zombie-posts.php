@@ -179,7 +179,7 @@ function usp_checkForPublicSubmission() {
 	global $usp_options;
 
 
-
+//
 //	foreach($_POST as $key=>$val)
 //	{
 //		echo $key . ' : ' . $val . '<br/>';
