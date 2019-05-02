@@ -385,6 +385,13 @@ function usp_js_vars() {
 	} else {
 		if ($include_js == true) $display = true;
 	}
+
+    ?>
+    <script type="text/javascript">
+        window.INFECT_NLP_SERVER_URL = "<?php echo $usp_options['nlp-server-url']; ?>"
+    </script>
+    <?php
+
 	if (!is_admin()) {
 		if ($display) : ?>
 		
@@ -1879,11 +1886,16 @@ function usp_render_form() {
 
 
 
-function zombie_fetch_script() {
-	wp_enqueue_script( 'spin', plugin_dir_url( __FILE__ ).'/resources/spin.min.js', array('jquery') );
-	wp_enqueue_script( 'zombie_fetch', plugin_dir_url( __FILE__ ).'/resources/zombie_fetch.js', array('jquery') );
-	wp_localize_script( 'zombie_fetch', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-}
+//
+//  zombie_fetch.js was replaced with react app
+//
+//function zombie_fetch_script() {
+//	wp_enqueue_script( 'spin', plugin_dir_url( __FILE__ ).'/resources/spin.min.js', array('jquery') );
+//	wp_enqueue_script( 'zombie_fetch', plugin_dir_url( __FILE__ ).'/resources/zombie_fetch.js', array('jquery') );
+//	wp_localize_script( 'zombie_fetch', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+//}
+
+
 
 //add_action('wp_enqueue_scripts', 'zombie_fetch_script');
 
@@ -1891,40 +1903,40 @@ function zombie_fetch_script() {
 //add_action( 'wp_ajax_fetch_zombie_text', 'fetch_zombie_text_callback' );
 //add_action( 'wp_ajax_nopriv_fetch_zombie_text', 'fetch_zombie_text_callback' );
 
-function fetch_zombie_text_callback() {
-
-
-	$nlp_service_url = get_option('usp_options')['nlp-server-url'];
-
-	error_log($_POST['incident']);
-
-	$response = wp_remote_post(
-		$nlp_service_url,
-		//'http://192.168.1.2:8080/victim',
-		array(
-			'method' => 'POST',
-			'timeout' => 30,
-			'redirection' => 5,
-			'httpversion' => '1.0',
-			'blocking' => true,
-			'headers' => array(
-				'Content-Type' => 'application/json'
-				//'Authorization' => 'Basic ' . base64_encode( 'ias' . ':' . '1q2w3e$r' ),
-//				'X-Redmine-API-Key' => '59930c6460e8e71ef58b4cc95d852153bf21b510'
-			),
-			'cookies' => array(),
-//			'body' => json_encode(array('victimText' => $_POST['victimText']))
-			'body' => stripslashes($_POST['incident'])
-		)
-	);
-
-//	echo json_decode("fdfsdfdsfdsf");
-
-
-	//p_send_json($return);
-	// Never forget to exit or die on the end of a WordPress AJAX action!
-//	echo json_encode(array('success' => true, 'message' =>  "Perhaps this very road in a man is truly the definition of asymmetrical.."));
-	// TODO texturize the message
-	echo wp_remote_retrieve_body( $response );
-    die();
-}
+//function fetch_zombie_text_callback() {
+//
+//
+//	$nlp_service_url = get_option('usp_options')['nlp-server-url'];
+//
+//	error_log($_POST['incident']);
+//
+//	$response = wp_remote_post(
+//		$nlp_service_url,
+//		//'http://192.168.1.2:8080/victim',
+//		array(
+//			'method' => 'POST',
+//			'timeout' => 30,
+//			'redirection' => 5,
+//			'httpversion' => '1.0',
+//			'blocking' => true,
+//			'headers' => array(
+//				'Content-Type' => 'application/json'
+//				//'Authorization' => 'Basic ' . base64_encode( 'ias' . ':' . '1q2w3e$r' ),
+////				'X-Redmine-API-Key' => '59930c6460e8e71ef58b4cc95d852153bf21b510'
+//			),
+//			'cookies' => array(),
+////			'body' => json_encode(array('victimText' => $_POST['victimText']))
+//			'body' => stripslashes($_POST['incident'])
+//		)
+//	);
+//
+////	echo json_decode("fdfsdfdsfdsf");
+//
+//
+//	//p_send_json($return);
+//	// Never forget to exit or die on the end of a WordPress AJAX action!
+////	echo json_encode(array('success' => true, 'message' =>  "Perhaps this very road in a man is truly the definition of asymmetrical.."));
+//	// TODO texturize the message
+//	echo wp_remote_retrieve_body( $response );
+//    die();
+//}
