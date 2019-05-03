@@ -31,9 +31,9 @@ if ($usp_options['disable_required']) {
 
 			<!-- react/redux infect app. Lives inside of existing form for now -->
 			<div id="root">
-				<link rel="stylesheet" id="zombie2_style-css" href="http://www.zombiepoetryproject.com/wp-content/plugins/zombie-posts/resources/infect/css/infectbundle.css" type="text/css" media="all">
-			<script type="text/javascript" src="http://www.zombiepoetryproject.com/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js?ver=4.3.1"></script>
-			<script type="text/javascript" src="http://www.zombiepoetryproject.com/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js.map"></script>
+				<link rel="stylesheet" id="zombie2_style-css" href="/wp-content/plugins/zombie-posts/resources/infect/css/infectbundle.css" type="text/css" media="all">
+			<script type="text/javascript" src="/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js?ver=4.3.1"></script>
+			<script type="text/javascript" src="/wp-content/plugins/zombie-posts/resources/infect/js/infectbundle.js.map"></script>
 
 
 

@@ -65,10 +65,10 @@ services:
         - "traefik.frontend.rule=Host:www.zombiepoetryproject.local"
         - "traefik.backend=web"
         - "traefik.port=80"
-    volumes:
-      - uploads:/var/www/html/wp-content/uploads
-      - ./zombie-web/www/wp-content/plugins:/var/www/html/wp-content/plugins
-      - ./zombie-web/www/wp-content/themes:/var/www/html/wp-content/themes
+#    volumes:
+#      - uploads:/var/www/html/wp-content/uploads
+#      - ./zombie-web/www/wp-content/plugins:/var/www/html/wp-content/plugins
+#      - ./zombie-web/www/wp-content/themes:/var/www/html/wp-content/themes
     extra_hosts:
       - "www.zombiepoetryproject.nlp.com:192.168.1.12"
       - "www.zombiepoetryproject.local:127.0.0.1"

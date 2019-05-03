@@ -5,14 +5,20 @@ ns: flash.zombie
 
 vars:
 
+#  arm:
+#    image:
+#      db: yobasystems/alpine-mariadb:arm32v7
+#  ARCH: arm
+
   REPO_WEB: flashashen/zombie-web
-  TAG_WEB: dev
+  TAG_WEB: dev_local
   DOCKER_IMAGE_WEB: "{{REPO_WEB}}:{{TAG_WEB}}"
 
   REPO_NLP: flashashen/zombie-nlp
   TAG_NLP: dev
   DOCKER_IMAGE_NLP: "{{REPO_NLP}}:{{TAG_NLP}}"
-  DOCKER_IMAGE_DB: mysql:5.7.23
+#  DOCKER_IMAGE_DB: mysql:5.7.23
+  DOCKER_IMAGE_DB: mysql
 
   COMPOSE_FILENAME: docker-compose.dev.yml
   DOCKERFILE: Dockerfile
@@ -86,6 +92,48 @@ contexts:
           - open -a Google\ Chrome --args --disable-web-security --user-data-dir
 
         build: *CMD_BUILD_INFECT
+
+
+
+  mini:
+    vars:
+      service: web
+      DOCKER_HOST: zombie-server:1234
+      DOCKERFILE: Dockerfile
+      repo: "{{REPO_WEB}}"
+      tag: "{{TAG_WEB}}"
+      DOCKER_IMAGE_DB: yobasystems/alpine-mariadb
+      TAG_NLP: "1.0"
+      TAG_WEB: "2.1"
+      COMPOSE_FILENAME: docker-compose.yml
+
+    contexts:
+      web:
+        vars:
+          _DSH_CTX_WORK_DIR: zombie-web
+
+        commands: *WEB_COMMANDS
+      nlp:
+        vars:
+          _DSH_CTX_WORK_DIR: zombie-nlp
+        commands: *NLP_COMMANDS
+
+
+    up:
+#      - "{{CMD_DOCKER_PUSH}}"
+#      - docker build -f {{DOCKERFILE}} -t {{DOCKER_IMAGE_WEB}} .
+#      - docker pull {{DOCKER_IMAGE}}
+      - docker stack deploy --with-registry-auth -c {{COMPOSE_FILENAME}} {{stack_name}}
+      - docker service update --force --image {{DOCKER_IMAGE_WEB}} {{stack_name}}_{{service}}
+
+    stop: docker stack remove {{stack_name}}
+    ps: "{{CMD_PS}}"
+    logs: "{{CMD_LOGS}}"
+    db_kill:
+      - docker service rm zombie_db
+      - docker volume rm zombie_db
+    db_backup: ansible-playbook provision/db_backup.yml --limit mini
+    db_restore: ansible-playbook provision/db_restore.yml --limit mini
 
 
 
